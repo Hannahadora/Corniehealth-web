@@ -10,8 +10,8 @@
 				<li>For Providers</li>
 			</ul>
 			<div class="flex items-center gap-2">
-				<Button title="Login" :primary="true" />
-				<Button title="Sign up" :secondary="true" />
+				<c-button title="Login" :primary="true" />
+				<c-button title="Sign up" :secondary="true" />
 			</div>
 		</div>
 	</div>
@@ -19,14 +19,13 @@
 
 <script lang="ts">
 import Vue from "vue"
-import { Component } from "vue-property-decorator"
-import Button from "./Button.vue"
+import CButton from "./CButton.vue"
 import CornieLogo from "./CornieLogo.vue"
 export default Vue.extend ({
-  name: 'TopNav',
-   components: {
+  name: "TopNav",
+  components: {
     CornieLogo,
-    Button
+    CButton
   }
 })
 </script>

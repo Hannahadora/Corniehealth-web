@@ -2,7 +2,7 @@
 	<div>
 		<button
 			class="py-10"
-			:class="{ 'primary-btn': primary, 'secondary-btn': secondary, 'tertiary-btn': tertiary }"
+			:class="{ 'primary-btn': primary, 'secondary-btn': secondary, 'tertiary-btn': tertiary, 'small-btn': small }"
 		>
 			{{ title }}
 		</button>
@@ -27,6 +27,10 @@ export default Vue.extend({
       default: false,
     },
     tertiary: {
+      type: Boolean,
+      default: false,
+    },
+    small: {
       type: Boolean,
       default: false,
     },
@@ -57,5 +61,10 @@ export default Vue.extend({
   background: #080056;
   color: #fff;
   padding: 16px 70px;
+}
+
+.small-btn {
+  padding: 13px 23px !important;
+  width: 196px !important;
 }
 </style>

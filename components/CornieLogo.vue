@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<img src="/images/CornieHealth.png" alt="logo">
+		<img :src="footer ? '/images/FooterLogo.svg' : '/images/HeaderLogo.svg'" alt="logo" >
 	</div>
 </template>
 
@@ -8,6 +8,12 @@
 import Vue from "vue"
 
 export default Vue.extend({
-  name: "CornieLogo"
+  name: "CornieLogo",
+  props: {
+	  footer: {
+		  type: Boolean,
+		  default: false
+	  }
+  }
 })
 </script>

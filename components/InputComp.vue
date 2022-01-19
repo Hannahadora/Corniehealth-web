@@ -1,22 +1,22 @@
 <template>
 	<div class="input-wrapper flex items-center gap-7 p-4">
-    <img :src="inputIcon" alt="">
-    <input class="c-input" type="text" :placeholder="placeholder">
+		<img :src="inputIcon" alt="">
+		<input class="c-input" type="text" :placeholder="placeholder">
 	</div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue"
 export default Vue.extend({
-  name: 'Cinput',
+  name: "InputComp",
   props: {
     inputIcon: {
       type: String,
-      default: ''
+      default: ""
     },
     placeholder: {
       type: String,
-      default: ''
+      default: ""
     }
   }
 })

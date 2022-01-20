@@ -12,8 +12,8 @@
 			<p class="mb-14">View all practice information and ratings, no calls or messaging required</p>
 
 			<div class="w-full flex lg:flex-row flex-col items-center justify-center gap-2">
-				<input-comp class="lg:w-2/5 lg:block hidden" input-icon="/images/search.svg" placeholder="Provider name, practice name or specialty" />
-				<input-comp class="lg:w-2/5 lg:hidden block" input-icon="/images/search.svg" placeholder="Name or specialty" />
+				<input-comp class="lg:w-2/5 lg:flex hidden" input-icon="/images/search.svg" placeholder="Provider name, practice name or specialty" />
+				<input-comp class="w-full lg:hidden block" input-icon="/images/search.svg" placeholder="Name or specialty" />
 				<input-comp class="lg:w-2/5 w-full" input-icon="/images/location.svg" placeholder="City name or Zip/Postal code" />
 				<div class="lg:w-1/5 w-full">
 					<c-button title="Search" :tertiary="true" />

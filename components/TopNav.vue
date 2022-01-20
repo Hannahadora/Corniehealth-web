@@ -1,23 +1,23 @@
 <template>
-  <div class="header">
-    <div class="w-full flex items-center justify-between">
-      <CornieLogo />
-      <ul class="header-nav lg:flex hidden items-center gap-6 justify-between">
-        <li>Appointments</li>
-        <li>Pharmacy</li>
-        <li>Lab tests</li>
-        <li>For Patients</li>
-        <li>For Providers</li>
-      </ul>
-      <div class="flex items-center gap-2 lg:block hidden">
-        <c-button title="Login" :primary="true" />
-        <c-button title="Sign up" :secondary="true" />
-      </div>
-	  <div>
-		  <img src="/images/ci_hamburger.svg" alt="">
-	  </div>
-    </div>
-  </div>
+	<div class="header">
+		<div class="w-full flex items-center justify-between">
+			<CornieLogo />
+			<ul class="header-nav lg:flex hidden items-center gap-6 justify-between">
+				<li>Appointments</li>
+				<li>Pharmacy</li>
+				<li>Lab tests</li>
+				<li>For Patients</li>
+				<li>For Providers</li>
+			</ul>
+			<div class="flex items-center gap-2 lg:flex hidden">
+				<c-button title="Login" :primary="true" />
+				<c-button title="Sign up" :secondary="true" />
+			</div>
+			<div class="lg:hidden block">
+				<img src="/images/ci_hamburger.svg" alt="">
+			</div>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">

@@ -1,22 +1,22 @@
 <template>
 	<div class="footer-wrapper">
-		<div class="mb-24 flex items-start">
-			<div class="mr-20 w-1/4">
-				<cornie-logo :footer="true" class="mb-5" />
-				<span class=""
+		<div class="mb-24 flex lg:flex-row flex-col items-start">
+			<div class="lg:mr-20 mr-0 lg:mb-0 mb-12 lg:w-1/4 w-full">
+				<cornie-logo :footer="true" class="lg:mb-5 mb-6" />
+				<span class="lg:block hidden"
 				>Cornie Health-affiliated practices are independently owned and
 					operated by licensed practitioners who provide services utilizing the
 					Cornie Health platform.
 				</span>
 			</div>
-			<ul class="footer-list mr-8">
-				<li class="mb-8 sub-titles-1">Company Overview</li>
+			<ul class="footer-list lg:mr-8 mr-0 lg:mb-0 mb-12">
+				<li class="lg:mb-8 mb-6 sub-titles-1">Company Overview</li>
 				<li class="mb-4">Who we serve</li>
 				<li class="mb-4">Why CornieHealth</li>
 				<li class="mb-4">Contact</li>
 			</ul>
-			<ul class="footer-list mr-8">
-				<li class="mb-8 sub-titles-1">Resources</li>
+			<ul class="footer-list lg:mr-8 mr-0 lg:mb-0 mb-12">
+				<li class="lg:mb-8 mb-6 sub-titles-1">Resources</li>
 				<li class="mb-4">FAQ</li>
 				<li class="mb-4">Terms of use</li>
 				<li class="mb-4">Privacy policy</li>
@@ -24,7 +24,7 @@
 				<li class="mb-4">Compliance</li>
 			</ul>
 			<ul class="">
-				<li class="mb-8 sub-titles-1">Social Share</li>
+				<li class="lg:mb-8 mb-6 sub-titles-1">Social Share</li>
 				<li class="mb-4 footer-icons">
 					<img src="/images/twitter-icon.svg" alt="" /><span>Twitter</span>
 				</li>
@@ -72,11 +72,25 @@ export default Vue.extend({
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 11px;
 }
 
 .footer-cw {
     border-top: 1px solid #E5E5E5;
     padding-top: 30px;
+}
+
+@media screen and (max-width: 1024px) {
+  .footer-wrapper {
+  padding: 30px;
+}
+  .footer-list {
+    width: 100%;
+    padding: 0px 15px ;
+  }
+  .footer-cw {
+    padding-top: 36px;
+}
+
 }
 </style>

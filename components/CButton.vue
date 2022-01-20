@@ -67,4 +67,11 @@ export default Vue.extend({
   padding: 13px 23px !important;
   width: 196px !important;
 }
+
+@media screen and (max-width: 768px) {
+  .small-btn {
+  padding: 13px 18px !important;
+  max-width: 192px !important;
+}
+}
 </style>

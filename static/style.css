@@ -50,4 +50,28 @@ h4 {
 p {
   font-size: 16px;
   font-weight: 400px;
+  line-height: 24px;
+}
+
+
+@media screen and (max-width: 1024px) {
+  .c-wrapper {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .c-wrapper {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
+  h1{
+    font-size: 24px !important;
+    line-height: 34px !important;
+    font-weight: 700 !important;
+  }
+  h2 {
+    font-size: 20px !important;
+    line-height: 28px !important;
+  }
 }

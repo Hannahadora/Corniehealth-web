@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<button
-			class="py-10"
+			class="py-10 btn"
 			:class="{ 'primary-btn': primary, 'secondary-btn': secondary, 'tertiary-btn': tertiary, 'small-btn': small }"
 		>
 			{{ title }}

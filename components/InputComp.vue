@@ -1,0 +1,37 @@
+<template>
+	<div class="input-wrapper flex items-center gap-7 p-4">
+		<img :src="inputIcon" alt="">
+		<input class="c-input" type="text" :placeholder="placeholder">
+	</div>
+</template>
+
+<script lang="ts">
+import Vue from "vue"
+export default Vue.extend({
+  name: "InputComp",
+  props: {
+    inputIcon: {
+      type: String,
+      default: ""
+    },
+    placeholder: {
+      type: String,
+      default: ""
+    }
+  }
+})
+</script>
+
+<style>
+  .input-wrapper {
+    border: 1px solid #000;
+  }
+
+  .c-input {
+    border: none;
+  }
+
+  .c-input:focus {
+    outline: none;
+  }
+</style>

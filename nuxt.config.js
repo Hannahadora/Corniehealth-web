@@ -1,6 +1,7 @@
 import { defineNuxtConfig } from "@nuxt/bridge"
 
 export default defineNuxtConfig({
+  bridge: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "booking-site",
@@ -15,7 +16,7 @@ export default defineNuxtConfig({
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      { rel: "stylesheet", type: "text/css", href: "/style.css" }
+      { rel: "stylesheet", type: "text/css", href: "/style.css" },
     ],
   },
 
@@ -30,8 +31,6 @@ export default defineNuxtConfig({
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    "@nuxt/typescript-build",
     // https://go.nuxtjs.dev/tailwindcss
     "@nuxtjs/tailwindcss",
   ],

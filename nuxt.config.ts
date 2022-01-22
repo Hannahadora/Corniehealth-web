@@ -2,6 +2,7 @@ import { defineNuxtConfig } from "@nuxt/bridge"
 
 export default defineNuxtConfig({
   bridge: false,
+  target: "static",
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "booking-site",
@@ -42,15 +43,6 @@ export default defineNuxtConfig({
     // https://go.nuxtjs.dev/content
     "@nuxt/content",
   ],
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: "/",
-  },
-
-  // Content module configuration: https://go.nuxtjs.dev/config-content
-  content: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

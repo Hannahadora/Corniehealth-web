@@ -52,6 +52,7 @@ export default Vue.extend({
   background: #fff;
   padding: 10px 54px;
   border: 1px solid #080056;
+  color: #080056;
 }
 
 .secondary-btn {

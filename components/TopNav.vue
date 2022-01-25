@@ -3,13 +3,13 @@
     <div class="w-full flex items-center justify-between">
       <CornieLogo />
       <ul class="header-nav xl:flex hidden items-center gap-6 justify-between">
-        <NuxtLink to="/Appointment">Appointments</NuxtLink>
-        <NuxtLink to="/Pharmacy">Pharmacy</NuxtLink>
-        <NuxtLink to="/LabTest">Lab tests</NuxtLink>
+        <NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
+        <NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
+        <NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
         <div class="relative">
           <p
             :class="{ 'active-dropdown': patientDropdown === true }"
-            class="flex items-center gap-2 cursor-pointer"
+            class="pb-2 flex items-center gap-2 cursor-pointer"
             @click="patientDropdown = !patientDropdown"
           >
             For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
@@ -19,13 +19,12 @@
         <div class="relative">
           <p
             :class="{ 'active-dropdown': providerDropdown === true }"
-            class="flex items-center gap-2 cursor-pointer"
+            class="pb-2 flex items-center gap-2 cursor-pointer"
             @click="providerDropdown = !providerDropdown"
           >
             For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
           </p>
-          <c-dropdown v-if="providerDropdown" class="absolute top-16">
-          </c-dropdown>
+          <providers-dropdown v-if="providerDropdown" class="absolute top-16" />
         </div>
       </ul>
       <div class="flex items-center gap-2 xl:flex hidden">
@@ -42,16 +41,16 @@
 <script lang="ts">
 import Vue from "vue"
 import CButton from "./CButton.vue"
-import CDropdown from "./CDropdown.vue"
 import CornieLogo from "./CornieLogo.vue"
 import PatientsDropdown from "./PatientsDropdown.vue"
+import ProvidersDropdown from "./ProvidersDropdown.vue"
 export default Vue.extend({
   name: "TopNav",
   components: {
     CornieLogo,
     CButton,
-    CDropdown,
     PatientsDropdown,
+    ProvidersDropdown,
   },
   data() {
     return {
@@ -70,7 +69,6 @@ export default Vue.extend({
 }
 
 .active-dropdown {
-  padding-bottom: 8px;
   border-bottom: 3px solid #fe4d3c;
 }
 

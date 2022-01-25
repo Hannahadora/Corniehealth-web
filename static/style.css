@@ -23,6 +23,10 @@ body {
   background-color: #fe4d3c;
 }
 
+.text-razzmataz-pry {
+  color: #FE4D3C;
+}
+
 .sub-titles-1 {
   font-weight: bold !important;
   font-size: 18px !important;
@@ -41,6 +45,12 @@ h2 {
   line-height: 45px !important;
 }
 
+h3 {
+  font-weight: 700 !important;
+  font-size: 24px !important;
+  line-height: 34px !important;
+}
+
 h4 {
   font-weight: bold !important;
   font-size: 20px !important;
@@ -53,7 +63,12 @@ p {
   line-height: 24px;
 }
 
-
+@media screen and (max-width: 1080px) {
+  .c-wrapper {
+    padding-left: 70px;
+    padding-right: 50px;
+  }
+}
 @media screen and (max-width: 1024px) {
   .c-wrapper {
     padding-left: 50px;
@@ -65,7 +80,7 @@ p {
     padding-left: 36px;
     padding-right: 36px;
   }
-  h1{
+  h1 {
     font-size: 24px !important;
     line-height: 34px !important;
     font-weight: 700 !important;

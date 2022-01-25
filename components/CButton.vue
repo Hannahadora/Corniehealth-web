@@ -1,15 +1,15 @@
 <template>
-    <button
-      class="py-10 btn"
-      :class="{
-        'primary-btn': primary,
-        'secondary-btn': secondary,
-        'tertiary-btn': tertiary,
-        'small-btn': small,
-      }"
-    >
-      {{ title }}
-    </button>
+	<button
+		class="py-10 btn"
+		:class="{
+			'primary-btn': primary,
+			'secondary-btn': secondary,
+			'tertiary-btn': tertiary,
+			'small-btn': small,
+		}"
+	>
+		{{ title }}
+	</button>
 </template>
 
 <script lang="ts">
@@ -71,7 +71,7 @@ export default Vue.extend({
   width: 196px !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1080px) {
   .small-btn {
     padding: 13px 18px !important;
     max-width: auto !important;

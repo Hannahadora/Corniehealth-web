@@ -12,12 +12,12 @@
 			</div>
 			<div class="c-wrapper mt-16 b-2">
 				<div
-					class="sub-sect-2 lg:h-80 h-auto flex lg:flex-row flex-col flex-col-reverse items-center justify-center mb-2 w-full"
+					class="sub-sect-2 xl:h-80 h-auto flex xl:flex-row flex-col flex-col-reverse items-center justify-center mb-2 w-full"
 				>
 					<div
-						class="lg:w-1/2 w-full lg:px-9 px-6 lg:py-20 py-6 bg-cblue-100 lg:h-full"
+						class="lg:w-1/2 w-full xl:px-9 px-6 xl:py-20 py-6 bg-cblue-100 h-full"
 					>
-						<h2 class="mb-2">For you and your loved ones</h2>
+						<span class="mb-2 xl:text-3xl text-lg font-bold xl:leading-10 leading-7">For you and your loved ones</span>
 						<p class="mb-6 lg:font-bold">Private</p>
 						<c-button
 							title="Get started for free"
@@ -27,41 +27,41 @@
 					</div>
 					<div class="h-full lg:w-1/2 w-full">
 						<img
-						class="h-full w-full"
-						src="/images/image 23.svg"
-						alt=""
-					/>
+							class="h-full w-full"
+							src="/images/image 23.svg"
+							alt=""
+						/>
 					</div>
 				</div>
 				<div class="lg:grid block grid-cols-4 text-white bg-razzmataz-pry mt-16 py-3">
 					<div class="px-6 py-8 border-r border-white">
-						<img class="mb-6" src="/images/book-appointment.svg" alt="" />
+						<img class="mb-4" src="/images/book-appointment.svg" alt="" />
 						<span class="sub-titles-1">Book and manage appointments</span>
-						<p class="mt-6">
+						<p class="mt-4">
 							Schedule and manage appointments online and view details of past
 							and upcoming appointments.
 						</p>
 					</div>
 					<div class="px-6 py-8 border-r border-white">
-						<img class="mb-6" src="/images/consultant.svg" alt="" />
+						<img class="mb-4" src="/images/consultant.svg" alt="" />
 						<span class="sub-titles-1">Consult your doctor </span>
-						<p class="mt-6">
+						<p class="mt-4">
 							Consult with your doctor from your comfort and enjoy timely and
 							quality care.
 						</p>
 					</div>
 					<div class="px-6 py-8 border-r border-white">
-						<img class="mb-6" src="/images/medications.svg" alt="" />
+						<img class="mb-4" src="/images/carbon_medication.svg" alt="" />
 						<span class="sub-titles-1">Medications</span>
-						<p class="mt-6">
+						<p class="mt-4">
 							View past and current medications and request a medication refill
 							instantly.
 						</p>
 					</div>
 					<div class="px-6 py-8 border-r border-white">
-						<img class="mb-6" src="/images/lab-test.svg" alt="" />
+						<img class="mb-4" src="/images/carbon_result.svg" alt="" />
 						<span class="sub-titles-1">Lab test </span>
-						<p class="mt-6">
+						<p class="mt-4">
 							Frequent lab visits are so old school. Access your diagnostic
 							results, accompanying doctor's notes InApp.
 						</p>
@@ -200,8 +200,8 @@
 			</div>
 			<span class="sub-titles-1">Coming soon to your mobile Apps.</span>
 			<div class="mt-8 flex items-center justify-center gap-6">
-				<img src="/images/Apple Store.svg" alt="" />
-				<img src="/images/Gogle store.svg" alt="" />
+				<img class="xl:w-52 w-40" src="/images/Apple Store.svg" alt="" />
+				<img class="xl:w-52 w-40" src="/images/Gogle store.svg" alt="" />
 			</div>
 		</div>
 

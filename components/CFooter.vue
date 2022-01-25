@@ -1,6 +1,6 @@
 <template>
 	<div class="footer-wrapper">
-		<div class="mb-24 flex lg:flex-row flex-col items-start lg:justify-between">
+		<div class="mb-24 flex lg:flex-row flex-col items-start gap-8">
 			<div class="xl:mr-20 mr-0 lg:mb-0 mb-12 lg:w-1/4 w-full">
 				<cornie-logo :footer="true" class="lg:mb-5 mb-6" />
 				<span class="lg:block hidden"

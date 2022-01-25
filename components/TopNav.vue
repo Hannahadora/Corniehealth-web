@@ -2,40 +2,37 @@
   <div class="header">
     <div class="w-full flex items-center justify-between">
       <CornieLogo />
-      <ul class="header-nav lg:flex hidden items-center gap-6 justify-between">
+      <ul class="header-nav xl:flex hidden items-center gap-6 justify-between">
         <NuxtLink to="/Appointment">Appointments</NuxtLink>
         <NuxtLink to="/Pharmacy">Pharmacy</NuxtLink>
         <NuxtLink to="/LabTest">Lab tests</NuxtLink>
         <div class="relative">
-          <p  @click="patientDropdown = !patientDropdown"
+          <p
             :class="{ 'active-dropdown': patientDropdown === true }"
-            class="flex items-center gap-2 cursor-pointer" c>
+            class="flex items-center gap-2 cursor-pointer"
+            @click="patientDropdown = !patientDropdown"
+          >
             For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
           </p>
-		  <c-dropdown
-            class="absolute top-16"
-            v-if="patientDropdown"
-          ></c-dropdown>
+          <patients-dropdown v-if="patientDropdown" class="absolute top-16" />
         </div>
         <div class="relative">
           <p
-            @click="providerDropdown = !providerDropdown"
             :class="{ 'active-dropdown': providerDropdown === true }"
             class="flex items-center gap-2 cursor-pointer"
+            @click="providerDropdown = !providerDropdown"
           >
             For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
           </p>
-          <c-dropdown
-            class="absolute top-16"
-            v-if="providerDropdown"
-          ></c-dropdown>
+          <c-dropdown v-if="providerDropdown" class="absolute top-16">
+          </c-dropdown>
         </div>
       </ul>
-      <div class="flex items-center gap-2 lg:flex hidden">
+      <div class="flex items-center gap-2 xl:flex hidden">
         <c-button title="Login" :primary="true" />
         <c-button title="Sign up" :secondary="true" />
       </div>
-      <div class="lg:hidden block">
+      <div class="xl:hidden block">
         <img src="/images/ci_hamburger.svg" alt="" />
       </div>
     </div>
@@ -47,12 +44,14 @@ import Vue from "vue"
 import CButton from "./CButton.vue"
 import CDropdown from "./CDropdown.vue"
 import CornieLogo from "./CornieLogo.vue"
+import PatientsDropdown from "./PatientsDropdown.vue"
 export default Vue.extend({
   name: "TopNav",
   components: {
     CornieLogo,
     CButton,
     CDropdown,
+    PatientsDropdown,
   },
   data() {
     return {
@@ -72,7 +71,7 @@ export default Vue.extend({
 
 .active-dropdown {
   padding-bottom: 8px;
-  border-bottom: 2px solid #fe4d3c;
+  border-bottom: 3px solid #fe4d3c;
 }
 
 @media screen and (max-width: 1024px) {

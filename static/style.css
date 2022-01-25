@@ -19,12 +19,17 @@ body {
   background-color: #f6f8f9;
 }
 
+.c-shadow {
+  box-shadow: 0px 1px 100px 30px rgba(46, 41, 78, 0.02),
+    0px 8px 12px rgba(46, 41, 78, 0.08);
+}
+
 .bg-razzmataz-pry {
   background-color: #fe4d3c;
 }
 
 .text-razzmataz-pry {
-  color: #FE4D3C;
+  color: #fe4d3c;
 }
 
 .sub-titles-1 {

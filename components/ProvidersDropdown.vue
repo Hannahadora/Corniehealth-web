@@ -1,15 +1,6 @@
 <template>
 	<div class="provider-dropdown p-8 bg-white shadow">
 		<div>
-			<!-- <NuxtLink to="/providers/private" class="mb-7 flex items-center gap-2"
-        ><img src="/images/patient-private.svg" alt="" /><span
-          >Private</span
-        ></NuxtLink
-      >
-      <NuxtLink to="/providers/employer" class="flex items-center gap-2"
-        ><img src="/images/clarity_employee-line.svg" alt="" /><span
-          >Employer</span
-        ></NuxtLink -->
 
 			<div class="mb-6 flex items-center gap-2">
 				<img src="/images/dd-icons/bx_bx-category-alt.svg" alt="" />
@@ -36,8 +27,8 @@
 						<img src="/images/dd-icons/practice-type.svg" alt="" />
 						<p>Practice Type</p>
 					</div>
-					<NuxtLink class="pl-10" to="/providers/hospitals_and_clinics">Hospitals and clinics</NuxtLink>
-					<NuxtLink class="pl-10" to="/providers/solo_practice">Solo Practice</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/hospitals-and-clinics">Hospitals and clinics</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/solo-practice">Solo Practice</NuxtLink>
 					<NuxtLink class="pl-10" to="/providers/community_pharmacies">Community Pharmacies</NuxtLink>
 					<NuxtLink class="pl-10" to="/providers/diagnostics">Diagnostics</NuxtLink>
 				</div>
@@ -57,6 +48,7 @@ export default Vue.extend({
 <style scoped>
 .provider-dropdown {
   width: 563px;
+  z-index: 99;
 }
 
 tr {

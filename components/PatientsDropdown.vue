@@ -1,5 +1,5 @@
 <template>
-	<div class="p-8 w-72 bg-white shadow">
+	<div class="patient-dropdown p-8 w-72 bg-white shadow">
 		<NuxtLink to="/patients/private" class="mb-7 flex items-center gap-2"
 		><img src="/images/patient-private.svg" alt="" /><span
 		>Private</span
@@ -21,4 +21,8 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.patient-dropdown {
+	z-index: 99;
+}
+</style>

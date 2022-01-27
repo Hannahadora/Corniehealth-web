@@ -6,6 +6,7 @@
 			'secondary-btn': secondary,
 			'tertiary-btn': tertiary,
 			'small-btn': small,
+      'rounded-btn': rounded
 		}"
 	>
 		{{ title }}
@@ -37,6 +38,10 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
+    rounded: {
+      type: Boolean,
+      default: false
+    }
   },
 })
 </script>
@@ -69,16 +74,20 @@ export default Vue.extend({
 
 .small-btn {
   padding: 13px 20px !important;
-  width: 196px !important;
+  /* width: 196px !important; */
+}
+
+.rounded-btn {
+  border-radius: 124px;
 }
 
 @media screen and (max-width: 1080px) {
   .small-btn {
     padding: 13px 18px !important;
-    max-width: auto !important;
   }
   .btn {
     width: 100%;
+    white-space: nowrap;
   }
 }
 </style>

@@ -4,29 +4,36 @@
 			<div class="xl:w-1/2 w-full">
 				<div class="flex items-center xl:justify-start justify-center gap-2 mb-4">
 					<img class="xl:block hidden" src="/images/good health.svg" alt="" />
-					<p class="text-left text-center">Simplify collections with online payment processing.</p>
+					<p class="text-left text-center">Chart your way to better care delivery.</p>
 				</div>
-				<h2 class="c-indigo mb-8 xl:text-left text-center">Billing and Payment</h2>
+				<h2 class="c-indigo mb-8 xl:text-left text-center">
+					Integrated Electronic Medical/Health Records (EMR/EHR)
+				</h2>
 				<p class="mb-8 xl:text-left text-center">
-					Empower your team to maximize collection with easy-to-read and
-					transparent paperless billing and get paid faster.
+					Create clear, concise, and comprehensive patient documentation,
+					easy-to-use and fast, with inbuilt SNOMED-CT, ICD-11, and LOINC codes
+					to standardize your documentation.
 				</p>
 
 				<div class="flex items-center gap-4 mb-4">
 					<img src="/images/checkmark.svg" alt="" />
-					<p>Online, paperless billing and payment.</p>
+					<p>EMR/EHR mode support.</p>
 				</div>
 				<div class="flex items-center gap-4 mb-4">
 					<img src="/images/checkmark.svg" alt="" />
-					<p>Consolidated patient balance statement.</p>
+					<p>Cloud-based and mobile enabled.</p>
 				</div>
 				<div class="flex items-center gap-4 mb-4">
 					<img src="/images/checkmark.svg" alt="" />
-					<p>Real-time claims adjudication enabled.</p>
+					<p>Authenticated access control.</p>
 				</div>
 				<div class="flex items-center gap-4 mb-4">
 					<img src="/images/checkmark.svg" alt="" />
-					<p>Account based billing audit.</p>
+					<p>Medication catalogue, powered by EMDEX API.</p>
+				</div>
+				<div class="flex items-center gap-4 mb-4">
+					<img src="/images/checkmark.svg" alt="" />
+					<p>Electronic request management.</p>
 				</div>
 				<div class="mt-8">
 					<c-button title="Discover More" secondary small />
@@ -34,7 +41,7 @@
 			</div>
 
 			<div class="xl:w-1/2 w-full flex items-center justify-center">
-				<img src="/images/providers/billing-and-payment.svg" alt="" />
+				<img src="/images/providers/Device-Macbook pro (1).svg" alt="" />
 			</div>
 		</div>
 	</div>
@@ -44,7 +51,7 @@
 import Vue from "vue"
 import CButton from "../CButton.vue"
 export default Vue.extend({
-  name: "BillingsAndPayment",
+  name: "EmrEmh",
   components: { CButton },
 })
 </script>

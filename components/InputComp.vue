@@ -22,7 +22,7 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style scoped>
   .input-wrapper {
     border: 1px solid #000;
   }
@@ -33,5 +33,12 @@ export default Vue.extend({
 
   .c-input:focus {
     outline: none;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .c-input {
+      width: inherit;
+      font-size: 14px !important;
+    }
   }
 </style>

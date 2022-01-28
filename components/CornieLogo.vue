@@ -1,13 +1,15 @@
 <template>
-  <div>
-    <img class="lg:block hidden"
-      :src="footer ? '/images/FooterLogo.svg' : '/images/HeaderLogo.svg'"
-      alt="logo" />
-    <img class="lg:hidden block"
-      :src="footer ? '/images/FooterLogo.svg' : '/images/Mobile-Logo.svg'"
-      alt="logo"
-    />
-  </div>
+	<div>
+		<img
+			class="lg:block hidden"
+			:src="footer ? '/images/FooterLogo.svg' : '/images/HeaderLogo.svg'"
+			alt="logo" />
+		<img
+			class="lg:hidden block"
+			:src="footer ? '/images/FooterLogo.svg' : '/images/Mobile-Logo.svg'"
+			alt="logo"
+		/>
+	</div>
 </template>
 
 <script lang="ts">

@@ -6,7 +6,7 @@
 			'secondary-btn': secondary,
 			'tertiary-btn': tertiary,
 			'small-btn': small,
-      'rounded-btn': rounded
+			'rounded-btn': rounded
 		}"
 	>
 		{{ title }}

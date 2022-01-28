@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="c-wrapper xl:mt-28 mt-14 mb-20 flex xl:flex-row flex-col items-center gap-14">
+		<div class="c-wrapper xl:pt-48 pt-24 mb-20 flex xl:flex-row flex-col items-center gap-14">
 			<div class="xl:w-1/2 w-full">
 				<div class="flex items-center xl:justify-start justify-center gap-2">
 					<img class="xl:block hidden" src="/images/good health.svg" alt="" />
@@ -28,7 +28,7 @@
 
 		<div class="c-wrapper bg-white">
 			<div class="xl:px-4 px-3 xl:py-8 py-3 c-shadow">
-				<div class="flex xl:flex-row flex-col items-start xl:gap-6">
+				<div class="xl:h-48 h-auto flex xl:flex-row flex-col items-start xl:gap-6">
 					<div class="bg-cblue-100 p-6 w-full">
 						<div class="flex gap-4">
 							<img src="/images/dd-icons/carbon_location-company.svg" alt="" />
@@ -108,14 +108,11 @@ import BillingsAndPayment from "~/components/Providers/BillingsAndPayment.vue"
 import EmrEmh from "~/components/Providers/EmrEmh.vue"
 import PatientExperience from "~/components/Providers/PatientExperience.vue"
 import PracticeManagement from "~/components/Providers/PracticeManagement.vue"
-import TopNav from "~/components/TopNav.vue"
 import AnBIntelliegence from "~/components/Providers/AnBIntelliegence.vue"
-import CFooter from "~/components/CFooter.vue"
 import DataProtection from "~/components/Providers/DataProtection.vue"
 export default Vue.extend({
   name: "HospitalsAndClinics",
   components: {
-    TopNav,
     CButton,
     PatientExperience,
     EmrEmh,
@@ -123,7 +120,6 @@ export default Vue.extend({
     BillingsAndPayment,
     PatientPortal,
     AnBIntelliegence,
-    CFooter,
     DataProtection
   },
 })

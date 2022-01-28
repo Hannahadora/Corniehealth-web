@@ -20,10 +20,10 @@
 						<p class="mb-6 lg:font-bold">Private</p>
 						<div class="w-48">
 							<c-button
-							title="Get started for free"
-							:secondary="true"
-							:small="true"
-						/>
+								title="Get started for free"
+								:secondary="true"
+								:small="true"
+							/>
 						</div>
 					</div>
 					<div class="h-full lg:w-1/2 w-full">
@@ -194,10 +194,10 @@
 			<div class="flex items-center justify-center gap-6 mb-14">
 				<div class="w-auto">
 					<c-button
-					title="Get started for free"
-					:secondary="true"
-					:small="true"
-				/>
+						title="Get started for free"
+						:secondary="true"
+						:small="true"
+					/>
 				</div>
 				<div class="w-auto">
 					<c-button title="Contact us" :primary="true" :small="true" />
@@ -219,20 +219,16 @@
 <script lang="ts">
 import Vue from "vue"
 // import { Component } from "vue-property-decorator";
-import TopNav from "~/components/TopNav.vue"
 import IndexHeader from "~/components/IndexHeader.vue"
 import CButton from "~/components/CButton.vue"
 import choices from "~/utils/choices.js"
-import CFooter from "~/components/CFooter.vue"
 export default Vue.extend({
   name: "IndexPage",
-  layout: "default",
   components: {
-    TopNav,
     IndexHeader,
     CButton,
-    CFooter,
   },
+  layout: "default",
   data() {
     return {
       choices,

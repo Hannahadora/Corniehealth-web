@@ -28,6 +28,10 @@ body {
   background-color: #fe4d3c;
 }
 
+.bg-c-indigo {
+  background: #080056;
+}
+
 .text-razzmataz-pry {
   color: #fe4d3c;
 }

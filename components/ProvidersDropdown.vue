@@ -13,7 +13,7 @@
 						<img src="/images/dd-icons/products.svg" alt="" />
 						<p>Products</p>
 					</div>
-					<NuxtLink class="pl-10" to="/providers/">Patient Experience</NuxtLink>
+					<NuxtLink class="pl-10" to="/patient-experience">Patient Experience</NuxtLink>
 					<NuxtLink class="pl-10" to="/providers/">Clinical (EMR/EHR)</NuxtLink>
 					<NuxtLink class="pl-10" to="/providers/">Practice Management</NuxtLink>
 					<NuxtLink class="pl-10" to="/providers/">Billing & Collections</NuxtLink>
@@ -29,7 +29,7 @@
 					</div>
 					<NuxtLink class="pl-10" to="/providers/hospitals-and-clinics">Hospitals and clinics</NuxtLink>
 					<NuxtLink class="pl-10" to="/providers/solo-practice">Solo Practice</NuxtLink>
-					<NuxtLink class="pl-10" to="/providers/community_pharmacies">Community Pharmacies</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/community-pharmacies">Community Pharmacies</NuxtLink>
 					<NuxtLink class="pl-10" to="/providers/diagnostics">Diagnostics</NuxtLink>
 				</div>
 			</div>

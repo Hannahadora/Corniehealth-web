@@ -1,43 +1,43 @@
 <template>
-  <div class="header bg-white w-full fixed top-0">
-    <div class="w-full flex items-center justify-between">
-      <NuxtLink to="/"><CornieLogo /></NuxtLink>
-      <ul class="header-nav xl:flex hidden items-center gap-6 justify-between">
-        <NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
-        <NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
-        <NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
-        <div class="relative">
-          <p
-            :class="{ 'active-dropdown': patientDropdown === true }"
-            class="pb-2 flex items-center gap-2 cursor-pointer"
-            @click="patientDropdown = !patientDropdown"
-          >
-            For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
-          </p>
-          <patients-dropdown v-if="patientDropdown" class="absolute top-16" />
-        </div>
-        <div class="relative">
-          <p
-            :class="{ 'active-dropdown': providerDropdown === true }"
-            class="pb-2 flex items-center gap-2 cursor-pointer"
-            @click="providerDropdown = !providerDropdown"
-          >
-            For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
-          </p>
-          <providers-dropdown v-if="providerDropdown" class="absolute top-16" />
-        </div>
-      </ul>
-      <div class="flex items-center gap-2 xl:flex hidden">
-        <c-button title="Login" :primary="true" />
-        <c-button title="Sign up for free" :secondary="true" />
-      </div>
-      <div class="xl:hidden block">
-        <img @click="openSideMenu" src="/images/ci_hamburger.svg" alt="" />
-      </div>
+	<div class="header bg-white w-full fixed top-0">
+		<div class="w-full flex items-center justify-between">
+			<NuxtLink to="/"><CornieLogo /></NuxtLink>
+			<ul class="header-nav xl:flex hidden items-center gap-6 justify-between">
+				<NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
+				<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
+				<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
+				<div class="relative">
+					<p
+						:class="{ 'active-dropdown': patientDropdown === true }"
+						class="pb-2 flex items-center gap-2 cursor-pointer"
+						@click="patientDropdown = !patientDropdown"
+					>
+						For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
+					</p>
+					<patients-dropdown v-if="patientDropdown" class="absolute top-16" />
+				</div>
+				<div class="relative">
+					<p
+						:class="{ 'active-dropdown': providerDropdown === true }"
+						class="pb-2 flex items-center gap-2 cursor-pointer"
+						@click="providerDropdown = !providerDropdown"
+					>
+						For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
+					</p>
+					<providers-dropdown v-if="providerDropdown" class="absolute top-16 right-0" />
+				</div>
+			</ul>
+			<div class="flex items-center gap-2 xl:flex hidden">
+				<c-button title="Login" :primary="true" />
+				<c-button title="Sign up for free" :secondary="true" />
+			</div>
+			<div class="xl:hidden block">
+				<img src="/images/ci_hamburger.svg" alt="" @click="openSideMenu" />
+			</div>
    
-    </div>
-       <mobile-nav v-if="sideMenu" class="absolute top-0 left-0" />
-  </div>
+		</div>
+		<mobile-nav v-if="sideMenu" class="absolute top-0 left-0" />
+	</div>
 </template>
 
 <script lang="ts">
@@ -72,7 +72,7 @@ export default Vue.extend({
     },
 
     openSideMenu () {
-    this.sideMenu = !this.sideMenu
+      this.sideMenu = !this.sideMenu
     }
   },
 })

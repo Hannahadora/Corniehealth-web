@@ -1,13 +1,15 @@
 <template>
 	<div class="intro-wrapper">
-		<div class="text-center">
+		<div class="text-center xl:pt-24 pt-12">
 			<div class="flex items-center justify-center gap-2">
 				<img class="lg:block hidden" src="/images/good health.svg" alt="" />
 				<p>Connected. Patient-Centric. Supportive.</p>
 			</div>
-			<h1 class="my-2 c-indigo">
-				Find your preferred doctors, other healthcare service providers, and
-				book instantly.
+			<h1 class="my-2 c-indigo xl:block hidden">
+				Find your preferred doctors, other healthcare service providers, and book instantly.
+			</h1>
+			<h1 class="my-2 c-indigo xl:hidden block">
+				Find your preferred doctors, other healthcare providers.
 			</h1>
 			<p class="mb-14">
 				View all practice information and ratings, no calls or messaging

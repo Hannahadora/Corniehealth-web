@@ -1,6 +1,5 @@
 <template>
 	<div class>
-		<TopNav />
 		<IndexHeader class="lg:mt-24 mt-16" />
 		<div class="mt-12 pt-14">
 			<div class="text-center xl:w-1/2 lg:w-2/3 w-9/12 mx-auto">
@@ -19,11 +18,13 @@
 					>
 						<span class="mb-2 xl:text-3xl text-lg font-bold xl:leading-10 leading-7">For you and your loved ones</span>
 						<p class="mb-6 lg:font-bold">Private</p>
-						<c-button
-							title="Get started for free"
-							:secondary="true"
-							:small="true"
-						/>
+						<div class="w-48">
+							<c-button
+								title="Get started for free"
+								:secondary="true"
+								:small="true"
+							/>
+						</div>
 					</div>
 					<div class="h-full lg:w-1/2 w-full">
 						<img
@@ -191,40 +192,43 @@
 				24/7
 			</p>
 			<div class="flex items-center justify-center gap-6 mb-14">
-				<c-button
-					title="Get started for free"
-					:secondary="true"
-					:small="true"
-				/>
-				<c-button title="Contact us" :primary="true" :small="true" />
+				<div class="w-auto">
+					<c-button
+						title="Get started for free"
+						:secondary="true"
+						:small="true"
+					/>
+				</div>
+				<div class="w-auto">
+					<c-button title="Contact us" :primary="true" :small="true" />
+				</div>
 			</div>
 			<span class="sub-titles-1">Coming soon to your mobile Apps.</span>
 			<div class="mt-8 flex items-center justify-center gap-6">
-				<img class="xl:w-52 w-40" src="/images/Apple Store.svg" alt="" />
-				<img class="xl:w-52 w-40" src="/images/Gogle store.svg" alt="" />
+				<div class="xl:w-52 w-40">
+					<img class="" src="/images/Apple Store.svg" alt="" />
+				</div>
+				<div class="xl:w-52 w-40">
+					<img class="" src="/images/Gogle store.svg" alt="" />
+				</div>
 			</div>
 		</div>
-
-		<CFooter />
 	</div>
 </template>
 
 <script lang="ts">
 import Vue from "vue"
 // import { Component } from "vue-property-decorator";
-import TopNav from "~/components/TopNav.vue"
 import IndexHeader from "~/components/IndexHeader.vue"
 import CButton from "~/components/CButton.vue"
 import choices from "~/utils/choices.js"
-import CFooter from "~/components/CFooter.vue"
 export default Vue.extend({
   name: "IndexPage",
   components: {
-    TopNav,
     IndexHeader,
     CButton,
-    CFooter,
   },
+  layout: "default",
   data() {
     return {
       choices,

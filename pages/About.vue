@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<top-nav />
 		<div class="bg-cblue-100 px-32 pt-20 h-80 text-center relative">
 			<h1 class="c-indigo mb-2">About</h1>
 			<p class="flex items-center justify-center gap-2">
@@ -232,18 +231,14 @@
 				</div>
 			</div>
 		</div>
-
-		<c-footer :footer="true" class="" />
 	</div>
 </template>
 
 <script lang="ts">
 import Vue from "vue"
-import CFooter from "~/components/CFooter.vue"
-import TopNav from "~/components/TopNav.vue"
 export default Vue.extend({
   name: "AboutPage",
-  components: { TopNav, CFooter },
+  components: {},
 })
 </script>
 

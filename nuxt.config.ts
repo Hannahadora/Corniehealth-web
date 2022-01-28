@@ -1,4 +1,8 @@
-export default {
+import { defineNuxtConfig } from "@nuxt/bridge"
+
+export default defineNuxtConfig({
+  bridge: false,
+  target: "static",
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "booking-site",
@@ -13,7 +17,7 @@ export default {
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      { rel: "stylesheet", type: "text/css", href: "/style.css" }
+      { rel: "stylesheet", type: "text/css", href: "/style.css" },
     ],
   },
 
@@ -28,8 +32,6 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    "@nuxt/typescript-build",
     // https://go.nuxtjs.dev/tailwindcss
     "@nuxtjs/tailwindcss",
   ],
@@ -42,15 +44,6 @@ export default {
     "@nuxt/content",
   ],
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: "/",
-  },
-
-  // Content module configuration: https://go.nuxtjs.dev/config-content
-  content: {},
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-}
+})

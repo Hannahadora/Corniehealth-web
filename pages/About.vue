@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="bg-cblue-100 px-32 pt-20 h-80 text-center relative">
+		<div class="bg-cblue-100 px-32 xl:pt-48 pt-24 h-80 text-center relative">
 			<h1 class="c-indigo mb-2">About</h1>
 			<p class="flex items-center justify-center gap-2">
 				<img src="/images/nav/home.svg" alt="">

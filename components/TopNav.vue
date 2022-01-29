@@ -36,7 +36,7 @@
 			</div>
    
 		</div>
-		<mobile-nav v-if="sideMenu" class="absolute top-0 left-0" />
+		<mobile-nav v-if="sideMenu" class="xl:hidden block absolute top-0 left-0" />
 	</div>
 </template>
 
@@ -67,10 +67,6 @@ export default Vue.extend({
   },
 
   methods: {
-    onClickOutside(event: any) {
-      console.log("Clicked outside. Event: ", event)
-    },
-
     openSideMenu () {
       this.sideMenu = !this.sideMenu
     }

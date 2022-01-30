@@ -25,6 +25,7 @@ export default Vue.extend({
 <style scoped>
   .input-wrapper {
     border: 1px solid #000;
+    border-radius: 4px;
   }
 
   .c-input {

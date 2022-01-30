@@ -1,18 +1,26 @@
 <template>
 	<div>
-		<div class="c-wrapper xl:pt-48 pt-24 mb-20 flex xl:flex-row flex-col items-center gap-14">
+		<div
+			class="c-wrapper xl:pt-48 pt-32 mb-20 flex xl:flex-row flex-col items-center gap-14"
+		>
 			<div class="xl:w-1/2 w-full">
 				<div class="flex items-center xl:justify-start justify-center gap-2">
 					<img class="xl:block hidden" src="/images/good health.svg" alt="" />
-					<p class="xl:text-left text-center">Your connected Healthcare Practice Management System.</p>
+					<p class="xl:text-left text-center">
+						Your connected Healthcare Practice Management System.
+					</p>
 				</div>
-				<h1 class="c-indigo mt-3 xl:text-left text-center">Hospitals and Clinics</h1>
+				<h1 class="c-indigo mt-3 xl:text-left text-center">
+					Hospitals and Clinics
+				</h1>
 				<p class="mt-4 xl:text-left text-center">
 					We empower your team with tools and resources to efficiently run your
 					healthcare operation, deliver superior patient experience, connect
 					with third-party providers, and patients for better care coordination.
 				</p>
-				<div class="mt-12 flex items-center xl:justify-start justify-center gap-6">
+				<div
+					class="mt-12 flex items-center xl:justify-start justify-center gap-6"
+				>
 					<div class="w-auto">
 						<c-button title="Get started for free" secondary small />
 					</div>
@@ -26,9 +34,22 @@
 			</div>
 		</div>
 
+		<img
+			class="absolute xl:w-full w-10/12 xl:left-24 left-2 xl:top-28 top-20"
+			src="/images/providers/shapes.svg"
+			alt=""
+		/>
+		<img
+			class="absolute right-7 top-96 xl:block hidden"
+			src="/images/providers/bg-img.svg"
+			alt=""
+		/>
+
 		<div class="c-wrapper bg-white">
-			<div class="xl:px-4 px-3 xl:py-8 py-3 c-shadow">
-				<div class="xl:h-48 h-auto flex xl:flex-row flex-col items-start xl:gap-6">
+			<div class="xl:px-4 px-3 xl:py-8 py-3 c-shadow relative">
+				<div
+					class="xl:h-48 h-auto flex xl:flex-row flex-col items-start xl:gap-6"
+				>
 					<div class="bg-cblue-100 p-6 w-full">
 						<div class="flex gap-4">
 							<img src="/images/dd-icons/carbon_location-company.svg" alt="" />
@@ -87,6 +108,17 @@
 						You will be charged 1.5% + N100 capped at N1,000.00 per transaction.
 					</h4>
 				</div>
+
+				<img
+					class="xl:block hidden absolute left-6 bottom-20"
+					src="/images/providers/img.svg"
+					alt=""
+				/>
+				<img
+					class="xl:hidden block absolute bottom-24 left-2"
+					src="/images/providers/img (1).svg"
+					alt=""
+				/>
 			</div>
 		</div>
 
@@ -120,7 +152,7 @@ export default Vue.extend({
     BillingsAndPayment,
     PatientPortal,
     AnBIntelliegence,
-    DataProtection
+    DataProtection,
   },
 })
 </script>

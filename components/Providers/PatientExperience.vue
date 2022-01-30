@@ -1,20 +1,26 @@
 <template>
-	<div class="c-wrapper bg-white">
-		<div class="mb-9 flex xl:flex-row flex-col items-center justify-between gap-9 py-24">
+	<div class="c-wrapper bg-white relative">
+		<div
+			class="mb-9 flex xl:flex-row flex-col items-center justify-between gap-9 py-24"
+		>
 			<div class="xl:w-1/2 w-full flex items-center justify-center">
 				<img src="/images/providers/Device-Macbook pro.svg" alt="" />
 			</div>
 			<div class="xl:w-1/2 w-full">
-				<div class="flex items-center xl:justify-start justify-center gap-2 mb-4">
+				<div
+					class="flex items-center xl:justify-start justify-center gap-2 mb-4"
+				>
 					<img class="xl:block hidden" src="/images/good health.svg" alt="" />
 					<p>Stay proactive and delight your patients.</p>
 				</div>
-				<h2 class="c-indigo mb-8 xl:text-left text-center">Patient Experience</h2>
+				<h2 class="c-indigo mb-8 xl:text-left text-center">
+					Patient Experience
+				</h2>
 				<p class="mb-8 xl:text-left text-center">
 					Leverage our experience dashboard to manage and track patients along
 					their care journeys. View visit timelines to identify and unblock
-					delays, drive operational efficiency, provide timely care, and deliver a
-					superior patient experience.
+					delays, drive operational efficiency, provide timely care, and deliver
+					a superior patient experience.
 				</p>
 
 				<div class="flex items-center gap-4 mb-4">
@@ -44,6 +50,17 @@
 				</div>
 			</div>
 		</div>
+
+		<img
+			class="xl:block hidden absolute bottom-24 left-6"
+			src="/images/providers/img.svg"
+			alt=""
+		/>
+		<img
+			class="xl:hidden block absolute bottom-24 left-2"
+			src="/images/providers/img (1).svg"
+			alt=""
+		/>
 	</div>
 </template>
 
@@ -52,6 +69,6 @@ import Vue from "vue"
 import CButton from "../CButton.vue"
 export default Vue.extend({
   name: "PatientExperience",
-  components: { CButton }
+  components: { CButton },
 })
 </script>

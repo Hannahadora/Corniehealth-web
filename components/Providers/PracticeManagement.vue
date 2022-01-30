@@ -1,5 +1,5 @@
 <template>
-	<div class="c-wrapper bg-white">
+	<div class="c-wrapper bg-white relative">
 		<div class="mb-9 flex xl:flex-row flex-col items-center justify-between gap-9 py-24">
 			<div class="xl:w-1/2 w-full flex items-center justify-center">
 				<img src="/images/providers/Group 11648.svg" alt="" />
@@ -41,6 +41,10 @@
 				</div>
 			</div>
 		</div>
+
+		
+		<img class="xl:block hidden absolute bottom-24 left-6" src="/images/providers/img.svg" alt="">
+		<img class="xl:hidden block absolute bottom-24 left-2" src="/images/providers/img (1).svg" alt="">
 	</div>
 </template>
 

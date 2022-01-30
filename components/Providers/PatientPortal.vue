@@ -1,11 +1,15 @@
 <template>
-	<div class="c-wrapper bg-white">
-		<div class="mb-9 flex xl:flex-row flex-col items-center justify-between gap-9 py-24">
+	<div class="c-wrapper bg-white relative">
+		<div
+			class="mb-9 flex xl:flex-row flex-col items-center justify-between gap-9 py-24"
+		>
 			<div class="xl:w-1/2 w-full flex items-center justify-center">
 				<img src="/images/providers/Group 11649.svg" alt="" />
 			</div>
 			<div class="xl:w-1/2 w-full">
-				<div class="flex items-center xl:justify-start justify-center gap-2 mb-4">
+				<div
+					class="flex items-center xl:justify-start justify-center gap-2 mb-4"
+				>
 					<img class="xl:block hidden" src="/images/good health.svg" alt="" />
 					<p>Instant access to your patients.</p>
 				</div>
@@ -43,6 +47,17 @@
 				</div>
 			</div>
 		</div>
+
+		<img
+			class="xl:block hidden absolute bottom-24 left-6"
+			src="/images/providers/img.svg"
+			alt=""
+		/>
+		<img
+			class="xl:hidden block absolute bottom-24 left-2"
+			src="/images/providers/img (1).svg"
+			alt=""
+		/>
 	</div>
 </template>
 

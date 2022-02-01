@@ -1,4 +1,4 @@
-export default [
+export const choices = [
   {
     active: false,
     image: "/images/gala_secure.svg",

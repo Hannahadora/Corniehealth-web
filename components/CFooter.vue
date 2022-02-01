@@ -1,6 +1,6 @@
 <template>
 	<div class="footer-wrapper">
-		<div class="mb-24 flex lg:flex-row flex-wrap flex-col items-start gap-8">
+		<div class="mb-24 flex lg:flex-row flex-wrap flex-col items-start xl:justify-center justify-between gap-8">
 			<ul class="footer-list lg:mb-0 mb-12">
 				<li class="lg:mb-8 mb-6 sub-titles-1">CornieHealth</li>
 				<li class="mb-4"><NuxtLink to="/about">About Us</NuxtLink></li>
@@ -24,8 +24,8 @@
 			</ul>
 			<ul class="footer-list lg:mb-0 mb-12">
 				<li class="lg:mb-8 mb-6 sub-titles-1">For Providers</li>
-				<li class="mb-4"><NuxtLink to="/providers/hospitals-and-clinics">Hospitals and Clinics</NuxtLink></li>
-				<li class="mb-4"><NuxtLink to="/providers/solo-practice">Solo Practice</NuxtLink></li>
+				<li class="mb-4"><NuxtLink to="/providers/types/hospitals-and-clinics">Hospitals and Clinics</NuxtLink></li>
+				<li class="mb-4"><NuxtLink to="/providers/types/solo-practice">Solo Practice</NuxtLink></li>
 				<li class="mb-4"><NuxtLink to="/">Community Pharmacies</NuxtLink></li>
 				<li class=""><NuxtLink to="/">Diagnostics Centers</NuxtLink></li>
 			</ul>

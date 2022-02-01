@@ -13,13 +13,13 @@
 						<img src="/images/dd-icons/products.svg" alt="" />
 						<p>Products</p>
 					</div>
-					<NuxtLink class="pl-10" to="/patient-experience">Patient Experience</NuxtLink>
-					<NuxtLink class="pl-10" to="/providers/">Clinical (EMR/EHR)</NuxtLink>
-					<NuxtLink class="pl-10" to="/providers/">Practice Management</NuxtLink>
-					<NuxtLink class="pl-10" to="/providers/">Billing & Collections</NuxtLink>
-					<NuxtLink class="pl-10" to="/providers/">Patient Portal</NuxtLink>
-					<NuxtLink class="pl-10" to="/providers/">Analytics</NuxtLink>
-					<NuxtLink class="pl-10" to="/providers/">Marketplace</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/products/patient-experience">Patient Experience</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/products/emr-emh">Clinical (EMR/EHR)</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/products/practice-management">Practice Management</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/products/">Billing & Collections</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/products/">Patient Portal</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/products/">Analytics</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/products/">Marketplace</NuxtLink>
 				</div>
 
 				<div class="flex flex-col gap-6">
@@ -27,10 +27,10 @@
 						<img src="/images/dd-icons/practice-type.svg" alt="" />
 						<p>Practice Type</p>
 					</div>
-					<NuxtLink class="pl-10" to="/providers/hospitals-and-clinics">Hospitals and clinics</NuxtLink>
-					<NuxtLink class="pl-10" to="/providers/solo-practice">Solo Practice</NuxtLink>
-					<NuxtLink class="pl-10" to="/providers/community-pharmacies">Community Pharmacies</NuxtLink>
-					<NuxtLink class="pl-10" to="/providers/diagnostics">Diagnostics</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/types/hospitals-and-clinics">Hospitals and clinics</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/types/solo-practice">Solo Practice</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/types/community-pharmacies">Community Pharmacies</NuxtLink>
+					<NuxtLink class="pl-10" to="/providers/types/diagnostics">Diagnostics</NuxtLink>
 				</div>
 			</div>
 		</div>

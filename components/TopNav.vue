@@ -6,7 +6,7 @@
 				<NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
 				<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
 				<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
-				<div class="relative" id="padwn" v-click-outside="closePatientDropdown">
+				<div id="padwn" v-click-outside="closePatientDropdown" class="relative">
 					<p 
 						:class="{ 'active-dropdown': patientDropdown === true }"
 						class="pb-2 flex items-center gap-2 cursor-pointer"
@@ -16,7 +16,7 @@
 					</p>
 					<patients-dropdown v-if="patientDropdown"  class="absolute top-16" />
 				</div>
-				<div class="relative" id="prdwn" v-click-outside="closeProviderDropdown">
+				<div id="prdwn" v-click-outside="closeProviderDropdown" class="relative">
 					<p
 						:class="{ 'active-dropdown': providerDropdown === true }"
 						class="pb-2 flex items-center gap-2 cursor-pointer"
@@ -44,13 +44,13 @@
 
 <script lang="ts">
 import Vue from "vue"
+import vClickOutside from "v-click-outside" 
 import CButton from "./CButton.vue"
 import CornieLogo from "./CornieLogo.vue"
 import MobileNav from "./MobileNav.vue"
 import PatientsDropdown from "./PatientsDropdown.vue"
 import ProvidersDropdown from "./ProvidersDropdown.vue"
 
-import vClickOutside from 'v-click-outside' 
 
 export default Vue.extend({
   name: "TopNav",
@@ -61,6 +61,9 @@ export default Vue.extend({
     ProvidersDropdown,
     MobileNav,
   },
+  directives: {
+    clickOutside: vClickOutside.directive
+  },
   data() {
     return {
       padwn: "",
@@ -70,20 +73,17 @@ export default Vue.extend({
       sideMenu: false,
     }
   },
-   directives: {
-      clickOutside: vClickOutside.directive
-    },
 
   methods: {
     openSideMenu() {
       this.sideMenu = !this.sideMenu
     },
-	closePatientDropdown() {
-		this.patientDropdown = false
-	},
-	closeProviderDropdown() {
-		this.providerDropdown = false
-	}
+    closePatientDropdown() {
+      this.patientDropdown = false
+    },
+    closeProviderDropdown() {
+      this.providerDropdown = false
+    }
   },
 })
 </script>

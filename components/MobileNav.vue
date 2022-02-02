@@ -5,32 +5,32 @@
 			<NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
 			<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
 			<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
-			<div class="relative">
+			<div class="xl:relative">
 				<p
 					:class="{ 'active-dropdown': patientDropdown === true }"
-					class="pb-2 flex items-center gap-2 cursor-pointer"
+					class="pb-2 flex items-center gap-2 cursor-pointer xl:mb-0 mb-4"
 					@click="patientDropdown = !patientDropdown"
 				>
 					For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
 				</p>
-				<patients-dropdown v-if="patientDropdown" class="absolute top-16" />
+				<patients-dropdown v-if="patientDropdown" class="xl:absolute xl:top-16" />
 			</div>
-			<div class="relative">
+			<div class="xl:relative">
 				<p
 					:class="{ 'active-dropdown': providerDropdown === true }"
-					class="pb-2 flex items-center gap-2 cursor-pointer"
+					class="pb-2 flex items-center gap-2 cursor-pointer xl:mb-0 mb-4"
 					@click="providerDropdown = !providerDropdown"
 				>
 					For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
 				</p>
 				<providers-dropdown
 					v-if="providerDropdown"
-					class="absolute top-16 right-0"
+					class="xl:absolute xl:top-16 xl:right-0"
 				/>
 			</div>
 		</ul>
-		<div class="flex flex-col items-center justify-center gap-4">
-			<c-button title="Login" :primary="true" />
+		<div class="flex flex-col items-center justify-center gap-4 xl:mt-0 mt-24">
+			<c-button class="rounded-xl" title="Login" :primary="true" />
 			<c-button title="Sign up for free" :secondary="true" />
 		</div>
 	</div>
@@ -67,5 +67,6 @@ export default Vue.extend({
 .mobile-nav {
   z-index: 999;
   height: 100vh;
+  overflow-y: scroll;
 }
 </style>

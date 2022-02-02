@@ -48,7 +48,7 @@ export default Vue.extend({
 
 <style scoped>
 .btn {
-  border-radius: 4px;
+  border-radius: 12px;
   line-height: 24px;
   font-size: 16px;
   font-weight: bold;
@@ -70,6 +70,7 @@ export default Vue.extend({
   background: #080056;
   color: #fff;
   padding: 16px 70px;
+  border-radius: 4px !important;
 }
 
 .small-btn {

@@ -6,17 +6,17 @@
 				<NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
 				<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
 				<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
-				<div id="padd" class="relative">
-					<p
+				<div class="relative" id="padwn" v-click-outside="closePatientDropdown">
+					<p 
 						:class="{ 'active-dropdown': patientDropdown === true }"
 						class="pb-2 flex items-center gap-2 cursor-pointer"
 						@click="patientDropdown = !patientDropdown"
 					>
 						For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
 					</p>
-					<patients-dropdown v-if="patientDropdown" :id="padwn" class="absolute top-16" />
+					<patients-dropdown v-if="patientDropdown"  class="absolute top-16" />
 				</div>
-				<div class="relative">
+				<div class="relative" id="prdwn" v-click-outside="closeProviderDropdown">
 					<p
 						:class="{ 'active-dropdown': providerDropdown === true }"
 						class="pb-2 flex items-center gap-2 cursor-pointer"
@@ -26,7 +26,6 @@
 					</p>
 					<providers-dropdown
 						v-if="providerDropdown"
-						:id="prdwn"
 						class="absolute top-16 right-0"
 					/>
 				</div>
@@ -51,7 +50,7 @@ import MobileNav from "./MobileNav.vue"
 import PatientsDropdown from "./PatientsDropdown.vue"
 import ProvidersDropdown from "./ProvidersDropdown.vue"
 
-// import { clickOutside } from "../helpers/utils";
+import vClickOutside from 'v-click-outside' 
 
 export default Vue.extend({
   name: "TopNav",
@@ -71,16 +70,20 @@ export default Vue.extend({
       sideMenu: false,
     }
   },
-
-  // created() {
-  //   clickOutside(this.padwn, () => (this.patientDropdown = false));
-  //   clickOutside(this.prdwn, () => (this.providerDropdown = false));
-  // },
+   directives: {
+      clickOutside: vClickOutside.directive
+    },
 
   methods: {
     openSideMenu() {
       this.sideMenu = !this.sideMenu
     },
+	closePatientDropdown() {
+		this.patientDropdown = false
+	},
+	closeProviderDropdown() {
+		this.providerDropdown = false
+	}
   },
 })
 </script>

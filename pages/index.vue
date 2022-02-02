@@ -17,7 +17,7 @@
 						class="sub-sect-2 xl:h-52 h-auto flex xl:flex-row flex-col items-center justify-center mb-2 xl:w-1/2 w-full"
 					>
 						<div
-							class="lg:w-1/2 w-full h-52 bg-center bg-cover"
+							class="lg:w-1/2 w-full h-52 bg-center bg-cover bg-no-repeat"
 							style="background: url('/images/image 23.svg')"
 						>
 							<!-- <img class="w-full h-52" src="/images/image 23.svg" alt="" /> -->
@@ -41,7 +41,7 @@
 						class="sub-sect-2 xl:h-52 h-auto flex xl:flex-row flex-col items-center justify-center mb-2 xl:w-1/2 w-full"
 					>
 						<div
-							class="lg:w-1/2 w-full h-52 bg-center bg-cover"
+							class="lg:w-1/2 w-full h-52 bg-center bg-cover bg-no-repeat"
 							style="background: url('/images/image 23 (1).svg')"
 						>
 							<!-- <img
@@ -267,16 +267,15 @@
 <script lang="ts">
 import Vue from "vue"
 // import { Component } from "vue-property-decorator";
-import IndexHeader from "~/components/IndexHeader.vue"
-import CButton from "~/components/CButton.vue"
-import { choices } from "~/helpers/choices.js"
+import CButton from "../components/CButton.vue"
+import { choices } from "../plugins/choices"
+import IndexHeader from "../components/IndexHeader.vue"
 export default Vue.extend({
   name: "IndexPage",
   components: {
-    IndexHeader,
     CButton,
+    IndexHeader,
   },
-  layout: "default",
   data() {
     return {
       choices,

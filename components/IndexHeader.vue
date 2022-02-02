@@ -14,7 +14,7 @@
 			</p>
 
 			<div
-				class="xl:w-full lg:w-2/3 w-full mx-auto flex xl:flex-row flex-col items-center justify-center gap-2"
+				class="xl:w-full lg:w-2/3 w-full mx-auto flex xl:flex-row flex-col items-center justify-center xl:gap-2 gap-4"
 			>
 				<input-comp
 					class="xl:w-2/5 xl:flex hidden"
@@ -32,7 +32,7 @@
 					placeholder="City name or Zip/Postal code"
 				/>
 				<div class="xl:w-1/5 w-full">
-					<c-button title="Search" :tertiary="true" />
+					<c-button class="w-full" title="Search" :tertiary="true" /> 
 				</div>
 			</div>
 			<div>
@@ -52,8 +52,8 @@
 
 <script lang="ts">
 import Vue from "vue"
+import CButton from "./CButton.vue"
 import InputComp from "./InputComp.vue"
-import CButton from "@/components/CButton.vue"
 export default Vue.extend({
   name: "IndexHeader",
   components: {

@@ -1,5 +1,5 @@
 <template>
-	<div class="mobile-nav bg-white w-72 p-6 shadow rounded">
+	<div class="mobile-nav bg-white w-full p-4 shadow rounded">
 		<NuxtLink to="/"><CornieLogo class="mb-12" /></NuxtLink>
 		<ul class="header-nav flex flex-col items-start gap-6 justify-between">
 			<NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
@@ -8,10 +8,10 @@
 			<div class="xl:relative">
 				<p
 					:class="{ 'active-dropdown': patientDropdown === true }"
-					class="pb-2 flex items-center gap-2 cursor-pointer xl:mb-0 mb-4"
+					class="pb-2 flex items-center xl:justify-start justify-between cursor-pointer xl:mb-0 mb-4"
 					@click="patientDropdown = !patientDropdown"
 				>
-					For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
+					<span>For Patients</span><img class="xl:ml-2" src="/images/bx_bx-chevron-down.svg" alt="" />
 				</p>
 				<patients-dropdown v-if="patientDropdown" class="xl:absolute xl:top-16" />
 			</div>

@@ -1,14 +1,9 @@
 <template>
 	<div>
 		<img
-			class="lg:block hidden"
-			:src="footer ? '/images/FooterLogo.svg' : '/images/HeaderLogo.svg'"
+			class="lg:h-auto h-7"
+			:src="footer ? '/images/FooterLogo.svg' : '/images/header-logo.svg'"
 			alt="logo" />
-		<img
-			class="lg:hidden block"
-			:src="footer ? '/images/FooterLogo.svg' : '/images/Mobile-Logo.svg'"
-			alt="logo"
-		/>
 	</div>
 </template>
 

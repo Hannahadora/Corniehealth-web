@@ -1,11 +1,11 @@
 <template>
 	<div>
 		<div
-			class="c-wrapper xl:pt-48 pt-32 mb-20 flex xl:flex-row flex-col items-center gap-14"
+			class="c-wrapper xl:pt-48 pt-32 mb-20 flex xl:flex-row flex-col items-center"
 		>
-			<div class="xl:w-1/2 w-full">
-				<div class="flex items-center xl:justify-start justify-center gap-2">
-					<img class="xl:block hidden" src="/images/good health.svg" alt="" />
+			<div class="xl:w-1/2 w-full xl:mr-14 xl:mb-0 mb-14">
+				<div class="flex items-center xl:justify-start justify-center">
+					<img class="xl:block hidden mr-2" src="/images/good health.svg" alt="" />
 					<p class="xl:text-left text-center">
 						Your connected Healthcare Practice Management System.
 					</p>
@@ -19,9 +19,9 @@
 					with third-party providers, and patients for better care coordination.
 				</p>
 				<div
-					class="mt-12 flex items-center xl:justify-start justify-center gap-6"
+					class="mt-12 flex items-center xl:justify-start justify-center"
 				>
-					<div class="w-auto">
+					<div class="w-auto mr-6">
 						<c-button title="Get started for free" secondary small />
 					</div>
 					<div class="w-auto">
@@ -48,21 +48,21 @@
 		<div class="c-wrapper bg-white">
 			<div class="xl:px-4 px-3 xl:py-8 py-3 c-shadow relative">
 				<div
-					class="xl:h-48 h-auto flex xl:flex-row flex-col items-start xl:gap-6"
+					class="xl:h-48 h-auto flex xl:flex-row flex-col items-start"
 				>
-					<div class="bg-cblue-100 p-6 w-full">
-						<div class="flex gap-4">
-							<img src="/images/dd-icons/carbon_location-company.svg" alt="" />
+					<div class="bg-cblue-100 p-6 w-full xl:mr-6">
+						<div class="flex items-start">
+							<img class="mr-4" src="/images/dd-icons/carbon_location-company.svg" alt="" />
 							<p>Multi-location/facility enabled.</p>
 						</div>
-						<div class="mt-6 flex gap-4">
-							<img src="/images/dd-icons/carbon_document.svg" alt="" />
+						<div class="mt-6 flex items-start">
+							<img class="mr-4" src="/images/dd-icons/carbon_document.svg" alt="" />
 							<p>
 								Electronic requests (referral, prescription, and diagnostic).
 							</p>
 						</div>
-						<div class="mt-6 flex gap-4">
-							<img
+						<div class="mt-6 flex items-start">
+							<img class="mr-4"
 								src="/images/dd-icons/carbon_inventory-management.svg"
 								alt=""
 							/>
@@ -70,30 +70,30 @@
 						</div>
 					</div>
 
-					<div class="bg-cblue-100 px-6 xl:py-6 w-full">
-						<div class="flex gap-4">
-							<img
+					<div class="bg-cblue-100 px-6 xl:py-6 w-full xl:mr-6">
+						<div class="flex items-start">
+							<img class="mr-4"
 								src="/images/dd-icons/icon-park-outline_medical-box.svg"
 								alt=""
 							/>
 							<p>Standards-based Medical coding (SNOMED-CT, ICD-11, LOINC).</p>
 						</div>
-						<div class="mt-6 flex gap-4">
-							<img
+						<div class="mt-6 flex items-start">
+							<img class="mr-4"
 								src="/images/dd-icons/fluent_form-new-48-regular.svg"
 								alt=""
 							/>
 							<p>Customizable forms and questionnaires.</p>
 						</div>
-						<div class="mt-6 flex gap-4">
-							<img src="/images/dd-icons/carbon_gui-management.svg" alt="" />
+						<div class="mt-6 flex items-start">
+							<img class="mr-4" src="/images/dd-icons/carbon_gui-management.svg" alt="" />
 							<p>Marketing and outreach management.</p>
 						</div>
 					</div>
 
 					<div class="bg-cblue-100 xl:h-full h-auto px-6 py-6 w-full">
-						<div class="flex gap-4">
-							<img src="/images/dd-icons/tabler_file-analytics.svg" alt="" />
+						<div class="flex items-start">
+							<img class="mr-4" src="/images/dd-icons/tabler_file-analytics.svg" alt="" />
 							<p>Analytics and decision support.</p>
 						</div>
 					</div>
@@ -134,14 +134,14 @@
 
 <script lang="ts">
 import Vue from "vue"
-import CButton from "~/components/CButton.vue"
-import PatientPortal from "~/components/Providers/PatientPortal.vue"
-import BillingsAndPayment from "~/components/Providers/BillingsAndPayment.vue"
-import EmrEmh from "~/components/Providers/EmrEmh.vue"
-import PatientExperience from "~/components/Providers/PatientExperience.vue"
-import PracticeManagement from "~/components/Providers/PracticeManagement.vue"
-import AnBIntelliegence from "~/components/Providers/AnBIntelliegence.vue"
-import DataProtection from "~/components/Providers/DataProtection.vue"
+import CButton from "../../../components/CButton.vue"
+import PatientPortal from "../../../components/Providers/PatientPortal.vue"
+import BillingsAndPayment from "../../../components/Providers/BillingsAndPayment.vue"
+import EmrEmh from "../../../components/Providers/EmrEmh.vue"
+import PatientExperience from "../../../components/Providers/PatientExperience.vue"
+import PracticeManagement from "../../../components/Providers/PracticeManagement.vue"
+import AnBIntelliegence from "../../../components/Providers/AnBIntelliegence.vue"
+import DataProtection from "../../../components/Providers/DataProtection.vue"
 export default Vue.extend({
   name: "HospitalsAndClinics",
   components: {

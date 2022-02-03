@@ -54,7 +54,8 @@
 							<p>Service catalogue.</p>
 						</div>
 						<div class="mt-6 flex items-start">
-							<img class="mr-4"
+							<img
+								class="mr-4"
 								src="/images/dd-icons/carbon_inventory-management.svg"
 								alt=""
 							/>
@@ -64,14 +65,16 @@
 
 					<div class="bg-cblue-100 px-6 py-6 w-full xl:mr-6">
 						<div class="flex items-start">
-							<img class="mr-4"
+							<img
+								class="mr-4"
 								src="/images/dd-icons/icon-park-outline_medical-box.svg"
 								alt=""
 							/>
 							<p>Customizable forms and questionnaires.</p>
 						</div>
 						<div class="mt-6 flex items-start">
-							<img class="mr-4"
+							<img
+								class="mr-4"
 								src="/images/dd-icons/fluent_form-new-48-regular.svg"
 								alt=""
 							/>
@@ -128,7 +131,7 @@ import PracticeManagement from "../../../components/Providers/PracticeManagement
 import AnBIntelliegence from "../../../components/Providers/AnBIntelliegence.vue"
 import DataProtection from "../../../components/Providers/DataProtection.vue"
 export default Vue.extend({
-  name: "SoloPractice",
+  name: "Solo-Practice",
   components: {
     CButton,
     PatientExperience,

@@ -156,7 +156,7 @@
 						Get started for free. We only make money when your practice thrives.
 					</p>
 					<div class="flex items-center justify-start">
-						<div class="w-auto xl:mb-6 mb-4">
+						<div class="w-auto xl:mr-6 xl:mb-0 mb-4">
 							<c-button
 								title="Sign up for free"
 								:secondary="true"

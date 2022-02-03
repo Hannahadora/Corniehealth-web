@@ -165,7 +165,7 @@
 import Vue from "vue"
 import CButton from "../../../components/CButton.vue"
 export default Vue.extend({
-  components: { CButton },
   name: "PatientExperience",
+  components: { CButton },
 })
 </script>

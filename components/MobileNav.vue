@@ -23,7 +23,7 @@
 				>
 					For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
 				</p>
-				<providers-dropdown
+				<providers-dropdown @closeSelf="$emit('closeMenu')"
 					v-if="providerDropdown"
 					class="xl:absolute xl:top-16 xl:right-0"
 				/>

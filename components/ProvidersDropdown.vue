@@ -28,15 +28,15 @@
 						<img class="mr-2" src="/images/dd-icons/practice-type.svg" alt="" />
 						<p>Practice Type</p>
 					</div>
-						<NuxtLink
-							v-for="(type, index) in practice_types"
-							:key="index"
-							class="pl-10 mb-6"
-							:to="`/providers/${type.category}/${type.link}`"
-						><p class="capitalize" @click="$emit('closeSelf')">
-							{{ type.name }}
-						</p></NuxtLink
-						>
+					<NuxtLink
+						v-for="(type, index) in practice_types"
+						:key="index"
+						class="pl-10 mb-6"
+						:to="`/providers/${type.category}/${type.link}`"
+					><p class="capitalize" @click="$emit('closeSelf')">
+						{{ type.name }}
+					</p></NuxtLink
+					>
 				</div>
 			</div>
 		</div>

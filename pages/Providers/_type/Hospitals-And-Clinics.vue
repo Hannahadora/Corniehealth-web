@@ -146,7 +146,7 @@ import PracticeManagement from "../../../components/Providers/PracticeManagement
 import AnBIntelliegence from "../../../components/Providers/AnBIntelliegence.vue"
 import DataProtection from "../../../components/Providers/DataProtection.vue"
 export default Vue.extend({
-  name: "Hospitals-And-Clinics",
+  name: "HospitalsAndClinics",
   components: {
     CButton,
     PatientExperience,

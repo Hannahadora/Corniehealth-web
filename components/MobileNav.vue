@@ -2,9 +2,9 @@
 	<div class="mobile-nav bg-white w-full p-4 shadow rounded">
 		<NuxtLink to="/"><CornieLogo class="mb-12" /></NuxtLink>
 		<ul class="header-nav flex flex-col items-start gap-6 justify-between">
-			<NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
-			<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
-			<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
+			<li @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/Appointments">Appointments</NuxtLink></li>
+			<li @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink></li>
+			<li @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink></li>
 			<div class="xl:relative">
 				<p
 					:class="{ 'active-dropdown': patientDropdown === true }"
@@ -13,7 +13,7 @@
 				>
 					<span>For Patients</span><img class="xl:ml-2" src="/images/bx_bx-chevron-down.svg" alt="" />
 				</p>
-				<patients-dropdown v-if="patientDropdown" class="xl:absolute xl:top-16" />
+				<patients-dropdown v-if="patientDropdown" class="xl:absolute xl:top-16" @closeSelf="$emit('closeMenu')" />
 			</div>
 			<div class="xl:relative">
 				<p
@@ -23,9 +23,10 @@
 				>
 					For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
 				</p>
-				<providers-dropdown @closeSelf="$emit('closeMenu')"
+				<providers-dropdown
 					v-if="providerDropdown"
 					class="xl:absolute xl:top-16 xl:right-0"
+					@closeSelf="$emit('closeMenu')"
 				/>
 			</div>
 		</ul>

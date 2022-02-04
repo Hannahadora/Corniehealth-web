@@ -1,6 +1,7 @@
 <template>
 	<div class="header bg-white w-full fixed top-0">
 		<div class="w-full flex items-center justify-between">
+<<<<<<< HEAD
 			<CornieLogo />
 			<ul class="header-nav xl:flex hidden items-center justify-between">
 				<li>
@@ -42,6 +43,31 @@
 							@click="providerDropdown = !providerDropdown"
 						/>
 					</span>
+=======
+			<NuxtLink to="/"><CornieLogo /></NuxtLink>
+			<ul class="header-nav xl:flex hidden items-center gap-6 justify-between">
+				<NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
+				<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
+				<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
+				<div id="padwn" v-click-outside="closePatientDropdown" class="relative">
+					<p 
+						:class="{ 'active-dropdown': patientDropdown === true }"
+						class="pb-2 flex items-center gap-2 cursor-pointer"
+						@click="patientDropdown = !patientDropdown"
+					>
+						For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
+					</p>
+					<patients-dropdown v-if="patientDropdown"  class="absolute top-16" />
+				</div>
+				<div id="prdwn" v-click-outside="closeProviderDropdown" class="relative">
+					<p
+						:class="{ 'active-dropdown': providerDropdown === true }"
+						class="pb-2 flex items-center gap-2 cursor-pointer"
+						@click="providerDropdown = !providerDropdown"
+					>
+						For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
+					</p>
+>>>>>>> c5dd33b25d9eebe03adfcf6f1784745e4ef27a37
 					<providers-dropdown
 						v-if="providerDropdown"
 						class="absolute top-16 right-0"
@@ -78,13 +104,21 @@
 
 <script lang="ts">
 import Vue from "vue"
+<<<<<<< HEAD
 import vClickOutside from "v-click-outside"
+=======
+import vClickOutside from "v-click-outside" 
+>>>>>>> c5dd33b25d9eebe03adfcf6f1784745e4ef27a37
 import CButton from "./CButton.vue"
 import CornieLogo from "./CornieLogo.vue"
 import MobileNav from "./MobileNav.vue"
 import PatientsDropdown from "./PatientsDropdown.vue"
 import ProvidersDropdown from "./ProvidersDropdown.vue"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c5dd33b25d9eebe03adfcf6f1784745e4ef27a37
 export default Vue.extend({
   name: "TopNav",
   components: {
@@ -95,7 +129,11 @@ export default Vue.extend({
     MobileNav,
   },
   directives: {
+<<<<<<< HEAD
     clickOutside: vClickOutside.directive,
+=======
+    clickOutside: vClickOutside.directive
+>>>>>>> c5dd33b25d9eebe03adfcf6f1784745e4ef27a37
   },
   data() {
     return {
@@ -116,7 +154,11 @@ export default Vue.extend({
     },
     closeProviderDropdown() {
       this.providerDropdown = false
+<<<<<<< HEAD
     },
+=======
+    }
+>>>>>>> c5dd33b25d9eebe03adfcf6f1784745e4ef27a37
   },
 })
 </script>

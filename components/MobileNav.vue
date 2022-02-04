@@ -1,24 +1,24 @@
 <template>
 	<div class="mobile-nav bg-white w-full p-4 shadow rounded">
 		<NuxtLink to="/"><CornieLogo class="mb-12" /></NuxtLink>
-		<ul class="header-nav flex flex-col items-start gap-6 justify-between">
-			<li @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/Appointments">Appointments</NuxtLink></li>
-			<li @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink></li>
-			<li @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink></li>
-			<div class="xl:relative">
+		<ul class="header-nav flex flex-col items-start justify-between">
+			<li @click="$emit('closeMenu')"><NuxtLink class="pb-2 mb-6" to="/Appointments">Appointments</NuxtLink></li>
+			<li @click="$emit('closeMenu')"><NuxtLink class="pb-2 mb-6" to="/Pharmacy">Pharmacy</NuxtLink></li>
+			<li @click="$emit('closeMenu')"><NuxtLink class="pb-2 mb-6" to="/LabTest">Lab tests</NuxtLink></li>
+			<div class="xl:relative mb-6">
 				<p
 					:class="{ 'active-dropdown': patientDropdown === true }"
-					class="pb-2 flex items-center xl:justify-start justify-between cursor-pointer xl:mb-0 mb-4"
+					class="pb-2 flex items-center xl:justify-start justify-between cursor-pointer"
 					@click="patientDropdown = !patientDropdown"
 				>
 					<span>For Patients</span><img class="xl:ml-2" src="/images/bx_bx-chevron-down.svg" alt="" />
 				</p>
 				<patients-dropdown v-if="patientDropdown" class="xl:absolute xl:top-16" @closeSelf="$emit('closeMenu')" />
 			</div>
-			<div class="xl:relative">
+			<div class="xl:relative mb-6">
 				<p
 					:class="{ 'active-dropdown': providerDropdown === true }"
-					class="pb-2 flex items-center gap-2 cursor-pointer xl:mb-0 mb-4"
+					class="pb-2 flex items-center gap-2 cursor-pointer"
 					@click="providerDropdown = !providerDropdown"
 				>
 					For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
@@ -30,8 +30,8 @@
 				/>
 			</div>
 		</ul>
-		<div class="flex flex-col items-center justify-center gap-4 xl:mt-0 mt-24">
-			<c-button class="rounded-xl" title="Login" :primary="true" />
+		<div class="flex flex-col items-center justify-center xl:mt-0 mt-24">
+			<c-button class="rounded-xl mr-4" title="Login" :primary="true" />
 			<c-button title="Sign up for free" :secondary="true" />
 		</div>
 	</div>

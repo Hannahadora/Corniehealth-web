@@ -1,9 +1,11 @@
 <template>
 	<div>
 		<img
-			class="lg:h-auto h-7"
+			class="lg:h-auto h-7 cursor-pointer"
 			:src="footer ? '/images/FooterLogo.svg' : '/images/header-logo.svg'"
-			alt="logo" />
+			alt="logo"
+      @click="$router.push({path: '/'})"
+       />
 	</div>
 </template>
 

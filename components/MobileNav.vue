@@ -1,10 +1,10 @@
 <template>
 	<div class="mobile-nav bg-white w-full p-4 shadow rounded">
-		<NuxtLink to="/"><CornieLogo class="mb-12" /></NuxtLink>
+		<CornieLogo class="mb-12" />
 		<ul class="header-nav flex flex-col items-start justify-between">
-			<li @click="$emit('closeMenu')"><NuxtLink class="pb-2 mb-6" to="/Appointments">Appointments</NuxtLink></li>
-			<li @click="$emit('closeMenu')"><NuxtLink class="pb-2 mb-6" to="/Pharmacy">Pharmacy</NuxtLink></li>
-			<li @click="$emit('closeMenu')"><NuxtLink class="pb-2 mb-6" to="/LabTest">Lab tests</NuxtLink></li>
+			<li class="mb-6" @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/Appointments">Appointments</NuxtLink></li>
+			<li class="mb-6" @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink></li>
+			<li class="mb-6" @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink></li>
 			<div class="xl:relative mb-6">
 				<p
 					:class="{ 'active-dropdown': patientDropdown === true }"
@@ -31,7 +31,7 @@
 			</div>
 		</ul>
 		<div class="flex flex-col items-center justify-center xl:mt-0 mt-24">
-			<c-button class="rounded-xl mr-4" title="Login" :primary="true" />
+			<c-button class="rounded-xl xl:mr-4 mb-4" title="Login" :primary="true" />
 			<c-button title="Sign up for free" :secondary="true" />
 		</div>
 	</div>

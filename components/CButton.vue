@@ -1,18 +1,18 @@
 <template>
-  <button
-    :type="type"
-    @click="$emit('click')"
-    class="py-10 btn"
-    :class="{
-      'primary-btn': primary,
-      'secondary-btn': secondary,
-      'tertiary-btn': tertiary,
-      'small-btn': small,
-      'rounded-btn': rounded,
-    }"
-  >
-    {{ title }}
-  </button>
+	<button
+		:type="type"
+		class="py-10 btn"
+		:class="{
+			'primary-btn': primary,
+			'secondary-btn': secondary,
+			'tertiary-btn': tertiary,
+			'small-btn': small,
+			'rounded-btn': rounded,
+		}"
+		@click="$emit('click')"
+	>
+		{{ title }}
+	</button>
 </template>
 
 <script lang="ts">

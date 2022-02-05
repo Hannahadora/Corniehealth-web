@@ -338,3 +338,20 @@ export default Vue.extend({
   components: { CButton, InputComp },
 })
 </script>
+
+<style scoped>
+.intro-wrapper {
+  padding: 0 210px;
+}
+
+@media screen and (max-width: 1024px) {
+  .intro-wrapper {
+    padding: 0 72px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .intro-wrapper {
+    padding: 0 50px;
+  }
+}
+</style>

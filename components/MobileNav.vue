@@ -1,24 +1,24 @@
 <template>
-	<div class="mobile-nav bg-white w-72 p-6 shadow rounded">
-		<NuxtLink to="/"><CornieLogo class="mb-12" /></NuxtLink>
-		<ul class="header-nav flex flex-col items-start gap-6 justify-between">
-			<NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
-			<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
-			<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
-			<div class="xl:relative">
+	<div class="mobile-nav bg-white w-full p-4 shadow rounded">
+		<CornieLogo class="mb-12" />
+		<ul class="header-nav flex flex-col items-start justify-between">
+			<li class="mb-6" @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/Appointments">Appointments</NuxtLink></li>
+			<li class="mb-6" @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink></li>
+			<li class="mb-6" @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink></li>
+			<div class="xl:relative mb-6">
 				<p
 					:class="{ 'active-dropdown': patientDropdown === true }"
-					class="pb-2 flex items-center gap-2 cursor-pointer xl:mb-0 mb-4"
+					class="pb-2 flex items-center xl:justify-start justify-between cursor-pointer"
 					@click="patientDropdown = !patientDropdown"
 				>
-					For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
+					<span>For Patients</span><img class="xl:ml-2" src="/images/bx_bx-chevron-down.svg" alt="" />
 				</p>
-				<patients-dropdown v-if="patientDropdown" class="xl:absolute xl:top-16" />
+				<patients-dropdown v-if="patientDropdown" class="xl:absolute xl:top-16" @closeSelf="$emit('closeMenu')" />
 			</div>
-			<div class="xl:relative">
+			<div class="xl:relative mb-6">
 				<p
 					:class="{ 'active-dropdown': providerDropdown === true }"
-					class="pb-2 flex items-center gap-2 cursor-pointer xl:mb-0 mb-4"
+					class="pb-2 flex items-center gap-2 cursor-pointer"
 					@click="providerDropdown = !providerDropdown"
 				>
 					For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
@@ -26,11 +26,12 @@
 				<providers-dropdown
 					v-if="providerDropdown"
 					class="xl:absolute xl:top-16 xl:right-0"
+					@closeSelf="$emit('closeMenu')"
 				/>
 			</div>
 		</ul>
-		<div class="flex flex-col items-center justify-center gap-4 xl:mt-0 mt-24">
-			<c-button class="rounded-xl" title="Login" :primary="true" />
+		<div class="flex flex-col items-center justify-center xl:mt-0 mt-24">
+			<c-button class="rounded-xl xl:mr-4 mb-4" title="Login" :primary="true" />
 			<c-button title="Sign up for free" :secondary="true" />
 		</div>
 	</div>

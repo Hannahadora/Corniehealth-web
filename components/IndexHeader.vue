@@ -1,8 +1,8 @@
 <template>
 	<div class="intro-wrapper relative">
 		<div class="text-center xl:pt-24 pt-12">
-			<div class="flex items-center justify-center gap-2">
-				<img class="lg:block hidden" src="/images/good health.svg" alt="" />
+			<div class="flex items-center justify-center">
+				<img class="mr-2 lg:block hidden" src="/images/good health.svg" alt="" />
 				<p>Connected. Patient-Centric. Supportive.</p>
 			</div>
 			<h1 class="my-2 c-indigo">
@@ -14,21 +14,21 @@
 			</p>
 
 			<div
-				class="xl:w-full lg:w-2/3 w-full mx-auto flex xl:flex-row flex-col items-center justify-center xl:gap-2 gap-4"
+				class="xl:w-full lg:w-2/3 w-full mx-auto flex xl:flex-row flex-col items-center justify-center"
 			>
 				<input-comp
-					class="xl:w-2/5 xl:flex hidden"
+					class="xl:mr-2 xl:mb-0 xl:w-2/5 xl:flex hidden"
 					input-icon="/images/search.svg"
 					placeholder="Provider name, practice name or specialty"
 				/>
 				<input-comp
-					class="w-full xl:hidden block"
+					class="w-full mb-4 xl:hidden block"
 					input-icon="/images/search.svg"
 					placeholder="Name or specialty"
 				/>
 				<input-comp
-					class="xl:w-2/5 w-full"
-					input-icon="/images/location.svg"
+					class="xl:mr-2 mr-0 xl:mb-0 mb-4 xl:w-2/5 w-full"
+					input-icon="/images/cil_location-pin.svg"
 					placeholder="City name or Zip/Postal code"
 				/>
 				<div class="xl:w-1/5 w-full">

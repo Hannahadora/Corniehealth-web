@@ -20,13 +20,13 @@ import Vue from "vue"
 export default Vue.extend({
   name: "CButton",
   props: {
-    title: {
-      type: String,
-      default: "",
-    },
     type: {
       type: String,
       default: "button",
+    },
+    title: {
+      type: String,
+      default: "",
     },
     primary: {
       type: Boolean,

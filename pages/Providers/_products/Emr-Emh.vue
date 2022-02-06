@@ -154,7 +154,7 @@
 import Vue from "vue"
 import ProductsFooter2 from "../../../components/Providers/ProductsFooter2.vue"
 export default Vue.extend({
-  components: { ProductsFooter2 },
   name: "EmrEmh",
+  components: { ProductsFooter2 },
 })
 </script>

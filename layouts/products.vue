@@ -2,7 +2,7 @@
 	<div>
 		<TopNav />
 		<Nuxt />
-        <products-footer-2 />
+		<products-footer-2 />
 		<CFooter />
 	</div>
 </template>

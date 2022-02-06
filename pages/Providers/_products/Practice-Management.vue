@@ -110,10 +110,9 @@
 
 <script lang="ts">
 import Vue from "vue"
-import CButton from "../../../components/CButton.vue"
 import ProductsFooter2 from "../../../components/Providers/ProductsFooter2.vue"
 export default Vue.extend({
   name: "PracticeMangement",
-  components: { CButton, ProductsFooter2 },
+  components: { ProductsFooter2 },
 })
 </script>

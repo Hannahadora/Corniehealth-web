@@ -1,17 +1,18 @@
 <template>
-	<button
-		class="py-10 btn"
-		:class="{
-			'primary-btn': primary,
-			'secondary-btn': secondary,
-			'tertiary-btn': tertiary,
-			'small-btn': small,
-			'rounded-btn': rounded
-		}"
-		@click="$emit('click')"
-	>
-		{{ title }}
-	</button>
+  <button
+    :type="type"
+    class="btn"
+    :class="{
+      'primary-btn': primary,
+      'secondary-btn': secondary,
+      'tertiary-btn': tertiary,
+      'small-btn': small,
+      'rounded-btn': rounded,
+    }"
+    @click="$emit('click')"
+  >
+    {{ title }}
+  </button>
 </template>
 
 <script lang="ts">
@@ -22,6 +23,10 @@ export default Vue.extend({
     title: {
       type: String,
       default: "",
+    },
+    type: {
+      type: String,
+      default: "button",
     },
     primary: {
       type: Boolean,
@@ -41,8 +46,8 @@ export default Vue.extend({
     },
     rounded: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 })
 </script>
@@ -88,7 +93,7 @@ export default Vue.extend({
     padding: 13px 18px !important;
   }
   .btn {
-    width: 100%;
+    /* width: 100%; */
     white-space: nowrap;
   }
 }

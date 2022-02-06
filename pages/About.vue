@@ -4,11 +4,11 @@
 			class="about-header bg-cblue-100 xl:px-32 xl:pt-48 pt-24 pb-64 h-80 text-center relative"
 		>
 			<h1 class="c-indigo mb-2">About</h1>
-			<p class="flex items-center justify-center gap-2">
-				<img src="/images/nav/home.svg" alt="" />
-				<span>Home /</span>
-				<img src="/images/nav/about.svg" alt="" />
-				<span class="text-razzmataz-pry">About</span>
+			<p class="flex items-center justify-center">
+				<img class="mr-2" src="/images/nav/home.svg" alt="" />
+				<span class="mr-2">Home /</span>
+				<img class="mr-2" src="/images/nav/about.svg" alt="" />
+				<span class="mr-2 text-razzmataz-pry">About</span>
 			</p>
 			<img
 				class="absolute left-10 top-16"

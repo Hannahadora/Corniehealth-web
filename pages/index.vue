@@ -135,7 +135,7 @@
 
 				<img
 					class="col-span-2 md:row-span-2 md:order-2 order-3"
-					src="/images/img-center.svg"
+					src="/images/img-center.png"
 					alt=""
 				/>
 

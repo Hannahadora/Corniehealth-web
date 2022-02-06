@@ -50,8 +50,8 @@
 				</li>
 			</ul>
 			<div class="flex items-center xl:flex hidden">
-				<c-button class="mr-2" title="Login" :primary="true" />
-				<c-button title="Sign up for free" :secondary="true" />
+				<c-button class="mr-2" title="Login" :primary="true" @click="moveToLogin" />
+				<c-button title="Sign up for free" :secondary="true" @click="moveToSignup" />
 			</div>
 			<div class="xl:hidden block menu-icon">
 				<img
@@ -117,6 +117,14 @@ export default Vue.extend({
     closeProviderDropdown() {
       this.providerDropdown = false
     },
+
+	moveToLogin() {
+		location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+	},
+
+	moveToSignup() {
+		location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signup"
+	}
   },
 })
 </script>

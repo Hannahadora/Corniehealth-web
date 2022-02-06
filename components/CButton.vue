@@ -1,5 +1,6 @@
 <template>
 	<button
+    @click="$emit('click')"
 		class="py-10 btn"
 		:class="{
 			'primary-btn': primary,

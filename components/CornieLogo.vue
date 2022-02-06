@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<img
+      @click="$router.push({path: '/'})"
 			class="lg:h-auto h-7"
 			:src="footer ? '/images/FooterLogo.svg' : '/images/header-logo.svg'"
 			alt="logo" />

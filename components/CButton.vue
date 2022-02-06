@@ -1,6 +1,5 @@
 <template>
 	<button
-    @click="$emit('click')"
 		class="py-10 btn"
 		:class="{
 			'primary-btn': primary,
@@ -9,6 +8,7 @@
 			'small-btn': small,
 			'rounded-btn': rounded
 		}"
+		@click="$emit('click')"
 	>
 		{{ title }}
 	</button>

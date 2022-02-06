@@ -63,12 +63,12 @@ export default Vue.extend({
 
   methods: {
 	  moveToLogin() {
-		location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
-	},
+      location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+    },
 
-	moveToSignup() {
-		location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signup"
-	}
+    moveToSignup() {
+      location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signup"
+    }
   }
 
 })

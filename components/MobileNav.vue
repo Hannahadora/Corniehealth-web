@@ -30,9 +30,9 @@
 				/>
 			</div>
 		</ul>
-		<div class="flex flex-col items-center justify-center xl:mt-0 mt-24">
-			<c-button class="rounded-xl xl:mr-4 mb-4" title="Login" :primary="true" />
-			<c-button title="Sign up for free" :secondary="true" />
+		<div class="flex flex-col items-center justify-center gap-4 xl:mt-0 mt-24">
+			<c-button class=" xl:mr-4 mb-4" title="Login" :primary="true" @click="moveToLogin" />
+			<c-button title="Sign up for free" :secondary="true" @click="moveToSignup" />
 		</div>
 	</div>
 </template>
@@ -58,6 +58,16 @@ export default Vue.extend({
     return {
       providerDropdown: false,
       patientDropdown: false,
+    }
+  },
+
+  methods: {
+	  moveToLogin() {
+      location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+    },
+
+    moveToSignup() {
+      location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signup"
     }
   }
 

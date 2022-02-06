@@ -3,13 +3,13 @@
 		<div class="w-full flex items-center justify-between">
 			<CornieLogo />
 			<ul class="header-nav xl:flex hidden items-center justify-between">
-				<li>
-					<NuxtLink class="mr-6 pb-2" to="/Appointments">Appointments</NuxtLink>
+				<li class="mr-6">
+					<NuxtLink class="pb-2" to="/Appointments">Appointments</NuxtLink>
 				</li>
-				<li><NuxtLink class="mr-6 pb-2" to="/Pharmacy">Pharmacy</NuxtLink></li>
-				<li><NuxtLink class="mr-6 pb-2" to="/LabTest">Lab tests</NuxtLink></li>
-				<li id="padwn" v-click-outside="closePatientDropdown" class="relative">
-					<span class="mr-6 flex items-center">
+				<li class="mr-6"><NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink></li>
+				<li class="mr-6"><NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink></li>
+				<li id="padwn" v-click-outside="closePatientDropdown" class="relative mr-6">
+					<span class="flex items-center">
 						<NuxtLink
 							to="/patients"
 							:class="{ 'nuxt-link-exact-active': patientDropdown === true }"
@@ -54,8 +54,8 @@
 				</li>
 			</ul>
 			<div class="flex items-center xl:flex hidden">
-				<c-button type="button" class="mr-2" title="Login" :primary="true" @click="goToLogin" />
-				<c-button type="button" title="Sign up for free" :secondary="true" @click="goToSignup" />
+				<c-button class="mr-2" title="Login" :primary="true" @click="moveToLogin" />
+				<c-button title="Sign up for free" :secondary="true" @click="moveToSignup" />
 			</div>
 			<div class="xl:hidden block menu-icon">
 				<img
@@ -121,10 +121,12 @@ export default Vue.extend({
     closeProviderDropdown() {
       this.providerDropdown = false
     },
-    goToLogin() {
+
+    moveToLogin() {
       location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
     },
-    goToSignup() {
+
+    moveToSignup() {
       location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signup"
     }
   },

@@ -76,7 +76,7 @@
 		</div>
 
 		<div class="c-wrapper xl:mt-0 mt-16">
-			<div class="lg:grid block grid-cols-5 text-white bg-razzmataz-pry py-2">
+			<div class="xl:grid block grid-cols-5 text-white bg-razzmataz-pry py-2">
 				<div
 					class="px-6 py-5 border-r border-white xl:block flex flex-col items-center justify-center"
 				>

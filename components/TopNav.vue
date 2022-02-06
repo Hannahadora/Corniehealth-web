@@ -3,13 +3,13 @@
 		<div class="w-full flex items-center justify-between">
 			<CornieLogo />
 			<ul class="header-nav xl:flex hidden items-center justify-between">
-				<li>
-					<NuxtLink class="mr-6 pb-2" to="/Appointments">Appointments</NuxtLink>
+				<li class="mr-6">
+					<NuxtLink class="pb-2" to="/Appointments">Appointments</NuxtLink>
 				</li>
-				<li><NuxtLink class="mr-6 pb-2" to="/Pharmacy">Pharmacy</NuxtLink></li>
-				<li><NuxtLink class="mr-6 pb-2" to="/LabTest">Lab tests</NuxtLink></li>
-				<li id="padwn" v-click-outside="closePatientDropdown" class="relative">
-					<span class="mr-6 flex items-center">
+				<li class="mr-6"><NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink></li>
+				<li class="mr-6"><NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink></li>
+				<li id="padwn" v-click-outside="closePatientDropdown" class="relative mr-6">
+					<span class="flex items-center">
 						<NuxtLink
 							to="/patients"
 							:class="{ 'nuxt-link-exact-active': patientDropdown === true }"

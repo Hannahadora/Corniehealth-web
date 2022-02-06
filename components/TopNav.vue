@@ -24,7 +24,11 @@
 							@click="patientDropdown = !patientDropdown"
 						/>
 					</span>
-					<patients-dropdown v-if="patientDropdown" class="absolute top-16"  @closeSelf="patientDropdown = false" />
+					<patients-dropdown
+						v-if="patientDropdown"
+						class="absolute top-16"
+						@closeSelf="patientDropdown = false"
+					/>
 				</li>
 				<li id="prdwn" v-click-outside="closeProviderDropdown" class="relative">
 					<span class="mr-6 flex items-center">

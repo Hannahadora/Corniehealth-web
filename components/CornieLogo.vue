@@ -4,7 +4,8 @@
 			class="lg:h-auto h-7 cursor-pointer"
 			:src="footer ? '/images/FooterLogo.svg' : '/images/header-logo.svg'"
 			alt="logo"
-			@click="$router.push({path: '/'})" />
+			@click="$router.push({path: '/'})"
+		/>
 	</div>
 </template>
 

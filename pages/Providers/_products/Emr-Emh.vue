@@ -26,7 +26,7 @@
 				</div>
 				<div class="xl:w-2/5 w-full">
 					<img
-						src="/images/emr-emh/03_03_2020_18_59_34_5882013 1.svg"
+						src="/images/emr-emh/emr-hero.png"
 						alt=""
 					/>
 				</div>

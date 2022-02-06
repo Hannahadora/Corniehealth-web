@@ -212,19 +212,7 @@
 				</p>
 			</div>
 
-			<div
-				class="my-12 mx-6 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xl:gap-2"
-			>
-				<div
-					v-for="(choice, index) in choices"
-					:key="index"
-					class="py-12 px-6 cursor-pointer choices c-shadow"
-				>
-					<img class="mb-7" :src="choice.image" alt="" />
-					<span class="sub-titles-1">{{ choice.title }}</span>
-					<p class="mt-6">{{ choice.text }}</p>
-				</div>
-			</div>
+			<HealthOutcomes />
 		</div>
 
 		<div class="text-center xl:w-1/2 lg:w-2/3 w-9/12 mx-auto mt-9 pt-20 mb-32">
@@ -263,17 +251,17 @@
 import Vue from "vue"
 // import { Component } from "vue-property-decorator";
 import CButton from "../components/CButton.vue"
-import { choices } from "../plugins/choices"
 import IndexHeader from "../components/IndexHeader.vue"
+import HealthOutcomes from "../components/HealthOutcomes.vue"
 export default Vue.extend({
   name: "IndexPage",
   components: {
     CButton,
     IndexHeader,
+    HealthOutcomes
   },
   data() {
     return {
-      choices,
     }
   },
 })
@@ -284,11 +272,6 @@ export default Vue.extend({
   display: grid;
   grid-template-rows: 2 (0, 1fr);
   grid-template-columns: 4 (0, 1fr);
-}
-.choices:hover {
-  color: #fff;
-  background: #fe4d3c;
-  border-radius: 8px;
 }
 
 @media screen and (max-width: 600px) {

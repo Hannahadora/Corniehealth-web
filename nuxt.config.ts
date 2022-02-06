@@ -29,7 +29,8 @@ export default defineNuxtConfig({
     // '~/plugins/choices.ts', 
     // '~/plugins/utils.ts'
     { src: "~/plugins/utils.js", mode: "client" },
-    { src: "~/plugins/choices.js", mode: "client" }
+    { src: "~/plugins/choices.js", mode: "client" },
+    { src: '@/plugins/vue-awesome-swiper', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

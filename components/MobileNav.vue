@@ -2,18 +2,29 @@
 	<div class="mobile-nav bg-white w-full p-4 shadow rounded">
 		<CornieLogo class="mb-12" />
 		<ul class="header-nav flex flex-col items-start justify-between">
-			<li class="mb-6" @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/Appointments">Appointments</NuxtLink></li>
-			<li class="mb-6" @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink></li>
-			<li class="mb-6" @click="$emit('closeMenu')"><NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink></li>
+			<li class="mb-6" @click="$emit('closeMenu')">
+				<NuxtLink class="pb-2" to="/Appointments">Appointments</NuxtLink>
+			</li>
+			<li class="mb-6" @click="$emit('closeMenu')">
+				<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
+			</li>
+			<li class="mb-6" @click="$emit('closeMenu')">
+				<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
+			</li>
 			<div class="xl:relative mb-6">
 				<p
 					:class="{ 'active-dropdown': patientDropdown === true }"
 					class="pb-2 flex items-center xl:justify-start justify-between cursor-pointer"
 					@click="patientDropdown = !patientDropdown"
 				>
-					<span>For Patients</span><img class="xl:ml-2" src="/images/bx_bx-chevron-down.svg" alt="" />
+					<span>For Patients</span
+					><img class="xl:ml-2" src="/images/bx_bx-chevron-down.svg" alt="" />
 				</p>
-				<patients-dropdown v-if="patientDropdown" class="xl:absolute xl:top-16" @closeSelf="$emit('closeMenu')" />
+				<patients-dropdown
+					v-if="patientDropdown"
+					class="xl:absolute xl:top-16"
+					@closeSelf="$emit('closeMenu')"
+				/>
 			</div>
 			<div class="xl:relative mb-6">
 				<p
@@ -31,8 +42,19 @@
 			</div>
 		</ul>
 		<div class="flex flex-col items-center justify-center gap-4 xl:mt-0 mt-24">
-			<c-button class=" xl:mr-4 mb-4" title="Login" :primary="true" @click="moveToLogin" />
-			<c-button title="Sign up for free" :secondary="true" @click="moveToSignup" />
+			<c-button
+				type="button"
+				class="xl:mr-4 mb-4"
+				title="Login"
+				:primary="true"
+				@click="goToLogin"
+			/>
+			<c-button
+				type="button"
+				title="Sign up for free"
+				:secondary="true"
+				@click="goToSignup"
+			/>
 		</div>
 	</div>
 </template>
@@ -62,15 +84,16 @@ export default Vue.extend({
   },
 
   methods: {
-	  moveToLogin() {
-      location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+    goToLogin() {
+      location.href =
+        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
     },
 
-    moveToSignup() {
-      location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signup"
-    }
-  }
-
+    goToSignup() {
+      location.href =
+        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signup"
+    },
+  },
 })
 </script>
 

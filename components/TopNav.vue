@@ -6,9 +6,17 @@
 				<li class="mr-6">
 					<NuxtLink class="pb-2" to="/Appointments">Appointments</NuxtLink>
 				</li>
-				<li class="mr-6"><NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink></li>
-				<li class="mr-6"><NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink></li>
-				<li id="padwn" v-click-outside="closePatientDropdown" class="relative mr-6">
+				<li class="mr-6">
+					<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
+				</li>
+				<li class="mr-6">
+					<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
+				</li>
+				<li
+					id="padwn"
+					v-click-outside="closePatientDropdown"
+					class="relative mr-6"
+				>
 					<span class="flex items-center">
 						<NuxtLink
 							to="/patients"
@@ -54,8 +62,19 @@
 				</li>
 			</ul>
 			<div class="flex items-center xl:flex hidden">
-				<c-button class="mr-2" title="Login" :primary="true" @click="moveToLogin" />
-				<c-button title="Sign up for free" :secondary="true" @click="moveToSignup" />
+				<c-button
+					type="button"
+					class="mr-2"
+					title="Login"
+					:primary="true"
+					@click="goToLogin"
+				/>
+				<c-button
+					type="button"
+					title="Sign up for free"
+					:secondary="true"
+					@click="goToSignup"
+				/>
 			</div>
 			<div class="xl:hidden block menu-icon">
 				<img
@@ -122,13 +141,15 @@ export default Vue.extend({
       this.providerDropdown = false
     },
 
-    moveToLogin() {
-      location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+    goToLogin() {
+      location.href =
+        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
     },
 
-    moveToSignup() {
-      location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signup"
-    }
+    goToSignup() {
+      location.href =
+        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signup"
+    },
   },
 })
 </script>

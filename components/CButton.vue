@@ -1,7 +1,7 @@
 <template>
 	<button
 		:type="type"
-		class="py-10 btn"
+		class="btn"
 		:class="{
 			'primary-btn': primary,
 			'secondary-btn': secondary,
@@ -93,7 +93,7 @@ export default Vue.extend({
     padding: 13px 18px !important;
   }
   .btn {
-    width: 100%;
+    /* width: 100%; */
     white-space: nowrap;
   }
 }

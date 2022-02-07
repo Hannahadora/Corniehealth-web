@@ -1,6 +1,6 @@
 <template>
-	<div class="input-wrapper flex items-center gap-7 p-4">
-		<img :src="inputIcon" alt="">
+	<div class="input-wrapper flex items-center p-4">
+		<img class="mr-7" :src="inputIcon" alt="">
 		<input class="c-input" type="text" :placeholder="placeholder">
 	</div>
 </template>

@@ -1,13 +1,15 @@
 <template>
 	<button
-		class="py-10 btn"
+		:type="type"
+		class="btn"
 		:class="{
 			'primary-btn': primary,
 			'secondary-btn': secondary,
 			'tertiary-btn': tertiary,
 			'small-btn': small,
-			'rounded-btn': rounded
+			'rounded-btn': rounded,
 		}"
+		@click="$emit('click')"
 	>
 		{{ title }}
 	</button>
@@ -18,6 +20,10 @@ import Vue from "vue"
 export default Vue.extend({
   name: "CButton",
   props: {
+    type: {
+      type: String,
+      default: "button",
+    },
     title: {
       type: String,
       default: "",
@@ -40,8 +46,8 @@ export default Vue.extend({
     },
     rounded: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 })
 </script>
@@ -87,7 +93,7 @@ export default Vue.extend({
     padding: 13px 18px !important;
   }
   .btn {
-    width: 100%;
+    /* width: 100%; */
     white-space: nowrap;
   }
 }

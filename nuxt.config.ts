@@ -25,15 +25,13 @@ export default defineNuxtConfig({
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
-
-
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     // '~/plugins/choices.ts',
     // '~/plugins/utils.ts'
     { src: "~/plugins/utils.js", mode: "client" },
     { src: "~/plugins/choices.js", mode: "client" },
-    { src: "~/plugins/vee-validate.js", mode: "client" }
+    { src: "@/plugins/vue-awesome-swiper", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -55,8 +53,6 @@ export default defineNuxtConfig({
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [
-      "vee-validate/dist/rules"
-    ],
+    transpile: ["vee-validate/dist/rules"],
   },
 })

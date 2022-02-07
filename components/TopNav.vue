@@ -1,60 +1,100 @@
 <template>
   <div class="header bg-white w-full fixed top-0">
     <div class="w-full flex items-center justify-between">
-      <NuxtLink to="/"><CornieLogo /></NuxtLink>
-      <ul class="header-nav xl:flex hidden items-center gap-6 justify-between">
-        <NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
-        <NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
-        <NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
-        <div id="padwn" v-click-outside="closePatientDropdown" class="relative">
-          <p
-            :class="{ 'active-dropdown': patientDropdown === true }"
-            class="pb-2 flex items-center gap-2 cursor-pointer"
-            @click="patientDropdown = !patientDropdown"
-          >
-            For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
-          </p>
-          <patients-dropdown v-if="patientDropdown" class="absolute top-16" />
-        </div>
-        <div
-          id="prdwn"
-          v-click-outside="closeProviderDropdown"
-          class="relative"
+      <CornieLogo />
+      <ul class="header-nav xl:flex hidden items-center justify-between">
+        <li class="mr-6">
+          <NuxtLink class="pb-2" to="/Appointments">Appointments</NuxtLink>
+        </li>
+        <li class="mr-6">
+          <NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
+        </li>
+        <li class="mr-6">
+          <NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
+        </li>
+        <li
+          id="padwn"
+          v-click-outside="closePatientDropdown"
+          class="relative mr-6"
         >
-          <p
-            :class="{ 'active-dropdown': providerDropdown === true }"
-            class="pb-2 flex items-center gap-2 cursor-pointer"
-            @click="providerDropdown = !providerDropdown"
-          >
-            For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
-          </p>
+          <span class="flex items-center">
+            <NuxtLink
+              to="/patients"
+              :class="{ 'nuxt-link-exact-active': patientDropdown === true }"
+              class=""
+            >
+              For Patients
+            </NuxtLink>
+            <img
+              class="ml-2 cursor-pointer"
+              src="/images/bx_bx-chevron-down.svg"
+              alt=""
+              @click="patientDropdown = !patientDropdown"
+            />
+          </span>
+          <patients-dropdown
+            v-if="patientDropdown"
+            class="absolute top-16"
+            @closeSelf="patientDropdown = false"
+          />
+        </li>
+        <li id="prdwn" v-click-outside="closeProviderDropdown" class="relative">
+          <span class="mr-6 flex items-center">
+            <NuxtLink
+              to="/providers"
+              :class="{ 'nuxt-link-exact-active': providerDropdown === true }"
+              class=""
+            >
+              For Providers
+            </NuxtLink>
+            <img
+              class="ml-2 cursor-pointer"
+              src="/images/bx_bx-chevron-down.svg"
+              alt=""
+              @click="providerDropdown = !providerDropdown"
+            />
+          </span>
           <providers-dropdown
             v-if="providerDropdown"
             class="absolute top-16 right-0"
+            @closeSelf="providerDropdown = false"
           />
-        </div>
+        </li>
       </ul>
-      <div class="flex items-center gap-2 xl:flex hidden">
-        <!-- <c-button title="Login" :primary="true" to="/signup" />
-        <c-button title="Sign up for free" :secondary="true" /> -->
-        <nuxt-link
-          to="/signin"
-          class="w-auto py-2 px-3 bg-red-500 text-white rounded-md"
-          >Login</nuxt-link
-        >
-        <nuxt-link
-          to="/signup"
-          class="w-auto py-2 px-3 bg-red-500 text-white rounded-md"
-          >Sign up</nuxt-link
-        >
+      <div class="items-center xl:flex hidden">
+        <c-button
+          type="button"
+          class="mr-2"
+          title="Login"
+          :primary="true"
+          @click="goToLogin"
+        />
+        <c-button
+          type="button"
+          title="Sign up for free"
+          :secondary="true"
+          @click="goToSignup"
+        />
       </div>
       <div class="xl:hidden block menu-icon">
-        <img src="/images/ci_hamburger.svg" alt="" @click="openSideMenu" />
+        <img
+          v-if="!sideMenu"
+          src="/images/ci_hamburger.svg"
+          alt=""
+          @click="openSideMenu"
+        />
+        <img
+          v-else
+          src="/images/iconoir_cancel.svg"
+          alt=""
+          @click="openSideMenu"
+        />
       </div>
     </div>
     <mobile-nav
       v-if="sideMenu"
       class="xl:hidden block absolute top-0 right-0"
+      @closeMenu="sideMenu = false"
     />
   </div>
 </template>
@@ -100,6 +140,16 @@ export default Vue.extend({
     closeProviderDropdown() {
       this.providerDropdown = false
     },
+
+    goToLogin() {
+      location.href =
+        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+    },
+
+    goToSignup() {
+      location.href =
+        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signup"
+    },
   },
 })
 </script>
@@ -110,6 +160,10 @@ export default Vue.extend({
   box-shadow: 0px 0px 1px rgba(46, 41, 78, 0.02),
     0px 2px 4px rgba(46, 41, 78, 0.08);
   z-index: 998;
+}
+
+a.nuxt-link-exact-active {
+  border-bottom: 3px solid #fe4d3c;
 }
 
 .active-dropdown {

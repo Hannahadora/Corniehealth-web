@@ -1,19 +1,19 @@
 <template>
-  <span class="flex items-left flex-col">
-    <label class="font-bold block text-xs mb-1"> {{ label }}</label>
-    <input
-      :modelValue="modelValue"
-      @input="$emit('input', $event.target.value)"
-      :type="type"
-      :placeholder="placeholder"
-      :required="required"
-      class="border border-gray-300 p-2 rounded-md focus:outline-none text-sm shadow-sm"
-    />
-  </span>
+	<span class="flex items-left flex-col">
+		<label class="font-bold block text-xs mb-1"> {{ label }}</label>
+		<input
+			:modelValue="modelValue"
+			:type="type"
+			:placeholder="placeholder"
+			:required="required"
+			class="border border-gray-300 p-2 rounded-md focus:outline-none text-sm shadow-sm"
+			@input="$emit('input', $event.target.value)"
+		/>
+	</span>
 </template>
 <script>
 export default {
-  name: "cornie-input",
+  name: "CornieInput",
   inheritAttrs: false,
   props: {
     label: String,

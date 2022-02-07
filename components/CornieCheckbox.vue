@@ -1,20 +1,20 @@
 <template>
-  <div class="flex items-center my-2">
-    <input
-      class="rounded-lg border-2 border-gray-400 p-2 w-5 h-5 focus:outline-none cursor-pointer"
-      v-bind="$attrs"
-      v-model="checked"
-      :required="required"
-      @change="$emit('change', $event.target.checked)"
-      type="checkbox"
-    />
-    <span class="ml-2 text-sm">{{ label }}</span>
-  </div>
+	<div class="flex items-center my-2">
+		<input
+			v-model="checked"
+			class="rounded-lg border-2 border-gray-400 p-2 w-5 h-5 focus:outline-none cursor-pointer"
+			v-bind="$attrs"
+			:required="required"
+			type="checkbox"
+			@change="$emit('change', $event.target.checked)"
+		/>
+		<span class="ml-2 text-sm">{{ label }}</span>
+	</div>
 </template>
 
 <script>
 export default {
-  name: "cornie-checkbox",
+  name: "CornieCheckbox",
   inheritAttrs: false,
   props: {
     name: String,

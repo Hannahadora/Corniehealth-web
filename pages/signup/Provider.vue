@@ -184,9 +184,7 @@ export default class Provider extends Vue {
       )
 
       this.showDiag = true
-    } catch (err) {
-      console.log(err.message)
-    }
+    } catch (err) {}
   }
 
   created() {
@@ -207,7 +205,6 @@ export default class Provider extends Vue {
       }
     } catch (err) {
       this.disabled = false
-      console.log(err.message)
     }
   }
 }

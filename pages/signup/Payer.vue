@@ -112,7 +112,7 @@ import CornieInput from "@/components/CornieInput.vue"
 import CornieCheckbox from "@/components/CornieCheckbox.vue"
 
 export default {
-  name: "Provider",
+  name: "PayerComponent",
   components: {
     Auth,
     HeartPulse,
@@ -158,7 +158,6 @@ export default {
         }
       } catch (err) {
         this.disabled = false
-        console.log(err.message)
       }
     },
   },

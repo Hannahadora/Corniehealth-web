@@ -16,9 +16,18 @@ export default {
   name: "CornieInput",
   inheritAttrs: false,
   props: {
-    label: String,
-    modelValue: String,
-    placeholder: String,
+    label: {
+      type: String,
+      default: "",
+    },
+    modelValue: {
+      type: String,
+      default: "",
+    },
+    placeholder: {
+      type: String,
+      default: "",
+    },
     type: {
       type: String,
       default: "text",

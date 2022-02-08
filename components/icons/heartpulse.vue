@@ -16,3 +16,8 @@
 		/>
 	</svg>
 </template>
+<script>
+export default {
+  name: "HeartPulse",
+}
+</script>

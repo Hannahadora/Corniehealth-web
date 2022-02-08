@@ -102,7 +102,7 @@
 <script>
 import Vue from "vue"
 import vClickOutside from "v-click-outside"
-import CButton from "./CButton.vue"
+// import CButton from "./CButton.vue"
 import CornieLogo from "./CornieLogo.vue"
 import MobileNav from "./MobileNav.vue"
 import PatientsDropdown from "./PatientsDropdown.vue"
@@ -112,7 +112,7 @@ export default Vue.extend({
   name: "TopNav",
   components: {
     CornieLogo,
-    CButton,
+
     PatientsDropdown,
     ProvidersDropdown,
     MobileNav,
@@ -142,13 +142,11 @@ export default Vue.extend({
     },
 
     goToLogin() {
-      location.href =
-        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+      location.href = "/login"
     },
 
     goToSignup() {
-      location.href =
-        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signup"
+      location.href = "/signup"
     },
   },
 })

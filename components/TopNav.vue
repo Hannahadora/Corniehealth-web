@@ -1,68 +1,68 @@
 <template>
-  <div class="header bg-white w-full fixed top-0">
-    <div class="w-full flex items-center justify-between">
-      <NuxtLink to="/"><CornieLogo /></NuxtLink>
-      <ul class="header-nav xl:flex hidden items-center gap-6 justify-between">
-        <NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
-        <NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
-        <NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
-        <div id="padwn" v-click-outside="closePatientDropdown" class="relative">
-          <p
-            :class="{ 'active-dropdown': patientDropdown === true }"
-            class="pb-2 flex items-center gap-2 cursor-pointer"
-            @click="patientDropdown = !patientDropdown"
-          >
-            For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
-          </p>
-          <patients-dropdown v-if="patientDropdown" class="absolute top-16" />
-        </div>
-        <div
-          id="prdwn"
-          v-click-outside="closeProviderDropdown"
-          class="relative"
-        >
-          <p
-            :class="{ 'active-dropdown': providerDropdown === true }"
-            class="pb-2 flex items-center gap-2 cursor-pointer"
-            @click="providerDropdown = !providerDropdown"
-          >
-            For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
-          </p>
-          <providers-dropdown
-            v-if="providerDropdown"
-            class="absolute top-16 right-0"
-          />
-        </div>
-      </ul>
-      <div class="flex items-center gap-2 xl:flex hidden">
-        <!-- <c-button title="Login" :primary="true" to="/signup" />
+	<div class="header bg-white w-full fixed top-0">
+		<div class="w-full flex items-center justify-between">
+			<NuxtLink to="/"><CornieLogo /></NuxtLink>
+			<ul class="header-nav xl:flex hidden items-center gap-6 justify-between">
+				<NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
+				<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
+				<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
+				<div id="padwn" v-click-outside="closePatientDropdown" class="relative">
+					<p
+						:class="{ 'active-dropdown': patientDropdown === true }"
+						class="pb-2 flex items-center gap-2 cursor-pointer"
+						@click="patientDropdown = !patientDropdown"
+					>
+						For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
+					</p>
+					<patients-dropdown v-if="patientDropdown" class="absolute top-16" />
+				</div>
+				<div
+					id="prdwn"
+					v-click-outside="closeProviderDropdown"
+					class="relative"
+				>
+					<p
+						:class="{ 'active-dropdown': providerDropdown === true }"
+						class="pb-2 flex items-center gap-2 cursor-pointer"
+						@click="providerDropdown = !providerDropdown"
+					>
+						For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
+					</p>
+					<providers-dropdown
+						v-if="providerDropdown"
+						class="absolute top-16 right-0"
+					/>
+				</div>
+			</ul>
+			<div class="flex items-center gap-2 xl:flex hidden">
+				<!-- <c-button title="Login" :primary="true" to="/signup" />
         <c-button title="Sign up for free" :secondary="true" /> -->
-        <nuxt-link
-          to="/signin"
-          class="w-auto py-2 px-3 bg-red-500 text-white rounded-md"
-          >Login</nuxt-link
-        >
-        <nuxt-link
-          to="/signup"
-          class="w-auto py-2 px-3 bg-red-500 text-white rounded-md"
-          >Sign up</nuxt-link
-        >
-      </div>
-      <div class="xl:hidden block menu-icon">
-        <img src="/images/ci_hamburger.svg" alt="" @click="openSideMenu" />
-      </div>
-    </div>
-    <mobile-nav
-      v-if="sideMenu"
-      class="xl:hidden block absolute top-0 right-0"
-    />
-  </div>
+				<nuxt-link
+					to="/signin"
+					class="w-auto py-2 px-3 bg-red-500 text-white rounded-md"
+				>Login</nuxt-link
+				>
+				<nuxt-link
+					to="/signup"
+					class="w-auto py-2 px-3 bg-red-500 text-white rounded-md"
+				>Sign up</nuxt-link
+				>
+			</div>
+			<div class="xl:hidden block menu-icon">
+				<img src="/images/ci_hamburger.svg" alt="" @click="openSideMenu" />
+			</div>
+		</div>
+		<mobile-nav
+			v-if="sideMenu"
+			class="xl:hidden block absolute top-0 right-0"
+		/>
+	</div>
 </template>
 
 <script>
 import Vue from "vue"
 import vClickOutside from "v-click-outside"
-import CButton from "./CButton.vue"
+// import CButton from "./CButton.vue"
 import CornieLogo from "./CornieLogo.vue"
 import MobileNav from "./MobileNav.vue"
 import PatientsDropdown from "./PatientsDropdown.vue"
@@ -72,7 +72,7 @@ export default Vue.extend({
   name: "TopNav",
   components: {
     CornieLogo,
-    CButton,
+
     PatientsDropdown,
     ProvidersDropdown,
     MobileNav,

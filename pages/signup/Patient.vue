@@ -6,7 +6,7 @@
       @close-diag="showDiag = false"
     />
     <auth>
-      <template v-slot:default>
+      <template #default>
         <div class="w-full h-full flex justify-center items-center">
           <div
             class="w-full h-auto bg-white rounded-md shadow-md p-5 overflow-hidden"
@@ -53,8 +53,8 @@
                     >Patient Profile</label
                   >
                   <cornie-select
-                    :readonly="false"
                     v-model="form.patientProfile"
+                    :readonly="false"
                     :items="['individual', 'family', 'corporate']"
                     required
                     @changed="handleChange"
@@ -96,10 +96,10 @@
           </div>
         </div>
       </template>
-      <template v-slot:image>
+      <template #image>
         <img src="@/static/images/healthy_family.svg" class="w-full h-full" />
       </template>
-      <template v-slot:banner>
+      <template #banner>
         <div class="flex justify-center items-center">
           <heart-pulse class="mr-3" />
           <div>Connectd. Patient-Centric,Supportive.</div>
@@ -120,7 +120,7 @@ import CornieCheckbox from "@/components/CornieCheckbox.vue"
 import CornieSelect from "@/components/CornieSelect.vue"
 
 export default {
-  name: "Provider",
+  name: "PatientScreen",
   components: {
     Auth,
     HeartPulse,
@@ -143,8 +143,8 @@ export default {
         number: "",
       },
       email: "",
-      providerProfile: "Independent physician",
-      practiceName: "NA",
+      // providerProfile: "Independent physician",
+      // practiceName: "NA",
       patientProfile: "",
     },
   }),
@@ -157,7 +157,6 @@ export default {
     },
     async submit() {
       try {
-        console.log(this.form)
         this.disabled = true
         const response = await this.$axios.post(
           `${this.url}/api/v1/early-access`,
@@ -170,7 +169,6 @@ export default {
         }
       } catch (err) {
         this.disabled = false
-        console.log(err.message)
       }
     },
   },

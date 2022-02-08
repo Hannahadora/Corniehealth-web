@@ -1,7 +1,9 @@
 <template>
-  <Nuxt />
+	<Nuxt />
 </template>
 
 <script>
-export default {}
+export default {
+  name: "AuthLayout",
+}
 </script>

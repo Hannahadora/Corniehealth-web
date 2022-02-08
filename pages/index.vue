@@ -10,11 +10,9 @@
 				</p>
 			</div>
 			<div class="c-wrapper mt-16 b-2">
-				<div
-					class="flex xl:flex-row flex-col items-center justify-center xl:gap-0 gap-16"
-				>
+				<div class="flex xl:flex-row flex-col items-center justify-center">
 					<div
-						class="sub-sect-2 xl:h-52 h-auto flex xl:flex-row flex-col items-center justify-center mb-2 xl:w-1/2 w-full"
+						class="xl:mb-0 mb-16 sub-sect-2 xl:h-52 h-auto flex xl:flex-row flex-col items-center justify-center mb-2 xl:w-1/2 w-full"
 					>
 						<div
 							class="lg:w-1/2 w-full h-52 bg-center bg-cover bg-no-repeat"
@@ -43,13 +41,7 @@
 						<div
 							class="lg:w-1/2 w-full h-52 bg-center bg-cover bg-no-repeat"
 							style="background: url('/images/image 23 (1).svg')"
-						>
-							<!-- <img
-                class="w-full"
-                src="/images/image 23 (1).svg"
-                alt=""
-              /> -->
-						</div>
+						></div>
 						<div
 							class="lg:w-1/2 w-full xl:h-full h-auto xl:px-6 px-6 xl:py-9 py-6 bg-cblue-100"
 						>
@@ -125,14 +117,12 @@
 						src="/images/Medical prescription-pana 1.svg"
 						alt=""
 					/>
-					<div
-						class="flex md:flex-row flex-col md:items-center items-end gap-5"
-					>
+					<div class="flex md:flex-row flex-col md:items-center items-end">
 						<h4 class="md:block hidden">4. Manage your health records</h4>
 						<h4 class="md:hidden block">4. Access records</h4>
 						<img
 							src="/images/plus-circle.svg"
-							class="md:w-10 w-7 md:h-10 h-7"
+							class="ml-5 md:w-10 w-7 md:h-10 h-7"
 							alt=""
 						/>
 					</div>
@@ -140,7 +130,7 @@
 
 				<img
 					class="col-span-2 md:row-span-2 md:order-2 order-3"
-					src="/images/img-center.svg"
+					src="/images/img-center.png"
 					alt=""
 				/>
 
@@ -153,11 +143,11 @@
 						alt=""
 					/>
 					<div
-						class="flex md:flex-row flex-col flex-col-reverse md:items-center items-start gap-5"
+						class="flex md:flex-row flex-col flex-col-reverse md:items-center items-start"
 					>
 						<img
 							src="/images/plus-circle.svg"
-							class="md:w-10 w-7 md:h-10 h-7"
+							class="mr-5 md:w-10 w-7 md:h-10 h-7"
 							alt=""
 						/>
 						<h4>1. Sign up</h4>
@@ -171,13 +161,13 @@
 
 				<div class="flex flex-col items-center justify-end order-4">
 					<div
-						class="flex md:flex-row flex-col flex-col-reverse md:items-center items-end gap-5"
+						class="flex md:flex-row flex-col flex-col-reverse md:items-center items-end"
 					>
 						<h4 class="md:block hidden">3. Access Quality Care</h4>
 						<h4 class="md:hidden block">3. Visit</h4>
 						<img
 							src="/images/plus-circle.svg"
-							class="md:w-10 w-7 md:h-10 h-7"
+							class="ml-5 md:w-10 w-7 md:h-10 h-7"
 							alt=""
 						/>
 					</div>
@@ -189,10 +179,10 @@
 				</div>
 
 				<div class="flex flex-col items-start justify-start order-5">
-					<div class="flex md:flex-row flex-col items-center gap-5">
+					<div class="flex md:flex-row flex-col items-center">
 						<img
 							src="/images/plus-circle.svg"
-							class="md:w-10 w-7 md:h-10 h-7"
+							class="mr-5 md:w-10 w-7 md:h-10 h-7"
 							alt=""
 						/>
 						<h4 class="md:block hidden">2. Explore & Engage</h4>
@@ -217,19 +207,7 @@
 				</p>
 			</div>
 
-			<div
-				class="my-12 mx-6 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-2"
-			>
-				<div
-					v-for="(choice, index) in choices"
-					:key="index"
-					class="py-12 px-6 cursor-pointer choices"
-				>
-					<img class="mb-7" :src="choice.image" alt="" />
-					<span class="sub-titles-1">{{ choice.title }}</span>
-					<p class="mt-6">{{ choice.text }}</p>
-				</div>
-			</div>
+			<HealthOutcomes />
 		</div>
 
 		<div class="text-center xl:w-1/2 lg:w-2/3 w-9/12 mx-auto mt-9 pt-20 mb-32">
@@ -239,8 +217,8 @@
 				Engage with doctors, shop medicines, book diagnostic tests, available
 				24/7
 			</p>
-			<div class="flex items-center justify-center gap-6 mb-14">
-				<div class="w-auto">
+			<div class="flex items-center justify-center mb-14">
+				<div class="w-auto mr-6">
 					<c-button
 						title="Get started for free"
 						:secondary="true"
@@ -252,8 +230,8 @@
 				</div>
 			</div>
 			<span class="sub-titles-1">Coming soon to your mobile Apps.</span>
-			<div class="mt-8 flex items-center justify-center gap-6">
-				<div class="xl:w-52 w-40">
+			<div class="mt-8 flex items-center justify-center">
+				<div class="xl:w-52 w-40 mr-6">
 					<img class="" src="/images/Apple Store.svg" alt="" />
 				</div>
 				<div class="xl:w-52 w-40">
@@ -265,23 +243,19 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-// import { Component } from "vue-property-decorator";
+import { Component, Vue } from "nuxt-property-decorator"
 import CButton from "../components/CButton.vue"
-import { choices } from "../plugins/choices"
 import IndexHeader from "../components/IndexHeader.vue"
-export default Vue.extend({
-  name: "IndexPage",
+import HealthOutcomes from "../components/HealthOutcomes.vue"
+
+@Component({
   components: {
     CButton,
     IndexHeader,
-  },
-  data() {
-    return {
-      choices,
-    }
+    HealthOutcomes,
   },
 })
+export default class IndexPage extends Vue {}
 </script>
 
 <style scoped>
@@ -289,11 +263,6 @@ export default Vue.extend({
   display: grid;
   grid-template-rows: 2 (0, 1fr);
   grid-template-columns: 4 (0, 1fr);
-}
-.choices:hover {
-  color: #fff;
-  background: #fe4d3c;
-  border-radius: 8px;
 }
 
 @media screen and (max-width: 600px) {

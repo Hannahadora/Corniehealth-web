@@ -11,7 +11,7 @@
 		}"
 		@click="$emit('click')"
 	>
-		{{ title }}
+		<slot></slot>
 	</button>
 </template>
 
@@ -23,10 +23,6 @@ export default Vue.extend({
     type: {
       type: String,
       default: "button",
-    },
-    title: {
-      type: String,
-      default: "",
     },
     primary: {
       type: Boolean,

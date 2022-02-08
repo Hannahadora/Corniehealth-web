@@ -38,7 +38,7 @@
 						placeholder="City name or Zip/Postal code"
 					/>
 					<div class="xl:ml-1 xl:mt-0 mt-4 xl:w-1/5 w-full">
-						<c-button class="w-full" title="Search" :tertiary="true" />
+						<c-button type="button" class="w-full" :tertiary="true" @click="$router.push({ path: '/book-appointment/search-result/doctors' })">Search</c-button>
 					</div>
 				</div>
 
@@ -208,7 +208,7 @@
 						<p>Private and confidential</p>
 					</div>
 					<div class="flex itesm-center">
-						<c-button title="Consult Now" secondary small></c-button>
+						<c-button type="button" secondary small>Consult Now</c-button>
 						<button
 							class="text-razzmataz-pry font-bold py-4 px-6 whitespace-nowrap rounded-xl focus:outline-none bg-transparent"
 						>

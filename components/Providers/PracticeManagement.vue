@@ -37,7 +37,7 @@
 					<p>Create and manage loyalty groups and promotions.</p>
 				</div>
 				<div class="mt-8">
-					<c-button type="button" class="w-auto" title="Discover More" secondary small />
+					<c-button type="button" secondary small>Discover More</c-button>
 				</div>
 			</div>
 		</div>

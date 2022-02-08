@@ -1,7 +1,7 @@
 <template>
 	<div class="input-wrapper flex items-center p-4">
-		<img class="mr-7" :src="inputIcon" alt="">
-		<input class="c-input" type="text" :placeholder="placeholder">
+		<img class="xl:mr-7 mr-4" :src="inputIcon" alt="">
+		<input class="c-input w-10/12" type="text" :placeholder="placeholder">
 	</div>
 </template>
 
@@ -38,7 +38,6 @@ export default Vue.extend({
 
   @media screen and (max-width: 1024px) {
     .c-input {
-      width: inherit;
       font-size: 14px !important;
     }
   }

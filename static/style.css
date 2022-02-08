@@ -11,6 +11,14 @@ body {
   padding-right: 72px;
 }
 
+.info-container {
+  background: #ffffff;
+  border: 0.2px solid #c2c7d6;
+  box-sizing: border-box;
+  box-shadow: 0px 15px 40px rgba(20, 23, 31, 0.08);
+  border-radius: 16px;
+}
+
 .c-indigo {
   color: #080056;
 }
@@ -42,6 +50,10 @@ body {
 
 .text-black-xiketic {
   color: #16141f;
+}
+
+.text-grey-eth {
+  color: #C2C7D6;
 }
 
 .sub-titles-1 {

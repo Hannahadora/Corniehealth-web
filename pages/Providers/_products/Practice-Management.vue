@@ -109,10 +109,10 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
+import { Component, Vue } from "nuxt-property-decorator"
 import ProductsFooter2 from "../../../components/Providers/ProductsFooter2.vue"
-export default Vue.extend({
-  name: "PracticeMangement",
+@Component({
   components: { ProductsFooter2 },
 })
+export default class PracticeManagement extends Vue {}
 </script>

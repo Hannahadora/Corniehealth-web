@@ -61,7 +61,7 @@
 					/>
 				</li>
 			</ul>
-			<div class="flex items-center xl:flex hidden">
+			<div class="items-center xl:flex hidden">
 				<c-button
 					type="button"
 					class="mr-2"
@@ -99,7 +99,7 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from "vue"
 import vClickOutside from "v-click-outside"
 import CButton from "./CButton.vue"

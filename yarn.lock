@@ -13471,11 +13471,14 @@
   "resolved" "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz"
   "version" "1.0.3"
 
+<<<<<<< HEAD
+=======
 "ssr-window@^2.0.0":
   "integrity" "sha512-NXzN+/HPObKAx191H3zKlYomE5WrVIkoCB5IaSdvKokxTpjBdWfr0RaP+1Z5KOfDT0ZVz+2tdtiBkhsEQ9p+0A=="
   "resolved" "https://registry.npmjs.org/ssr-window/-/ssr-window-2.0.0.tgz"
   "version" "2.0.0"
 
+>>>>>>> c3ad5b340a2b3f833ccbffbe00691000778bbb11
 "ssri@^6.0.1":
   "integrity" "sha512-cepbSq/neFK7xB6A50KHN0xHDotYzq58wWCa5LeWqnPrHG8GzfEjO/4O8kpmcGW+oaxkvhEJCWgbgNk4/ZV93Q=="
   "resolved" "https://registry.npmjs.org/ssri/-/ssri-6.0.2.tgz"

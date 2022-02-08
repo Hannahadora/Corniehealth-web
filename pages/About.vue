@@ -82,12 +82,11 @@
 			</div>
 		</div>
 
-
 		<div class="grid grid-cols-4">
-			<img src="/images/about/image 62.svg" alt="">
-			<img src="/images/about/image 61.svg" alt="">
-			<img src="/images/about/img (2).svg" alt="">
-			<img src="/images/about/image 60.svg" alt="">
+			<img src="/images/about/image 62.svg" alt="" />
+			<img src="/images/about/image 61.svg" alt="" />
+			<img src="/images/about/img (2).svg" alt="" />
+			<img src="/images/about/image 60.svg" alt="" />
 		</div>
 
 		<div class="sect-2 bg-cblue-100 relative">
@@ -236,7 +235,7 @@
 						We are fully committed to equitable and affordable access to quality
 						healthcare and well-being, and we only succeed when you do. To this
 						end, we will provide the support and assistance that guarantees
-						patients’ health, safety, and well-being.
+						patients' health, safety, and well-being.
 					</p>
 				</div>
 			</div>
@@ -245,11 +244,10 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-export default Vue.extend({
-  name: "AboutPage",
-  components: {},
-})
+import { Component, Vue } from "nuxt-property-decorator"
+
+@Component
+export default class AboutPage extends Vue {}
 </script>
 
 <style scoped>
@@ -290,23 +288,23 @@ export default Vue.extend({
   }
 
   .sect-1 {
-  height: auto;
-  background: #fff;
-  margin-left: 36px;
-  margin-right: 36px;
-  margin-top: 0px;
-  margin-bottom: 44px;
-  padding: 0px;
-}
+    height: auto;
+    background: #fff;
+    margin-left: 36px;
+    margin-right: 36px;
+    margin-top: 0px;
+    margin-bottom: 44px;
+    padding: 0px;
+  }
 
-.sect-3 {
-  padding-left: 36px;
-  padding-right: 36px;
-}
+  .sect-3 {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
 
-.sect-2 {
-  padding-left: 36px;
-  padding-right: 36px;
-}
+  .sect-2 {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
 }
 </style>

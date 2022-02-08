@@ -114,7 +114,9 @@
 					Our service is free. We deliver affordable healthcare, at no extra
 					cost
 				</h2>
-				<p class="mt-4">You only get to pay for your healthcare services and medications</p>
+				<p class="mt-4">
+					You only get to pay for your healthcare services and medications
+				</p>
 			</div>
 		</div>
 
@@ -330,15 +332,18 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
+import { Component, Vue } from "nuxt-property-decorator"
 import CButton from "../components/CButton.vue"
 import InputComp from "../components/InputComp.vue"
-export default Vue.extend({
-  name: "AppointmentsPage",
-  components: { CButton, InputComp },
-})
-</script>
 
+@Component({
+  components: {
+    CButton,
+    InputComp,
+  },
+})
+export default class AppointmentPage extends Vue {}
+</script>
 <style scoped>
 .intro-wrapper {
   padding: 0 210px;

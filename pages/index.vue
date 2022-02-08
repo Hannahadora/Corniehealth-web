@@ -209,24 +209,19 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-// import { Component } from "vue-property-decorator";
+import { Component, Vue } from "nuxt-property-decorator"
 import CButton from "../components/CButton.vue"
 import IndexHeader from "../components/IndexHeader.vue"
 import HealthOutcomes from "../components/HealthOutcomes.vue"
-import IndexSlider1 from "../components/IndexSlider1.vue"
-export default Vue.extend({
-  name: "IndexPage",
+
+@Component({
   components: {
     CButton,
     IndexHeader,
     HealthOutcomes,
-    IndexSlider1,
-  },
-  data() {
-    return {}
   },
 })
+export default class IndexPage extends Vue {}
 </script>
 
 <style scoped>

@@ -1,8 +1,6 @@
 <template>
 	<div>
-		<div
-			class="hidden my-12 mx-6 xl:grid xl:grid-cols-4 xl:gap-2"
-		>
+		<div class="hidden my-12 mx-6 xl:grid xl:grid-cols-4 xl:gap-2">
 			<div
 				v-for="(choice, index) in choices"
 				:key="index"
@@ -22,6 +20,8 @@
 
 <script lang="ts">
 import Vue from "vue"
+
+import { directive } from "vue-awesome-swiper"
 
 import { choices } from "../plugins/choices"
 import CSwiper from "./CSwiper.vue"

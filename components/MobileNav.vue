@@ -1,57 +1,57 @@
 <template>
-  <div class="mobile-nav bg-white w-72 p-6 shadow rounded">
-    <NuxtLink to="/"><CornieLogo class="mb-12" /></NuxtLink>
-    <ul class="header-nav flex flex-col items-start gap-6 justify-between">
-      <NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
-      <NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
-      <NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
-      <div class="xl:relative">
-        <p
-          :class="{ 'active-dropdown': patientDropdown === true }"
-          class="pb-2 flex items-center gap-2 cursor-pointer xl:mb-0 mb-4"
-          @click="patientDropdown = !patientDropdown"
-        >
-          For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
-        </p>
-        <patients-dropdown
-          v-if="patientDropdown"
-          class="xl:absolute xl:top-16"
-        />
-      </div>
-      <div class="xl:relative">
-        <p
-          :class="{ 'active-dropdown': providerDropdown === true }"
-          class="pb-2 flex items-center gap-2 cursor-pointer xl:mb-0 mb-4"
-          @click="providerDropdown = !providerDropdown"
-        >
-          For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
-        </p>
-        <providers-dropdown
-          v-if="providerDropdown"
-          class="xl:absolute xl:top-16 xl:right-0"
-        />
-      </div>
-    </ul>
-    <div class="flex flex-col items-center justify-center gap-4 xl:mt-0 mt-24">
-      <!-- <c-button class="rounded-xl" title="Login" :primary="true" />
+	<div class="mobile-nav bg-white w-72 p-6 shadow rounded">
+		<NuxtLink to="/"><CornieLogo class="mb-12" /></NuxtLink>
+		<ul class="header-nav flex flex-col items-start gap-6 justify-between">
+			<NuxtLink class="pb-2" to="/Appointment">Appointments</NuxtLink>
+			<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
+			<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
+			<div class="xl:relative">
+				<p
+					:class="{ 'active-dropdown': patientDropdown === true }"
+					class="pb-2 flex items-center gap-2 cursor-pointer xl:mb-0 mb-4"
+					@click="patientDropdown = !patientDropdown"
+				>
+					For Patients<img src="/images/bx_bx-chevron-down.svg" alt="" />
+				</p>
+				<patients-dropdown
+					v-if="patientDropdown"
+					class="xl:absolute xl:top-16"
+				/>
+			</div>
+			<div class="xl:relative">
+				<p
+					:class="{ 'active-dropdown': providerDropdown === true }"
+					class="pb-2 flex items-center gap-2 cursor-pointer xl:mb-0 mb-4"
+					@click="providerDropdown = !providerDropdown"
+				>
+					For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
+				</p>
+				<providers-dropdown
+					v-if="providerDropdown"
+					class="xl:absolute xl:top-16 xl:right-0"
+				/>
+			</div>
+		</ul>
+		<div class="flex flex-col items-center justify-center gap-4 xl:mt-0 mt-24">
+			<!-- <c-button class="rounded-xl" title="Login" :primary="true" />
 			<c-button title="Sign up for free" :secondary="true" /> -->
-      <nuxt-link
-        to="/signin"
-        class="w-auto py-2 px-3 bg-red-500 text-white rounded-md"
-        >Login</nuxt-link
-      >
-      <nuxt-link
-        to="/signup"
-        class="w-auto py-2 px-3 bg-red-500 text-white rounded-md"
-        >Sign up</nuxt-link
-      >
-    </div>
-  </div>
+			<nuxt-link
+				to="/signin"
+				class="w-auto py-2 px-3 bg-red-500 text-white rounded-md"
+			>Login</nuxt-link
+			>
+			<nuxt-link
+				to="/signup"
+				class="w-auto py-2 px-3 bg-red-500 text-white rounded-md"
+			>Sign up</nuxt-link
+			>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
 import Vue from "vue"
-import CButton from "./CButton.vue"
+// import CButton from "./CButton.vue"
 import CornieLogo from "./CornieLogo.vue"
 import PatientsDropdown from "./PatientsDropdown.vue"
 import ProvidersDropdown from "./ProvidersDropdown.vue"
@@ -61,7 +61,6 @@ export default Vue.extend({
   name: "MobileNav",
   components: {
     CornieLogo,
-    CButton,
     PatientsDropdown,
     ProvidersDropdown,
   },

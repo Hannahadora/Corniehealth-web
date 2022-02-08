@@ -20,7 +20,7 @@
 					<span class="flex items-center">
 						<NuxtLink
 							to="/patients"
-							:class="{ 'nuxt-link-exact-active': patientDropdown === true }"
+							:class="{ 'nuxt-link-active': patientDropdown === true }"
 							class=""
 						>
 							For Patients
@@ -42,7 +42,7 @@
 					<span class="mr-6 flex items-center">
 						<NuxtLink
 							to="/providers"
-							:class="{ 'nuxt-link-exact-active': providerDropdown === true }"
+							:class="{ 'nuxt-link-active': providerDropdown === true }"
 							class=""
 						>
 							For Providers
@@ -162,7 +162,7 @@ export default Vue.extend({
   z-index: 998;
 }
 
-a.nuxt-link-exact-active {
+a.nuxt-link-active {
   border-bottom: 3px solid #fe4d3c;
 }
 

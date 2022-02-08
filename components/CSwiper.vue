@@ -1,23 +1,23 @@
 <template>
-  <div v-swiper="swiperOption" :loadtheme="false">
-    <div class="swiper-wrapper">
-      <div
-        v-for="(banner, index) in banners"
-        :key="index"
-        class="swiper-slide py-12 px-6 cursor-pointer c-shadow"
-          :class="{ choices: choices, 'offers' : offers }"
-      >
-        <div
-          class="flex flex-col items-center justify-center"
-        >
-          <img class="mb-7" :src="banner.image" alt="" />
-          <span class="text-center sub-titles-1">{{ banner.title }}</span>
-          <p class="text-center mt-6">{{ banner.text }}</p>
-        </div>
-      </div>
-    </div>
-    <div slot="pagination" class="swiper-pagination"></div>
-  </div>
+	<div v-swiper="swiperOption" :loadtheme="false">
+		<div class="swiper-wrapper">
+			<div
+				v-for="(banner, index) in banners"
+				:key="index"
+				class="swiper-slide py-12 px-6 cursor-pointer c-shadow"
+				:class="{ choices: choices, 'offers' : offers }"
+			>
+				<div
+					class="flex flex-col items-center justify-center"
+				>
+					<img class="mb-7" :src="banner.image" alt="" />
+					<span class="text-center sub-titles-1">{{ banner.title }}</span>
+					<p class="text-center mt-6">{{ banner.text }}</p>
+				</div>
+			</div>
+		</div>
+		<div slot="pagination" class="swiper-pagination"></div>
+	</div>
 </template>
 
 <script lang="ts">

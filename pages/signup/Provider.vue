@@ -131,6 +131,7 @@
 </template>
 
 <script>
+import { Component, Vue } from "nuxt-property-decorator"
 import Auth from "@/components/auth/auth.vue"
 import HeartPulse from "@/components/icons/heartpulse.vue"
 import CornieInput from "@/components/CornieInput.vue"
@@ -138,8 +139,7 @@ import CornieCheckbox from "@/components/CornieCheckbox.vue"
 import CornieSelect from "@/components/CornieSelect.vue"
 import CornieDialog from "@/components/CornieDialog.vue"
 
-export default {
-  name: "Provider",
+@Component({
   components: {
     Auth,
     HeartPulse,
@@ -149,63 +149,66 @@ export default {
     CornieDialog,
   },
   layout: "auth",
-  data: () => ({
-    disabled: false,
-    showDiag: false,
-    url: "https://corniehealth.herokuapp.com",
-    agree: false,
-    form: {
-      type: "Provider",
-      firstName: "",
-      lastName: "",
-      phoneNumber: {
-        dialCode: "+234",
-        number: "",
-      },
-      email: "",
-      providerProfile: "",
-      practiceName: "",
-      patientProfile: "corporate",
+})
+export default class Provider extends Vue {
+  disabled = false
+  showDiag = false
+  url = "https://corniehealth.herokuapp.com"
+  agree = false
+  form = {
+    type: "Provider",
+    firstName: "",
+    lastName: "",
+    phoneNumber: {
+      dialCode: "+234",
+      number: "",
     },
-  }),
+    email: "",
+    providerProfile: "",
+    practiceName: "",
+    patientProfile: "corporate",
+  }
+
+  handleChange(val) {
+    this.form.providerProfile = val
+  }
+
+  handleAgree(val) {
+    this.agree = val
+  }
+
+  async getProvider() {
+    try {
+      await this.$axios.get(
+        `${this.url}/api/v1/organization/getProviderProfile`
+      )
+
+      this.showDiag = true
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
+
   created() {
     this.getProvider()
-  },
-  methods: {
-    handleChange(val) {
-      this.form.providerProfile = val
-    },
-    handleAgree(val) {
-      this.agree = val
-    },
-    async getProvider() {
-      try {
-        await this.$axios.get(
-          `${this.url}/api/v1/organization/getProviderProfile`
-        )
+  }
 
+  async submit() {
+    try {
+      this.disabled = true
+      const response = await this.$axios.post(
+        `${this.url}/api/v1/early-access`,
+        this.form
+      )
+
+      if (response.success) {
         this.showDiag = true
-      } catch (err) {
-        console.log(err.message)
-      }
-    },
-    async submit() {
-      try {
-        this.disabled = true
-        const response = await this.$axios.post(
-          `${this.url}/api/v1/early-access`,
-          this.form
-        )
-
-        if (response.success) {
-          this.showDiag = true
-          this.disabled = false
-        }
-      } catch (err) {
         this.disabled = false
-        console.log(err.message)
       }
-    },
-  },
+    } catch (err) {
+      this.disabled = false
+      console.log(err.message)
+    }
+  }
 }
 </script>

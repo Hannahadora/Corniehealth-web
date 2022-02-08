@@ -10,11 +10,9 @@
 				</p>
 			</div>
 			<div class="c-wrapper mt-16 b-2">
-				<div
-					class="flex xl:flex-row flex-col items-center justify-center"
-				>
+				<div class="flex xl:flex-row flex-col items-center justify-center">
 					<div
-						class=" xl:mb-0 mb-16 sub-sect-2 xl:h-52 h-auto flex xl:flex-row flex-col items-center justify-center mb-2 xl:w-1/2 w-full"
+						class="xl:mb-0 mb-16 sub-sect-2 xl:h-52 h-auto flex xl:flex-row flex-col items-center justify-center mb-2 xl:w-1/2 w-full"
 					>
 						<div
 							class="lg:w-1/2 w-full h-52 bg-center bg-cover bg-no-repeat"
@@ -43,8 +41,7 @@
 						<div
 							class="lg:w-1/2 w-full h-52 bg-center bg-cover bg-no-repeat"
 							style="background: url('/images/image 23 (1).svg')"
-						>
-						</div>
+						></div>
 						<div
 							class="lg:w-1/2 w-full xl:h-full h-auto xl:px-6 px-6 xl:py-9 py-6 bg-cblue-100"
 						>
@@ -120,9 +117,7 @@
 						src="/images/Medical prescription-pana 1.svg"
 						alt=""
 					/>
-					<div
-						class="flex md:flex-row flex-col md:items-center items-end"
-					>
+					<div class="flex md:flex-row flex-col md:items-center items-end">
 						<h4 class="md:block hidden">4. Manage your health records</h4>
 						<h4 class="md:hidden block">4. Access records</h4>
 						<img
@@ -248,23 +243,19 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-// import { Component } from "vue-property-decorator";
+import { Component, Vue } from "nuxt-property-decorator"
 import CButton from "../components/CButton.vue"
 import IndexHeader from "../components/IndexHeader.vue"
 import HealthOutcomes from "../components/HealthOutcomes.vue"
-export default Vue.extend({
-  name: "IndexPage",
+
+@Component({
   components: {
     CButton,
     IndexHeader,
-    HealthOutcomes
-  },
-  data() {
-    return {
-    }
+    HealthOutcomes,
   },
 })
+export default class IndexPage extends Vue {}
 </script>
 
 <style scoped>

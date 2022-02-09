@@ -83,11 +83,11 @@ export default Vue.extend({
 
   methods: {
     goToLogin() {
-      this.$router.push('/signin'); 
+      this.$router.push("/signin"); 
     },
 
     goToSignup() {
-      this.$router.push('/signup'); 
+      this.$router.push("/signup"); 
     },
   },
 })

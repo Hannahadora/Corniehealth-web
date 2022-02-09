@@ -24,7 +24,7 @@
 import Vue from "vue"
 
 import { directive } from "vue-awesome-swiper"
-import "swiper/css/swiper.css"
+// import "swiper/css/swiper.css"
 
 export default Vue.extend({
   name: "CSwiper",

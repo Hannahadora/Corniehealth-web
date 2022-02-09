@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div
-			class="xl:grid hidden grid-cols-4 text-white bg-razzmataz-pry mt-16 py-3"
+			class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 text-white bg-razzmataz-pry mt-16 py-3"
 		>
 			<div
 				v-for="(offer, index) in offers"
@@ -18,7 +18,7 @@
 			</div>
 		</div>
 
-		<div class="xl:hidden block text-white mt-16 py-3">
+		<div class="hidden text-white mt-16 py-3">
 			<c-swiper class="" offers :banners="offers" />
 		</div>
 	</div>

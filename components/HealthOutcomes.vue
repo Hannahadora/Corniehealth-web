@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="hidden my-12 mx-6 xl:grid xl:grid-cols-4 xl:gap-2">
+		<div class="my-12 mx-6 grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2">
 			<div
 				v-for="(choice, index) in choices"
 				:key="index"
@@ -12,7 +12,7 @@
 			</div>
 		</div>
 
-		<div class="xl:hidden block">
+		<div class="hidden">
 			<c-swiper :banners="choices" />
 		</div>
 	</div>

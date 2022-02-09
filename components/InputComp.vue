@@ -1,7 +1,7 @@
 <template>
 	<div class="input-wrapper flex items-center p-4">
 		<img class="xl:mr-6 mr-4" :src="inputIcon" alt="">
-		<input class="c-input w-10/12" type="text" :placeholder="placeholder" v-model="content" />
+		<input v-model="content" class="c-input w-10/12" type="text" :placeholder="placeholder" />
 	</div>
 </template>
 
@@ -9,11 +9,6 @@
 import Vue from "vue"
 export default Vue.extend({
   name: "InputComp",
-  data() {
-    return {
-      content: ""
-    }
-  },
   props: {
     inputIcon: {
       type: String,
@@ -22,6 +17,11 @@ export default Vue.extend({
     placeholder: {
       type: String,
       default: ""
+    }
+  },
+  data() {
+    return {
+      content: ""
     }
   }
 })

@@ -83,13 +83,11 @@ export default Vue.extend({
 
   methods: {
     goToLogin() {
-      location.href =
-        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+      this.$router.push('/signin'); 
     },
 
     goToSignup() {
-      location.href =
-        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signup"
+      this.$router.push('/signup'); 
     },
   },
 })

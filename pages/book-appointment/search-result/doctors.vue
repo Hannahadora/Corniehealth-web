@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="flex items-center mb-12">
-			<cornie-select />
+			<select-dropdown headText="Doctors" />
 		</div>
 
 		<div class="info-container p-6 w-full flex items-start mb-12">
@@ -96,7 +96,7 @@
 					>Doctor’s Availability</span
 					>
 				</div>
-
+				
 				<div class="flex items-center justify-end">
 					<c-button
 						type="button"
@@ -123,9 +123,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
-import CornieSelect from "~/components/CornieSelect.vue"
 @Component({
-  components: { CornieSelect },
+  components: {  },
 })
 export default class DoctorsPage extends Vue {
 

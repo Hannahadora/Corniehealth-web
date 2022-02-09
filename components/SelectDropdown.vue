@@ -1,24 +1,24 @@
 <template>
-  <div>
-    <div class="select-wrapper relative" @click="openOption = !openOption">
-      <div>
-        <img :src="icon" alt="" />
-        <span class="selected mr-7 cursor-pointer">
-          {{ headText }}
-        </span>
-      </div>
-      <img src="/images/arrow-down-white.png" alt="" />
-    </div>
+	<div>
+		<div class="select-wrapper relative" @click="openOption = !openOption">
+			<div>
+				<img :src="icon" alt="" />
+				<span class="selected mr-7 cursor-pointer">
+					{{ headText }}
+				</span>
+			</div>
+			<img src="/images/arrow-down-white.png" alt="" />
+		</div>
 
-    <div v-if="openOption" class="options-card absolute top-14">
-      <div v-for="(option, index) in options" :key="index">
-        <input type="checkbox" :v-model="option" />
-        <label class="mb-4 cursor-pointer" for="" @click="selectOption(option)">
-          {{ option }}
-        </label>
-      </div>
-    </div>
-  </div>
+		<div v-if="openOption" class="options-card absolute top-14">
+			<div v-for="(option, index) in options" :key="index">
+				<input type="checkbox" :v-model="option" />
+				<label class="mb-4 cursor-pointer" for="" @click="selectOption(option)">
+					{{ option }}
+				</label>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">

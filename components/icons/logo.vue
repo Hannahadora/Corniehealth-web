@@ -23,3 +23,8 @@
 		/>
 	</svg>
 </template>
+<script>
+export default {
+  name: "LogoIcon",
+}
+</script>

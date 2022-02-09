@@ -32,6 +32,7 @@
 <script>
 import LogoIcon from "../icons/logo.vue"
 export default {
+  name: "AuthContainer",
   components: {
     LogoIcon,
   },

@@ -59,7 +59,7 @@
 
 <script lang="ts">
 import Vue from "vue"
-import CButton from "./CButton.vue"
+// import CButton from "./CButton.vue"
 import CornieLogo from "./CornieLogo.vue"
 import PatientsDropdown from "./PatientsDropdown.vue"
 import ProvidersDropdown from "./ProvidersDropdown.vue"
@@ -69,7 +69,6 @@ export default Vue.extend({
   name: "MobileNav",
   components: {
     CornieLogo,
-    CButton,
     PatientsDropdown,
     ProvidersDropdown,
   },

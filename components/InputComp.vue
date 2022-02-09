@@ -1,7 +1,7 @@
 <template>
 	<div class="input-wrapper flex items-center p-4">
-		<img class="xl:mr-7 mr-4" :src="inputIcon" alt="">
-		<input class="c-input w-10/12" type="text" :placeholder="placeholder">
+		<img class="xl:mr-6 mr-4" :src="inputIcon" alt="">
+		<input class="c-input w-10/12" type="text" :placeholder="placeholder" v-model="content" />
 	</div>
 </template>
 
@@ -9,6 +9,11 @@
 import Vue from "vue"
 export default Vue.extend({
   name: "InputComp",
+  data() {
+    return {
+      content: ""
+    }
+  },
   props: {
     inputIcon: {
       type: String,
@@ -28,12 +33,8 @@ export default Vue.extend({
     border-radius: 4px;
   }
 
-  .c-input {
+  .c-input { 
     border: none;
-  }
-
-  .c-input:focus {
-    outline: none;
   }
 
   @media screen and (max-width: 1024px) {

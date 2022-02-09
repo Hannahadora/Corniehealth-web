@@ -1,44 +1,44 @@
 <template>
-  <div class="c-wrapper w-full">
-    <div class="mt-16 mb-12 flex items-center">
-      <NuxtLink
-        to="/book-appointment/search-result/doctors"
-        class="mr-6 pb-4 flex items-center"
-      >
-        <img
-          class="mr-2 sub-titles-1"
-          src="/images/book-appointment/Icon-doctor.png"
-          alt=""
-        />
-        <span class="text-grey-eth font-bold">Doctors</span>
-      </NuxtLink>
-      <NuxtLink
-        to="/book-appointment/search-result/hospitals"
-        class="mr-6 pb-4 flex items-center"
-      >
-        <img
-          class="mr-2 sub-titles-1"
-          src="/images/book-appointment/Icon-doctor.png"
-          alt=""
-        />
-        <span class="text-grey-eth font-bold">Hospital/Clinic</span>
-      </NuxtLink>
+	<div class="c-wrapper w-full">
+		<div class="mt-16 mb-12 flex items-center">
+			<NuxtLink
+				to="/book-appointment/search-result/doctors"
+				class="mr-6 pb-4 flex items-center"
+			>
+				<img
+					class="mr-2 sub-titles-1"
+					src="/images/book-appointment/Icon-doctor.png"
+					alt=""
+				/>
+				<span class="text-grey-eth font-bold">Doctors</span>
+			</NuxtLink>
+			<NuxtLink
+				to="/book-appointment/search-result/hospitals"
+				class="mr-6 pb-4 flex items-center"
+			>
+				<img
+					class="mr-2 sub-titles-1"
+					src="/images/book-appointment/Icon-doctor.png"
+					alt=""
+				/>
+				<span class="text-grey-eth font-bold">Hospital/Clinic</span>
+			</NuxtLink>
  
-      <NuxtLink
-        to="/book-appointment/search-result/labs"
-        class="mr-6 pb-4 flex items-center"
-      >
-        <img
-          class="mr-2 sub-titles-1"
-          src="/images/book-appointment/Icon-doctor.png"
-          alt=""
-        />
-        <span class="text-grey-eth font-bold">Labs</span>
-      </NuxtLink>
-    </div>
+			<NuxtLink
+				to="/book-appointment/search-result/labs"
+				class="mr-6 pb-4 flex items-center"
+			>
+				<img
+					class="mr-2 sub-titles-1"
+					src="/images/book-appointment/Icon-doctor.png"
+					alt=""
+				/>
+				<span class="text-grey-eth font-bold">Labs</span>
+			</NuxtLink>
+		</div>
 
-    <NuxtChild />
-  </div>
+		<NuxtChild />
+	</div>
 </template>
 
 <script lang="ts">

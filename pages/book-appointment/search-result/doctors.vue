@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="flex items-center mb-12">
-			<select-dropdown headText="Doctors" />
+			<select-dropdown head-text="Doctors" />
 		</div>
 
 		<div class="info-container p-6 w-full flex items-start mb-12">

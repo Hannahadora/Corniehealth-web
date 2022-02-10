@@ -82,7 +82,9 @@ export default Vue.extend({
 
   methods: {
     goToLogin() {
-      this.$router.push("/signin"); 
+    //   this.$router.push("/signin"); 
+		  location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signin"
+
     },
 
     goToSignup() {

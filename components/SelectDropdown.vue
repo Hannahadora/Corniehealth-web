@@ -1,45 +1,45 @@
 <template>
-  <div class="relative" v-click-outside="closeOption" >
-    <div
-      class="select-wrapper"
-      :class="{ active: active }"
-      @click="openOption = !openOption"
-    >
-      <div class="flex items-center">
-        <img class="" :src="icon" alt="" />
-        <span class="selected cursor-pointer mx-2 text-grey-blue" :class="{'text-white': active}">
-          {{ selected ? selected : headText  }}
-        </span>
-        <img
-          class="cursor-pointer"
-          src="/images/book-appointment/arrow-down-grey.png"
-          alt=""
-        />
-      </div>
-    </div>
+	<div v-click-outside="closeOption" class="relative" >
+		<div
+			class="select-wrapper"
+			:class="{ active: active }"
+			@click="openOption = !openOption"
+		>
+			<div class="flex items-center">
+				<img class="" :src="icon" alt="" />
+				<span class="selected cursor-pointer mx-2 text-grey-blue" :class="{'text-white': active}">
+					{{ selected ? selected : headText  }}
+				</span>
+				<img
+					class="cursor-pointer"
+					src="/images/book-appointment/arrow-down-grey.png"
+					alt=""
+				/>
+			</div>
+		</div>
 
-    <div 
-      v-if="openOption"
-      class="options-card absolute top-16 w-80 max-h-72 overflow-y-scroll"
-    >
-      <div v-for="(option, index) in options" :key="index" class="px-4 py-3">
-        <input
-          type="checkbox"
-          :name="options"
-          :id="option"
-          class="w-6 h-6"
-          :v-model="optionIds[option]"
-        />
-        <label
-          class="mb-4 cursor-pointer"
-          :for="option"
-          @click="selectOption(option)"
-        >
-          {{ option }}
-        </label>
-      </div>
-    </div>
-  </div>
+		<div 
+			v-if="openOption"
+			class="options-card absolute top-16 w-80 max-h-72 overflow-y-scroll"
+		>
+			<div v-for="(option, index) in options" :key="index" class="px-4 py-3">
+				<input
+					:id="option"
+					type="checkbox"
+					:name="options"
+					class="w-6 h-6"
+					:v-model="optionIds[option]"
+				/>
+				<label
+					class="mb-4 cursor-pointer"
+					:for="option"
+					@click="selectOption(option)"
+				>
+					{{ option }}
+				</label>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
@@ -69,7 +69,7 @@ export default class SelectDropdown extends Vue {
   optionIds: Array<any> = []
 
   
-    // clickOutside: vClickOutside.directive
+  // clickOutside: vClickOutside.directive
 
 
   selectOption(option: any) {

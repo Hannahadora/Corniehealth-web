@@ -7,7 +7,7 @@
 			>
 				<img
 					class="mr-2 sub-titles-1"
-					src="/images/book-appointment/Icon-doctor.png"
+					src="/images/book-appointment/Icon-doctor-black.png"
 					alt=""
 				/>
 				<span class="text-grey-eth font-bold">Doctors</span>
@@ -18,7 +18,7 @@
 			>
 				<img
 					class="mr-2 sub-titles-1"
-					src="/images/book-appointment/Icon-doctor.png"
+					src="/images/book-appointment/Icon-hospital-black.png"
 					alt=""
 				/>
 				<span class="text-grey-eth font-bold">Hospital/Clinic</span>
@@ -30,7 +30,7 @@
 			>
 				<img
 					class="mr-2 sub-titles-1"
-					src="/images/book-appointment/Icon-doctor.png"
+					src="/images/book-appointment/Icon-lab-black.png"
 					alt=""
 				/>
 				<span class="text-grey-eth font-bold">Labs</span>
@@ -52,14 +52,17 @@ export default class SearchResult extends Vue {}
 
 <style scoped>
 img {
-  filter: grayscale(0%);
+  filter: brightness(8.5);
 }
 a.nuxt-link-active {
   border-bottom: 3px solid #fe4d3c;
+}
+
+a.nuxt-link-active span{
   color: #14171F !important;
 }
 
 a.nuxt-link-active img{
-  filter: grayscale(100%);
+  filter: brightness(1);
 }
 </style>

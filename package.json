@@ -32,7 +32,8 @@
     "vue-template-compiler": "^2.6.14",
     "vuex-class": "^0.3.2",
     "vuex-module-decorators": "^1.0.1",
-    "webpack": "^4.46.0"
+    "webpack": "^4.46.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.3",

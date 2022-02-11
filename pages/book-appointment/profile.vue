@@ -1,6 +1,6 @@
 <template>
-	<div class="w-full xl:mt-16 mt-6">
-		<div class="c-wrapper">
+	<div class="w-full xl:mt-16 mt-24">
+		<div class="c-wrapper mt-40">
 			<div class="info-container px-6 pt-6 pb-7">
 				<div class="flex items-center">
 					<img class="mr-4" src="/images/book-appointment/Avatar.png" alt="" />

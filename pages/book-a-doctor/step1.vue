@@ -4,13 +4,13 @@
 			<h4 class="mt-12">Have you booked with this practitioner in the past?</h4>
 			<form action="" class="flex items-center justify-center">
 				<div class="mr-9">
-				<input type="radio">
-				<label for="">Yes</label>
-			</div>
-			<div>
-				<input type="radio">
-				<label for="">No</label>
-			</div>
+					<input type="radio">
+					<label for="">Yes</label>
+				</div>
+				<div>
+					<input type="radio">
+					<label for="">No</label>
+				</div>
 			</form>
 		</div>
 
@@ -56,7 +56,7 @@
 				type="button"
 				:secondary="true"
 				small
-				@click="$emit('continue')"
+				@click="$router.push('/book-a-doctor/step2')"
 			>
 				Continue
 			</c-button>

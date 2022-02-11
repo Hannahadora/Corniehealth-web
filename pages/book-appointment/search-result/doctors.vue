@@ -200,7 +200,7 @@
 						type="button"
 						:secondary="true"
 						small
-						@click="$router.push({ path: '/book-appointment/book-doctor' })"
+						@click="$router.push({ path: '/book-a-doctor/step1' })"
 					>
 						Book Appointment
 					</c-button>

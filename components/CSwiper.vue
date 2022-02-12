@@ -32,7 +32,10 @@ export default Vue.extend({
     swiper: directive,
   },
   props: {
-    banners: Array,
+    banners: {
+      type: Array,
+      default: () => [],
+    },
     offers: Boolean,
     choices: Boolean,
   },

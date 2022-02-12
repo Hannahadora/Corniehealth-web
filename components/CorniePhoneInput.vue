@@ -1,29 +1,29 @@
 <template>
-  <span class="w-full">
-    <label
-      class="flex space-x-55 w-full capitalize mb-1 text-black text-sm font-semibold"
-    >
-      <span class="float-left">
-        {{ label }}
-      </span>
-      <span class="text-danger ml-1" v-if="required"> * </span>
-      <add-blue-icon
-        class="float-right cursor-pointer fill-current text-primary"
-        @click="$emit('addnumbers')"
-        v-if="add"
-      />
-    </label>
-    <div>
-      <span class="flex w-full">
-        <span class="">
-          <div>
-            <cornie-select
-              class="w-full h-full rounded-r-none"
-              :items="codes"
-              v-model="codeSync"
-              @update:value="handleChange"
-            >
-              <!-- <template v-slot:item="{ item }">
+	<span class="w-full">
+		<label
+			class="flex space-x-55 w-full capitalize mb-1 text-black text-sm font-semibold"
+		>
+			<span class="float-left">
+				{{ label }}
+			</span>
+			<span v-if="required" class="text-danger ml-1"> * </span>
+			<add-blue-icon
+				v-if="add"
+				class="float-right cursor-pointer fill-current text-primary"
+				@click="$emit('addnumbers')"
+			/>
+		</label>
+		<div>
+			<span class="flex w-full">
+				<span class="">
+					<div>
+						<cornie-select
+							v-model="codeSync"
+							class="w-full h-full rounded-r-none"
+							:items="codes"
+							@update:value="handleChange"
+						>
+							<!-- <template v-slot:item="{ item }">
                 <span class="w-full flex items-center mb-3">
                   <div class="flex w-full">
                     <img class="mr-3 w-6 rounded-md" :src="item.flag" />
@@ -39,27 +39,27 @@
                   <img :src="item?.flag" class="h-4 w-7" />
                 </span>
               </template> -->
-            </cornie-select>
-          </div>
-        </span>
-        <input
-          class="rounded-r-lg border p-2 flex-grow w-full focus:outline-none"
-          type="tel"
-          v-bind="field"
-          minlength="10"
-          maxlength="11"
-        />
-      </span>
-    </div>
-  </span>
+						</cornie-select>
+					</div>
+				</span>
+				<input
+					class="rounded-r-lg border p-2 flex-grow w-full focus:outline-none"
+					type="tel"
+					v-bind="field"
+					minlength="10"
+					maxlength="11"
+				/>
+			</span>
+		</div>
+	</span>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop, PropSync } from "nuxt-property-decorator"
-import { countryCodes } from "@/plugins/countrycodes"
 import { string } from "yup"
-import IconInput from "@/components/IconInput.vue"
 import CornieSelect from "./phoneselect.vue"
 import CornieInput from "./cornie-input.vue"
+import IconInput from "@/components/IconInput.vue"
+import { countryCodes } from "@/plugins/countrycodes"
 import SearchIcon from "@/components/icons/search.vue"
 import AddBlueIcon from "@/components/icons/addblue.vue"
 import AddIcon from "@/components/icons/add-icon.vue"
@@ -80,25 +80,25 @@ const phoneRegex =
 })
 export default class PhoneInput extends Vue {
   @Prop({ type: String })
-  modelValue!: string
+    modelValue!: string
 
   @PropSync("modelValue")
-  valueSync!: string
+    valueSync!: string
 
   @Prop({ type: Boolean })
-  add!: boolean
+    add!: boolean
 
   @Prop({ type: String })
-  code!: string
+    code!: string
 
   @PropSync("code", { default: "+234" })
-  codeSync!: string
+    codeSync!: string
 
   @Prop({ type: String, default: "" })
-  label!: string
+    label!: string
 
   @Prop({ type: String })
-  name!: string
+    name!: string
 
   get inputName() {
     const id = Math.random().toString(36).substring(2, 9)
@@ -115,7 +115,7 @@ export default class PhoneInput extends Vue {
   }
 
   @Prop({ type: Object })
-  rules!: any
+    rules!: any
 
   required = string().required()
   get codes() {
@@ -125,7 +125,7 @@ export default class PhoneInput extends Vue {
         if (a.name < b.name) return -1
         return 0
       })
-      .map((country) => ({
+      .map(country => ({
         ...country,
         display: country.dialCode,
         code: country.dialCode,

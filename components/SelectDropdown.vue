@@ -1,52 +1,64 @@
 <template>
-	<div v-click-outside="closeOption" class="relative" >
-		<div
-			class="select-wrapper"
-			:class="{ active: active }"
-			@click="openOption = !openOption"
-		>
-			<div class="flex items-center">
-				<img class="" :src="icon" alt="" />
-				<span class="selected cursor-pointer mx-2 text-grey-blue" :class="{'text-white': active}">
-					{{ selected ? selected : headText  }}
-				</span>
-				<img
-					class="cursor-pointer"
-					src="/images/book-appointment/arrow-down-grey.png"
-					alt=""
-				/>
-			</div>
-		</div>
+  <div class="relative">
+    <div
+      class="select-wrapper"
+      :class="{ active: active }"
+      @click="openOption = !openOption"
+    >
+      <div class="flex items-center">
+        <img class="" :src="icon" alt="" />
+        <span
+          class="selected cursor-pointer mx-2 text-grey-blue"
+          :class="{ 'text-white': active }"
+        >
+          {{ selected ? selected : headText }}
+        </span>
+        <img
+          class="cursor-pointer"
+          src="/images/book-appointment/arrow-down-grey.png"
+          alt=""
+        />
+      </div>
+    </div>
 
-		<div 
-			v-if="openOption"
-			class="options-card absolute top-16 w-80 max-h-72 overflow-y-scroll"
-		>
-			<div v-for="(option, index) in options" :key="index" class="px-4 py-3">
-				<input
-					:id="option"
-					type="checkbox"
-					:name="options"
-					class="w-6 h-6"
-					:v-model="optionIds[option]"
-				/>
-				<label
-					class="mb-4 cursor-pointer"
-					:for="option"
-					@click="selectOption(option)"
-				>
-					{{ option }}
-				</label>
-			</div>
-		</div>
-	</div>
+    <div
+      v-if="openOption"
+      class="options-card absolute top-16 w-80 max-h-72 overflow-y-scroll"
+    >
+      <div v-for="(option, index) in options" :key="index" class="px-4 py-3">
+        <cornie-checkbox
+          :id="option"
+          :v-model="optionIds[option]"
+          :name="option"
+          :label="option"
+          @change="selectOption(option)"
+        />
+        <!-- <input
+          :id="option"
+          type="checkbox"
+          :name="options"
+          class="w-6 h-6"
+          :v-model="optionIds[option]"
+        /> -->
+        <!-- <label
+          class="mb-4 cursor-pointer"
+          :for="option"
+          @click="selectOption(option)"
+        >
+          {{ option }}
+        </label> -->
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
+import CornieCheckbox from "./CornieCheckbox.vue"
 
 // import { vClickOutside } from "v-click-outside"
 @Component({
+  components: { CornieCheckbox },
   props: {
     options: {
       type: Array,
@@ -68,9 +80,7 @@ export default class SelectDropdown extends Vue {
   selected: String = ""
   optionIds: Array<any> = []
 
-  
   // clickOutside: vClickOutside.directive
-
 
   selectOption(option: any) {
     // this.option = true

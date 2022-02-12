@@ -9,11 +9,11 @@
 					>
 					<div class="flex items-center">
 						<img
-							class=""
+							class="xl:h-auto h-6 xl:w-auto w-28"
 							src="/images/book-appointment/ratings.png"
 							alt=""
 						/>
-						<p class="small-text text-grey-blue">5 days ago</p>
+						<p class="small-text text-grey-blue whitespace-nowrap">5 days ago</p>
 					</div>
 				</div>
 			</div>
@@ -31,11 +31,11 @@
 					<span class="sub-titles-1 text-black-xiketic mb-2">John Adegoke</span>
 					<div class="flex items-center">
 						<img
-							class=""
+							class="xl:h-auto h-6 xl:w-auto w-28"
 							src="/images/book-appointment/ratings.png"
 							alt=""
 						/>
-						<p class="small-text text-grey-blue">7 days ago</p>
+						<p class="small-text text-grey-blue whitespace-nowrap">7 days ago</p>
 					</div>
 				</div>
 			</div>

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<TopNav />
-		<Nuxt class="mt-32" />
+		<Nuxt class="xl:mt-32 mt-28" />
 	</div>
 </template>
 

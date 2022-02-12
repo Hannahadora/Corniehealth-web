@@ -44,13 +44,13 @@
 		<div class="flex flex-col items-center justify-center gap-4 xl:mt-0 mt-24">
 			<c-button
 				type="button"
-				class="xl:mr-4 mb-4"
+				class="xl:mr-4 mb-4 xl:w-auto w-full"
 				:primary="true"
 				@click="goToLogin"
 			>
 				Sign in
 			</c-button>
-			<c-button type="button" :secondary="true" @click="goToSignup">
+			<c-button class="xl:w-auto w-full" type="button" :secondary="true" @click="goToSignup">
 				Sign up for free
 			</c-button>
 		</div>

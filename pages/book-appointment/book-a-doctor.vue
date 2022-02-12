@@ -1,6 +1,6 @@
 <template>
-	<div class="">
-		<div class="mx-auto w-3/5 my-16">
+	<div class="c-wrapper">
+		<div class="mx-auto xl:w-3/5 w-full my-16">
 			<div class="flex flex-col items-center justify-center text-center">
 				<img
 					src="/images/book-appointment/unsplash_gkZ-k3xf25w (1).png"

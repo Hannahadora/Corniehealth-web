@@ -68,6 +68,7 @@ import PatientIcon from "@/components/icons/patient.vue"
 import PayerIcon from "@/components/icons/payer.vue"
 import ProviderIcon from "@/components/icons/provider.vue"
 export default {
+  name: "IndexScreen",
   components: {
     Auth,
     PatientIcon,

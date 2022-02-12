@@ -32,6 +32,14 @@ body {
     0px 8px 12px rgba(46, 41, 78, 0.08);
 }
 
+.c-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
 .bg-razzmataz-pry {
   background-color: #fe4d3c;
 }

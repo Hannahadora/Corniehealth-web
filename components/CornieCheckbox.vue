@@ -17,8 +17,14 @@ export default {
   name: "CornieCheckbox",
   inheritAttrs: false,
   props: {
-    name: String,
-    label: String,
+    name: {
+      type: String,
+      default: "",
+    },
+    label: {
+      type: String,
+      default: "",
+    },
     required: {
       type: Boolean,
       default: true,

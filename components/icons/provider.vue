@@ -10,3 +10,8 @@
 		/>
 	</svg>
 </template>
+<script>
+export default {
+  name: "ProviderIcon",
+}
+</script>

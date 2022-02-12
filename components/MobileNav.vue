@@ -59,7 +59,7 @@
 
 <script lang="ts">
 import Vue from "vue"
-import CButton from "./CButton.vue"
+// import CButton from "./CButton.vue"
 import CornieLogo from "./CornieLogo.vue"
 import PatientsDropdown from "./PatientsDropdown.vue"
 import ProvidersDropdown from "./ProvidersDropdown.vue"
@@ -69,7 +69,6 @@ export default Vue.extend({
   name: "MobileNav",
   components: {
     CornieLogo,
-    CButton,
     PatientsDropdown,
     ProvidersDropdown,
   },
@@ -83,7 +82,9 @@ export default Vue.extend({
 
   methods: {
     goToLogin() {
-      this.$router.push("/signin"); 
+    //   this.$router.push("/signin"); 
+		  location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signin"
+
     },
 
     goToSignup() {

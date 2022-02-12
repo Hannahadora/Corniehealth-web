@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<TopNav />
-		<Nuxt class="absolute top-24" />
+		<Nuxt class="mt-32" />
 	</div>
 </template>
 

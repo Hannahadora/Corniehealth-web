@@ -24,9 +24,18 @@ export default {
     event: "change",
   },
   props: {
-    label: String,
-    modelValue: String,
-    value: String,
+    label: {
+      type: String,
+      default: "",
+    },
+    modelValue: {
+      type: String,
+      default: "",
+    },
+    value: {
+      type: String,
+      default: "",
+    },
   },
   computed: {
     checked: {

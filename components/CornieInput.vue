@@ -1,12 +1,12 @@
 <template>
-	<span class="flex items-left flex-col">
+	<span class="flex items-start flex-col">
 		<label class="font-bold block text-xs mb-1"> {{ label }}</label>
 		<input
 			:modelValue="modelValue"
 			:type="type"
 			:placeholder="placeholder"
 			:required="required"
-			class="border border-gray-300 p-2 rounded-md focus:outline-none text-sm shadow-sm"
+			class="w-full border border-gray-300 p-2 rounded-md focus:outline-none text-sm shadow-sm"
 			@input="$emit('input', $event.target.value)"
 		/>
 	</span>

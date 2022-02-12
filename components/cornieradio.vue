@@ -1,19 +1,19 @@
 <template>
-  <span class="flex items-center relative">
-    <label class="radio-container text-xs">
-      <span class="block pt-0 text-primary font-medium">
-        {{ label }}
-      </span>
-      <input
-        @change="updateInput"
-        v-bind="$attrs"
-        type="radio"
-        :checked="checked"
-        :value="value"
-      />
-      <span class="-mt-1 checkmark"></span>
-    </label>
-  </span>
+	<span class="flex items-center relative">
+		<label class="radio-container text-xs">
+			<span class="block pt-0 text-primary font-medium">
+				{{ label }}
+			</span>
+			<input
+				v-bind="$attrs"
+				type="radio"
+				:checked="checked"
+				:value="value"
+				@change="updateInput"
+			/>
+			<span class="-mt-1 checkmark"></span>
+		</label>
+	</span>
 </template>
 <script>
 export default {

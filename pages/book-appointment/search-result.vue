@@ -1,5 +1,5 @@
 <template>
-	<div class="c-wrapper w-full mt-40">
+	<div class="c-wrapper w-full xl:mt-40 mt-20">
 		<div class="mt-16 mb-12 flex items-center">
 			<NuxtLink
 				to="/book-appointment/search-result/doctors"

@@ -1,7 +1,7 @@
 <template>
 	<div class="c-wrapper">
-		<div class="w-2/3 mx-auto mt-24">
-			<h2 class="text-center c-indigo mb-12">Confirm your appointment</h2>
+		<div class="xl:w-2/3 w-full mx-auto xl:mt-24 mt-14">
+			<h2 class="xl:text-center text-left c-indigo mb-12">Confirm your appointment</h2>
 
 			<table class="border w-full">
 				<tr>
@@ -53,7 +53,7 @@
 					placeholder="Write note for practitioner here"
 					class="border p-2"
 					name=""
-					cols="30"
+					cols="20"
 					rows="10"
 				></textarea>
 				<span class="text-right text-xs italic font-semibold">0/255</span>
@@ -94,13 +94,24 @@ export default class ConfirmPaymentPage extends Vue {}
 </script>
 
 <style scoped>
-/* tr {
-  border-bottom: 1px solid rgb(95, 94, 94);
-} */
+tr {
+  /* border-bottom: 1px solid rgb(95, 94, 94); */
+  line-break: normal;
+}
 td {
+	font-size: 16px;
   padding: 16px;
 }
 tr:nth-child(even) {
   background: #f0f4fe;
+}
+
+@media screen and (max-width: 768px) {
+	tr {
+		line-break: auto;
+	}
+	td {
+		font-size: 14px;
+	}
 }
 </style>

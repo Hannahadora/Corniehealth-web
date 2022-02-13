@@ -3,7 +3,7 @@
     <cornie-dialog
       v-if="showDiag"
       :firstname="form.firstName"
-      @close-diag="showDiag = false"
+      @close-diag="hideDialog"
     />
     <auth>
       <template #default>
@@ -83,7 +83,10 @@
               </div>
             </form>
             <div class="my-6 w-full text-center">
-              Have an account? <span class="text-red-400">Sign in</span>
+              Have an account?
+              <span class="text-red-400 cursor-pointer" @click="handleSignin"
+                >Sign in</span
+              >
             </div>
             <div class="w-full text-center">
               <a href="#">Terms of use</a> | <a href="#">Private policy</a> |
@@ -136,16 +139,35 @@ export default {
         number: "",
       },
       email: "",
-      providerProfile: "",
-      practiceName: "",
       organizationName: "",
-      patientProfile: "corporate",
+      // providerProfile: "a",
+      // practiceName: "b",
     },
   }),
   methods: {
     handleAgree(val) {
       this.agree = val
     },
+    hideDialog() {
+      this.showDiag = false
+      this.reset()
+    },
+    reset() {
+      this.form.firstName = ""
+      this.form.lastName = ""
+      this.form.phoneNumber.dialCode = "+234"
+      this.form.phoneNumber.number = ""
+      this.form.email = ""
+      // this.providerProfile = ""
+      // this.practiceName = ""
+      this.organizationName = ""
+    },
+
+    async handleSignin() {
+      location.href =
+        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+    },
+
     async submit() {
       try {
         this.disabled = true
@@ -154,7 +176,7 @@ export default {
           this.form
         )
 
-        if (response.success) {
+        if (response.data.success) {
           this.showDiag = true
           this.disabled = false
         }

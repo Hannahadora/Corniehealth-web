@@ -3,7 +3,7 @@
     <cornie-dialog
       v-if="showDiag"
       :firstname="form.firstName"
-      @close-diag="showDiag = false"
+      @close-diag="hideDialog"
     />
     <auth>
       <template #default>
@@ -31,13 +31,12 @@
                   ></cornie-input>
                 </div>
                 <div class="col-span-6 mb-3">
-                  <phone-input
+                  <cornie-input
                     v-model="form.phoneNumber.number"
                     label="Mobile"
-                    type="tel"
                     placeholder="--Enter--"
                     required
-                  ></phone-input>
+                  ></cornie-input>
                 </div>
                 <div class="col-span-6 mb-3">
                   <cornie-input
@@ -105,7 +104,10 @@
               </div>
             </form>
             <div class="my-6 w-full text-center">
-              Have an account? <span class="text-red-400">Sign in</span>
+              Have an account?
+              <span class="text-red-400 cursor-pointer" @click="handleSignin"
+                >Sign in</span
+              >
             </div>
             <div class="w-full text-center">
               <a href="#">Terms of use</a> | <a href="#">Private policy</a> |
@@ -130,7 +132,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
 import Auth from "@/components/auth/auth.vue"
 import HeartPulse from "@/components/icons/heartpulse.vue"
@@ -168,14 +170,32 @@ export default class Provider extends Vue {
     email: "",
     providerProfile: "",
     practiceName: "",
-    patientProfile: "corporate",
   }
 
-  handleChange(val) {
+  reset() {
+    this.form.firstName = ""
+    this.form.lastName = ""
+    this.form.phoneNumber.dialCode = "+234"
+    this.form.phoneNumber.number = ""
+    this.form.email = ""
+    this.form.providerProfile = ""
+    this.form.practiceName = ""
+  }
+  async handleSignin() {
+    location.href =
+      "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+  }
+
+  handleChange(val: any) {
     this.form.providerProfile = val
   }
 
-  handleAgree(val) {
+  hideDialog() {
+    this.showDiag = false
+    this.reset()
+  }
+
+  handleAgree(val: any) {
     this.agree = val
   }
 

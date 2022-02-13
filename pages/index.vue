@@ -26,11 +26,9 @@
 							<span class="mb-2 sub-titles-1">For you and your loved ones</span>
 							<p class="mb-6">Private</p>
 							<div class="w-48">
-								<c-button
-									title="Sign Up for free"
-									:secondary="true"
-									:small="true"
-								/>
+								<c-button type="button" :secondary="true" :small="true"
+								>Sign Up for free</c-button
+								>
 							</div>
 						</div>
 					</div>
@@ -49,50 +47,17 @@
 							<p class="mb-6">Employer</p>
 							<div class="w-48">
 								<c-button
-									title="Sign Up for free"
+									type="button"
 									:secondary="true"
 									:small="true"
-								/>
+								>Sign Up for free</c-button
+								>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div
-					class="lg:grid block grid-cols-4 text-white bg-razzmataz-pry mt-16 py-3"
-				>
-					<div class="px-6 py-8 border-r border-white">
-						<img class="mb-4" src="/images/book-appointment.svg" alt="" />
-						<span class="sub-titles-1">Book and manage appointments</span>
-						<p class="mt-4">
-							Schedule and manage appointments online and view details of past
-							and upcoming appointments.
-						</p>
-					</div>
-					<div class="px-6 py-8 border-r border-white">
-						<img class="mb-4" src="/images/consultant.svg" alt="" />
-						<span class="sub-titles-1">Consult your doctor </span>
-						<p class="mt-4">
-							Consult with your doctor from your comfort and enjoy timely and
-							quality care.
-						</p>
-					</div>
-					<div class="px-6 py-8 border-r border-white">
-						<img class="mb-4" src="/images/carbon_medication.svg" alt="" />
-						<span class="sub-titles-1">Medications</span>
-						<p class="mt-4">
-							View past and current medications and request a medication refill
-							instantly.
-						</p>
-					</div>
-					<div class="px-6 py-8 border-r border-white">
-						<img class="mb-4" src="/images/carbon_result.svg" alt="" />
-						<span class="sub-titles-1">Lab test </span>
-						<p class="mt-4">
-							Frequent lab visits are so old school. Access your diagnostic
-							results, accompanying doctor's notes InApp.
-						</p>
-					</div>
-				</div>
+
+				<IndexSlider1 />
 			</div>
 		</div>
 
@@ -220,13 +185,12 @@
 			<div class="flex items-center justify-center mb-14">
 				<div class="w-auto mr-6">
 					<c-button
-						title="Get started for free"
+						type="button"
 						:secondary="true"
-						:small="true"
-					/>
+						:small="true">Get started for free</c-button>
 				</div>
 				<div class="w-auto">
-					<c-button title="Contact us" :primary="true" :small="true" />
+					<c-button type="button" :primary="true" :small="true">Contact us</c-button>
 				</div>
 			</div>
 			<span class="sub-titles-1">Coming soon to your mobile Apps.</span>

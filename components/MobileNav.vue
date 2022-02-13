@@ -44,17 +44,15 @@
 		<div class="flex flex-col items-center justify-center gap-4 xl:mt-0 mt-24">
 			<c-button
 				type="button"
-				class="xl:mr-4 mb-4"
-				title="Login"
+				class="xl:mr-4 mb-4 xl:w-auto w-full"
 				:primary="true"
 				@click="goToLogin"
-			/>
-			<c-button
-				type="button"
-				title="Sign up for free"
-				:secondary="true"
-				@click="goToSignup"
-			/>
+			>
+				Sign in
+			</c-button>
+			<c-button class="xl:w-auto w-full" type="button" :secondary="true" @click="goToSignup">
+				Sign up for free
+			</c-button>
 		</div>
 	</div>
 </template>
@@ -84,11 +82,13 @@ export default Vue.extend({
 
   methods: {
     goToLogin() {
-      location.href = "/login"
+    //   this.$router.push("/signin"); 
+		  location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signin"
+
     },
 
     goToSignup() {
-      location.href = "/signup"
+      this.$router.push("/signup"); 
     },
   },
 })

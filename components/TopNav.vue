@@ -20,7 +20,7 @@
 					<span class="flex items-center">
 						<NuxtLink
 							to="/patients"
-							:class="{ 'nuxt-link-exact-active': patientDropdown === true }"
+							:class="{ 'nuxt-link-active': patientDropdown === true }"
 							class=""
 						>
 							For Patients
@@ -42,7 +42,7 @@
 					<span class="mr-6 flex items-center">
 						<NuxtLink
 							to="/providers"
-							:class="{ 'nuxt-link-exact-active': providerDropdown === true }"
+							:class="{ 'nuxt-link-active': providerDropdown === true }"
 							class=""
 						>
 							For Providers
@@ -62,19 +62,12 @@
 				</li>
 			</ul>
 			<div class="items-center xl:flex hidden">
-				<c-button
-					type="button"
-					class="mr-2"
-					title="Login"
-					:primary="true"
-					@click="goToLogin"
-				/>
-				<c-button
-					type="button"
-					title="Sign up for free"
-					:secondary="true"
-					@click="goToSignup"
-				/>
+				<c-button type="button" class="mr-2" :primary="true" @click="goToLogin">
+					Sign in
+				</c-button>
+				<c-button type="button" :secondary="true" @click="goToSignup">
+					Sign up for free
+				</c-button>
 			</div>
 			<div class="xl:hidden block menu-icon">
 				<img
@@ -142,11 +135,12 @@ export default Vue.extend({
     },
 
     goToLogin() {
-      location.href = "/login"
+    //   this.$router.push("/signin"); 
+	  location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signin"
     },
 
     goToSignup() {
-      location.href = "/signup"
+      this.$router.push("/signup"); 
     },
   },
 })
@@ -160,7 +154,7 @@ export default Vue.extend({
   z-index: 998;
 }
 
-a.nuxt-link-exact-active {
+a.nuxt-link-active {
   border-bottom: 3px solid #fe4d3c;
 }
 

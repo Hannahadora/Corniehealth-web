@@ -1,12 +1,22 @@
 <template>
 	<div class="bg-cblue-100 c-wrapper">
-		<div class="mb-9 flex xl:flex-row flex-col-reverse items-center justify-between py-24">
+		<div
+			class="mb-9 flex xl:flex-row flex-col-reverse items-center justify-between py-24"
+		>
 			<div class="xl:w-1/2 w-full xl:mr-9 xl:mt-0 mt-9">
 				<div class="flex items-center xl:justify-start justify-center mb-4">
-					<img class="xl:block hidden mr-2" src="/images/good health.svg" alt="" />
-					<p class="text-left text-center">Simplify collections with online payment processing.</p>
+					<img
+						class="xl:block hidden mr-2"
+						src="/images/good health.svg"
+						alt=""
+					/>
+					<p class="text-left text-center">
+						Simplify collections with online payment processing.
+					</p>
 				</div>
-				<h2 class="c-indigo mb-8 xl:text-left text-center">Billing and Payment</h2>
+				<h2 class="c-indigo mb-8 xl:text-left text-center">
+					Billing and Payment
+				</h2>
 				<p class="mb-8 xl:text-left text-center">
 					Empower your team to maximize collection with easy-to-read and
 					transparent paperless billing and get paid faster.
@@ -29,7 +39,7 @@
 					<p>Account based billing audit.</p>
 				</div>
 				<div class="mt-8">
-					<c-button type="button" title="Discover More" secondary small />
+					<c-button type="button" secondary small>Discover More</c-button>
 				</div>
 			</div>
 

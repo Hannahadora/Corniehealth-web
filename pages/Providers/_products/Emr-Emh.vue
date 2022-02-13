@@ -1,8 +1,6 @@
 <template>
 	<div class="xl:pt-20 pt-16">
-		<div
-			class="bg-cblue-100 xl:px-32 py-16 h-52 text-center relative"
-		>
+		<div class="bg-cblue-100 xl:px-32 py-16 h-52 text-center relative">
 			<h1 class="c-indigo mb-2">EMR/EHR</h1>
 			<p class="flex items-center justify-center">
 				<img class="mr-2" src="/images/nav/home.svg" alt="" />
@@ -25,10 +23,7 @@
 					</p>
 				</div>
 				<div class="xl:w-2/5 w-full">
-					<img
-						src="/images/emr-emh/03_03_2020_18_59_34_5882013 1.png"
-						alt=""
-					/>
+					<img src="/images/emr-emh/03_03_2020_18_59_34_5882013 1.png" alt="" />
 				</div>
 			</div>
 		</div>
@@ -38,10 +33,7 @@
 				class="c-wrapper flex xl:flex-row flex-col flex-col-reverse items-center justify-between"
 			>
 				<div class="xl:mr-14 xl:mt-0 mt-14 xl:w-2/5 w-full">
-					<img
-						src="/images/emr-emh/image 36.svg"
-						alt=""
-					/>
+					<img src="/images/emr-emh/image 36.svg" alt="" />
 				</div>
 				<div class="xl:w-3/5 w-full">
 					<h2 class="c-indigo mb-8">
@@ -151,10 +143,10 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
+import { Component, Vue } from "nuxt-property-decorator"
 import ProductsFooter2 from "../../../components/Providers/ProductsFooter2.vue"
-export default Vue.extend({
-  name: "EmrEmh",
+@Component({
   components: { ProductsFooter2 },
 })
+export default class EmrEmh extends Vue {}
 </script>

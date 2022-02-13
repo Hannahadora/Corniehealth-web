@@ -45,7 +45,7 @@
 					<p>Refill requests.</p>
 				</div>
 				<div class="mt-8">
-					<c-button type="button" title="Discover More" secondary small />
+					<c-button type="button" secondary small>Discover More</c-button>
 				</div>
 			</div>
 		</div>

@@ -10,20 +10,14 @@
 				</p>
 				<div class="flex items-center justify-start">
 					<div class="w-auto xl:mr-6 mr-4">
-						<c-button
-							type="button"
-							title="Sign up for free"
-							:secondary="true"
-							:small="true"
-						/>
+						<c-button type="button" :secondary="true" :small="true"
+						>Sign up for free</c-button
+						>
 					</div>
 					<div class="w-auto">
-						<c-button
-							type="button"
-							title="Contact Us"
-							:primary="true"
-							:small="true"
-						/>
+						<c-button type="button" :primary="true" :small="true"
+						>Contact Us</c-button
+						>
 					</div>
 				</div>
 			</div>

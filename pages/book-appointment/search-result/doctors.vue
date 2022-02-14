@@ -201,7 +201,7 @@
 						class="xl:mr-2 xl:mb-0 mb-6 xl:w-auto w-full"
 						:primary="true"
 						small
-						@click="$router.push({ path: '/book-appointment/profile' })"
+						@click="$router.push({ path: '/book-appointment/doctor-profile' })"
 					>
 						View profile
 					</c-button>

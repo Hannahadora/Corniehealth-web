@@ -10,6 +10,8 @@
 					</div>
 				</div>
 
+				<div class="mt-8 xl:grid block grid-cols-4 gap-x-8 gap-y-8">
+					
 				<div class="flex items-start xl:mb-0 mb-6">
 					<img
 						class="mr-2"
@@ -38,7 +40,6 @@
 					</div>
 				</div>
 
-				<div class="mt-8 xl:grid block grid-cols-4 gap-x-8 gap-y-8">
 					<div class="flex items-start xl:mb-0 mb-6">
 						<img
 							class="mr-2"

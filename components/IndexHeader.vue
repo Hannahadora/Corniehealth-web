@@ -21,6 +21,7 @@
 			<div
 				class="xl:w-full lg:w-2/3 w-full mx-auto flex xl:flex-row flex-col items-center justify-center"
 			>
+			
 				<input-comp
 					class="xl:mr-2 xl:mb-0 xl:w-2/5 xl:flex hidden"
 					input-icon="/images/search.svg"

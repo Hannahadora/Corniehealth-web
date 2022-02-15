@@ -128,5 +128,6 @@ export default class SelectDropdown extends Vue {
   border: 1px solid #080056;
   box-sizing: border-box;
   border-radius: 8px;
+  width: fit-content;
 }
 </style>

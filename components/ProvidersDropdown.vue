@@ -68,8 +68,8 @@ export default Vue.extend({
         },
         {
           category: "products",
-          name: "Billing & Collections",
-          link: "billings&collection",
+          name: "Billing & Payment",
+          link: "billing-and-payment",
         },
         {
           category: "products",

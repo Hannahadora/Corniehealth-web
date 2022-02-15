@@ -76,7 +76,7 @@ export default Vue.extend({
 }
 
 .small-btn {
-  padding: 13px 20px !important;
+  padding: 13px 38px !important;
   /* width: 196px !important; */
 }
 

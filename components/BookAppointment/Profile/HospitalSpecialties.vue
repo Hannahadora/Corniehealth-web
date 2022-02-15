@@ -23,21 +23,21 @@ import { Component, Vue } from "nuxt-property-decorator"
   components: {},
 })
 export default class HospitalSpecialties extends Vue {
-    specialties: Array<any> = []
+  specialties: Array<any> = []
 
 
-    getSpecialties() {
-        return this.specialties = [
-            { name: 'General Practice', total: '4' },
-            { name: 'OBGYN', total: '5' },
-            { name: 'Pediatrics', total: '6' },
-            { name: 'Emergency Medicine', total: '3' }
-        ]
-    }
+  getSpecialties() {
+    return this.specialties = [
+      { name: "General Practice", total: "4" },
+      { name: "OBGYN", total: "5" },
+      { name: "Pediatrics", total: "6" },
+      { name: "Emergency Medicine", total: "3" }
+    ]
+  }
 
-    created() {
-       this.getSpecialties()
-    }
+  created() {
+    this.getSpecialties()
+  }
 }
 </script>
 

@@ -1,59 +1,6 @@
 <template>
 	<div>
 		<div
-			class="grid xl:grid-cols-8 grid-cols-2 gap-4 items-center justify-between mb-12"
-		>
-			<select-dropdown
-				class=""
-				head-text="Doctors"
-				icon="/images/book-appointment/icon-doctor-grey.png"
-				:options="specialty"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Location"
-				icon="/images/book-appointment/icon-location-grey.png"
-				:options="location"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Hospital"
-				icon="/images/book-appointment/icon-hospital-grey.png"
-				:options="hospital"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Experience"
-				icon="/images/book-appointment/icon-experience-grey.png"
-				:options="experience"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Visit Type"
-				icon="/images/book-appointment/icon-visit-grey.png"
-				:options="visitType"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Insurance"
-				icon="/images/book-appointment/icon-insurance-grey.png"
-				:options="insurance"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Language"
-				icon="/images/book-appointment/icon-lang-grey.png"
-				:options="language"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Gender"
-				icon="/images/book-appointment/icon-gender-grey.png"
-				:options="gender"
-			/>
-		</div>
-
-		<div
 			class="info-container xl:p-6 p-4 w-full flex xl:flex-row flex-col items-start mb-12"
 		>
 			<div class="xl:w-4/12 w-full xl:border-r border-b xl:pb-0 pb-8">
@@ -227,66 +174,7 @@ import { Component, Vue } from "nuxt-property-decorator"
 @Component({
   components: {},
 })
-export default class DoctorsPage extends Vue {
-  specialty: Array<any> = [
-    "All",
-    "Dentists",
-    "ENT",
-    "General Practice",
-    "Obstetricians & Gynecologists",
-    "Pedriatricians",
-    "Urologist",
-  ]
-
-  location: Array<any> = [
-    "Lagos",
-    "Abuja",
-    "Port Harcourt",
-    "Delta",
-    "Kwara",
-    "Ibadan",
-    "Calabar",
-    "Benin",
-  ]
-
-  hospital: Array<any> = [
-    "All",
-    "Blue Cross Hospital",
-    "Eko Hospital",
-    "Evercare Hospital",
-    "Lagoon Hospital",
-    "Good Times",
-    "Blue Foundation",
-    "New Times",
-  ]
-
-  experience: Array<any> = [
-    "All",
-    "1-5 years",
-    "6-10 years",
-    "11-15 years",
-    "16-20 years",
-  ]
-
-  visitType: Array<any> = [
-    "All",
-    "Option 1",
-    "Option 2",
-    "Option 3",
-    "Option 4",
-    "Option 5",
-  ]
-
-  insurance: Array<any> = [
-    "All",
-    "1-5 years",
-    "6-10 years",
-    "11-15 years",
-    "16-20 years",
-  ]
-
-  language: Array<any> = ["All", "English", "Yoruba", "Igbo", "Hausa"]
-  gender: Array<any> = ["All", "Male", "Female"]
+export default class DoctorInfo extends Vue {
   selectedDate: string = ""
   selectedTime: string = ""
   availableDays: Array<any> = []
@@ -330,3 +218,4 @@ export default class DoctorsPage extends Vue {
 <style scoped>
 
 </style>
+

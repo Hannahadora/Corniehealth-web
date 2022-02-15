@@ -3,7 +3,11 @@
     <div class="c-wrapper xl:mt-40 mt-16">
       <div class="info-container px-6 pt-6 pb-7">
         <div class="flex items-center">
-          <img class="mr-4" src="/images/book-appointment/unsplash_gkZ-k3xf25w.png" alt="" />
+          <img
+            class="mr-4"
+            src="/images/book-appointment/unsplash_gkZ-k3xf25w.png"
+            alt=""
+          />
           <div class="xl:flex block items-center">
             <h3 class="mr-4">Reddington Hospital</h3>
           </div>
@@ -17,9 +21,7 @@
               alt=""
             />
             <div>
-              <span class="sub-titles-2 text-black-xiketic mb-2"
-                >Doctors</span
-              >
+              <span class="sub-titles-2 text-black-xiketic mb-2">Doctors</span>
               <p class="text-grey-blue mr-2">18</p>
             </div>
           </div>
@@ -48,8 +50,7 @@
               <span class="sub-titles-2 text-black-xiketic mb-2"
                 >Active Since</span
               >
-              <p class="text-grey-blue mr-2">1st May 2021
-              </p>
+              <p class="text-grey-blue mr-2">1st May 2021</p>
             </div>
           </div>
 
@@ -63,11 +64,13 @@
               <span class="sub-titles-2 text-black-xiketic mb-2"
                 >Hospital Rating</span
               >
-              <p class="text-grey-blue mr-2"><img
-              class="mr-2"
-              src="/images/book-appointment/ratings.png"
-              alt=""
-            /></p>
+              <p class="text-grey-blue mr-2">
+                <img
+                  class="mr-2"
+                  src="/images/book-appointment/ratings.png"
+                  alt=""
+                />
+              </p>
             </div>
           </div>
 
@@ -81,9 +84,7 @@
               <span class="sub-titles-2 text-black-xiketic mb-2"
                 >Phone Number</span
               >
-              <p class="text-grey-blue">
-                +234 813 563 8883
-              </p>
+              <p class="text-grey-blue">+234 813 563 8883</p>
             </div>
           </div>
 
@@ -94,9 +95,7 @@
               alt=""
             />
             <div>
-              <span class="sub-titles-2 text-black-xiketic mb-2"
-                >Email</span
-              >
+              <span class="sub-titles-2 text-black-xiketic mb-2">Email</span>
               <p class="text-grey-blue mr-2">Mikeobi@reddington.com</p>
             </div>
           </div>
@@ -145,12 +144,12 @@
         </ul>
 
         <div v-if="activeTab === 'Specialties'">
+          <hospital-specialties />
         </div>
         <div v-if="activeTab === 'Doctors'">
-            <doctor-info />
+          <doctor-info />
         </div>
-        <div v-if="activeTab === 'Insurance'">
-        </div>
+        <div v-if="activeTab === 'Insurance'"></div>
       </div>
     </div>
   </div>
@@ -158,9 +157,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
-import DoctorInfo from '../../components/BookAppointment/Profile/DoctorInfo.vue'
+import DoctorInfo from "../../components/BookAppointment/Profile/DoctorInfo.vue"
+import HospitalSpecialties from "../../components/BookAppointment/Profile/HospitalSpecialties.vue"
 @Component({
-  components: { DoctorInfo },
+  components: { DoctorInfo, HospitalSpecialties },
   layout: "book-appointment",
 })
 export default class ProfileDetails extends Vue {
@@ -180,4 +180,3 @@ export default class ProfileDetails extends Vue {
   color: #14171f;
 }
 </style>
-

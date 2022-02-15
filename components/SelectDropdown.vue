@@ -5,7 +5,7 @@
 			:class="{ active: active }"
 			@click="openOption = !openOption"
 		>
-			<div class="flex items-center">
+			<div class="flex items-center justify-between">
 				<img class="" :src="icon" alt="" />
 				<span
 					class="selected cursor-pointer mx-2 text-grey-blue"
@@ -115,7 +115,8 @@ export default class SelectDropdown extends Vue {
   border: 1px solid #080056;
   box-sizing: border-box;
   border-radius: 8px;
-  padding: 16px;
+  padding: 12px;
+  white-space: nowrap;
 }
 
 .active {

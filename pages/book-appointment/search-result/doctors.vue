@@ -1,52 +1,52 @@
 <template>
 	<div>
 		<div
-			class="grid xl:grid-cols-8 grid-cols-2 items-center justify-between mb-12"
+			class="grid xl:grid-cols-8 grid-cols-2 gap-4 items-center justify-between mb-12"
 		>
 			<select-dropdown
-				class="xl:mr-0 mr-6"
+				class=""
 				head-text="Doctors"
 				icon="/images/book-appointment/icon-doctor-grey.png"
 				:options="specialty"
 			/>
 			<select-dropdown
-				class="xl:mr-0 mr-6"
+				class=""
 				head-text="Location"
 				icon="/images/book-appointment/icon-location-grey.png"
 				:options="location"
 			/>
 			<select-dropdown
-				class="xl:mr-0 mr-6"
+				class=""
 				head-text="Hospital"
 				icon="/images/book-appointment/icon-hospital-grey.png"
 				:options="hospital"
 			/>
 			<select-dropdown
-				class="xl:mr-0 mr-6"
+				class=""
 				head-text="Experience"
 				icon="/images/book-appointment/icon-experience-grey.png"
 				:options="experience"
 			/>
 			<select-dropdown
-				class="xl:mr-0 mr-6"
+				class=""
 				head-text="Visit Type"
 				icon="/images/book-appointment/icon-visit-grey.png"
 				:options="visitType"
 			/>
 			<select-dropdown
-				class="xl:mr-0 mr-6"
+				class=""
 				head-text="Insurance"
 				icon="/images/book-appointment/icon-insurance-grey.png"
 				:options="insurance"
 			/>
 			<select-dropdown
-				class="xl:mr-0 mr-6"
+				class=""
 				head-text="Language"
 				icon="/images/book-appointment/icon-lang-grey.png"
 				:options="language"
 			/>
 			<select-dropdown
-				class="xl:mr-0 mr-6"
+				class=""
 				head-text="Gender"
 				icon="/images/book-appointment/icon-gender-grey.png"
 				:options="gender"

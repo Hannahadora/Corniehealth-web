@@ -45,7 +45,8 @@ export default Vue.extend({
   border-radius: 8px;
 }
 
-.choices-img {
-  filter: grayscale(100%) !important;
+.choices:hover img {
+  filter: grayscale(1) invert(1) !important;
 }
+
 </style>

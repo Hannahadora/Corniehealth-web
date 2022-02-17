@@ -1,29 +1,29 @@
 <template>
-  <div>
-    <div
-      class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 text-white bg-razzmataz-pry mt-16 py-3"
-    >
-      <div
-        v-for="(offer, index) in offers"
-        :key="index"
-        class="px-6 py-8 border-r border-white"
-      >
-        <div class="flex items-center xl:justify-start justify-center">
-          <img class="mb-4" :src="offer.image" alt="" />
-        </div>
-        <div class="h-16">
-          <span class="sub-titles-1">{{ offer.title }}</span>
-        </div>
-        <p class="mt-4">
-          {{ offer.text }}
-        </p>
-      </div>
-    </div>
+	<div>
+		<div
+			class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 text-white bg-razzmataz-pry mt-16 py-3"
+		>
+			<div
+				v-for="(offer, index) in offers"
+				:key="index"
+				class="px-6 py-8 border-r border-white"
+			>
+				<div class="flex items-center xl:justify-start justify-center">
+					<img class="mb-4" :src="offer.image" alt="" />
+				</div>
+				<div class="h-16">
+					<span class="sub-titles-1">{{ offer.title }}</span>
+				</div>
+				<p class="mt-4">
+					{{ offer.text }}
+				</p>
+			</div>
+		</div>
 
-    <div class="hidden text-white mt-16 py-3">
-      <c-swiper class="" offers :banners="offers" />
-    </div>
-  </div>
+		<div class="hidden text-white mt-16 py-3">
+			<c-swiper class="" offers :banners="offers" />
+		</div>
+	</div>
 </template>
 
 <script lang="ts">

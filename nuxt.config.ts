@@ -18,7 +18,8 @@ export default defineNuxtConfig({
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      { rel: "stylesheet", type: "text/css", href: "/style.css" },
+      { rel: "stylesheet", type: "text/css", href: "css/style.css" },
+      { rel: "stylesheet", type: "text/css", href: "css/tooltip.css" },
     ],
   },
 

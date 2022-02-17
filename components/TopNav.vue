@@ -4,7 +4,7 @@
 			<CornieLogo />
 			<ul class="header-nav xl:flex hidden items-center justify-between">
 				<li class="mr-6">
-					<NuxtLink class="pb-2" to="/Appointments">Appointments</NuxtLink>
+					<NuxtLink class="pb-2" to="/appointments">Appointments</NuxtLink>
 				</li>
 				<li class="mr-6">
 					<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>

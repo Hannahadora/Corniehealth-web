@@ -1,15 +1,15 @@
 <template>
-  <div class="input-wrapper flex items-center py-4 px-5">
-    <img class="xl:mr-6 mr-4" :src="inputIcon" alt="" />
-    <input
-      :modelValue="modelValue"
-      :type="type"
-      :placeholder="placeholder"
-      :required="required"
-      class="w-10/12 focus:outline-none  text-sm"
-      @input="$emit('input', $event.target.value)"
-    />
-  </div>
+	<div class="input-wrapper flex items-center py-4 px-5">
+		<img class="xl:mr-6 mr-4" :src="inputIcon" alt="" />
+		<input
+			:modelValue="modelValue"
+			:type="type"
+			:placeholder="placeholder"
+			:required="required"
+			class="w-10/12 focus:outline-none  text-sm"
+			@input="$emit('input', $event.target.value)"
+		/>
+	</div>
 </template>
 
 <script>

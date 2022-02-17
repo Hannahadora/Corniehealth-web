@@ -39,22 +39,22 @@
           class="xl:w-full lg:w-2/3 w-full mx-auto flex xl:flex-row flex-col items-center justify-center"
         >
           <input-comp
+            v-model="providerName"
             class="xl:w-2/5 xl:flex hidden"
             input-icon="/images/search.svg"
             placeholder="Provider name, practice name or specialty"
-            v-model="providerName"
           />
           <input-comp
+            v-model="providerName"
             class="w-full xl:hidden block"
             input-icon="/images/search.svg"
             placeholder="Name or specialty"
-            v-model="providerName"
           />
           <input-comp
+            v-model="cityName"
             class="xl:ml-1 xl:mt-0 mt-4 xl:w-2/5 w-full"
             input-icon="/images/cil_location-pin.svg"
             placeholder="City name or Zip/Postal code"
-            v-model="cityName"
           />
           <div class="xl:ml-1 xl:mt-0 mt-4 xl:w-1/5 w-full">
             <c-button
@@ -93,8 +93,9 @@
           <span class="sub-titles-1">Manage Appointments</span>
         </div>
         <div
-          class="px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
+          class="tooltip px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
         >
+          <span class="tooltiptext">Coming soon</span>
           <img
             class="mb-4"
             src="/images/appointments/healthicons_doctor-male-outline.png"
@@ -103,14 +104,16 @@
           <span class="sub-titles-1">Shop Pharmacy</span>
         </div>
         <div
-          class="px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
+          class="tooltip px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
         >
+          <span class="tooltiptext">Coming soon</span>
           <img class="mb-4" src="/images/carbon_medication.svg" alt="" />
           <span class="sub-titles-1">Book Lab Tests</span>
         </div>
         <div
-          class="px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
+          class="tooltip px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
         >
+        <span class="tooltiptext">Coming soon</span>
           <img class="mb-4" src="/images/carbon_result.svg" alt="" />
           <span class="sub-titles-1">Shop Plan</span>
         </div>
@@ -352,6 +355,7 @@ export default class AppointmentPage extends Vue {
   goToBookingPage() {
     this.$router.push("/book-appointment/search-result/doctors")
   }
+
   goToSignup() {
     this.$router.push("/signup")
   }
@@ -363,7 +367,7 @@ export default class AppointmentPage extends Vue {
 }
 
 .z--50 {
-	z-index: -50;
+  z-index: -50;
 }
 
 @media screen and (max-width: 1024px) {

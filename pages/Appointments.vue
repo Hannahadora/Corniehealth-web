@@ -19,26 +19,51 @@
 					provider. No calls or messages are required.
 				</p>
 
+				<img
+					class="absolute xl:bottom-11 bottom-2 xl:right-11 right-2 xl:w-auto w-24 xl:h-auto h-20"
+					src="/images/providers/bg-img.svg"
+					alt=""
+				/>
+				<img
+					class="absolute xl:right-28 right-2 xl:top-28 top-7 z--50"
+					src="/images/shapes (1).svg"
+					alt=""
+				/>
+				<img
+					class="absolute left-16 bottom-40"
+					src="/images/providers/img.svg"
+					alt=""
+				/>
+
 				<div
 					class="xl:w-full lg:w-2/3 w-full mx-auto flex xl:flex-row flex-col items-center justify-center"
 				>
 					<input-comp
+						v-model="providerName"
 						class="xl:w-2/5 xl:flex hidden"
 						input-icon="/images/search.svg"
 						placeholder="Provider name, practice name or specialty"
 					/>
 					<input-comp
+						v-model="providerName"
 						class="w-full xl:hidden block"
 						input-icon="/images/search.svg"
 						placeholder="Name or specialty"
 					/>
 					<input-comp
+						v-model="cityName"
 						class="xl:ml-1 xl:mt-0 mt-4 xl:w-2/5 w-full"
 						input-icon="/images/cil_location-pin.svg"
 						placeholder="City name or Zip/Postal code"
 					/>
 					<div class="xl:ml-1 xl:mt-0 mt-4 xl:w-1/5 w-full">
-						<c-button type="button" class="w-full" :tertiary="true" @click="$router.push({ path: '/book-appointment/search-result/doctors' })">Search</c-button>
+						<c-button
+							type="button"
+							class="w-full"
+							:tertiary="true"
+							@click="goToBookingPage"
+						>Search</c-button
+						>
 					</div>
 				</div>
 
@@ -57,52 +82,43 @@
 					/>
 				</div>
 			</div>
-
-			<img
-				class="absolute xl:bottom-11 bottom-2 xl:right-11 right-2 xl:w-auto w-24 xl:h-auto h-20"
-				src="/images/providers/bg-img.svg"
-				alt=""
-			/>
-			<img
-				class="absolute xl:right-28 right-2 xl:top-28 top-7"
-				src="/images/shapes (1).svg"
-				alt=""
-			/>
-			<img
-				class="absolute left-16 bottom-40"
-				src="/images/providers/img.svg"
-				alt=""
-			/>
 		</div>
 
 		<div class="c-wrapper xl:mt-0 mt-16">
 			<div class="xl:grid block grid-cols-5 text-white bg-razzmataz-pry py-2">
 				<div
-					class="px-6 py-5 border-r border-white xl:block flex flex-col items-center justify-center"
+					class="px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
 				>
 					<img class="mb-4" src="/images/book-appointment.svg" alt="" />
 					<span class="sub-titles-1">Manage Appointments</span>
 				</div>
 				<div
-					class="px-6 py-5 border-r border-white xl:block flex flex-col items-center justify-center"
+					class="tooltip px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
 				>
-					<img class="mb-4" src="/images/consultant.svg" alt="" />
+					<span class="tooltiptext">Coming soon</span>
+					<img
+						class="mb-4"
+						src="/images/appointments/healthicons_doctor-male-outline.png"
+						alt=""
+					/>
 					<span class="sub-titles-1">Shop Pharmacy</span>
 				</div>
 				<div
-					class="px-6 py-5 border-r border-white xl:block flex flex-col items-center justify-center"
+					class="tooltip px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
 				>
+					<span class="tooltiptext">Coming soon</span>
 					<img class="mb-4" src="/images/carbon_medication.svg" alt="" />
 					<span class="sub-titles-1">Book Lab Tests</span>
 				</div>
 				<div
-					class="px-6 py-5 border-r border-white xl:block flex flex-col items-center justify-center"
+					class="tooltip px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
 				>
+					<span class="tooltiptext">Coming soon</span>
 					<img class="mb-4" src="/images/carbon_result.svg" alt="" />
 					<span class="sub-titles-1">Shop Plan</span>
 				</div>
 				<div
-					class="px-6 py-5 border-r border-white xl:block flex flex-col items-center justify-center"
+					class="px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
 				>
 					<img class="mb-4" src="/images/carbon_result.svg" alt="" />
 					<span class="sub-titles-1">My Health Records</span>
@@ -143,11 +159,9 @@
 						<img src="/images/checkmark.svg" alt="" />
 						<p>HIPAA Compliant Data Centers</p>
 					</div>
-					<button
-						class="text-razzmataz-pry font-bold py-4 pr-6 pl-0 rounded-xl focus:outline-none bg-transparent"
-					>
-						Sign Up for Free
-					</button>
+					<c-button type="button" :secondary="true" small @click="goToSignup">
+						Sign up for free
+					</c-button>
 				</div>
 				<div class="xl:w-3/5 w-full">
 					<img src="/images/appointments/Group 11649.svg" alt="" />
@@ -177,11 +191,9 @@
 						<img src="/images/checkmark.svg" alt="" />
 						<p>Broad specialties</p>
 					</div>
-					<button
-						class="text-razzmataz-pry font-bold py-4 pr-6 pl-0 rounded-xl focus:outline-none bg-transparent"
-					>
-						Sign Up for Free
-					</button>
+					<c-button type="button" :secondary="true" small @click="goToSignup">
+						Sign up for free
+					</c-button>
 				</div>
 			</div>
 		</div>
@@ -210,7 +222,7 @@
 					<div class="flex itesm-center">
 						<c-button type="button" secondary small>Consult Now</c-button>
 						<button
-							class="text-razzmataz-pry font-bold py-4 px-6 whitespace-nowrap rounded-xl focus:outline-none bg-transparent"
+							class="text-razzmataz-pry font-bold py-3 px-9 whitespace-nowrap rounded-xl focus:outline-none bg-transparent"
 						>
 							256 Doctors Online
 						</button>
@@ -244,11 +256,9 @@
 						<img src="/images/checkmark.svg" alt="" />
 						<p>Broad specialties</p>
 					</div>
-					<button
-						class="text-razzmataz-pry font-bold py-4 pr-6 pl-0 rounded-xl focus:outline-none bg-transparent"
-					>
+					<c-button type="button" :secondary="true" small>
 						Order Medicines
-					</button>
+					</c-button>
 				</div>
 			</div>
 		</div>
@@ -280,11 +290,9 @@
 						<img class="mr-4" src="/images/checkmark.svg" alt="" />
 						<p>Result uploaded to your health record</p>
 					</div>
-					<button
-						class="text-razzmataz-pry font-bold py-4 pr-6 pl-0 rounded-xl focus:outline-none bg-transparent"
-					>
+					<c-button type="button" :secondary="true" small>
 						Book Lab Tests
-					</button>
+					</c-button>
 				</div>
 				<div class="xl:w-3/5 w-full">
 					<img src="/images/appointments/Group 11646.svg" alt="" />
@@ -320,11 +328,9 @@
 						<img class="mr-4" src="/images/checkmark.svg" alt="" />
 						<p>Updated across facilities</p>
 					</div>
-					<button
-						class="text-razzmataz-pry font-bold py-4 pr-6 pl-0 rounded-xl focus:outline-none bg-transparent"
-					>
-						Sign Up for Free
-					</button>
+					<c-button type="button" :secondary="true" small @click="goToSignup">
+						Sign up for free
+					</c-button>
 				</div>
 			</div>
 		</div>
@@ -342,11 +348,26 @@ import InputComp from "../components/InputComp.vue"
     InputComp,
   },
 })
-export default class AppointmentPage extends Vue {}
+export default class AppointmentPage extends Vue {
+  providerName: String = ""
+  cityName: String = ""
+
+  goToBookingPage() {
+    this.$router.push("/book-appointment/search-result/doctors")
+  }
+
+  goToSignup() {
+    this.$router.push("/signup")
+  }
+}
 </script>
 <style scoped>
 .intro-wrapper {
   padding: 0 210px;
+}
+
+.z--50 {
+  z-index: -50;
 }
 
 @media screen and (max-width: 1024px) {

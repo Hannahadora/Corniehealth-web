@@ -11,7 +11,9 @@
 				<div class="flex items-center xl:justify-start justify-center">
 					<img class="mb-4" :src="offer.image" alt="" />
 				</div>
-				<span class="sub-titles-1">{{ offer.title }}</span>
+				<div class="h-16">
+					<span class="sub-titles-1">{{ offer.title }}</span>
+				</div>
 				<p class="mt-4">
 					{{ offer.text }}
 				</p>
@@ -39,7 +41,7 @@ export default Vue.extend({
           text: "Schedule and manage appointments online and view details of past and src upcoming appointments.",
         },
         {
-          image: "/images/consultant.svg",
+          image: "/images/appointments/healthicons_doctor-male-outline.png",
           title: "Consult your doctor",
           text: "Consult with your doctor from your comfort and enjoy timely and quality care.",
         },

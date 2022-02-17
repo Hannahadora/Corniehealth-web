@@ -10,35 +10,36 @@
 					</div>
 				</div>
 
-				<div class="flex items-start xl:mb-0 mb-6">
-					<img
-						class="mr-2"
-						src="/images/book-appointment/icon-doctor-white.png"
-						alt=""
-					/>
-					<div>
-						<span class="sub-titles-2 text-black-xiketic mb-2"
-						>Specialization</span
-						>
-						<p class="text-grey-blue mr-2">Dentist</p>
-					</div>
-				</div>
-
-				<div class="flex items-start xl:mb-0 mb-6">
-					<img
-						class="mr-2"
-						src="/images/book-appointment/icon-date-white.png"
-						alt=""
-					/>
-					<div>
-						<span class="sub-titles-2 text-black-xiketic mb-2"
-						>Clinical Experience</span
-						>
-						<p class="text-grey-blue mr-2">20 Years</p>
-					</div>
-				</div>
-
 				<div class="mt-8 xl:grid block grid-cols-4 gap-x-8 gap-y-8">
+					
+					<div class="flex items-start xl:mb-0 mb-6">
+						<img
+							class="mr-2"
+							src="/images/book-appointment/icon-doctor-white.png"
+							alt=""
+						/>
+						<div>
+							<span class="sub-titles-2 text-black-xiketic mb-2"
+							>Specialization</span
+							>
+							<p class="text-grey-blue mr-2">Dentist</p>
+						</div>
+					</div>
+
+					<div class="flex items-start xl:mb-0 mb-6">
+						<img
+							class="mr-2"
+							src="/images/book-appointment/icon-date-white.png"
+							alt=""
+						/>
+						<div>
+							<span class="sub-titles-2 text-black-xiketic mb-2"
+							>Clinical Experience</span
+							>
+							<p class="text-grey-blue mr-2">20 Years</p>
+						</div>
+					</div>
+
 					<div class="flex items-start xl:mb-0 mb-6">
 						<img
 							class="mr-2"

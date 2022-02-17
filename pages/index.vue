@@ -1,6 +1,84 @@
 <template>
-	<div class>
-		<IndexHeader class="lg:mt-24 mt-16" />
+	<div class="">
+		<div class="intro-wrapper mt-16">
+			<img
+				class="absolute xl:bottom-11 bottom-2 xl:right-11 right-2 xl:w-auto w-24 xl:h-auto h-20"
+				src="/images/providers/bg-img.svg"
+				alt=""
+			/>
+			<img
+				class="absolute xl:right-28 right-2 xl:top-28 top-7 z--50"
+				src="/images/shapes (1).svg"
+				alt=""
+			/>
+			<img
+				class="absolute left-16 bottom-40"
+				src="/images/providers/img.svg"
+				alt=""
+			/>
+
+			<div class="text-center xl:pt-24 pt-12">
+				<div class="flex items-center justify-center">
+					<img
+						class="mr-2 lg:block hidden"
+						src="/images/good health.svg"
+						alt=""
+					/>
+					<p>Connected. Patient-Centric. Supportive.</p>
+				</div>
+				<h1 class="my-2 c-indigo">
+					Find the best doctors <br class="xl:block hidden" />
+					and other healthcare providers.
+				</h1>
+				<p class="mb-14">
+					View all practice information and ratings, no calls or messaging
+					required
+				</p>
+
+				<div
+					class="xl:w-full lg:w-2/3 w-full mx-auto flex xl:flex-row flex-col items-center justify-center"
+				>
+					<input-comp
+						v-model="providerName"
+						type="text"
+						class="xl:mr-2 xl:mb-0 xl:w-2/5 xl:flex hidden"
+						input-icon="/images/search.svg"
+						placeholder="Provider name, practice name or specialty"
+					/>
+					<input-comp
+						v-model="providerName"
+						type="text"
+						class="w-full mb-4 xl:hidden flex"
+						input-icon="/images/search.svg"
+						placeholder="Name or specialty"
+					/>
+					<input-comp
+						v-model="cityName"
+						type="text"
+						class="xl:mr-2 mr-0 xl:mb-0 mb-4 xl:w-2/5 w-full"
+						input-icon="/images/cil_location-pin.svg"
+						placeholder="City name or Zip/Postal code"
+					/>
+					<div class="xl:w-1/5 w-full">
+						<c-button
+							type="button"
+							class="w-full"
+							:tertiary="true"
+							@click="goToBookingPage"
+						>Search</c-button
+						>
+					</div>
+				</div>
+				<div>
+					<img
+						class="header-image mx-auto lg:mt-0 mt-16"
+						src="/images/header-image.png"
+						alt=""
+					/>
+				</div>
+			</div>
+		</div>
+
 		<div class="mt-12 pt-14">
 			<div class="text-center xl:w-1/2 lg:w-2/3 w-9/12 mx-auto">
 				<h2 class="c-indigo">Actively manage your health</h2>
@@ -26,7 +104,11 @@
 							<span class="mb-2 sub-titles-1">For you and your loved ones</span>
 							<p class="mb-6">Private</p>
 							<div class="w-48">
-								<c-button type="button" :secondary="true" :small="true"
+								<c-button
+									type="button"
+									class="whitespace-nowrap"
+									:secondary="true"
+									:small="true"
 								>Sign Up for free</c-button
 								>
 							</div>
@@ -45,9 +127,10 @@
 						>
 							<span class="mb-2 sub-titles-1">For your employees</span>
 							<p class="mb-6">Employer</p>
-							<div class="w-48">
+							<div class="w-10/12">
 								<c-button
 									type="button"
+									class="whitespace-nowrap"
 									:secondary="true"
 									:small="true"
 								>Sign Up for free</c-button
@@ -184,13 +267,14 @@
 			</p>
 			<div class="flex items-center justify-center mb-14">
 				<div class="w-auto mr-6">
-					<c-button
-						type="button"
-						:secondary="true"
-						:small="true">Get started for free</c-button>
+					<c-button type="button" :secondary="true" :small="true"
+					>Get started for free</c-button
+					>
 				</div>
 				<div class="w-auto">
-					<c-button type="button" :primary="true" :small="true">Contact us</c-button>
+					<c-button type="button" :primary="true" :small="true"
+					>Contact us</c-button
+					>
 				</div>
 			</div>
 			<span class="sub-titles-1">Coming soon to your mobile Apps.</span>
@@ -209,17 +293,22 @@
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
 import CButton from "../components/CButton.vue"
-import IndexHeader from "../components/IndexHeader.vue"
 import HealthOutcomes from "../components/HealthOutcomes.vue"
 
 @Component({
   components: {
     CButton,
-    IndexHeader,
     HealthOutcomes,
   },
 })
-export default class IndexPage extends Vue {}
+export default class IndexPage extends Vue {
+  providerName: String = ""
+  cityName: String = ""
+
+  goToBookingPage() {
+    this.$router.push("/book-appointment/search-result/doctors")
+  }
+}
 </script>
 
 <style scoped>
@@ -227,6 +316,23 @@ export default class IndexPage extends Vue {}
   display: grid;
   grid-template-rows: 2 (0, 1fr);
   grid-template-columns: 4 (0, 1fr);
+}
+.intro-wrapper {
+  padding: 0 210px;
+}
+.z--50 {
+  z-index: -50;
+}
+
+@media screen and (max-width: 1024px) {
+  .intro-wrapper {
+    padding: 0 72px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .intro-wrapper {
+    padding: 0 50px;
+  }
 }
 
 @media screen and (max-width: 600px) {

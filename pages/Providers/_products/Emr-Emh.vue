@@ -1,8 +1,6 @@
 <template>
 	<div class="xl:pt-20 pt-16">
-		<div
-			class="bg-cblue-100 xl:px-32 py-16 h-52 text-center relative"
-		>
+		<div class="bg-cblue-100 xl:px-32 py-16 h-52 text-center relative">
 			<h1 class="c-indigo mb-2">EMR/EHR</h1>
 			<p class="flex items-center justify-center">
 				<img class="mr-2" src="/images/nav/home.svg" alt="" />
@@ -25,10 +23,7 @@
 					</p>
 				</div>
 				<div class="xl:w-2/5 w-full">
-					<img
-						src="/images/emr-emh/emr-hero.png"
-						alt=""
-					/>
+					<img src="/images/emr-emh/03_03_2020_18_59_34_5882013 1.png" alt="" />
 				</div>
 			</div>
 		</div>
@@ -38,10 +33,7 @@
 				class="c-wrapper flex xl:flex-row flex-col flex-col-reverse items-center justify-between"
 			>
 				<div class="xl:mr-14 xl:mt-0 mt-14 xl:w-2/5 w-full">
-					<img
-						src="/images/emr-emh/image 36.svg"
-						alt=""
-					/>
+					<img src="/images/emr-emh/image 36.svg" alt="" />
 				</div>
 				<div class="xl:w-3/5 w-full">
 					<h2 class="c-indigo mb-8">
@@ -146,40 +138,15 @@
 			</div>
 		</div>
 
-		<div class="my-24 c-wrapper">
-			<div
-				class="bg-c-indigo px-7 py-16 rounded-2xl flex xl:flex-row flex-col xl:items-center items-start xl:justify-between justify-center"
-			>
-				<div class="text-white xl:mb-0 mb-12">
-					<h2 class="mb-2">Ready to boost your practice?</h2>
-					<p class="mb-12">
-						Get started for free. We only make money when your practice thrives.
-					</p>
-					<div class="flex items-center justify-start">
-						<div class="w-auto xl:mr-6 xl:mb-0 mb-4">
-							<c-button
-								title="Sign up for free"
-								:secondary="true"
-								:small="true"
-							/>
-						</div>
-						<div class="w-auto">
-							<c-button title="Contact Us" :primary="true" :small="true" />
-						</div>
-					</div>
-				</div>
-
-				<div>
-					<img src="/images/patient-experience/image 30.svg" alt="" />
-				</div>
-			</div>
-		</div>
+		<ProductsFooter2 />
 	</div>
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-export default Vue.extend({
-  name: "EmrEmh",
+import { Component, Vue } from "nuxt-property-decorator"
+import ProductsFooter2 from "../../../components/Providers/ProductsFooter2.vue"
+@Component({
+  components: { ProductsFooter2 },
 })
+export default class EmrEmh extends Vue {}
 </script>

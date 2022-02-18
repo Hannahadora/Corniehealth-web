@@ -52,6 +52,7 @@ module.exports = {
     ],
     "no-var": "error",
     "no-use-before-define": "off",
+    "vue/multi-word-component-names": "off",
     indent: ["warn", 2, { SwitchCase: 0 }],
     "no-mixed-spaces-and-tabs": ["off", "smart-tabs"],
     quotes: ["warn", "double"],

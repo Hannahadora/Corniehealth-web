@@ -5,7 +5,11 @@
 		>
 			<div class="xl:w-1/2 w-full xl:mr-14 xl:mb-0 mb-14">
 				<div class="flex items-center xl:justify-start justify-center">
-					<img class="xl:block hidden mr-2" src="/images/good health.svg" alt="" />
+					<img
+						class="xl:block hidden mr-2"
+						src="/images/good health.svg"
+						alt=""
+					/>
 					<p class="xl:text-left text-center">
 						Your connected Healthcare Practice Management System.
 					</p>
@@ -18,14 +22,12 @@
 					healthcare operation, deliver superior patient experience, connect
 					with third-party providers, and patients for better care coordination.
 				</p>
-				<div
-					class="mt-12 flex items-center xl:justify-start justify-center"
-				>
+				<div class="mt-12 flex items-center xl:justify-start justify-center">
 					<div class="w-auto mr-6">
-						<c-button title="Get started for free" secondary small />
+						<c-button type="button" secondary small>Get started for free</c-button>
 					</div>
 					<div class="w-auto">
-						<c-button title="View Demo" primary small />
+						<c-button type="button" primary small>View Demo</c-button>
 					</div>
 				</div>
 			</div>
@@ -47,16 +49,22 @@
 
 		<div class="c-wrapper bg-white">
 			<div class="xl:px-4 px-3 xl:py-8 py-3 c-shadow relative">
-				<div
-					class="xl:h-48 h-auto flex xl:flex-row flex-col items-start"
-				>
+				<div class="xl:h-48 h-auto flex xl:flex-row flex-col items-start">
 					<div class="bg-cblue-100 p-6 w-full xl:mr-6">
 						<div class="flex items-start">
-							<img class="mr-4" src="/images/dd-icons/carbon_location-company.svg" alt="" />
+							<img
+								class="mr-4"
+								src="/images/dd-icons/carbon_location-company.svg"
+								alt=""
+							/>
 							<p>Multi-location/facility enabled.</p>
 						</div>
 						<div class="mt-6 flex items-start">
-							<img class="mr-4" src="/images/dd-icons/carbon_document.svg" alt="" />
+							<img
+								class="mr-4"
+								src="/images/dd-icons/carbon_document.svg"
+								alt=""
+							/>
 							<p>
 								Electronic requests (referral, prescription, and diagnostic).
 							</p>
@@ -89,14 +97,22 @@
 							<p>Customizable forms and questionnaires.</p>
 						</div>
 						<div class="mt-6 flex items-start">
-							<img class="mr-4" src="/images/dd-icons/carbon_gui-management.svg" alt="" />
+							<img
+								class="mr-4"
+								src="/images/dd-icons/carbon_gui-management.svg"
+								alt=""
+							/>
 							<p>Marketing and outreach management.</p>
 						</div>
 					</div>
 
 					<div class="bg-cblue-100 xl:h-full h-auto px-6 py-6 w-full">
 						<div class="flex items-start">
-							<img class="mr-4" src="/images/dd-icons/tabler_file-analytics.svg" alt="" />
+							<img
+								class="mr-4"
+								src="/images/dd-icons/tabler_file-analytics.svg"
+								alt=""
+							/>
 							<p>Analytics and decision support.</p>
 						</div>
 					</div>
@@ -136,7 +152,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
+import { Component, Vue } from "nuxt-property-decorator"
 import CButton from "../../../components/CButton.vue"
 import PatientPortal from "../../../components/Providers/PatientPortal.vue"
 import BillingsAndPayment from "../../../components/Providers/BillingsAndPayment.vue"
@@ -145,8 +161,8 @@ import PatientExperience from "../../../components/Providers/PatientExperience.v
 import PracticeManagement from "../../../components/Providers/PracticeManagement.vue"
 import AnBIntelliegence from "../../../components/Providers/AnBIntelliegence.vue"
 import DataProtection from "../../../components/Providers/DataProtection.vue"
-export default Vue.extend({
-  name: "HospitalsAndClinics",
+
+@Component({
   components: {
     CButton,
     PatientExperience,
@@ -155,9 +171,10 @@ export default Vue.extend({
     BillingsAndPayment,
     PatientPortal,
     AnBIntelliegence,
-    DataProtection
+    DataProtection,
   },
 })
+export default class HospitalsAndClinicsPage extends Vue {}
 </script>
 
 <style></style>

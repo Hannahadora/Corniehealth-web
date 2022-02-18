@@ -1,7 +1,7 @@
 <template>
 	<button
 		:type="type"
-		class="py-10 btn"
+		class="btn"
 		:class="{
 			'primary-btn': primary,
 			'secondary-btn': secondary,
@@ -11,7 +11,7 @@
 		}"
 		@click="$emit('click')"
 	>
-		{{ title }}
+		<slot></slot>
 	</button>
 </template>
 
@@ -23,10 +23,6 @@ export default Vue.extend({
     type: {
       type: String,
       default: "button",
-    },
-    title: {
-      type: String,
-      default: "",
     },
     primary: {
       type: Boolean,
@@ -80,7 +76,7 @@ export default Vue.extend({
 }
 
 .small-btn {
-  padding: 13px 20px !important;
+  padding: 13px 38px !important;
   /* width: 196px !important; */
 }
 
@@ -93,7 +89,7 @@ export default Vue.extend({
     padding: 13px 18px !important;
   }
   .btn {
-    width: 100%;
+    /* width: 100%; */
     white-space: nowrap;
   }
 }

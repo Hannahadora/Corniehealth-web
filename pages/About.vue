@@ -4,11 +4,11 @@
 			class="about-header bg-cblue-100 xl:px-32 xl:pt-48 pt-24 pb-64 h-80 text-center relative"
 		>
 			<h1 class="c-indigo mb-2">About</h1>
-			<p class="flex items-center justify-center gap-2">
-				<img src="/images/nav/home.svg" alt="" />
-				<span>Home /</span>
-				<img src="/images/nav/about.svg" alt="" />
-				<span class="text-razzmataz-pry">About</span>
+			<p class="flex items-center justify-center">
+				<img class="mr-2" src="/images/nav/home.svg" alt="" />
+				<span class="mr-2">Home /</span>
+				<img class="mr-2" src="/images/nav/about.svg" alt="" />
+				<span class="mr-2 text-razzmataz-pry">About</span>
 			</p>
 			<img
 				class="absolute left-10 top-16"
@@ -37,8 +37,8 @@
 			/>
 		</div>
 
-		<div class="sect-1 flex xl:flex-row flex-col items-start gap-16">
-			<div class="xl:w-1/2 w-full">
+		<div class="sect-1 flex xl:flex-row flex-col items-start">
+			<div class="xl:w-1/2 w-full xl:mr-16 xl:mb-0 mb-16">
 				<img class="w-full" src="/images/about/vaccine.svg" alt="" />
 			</div>
 			<div class="xl:w-1/2 w-full">
@@ -59,8 +59,8 @@
 					to healthcare and empowers them with greater access to and more
 					control of their health data.
 				</p>
-				<div class="mt-7 flex items-center gap-4">
-					<img src="/images/checkmark.svg" alt="" />
+				<div class="mt-7 flex items-center">
+					<img class="mr-4" src="/images/checkmark.svg" alt="" />
 					<p>
 						<span class="text-razzmataz-pry font-bold text-2xl"
 						>Our mission</span
@@ -69,8 +69,8 @@
 						streamline access for patients through human-centered technology.
 					</p>
 				</div>
-				<div class="mt-7 flex items-center gap-4">
-					<img src="/images/checkmark.svg" alt="" />
+				<div class="mt-7 flex items-center">
+					<img class="mr-4" src="/images/checkmark.svg" alt="" />
 					<p>
 						<span class="text-razzmataz-pry font-bold text-2xl"
 						>Our vision</span
@@ -82,12 +82,11 @@
 			</div>
 		</div>
 
-
 		<div class="grid grid-cols-4">
-			<img src="/images/about/image 62.svg" alt="">
-			<img src="/images/about/image 61.svg" alt="">
-			<img src="/images/about/img (2).svg" alt="">
-			<img src="/images/about/image 60.svg" alt="">
+			<img src="/images/about/image 62.svg" alt="" />
+			<img src="/images/about/image 61.svg" alt="" />
+			<img src="/images/about/img (2).svg" alt="" />
+			<img src="/images/about/image 60.svg" alt="" />
 		</div>
 
 		<div class="sect-2 bg-cblue-100 relative">
@@ -100,9 +99,9 @@
 
 			<div class="mt-16">
 				<div
-					class="flex xl:flex-row flex-col flex-col-reverse xl:gap-0 gap-9 items-center justify-between"
+					class="flex xl:flex-row flex-col-reverse items-center justify-between"
 				>
-					<div class="cw-664">
+					<div class="cw-664 xl:mt-0 mt-9">
 						<div class="flex flex-row items-start cw-664 mb-9">
 							<div class="p-3 bg-razzmataz-pry">
 								<img class="bg-white" src="/images/checkmark.svg" alt="" />
@@ -112,8 +111,8 @@
 							</div>
 						</div>
 
-						<div class="flex items-center gap-4 mb-4">
-							<img src="/images/checkmark.svg" alt="" />
+						<div class="flex items-start mb-4">
+							<img class="mr-4" src="/images/checkmark.svg" alt="" />
 							<h4 class="text-razzmataz-pry">Hospitals/Clinics</h4>
 						</div>
 						<p class="mb-9">
@@ -122,8 +121,8 @@
 							connect with third-party providers and patients for better care
 							coordination.
 						</p>
-						<div class="flex items-center gap-4 mb-4">
-							<img src="/images/checkmark.svg" alt="" />
+						<div class="flex items-start mb-4">
+							<img class="mr-4" src="/images/checkmark.svg" alt="" />
 							<h4 class="text-razzmataz-pry">Solo Practice</h4>
 						</div>
 						<p class="mb-9">
@@ -131,8 +130,8 @@
 							patient experience management, and collaborations tools for better
 							care coordination and operate from anywhere.
 						</p>
-						<div class="flex items-center gap-4 mb-4">
-							<img src="/images/checkmark.svg" alt="" />
+						<div class="flex items-start mb-4">
+							<img class="mr-4" src="/images/checkmark.svg" alt="" />
 							<h4 class="text-razzmataz-pry">Community Pharmacies</h4>
 						</div>
 						<p class="mb-9">
@@ -141,8 +140,8 @@
 							doctors, manage online sales, collaborate, and deliver superior
 							patient experience.
 						</p>
-						<div class="flex items-center gap-4 mb-4">
-							<img src="/images/checkmark.svg" alt="" />
+						<div class="flex items-start mb-4">
+							<img class="mr-4" src="/images/checkmark.svg" alt="" />
 							<h4 class="text-razzmataz-pry">Community Labs</h4>
 						</div>
 						<p class="mb-9">
@@ -172,8 +171,8 @@
 								<h3 class="c-indigo">Patients</h3>
 							</div>
 						</div>
-						<div class="flex items-center gap-4 mb-4">
-							<img src="/images/checkmark.svg" alt="" />
+						<div class="flex items-start mb-4">
+							<img class="mr-4" src="/images/checkmark.svg" alt="" />
 							<h4 class="text-razzmataz-pry">
 								Private (Individuals & Families)
 							</h4>
@@ -184,8 +183,8 @@
 							allergies, historical vitals, medications, test results, bills,
 							insurance data, and control of your health records.
 						</p>
-						<div class="flex items-center gap-4 mb-4">
-							<img src="/images/checkmark.svg" alt="" />
+						<div class="flex items-start mb-4">
+							<img class="mr-4" src="/images/checkmark.svg" alt="" />
 							<h4 class="text-razzmataz-pry">Employers & Employees</h4>
 						</div>
 						<p class="mb-9">
@@ -236,7 +235,7 @@
 						We are fully committed to equitable and affordable access to quality
 						healthcare and well-being, and we only succeed when you do. To this
 						end, we will provide the support and assistance that guarantees
-						patients’ health, safety, and well-being.
+						patients' health, safety, and well-being.
 					</p>
 				</div>
 			</div>
@@ -245,11 +244,10 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-export default Vue.extend({
-  name: "AboutPage",
-  components: {},
-})
+import { Component, Vue } from "nuxt-property-decorator"
+
+@Component
+export default class AboutPage extends Vue {}
 </script>
 
 <style scoped>
@@ -290,23 +288,23 @@ export default Vue.extend({
   }
 
   .sect-1 {
-  height: auto;
-  background: #fff;
-  margin-left: 36px;
-  margin-right: 36px;
-  margin-top: 0px;
-  margin-bottom: 44px;
-  padding: 0px;
-}
+    height: auto;
+    background: #fff;
+    margin-left: 36px;
+    margin-right: 36px;
+    margin-top: 0px;
+    margin-bottom: 44px;
+    padding: 0px;
+  }
 
-.sect-3 {
-  padding-left: 36px;
-  padding-right: 36px;
-}
+  .sect-3 {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
 
-.sect-2 {
-  padding-left: 36px;
-  padding-right: 36px;
-}
+  .sect-2 {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
 }
 </style>

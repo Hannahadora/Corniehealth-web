@@ -3,16 +3,24 @@
 		<div class="w-full flex items-center justify-between">
 			<CornieLogo />
 			<ul class="header-nav xl:flex hidden items-center justify-between">
-				<li>
-					<NuxtLink class="mr-6 pb-2" to="/Appointments">Appointments</NuxtLink>
+				<li class="mr-6">
+					<NuxtLink class="pb-2" to="/appointments">Appointments</NuxtLink>
 				</li>
-				<li><NuxtLink class="mr-6 pb-2" to="/Pharmacy">Pharmacy</NuxtLink></li>
-				<li><NuxtLink class="mr-6 pb-2" to="/LabTest">Lab tests</NuxtLink></li>
-				<li id="padwn" v-click-outside="closePatientDropdown" class="relative">
-					<span class="mr-6 flex items-center">
+				<li class="mr-6">
+					<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
+				</li>
+				<li class="mr-6">
+					<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
+				</li>
+				<li
+					id="padwn"
+					v-click-outside="closePatientDropdown"
+					class="relative mr-6"
+				>
+					<span class="flex items-center">
 						<NuxtLink
 							to="/patients"
-							:class="{ 'nuxt-link-exact-active': patientDropdown === true }"
+							:class="{ 'nuxt-link-active': patientDropdown === true }"
 							class=""
 						>
 							For Patients
@@ -34,7 +42,7 @@
 					<span class="mr-6 flex items-center">
 						<NuxtLink
 							to="/providers"
-							:class="{ 'nuxt-link-exact-active': providerDropdown === true }"
+							:class="{ 'nuxt-link-active': providerDropdown === true }"
 							class=""
 						>
 							For Providers
@@ -53,9 +61,13 @@
 					/>
 				</li>
 			</ul>
-			<div class="flex items-center xl:flex hidden">
-				<c-button type="button" class="mr-2" title="Login" :primary="true" @click="goToLogin" />
-				<c-button type="button" title="Sign up for free" :secondary="true" @click="goToSignup" />
+			<div class="items-center xl:flex hidden">
+				<c-button type="button" class="mr-2" :primary="true" @click="goToLogin">
+					Sign in
+				</c-button>
+				<c-button type="button" :secondary="true" @click="goToSignup">
+					Sign up for free
+				</c-button>
 			</div>
 			<div class="xl:hidden block menu-icon">
 				<img
@@ -80,10 +92,10 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from "vue"
 import vClickOutside from "v-click-outside"
-import CButton from "./CButton.vue"
+// import CButton from "./CButton.vue"
 import CornieLogo from "./CornieLogo.vue"
 import MobileNav from "./MobileNav.vue"
 import PatientsDropdown from "./PatientsDropdown.vue"
@@ -93,7 +105,7 @@ export default Vue.extend({
   name: "TopNav",
   components: {
     CornieLogo,
-    CButton,
+
     PatientsDropdown,
     ProvidersDropdown,
     MobileNav,
@@ -121,12 +133,15 @@ export default Vue.extend({
     closeProviderDropdown() {
       this.providerDropdown = false
     },
+
     goToLogin() {
-      location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+    //   this.$router.push("/signin"); 
+	  location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signin"
     },
+
     goToSignup() {
-      location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signup"
-    }
+      this.$router.push("/signup"); 
+    },
   },
 })
 </script>
@@ -139,7 +154,7 @@ export default Vue.extend({
   z-index: 998;
 }
 
-a.nuxt-link-exact-active {
+a.nuxt-link-active {
   border-bottom: 3px solid #fe4d3c;
 }
 

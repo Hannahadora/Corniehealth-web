@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   bridge: false,
   target: "static",
   // Global page headers: https://go.nuxtjs.dev/config-head
+
   head: {
     title: "booking-site",
     htmlAttrs: {
@@ -17,19 +18,23 @@ export default defineNuxtConfig({
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      { rel: "stylesheet", type: "text/css", href: "/style.css" },
+      { rel: "stylesheet", type: "text/css", href: "/css/style.css" },
+      { rel: "stylesheet", type: "text/css", href: "/css/tooltip.css" },
     ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    // '~/plugins/choices.ts', 
+    // '~/plugins/choices.ts',
     // '~/plugins/utils.ts'
     { src: "~/plugins/utils.js", mode: "client" },
-    { src: "~/plugins/choices.js", mode: "client" }
+    { src: "~/plugins/vee-validate.js", mode: "client" },
+    { src: "~/plugins/choices.js", mode: "client" },
+    { src: "~/plugins/vue-awesome-swiper", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -39,6 +44,7 @@ export default defineNuxtConfig({
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     "@nuxtjs/tailwindcss",
+    "@nuxt/typescript-build",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -50,5 +56,7 @@ export default defineNuxtConfig({
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: ["vee-validate/dist/rules"],
+  },
 })

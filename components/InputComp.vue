@@ -1,45 +1,70 @@
 <template>
-	<div class="input-wrapper flex items-center p-4">
-		<img class="mr-7" :src="inputIcon" alt="">
-		<input class="c-input" type="text" :placeholder="placeholder">
+	<div class="input-wrapper flex items-center py-4 px-5">
+		<img class="xl:mr-6 mr-4" :src="inputIcon" alt="" />
+		<input
+			:modelValue="modelValue"
+			:type="type"
+			:placeholder="placeholder"
+			:required="required"
+			class="w-10/12 focus:outline-none  text-sm"
+			@input="$emit('input', $event.target.value)"
+		/>
 	</div>
 </template>
 
-<script lang="ts">
-import Vue from "vue"
-export default Vue.extend({
+<script>
+export default {
   name: "InputComp",
+  inheritAttrs: false,
   props: {
     inputIcon: {
       type: String,
-      default: ""
+      default: "",
     },
     placeholder: {
       type: String,
-      default: ""
-    }
-  }
-})
+      default: "",
+    },
+    modelValue: {
+      type: String,
+      default: "",
+    },
+    type: {
+      type: String,
+      default: "text",
+    },
+    required: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    text: {
+      get() {
+        return this.modelValue
+      },
+      set(val) {
+        this.$emit("update:modelValue", val)
+      },
+    },
+  },
+}
 </script>
 
 <style scoped>
-  .input-wrapper {
-    border: 1px solid #000;
-    border-radius: 4px;
-  }
+.input-wrapper {
+  border: 1px solid #c5c4d4;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
 
+.c-input {
+  border: red;
+}
+
+@media screen and (max-width: 1024px) {
   .c-input {
-    border: none;
+    font-size: 14px !important;
   }
-
-  .c-input:focus {
-    outline: none;
-  }
-
-  @media screen and (max-width: 1024px) {
-    .c-input {
-      width: inherit;
-      font-size: 14px !important;
-    }
-  }
+}
 </style>

@@ -104,42 +104,15 @@
 			</div>
 		</div>
 
-		<div class="my-24 c-wrapper">
-			<div
-				class="bg-c-indigo px-7 py-16 rounded-2xl flex xl:flex-row flex-col xl:items-center items-start xl:justify-between justify-center"
-			>
-				<div class="text-white xl:mb-0 mb-12">
-					<h2 class="mb-2">Ready to boost your practice?</h2>
-					<p class="mb-12">
-						Get started for free. We only make money when your practice thrives.
-					</p>
-					<div class="flex items-center justify-start">
-						<div class="w-auto xl:mr-6 mr-4">
-							<c-button
-								title="Sign up for free"
-								:secondary="true"
-								:small="true"
-							/>
-						</div>
-						<div class="w-auto">
-							<c-button title="Contact Us" :primary="true" :small="true" />
-						</div>
-					</div>
-				</div>
-
-				<div>
-					<img src="/images/patient-experience/image 30.svg" alt="" />
-				</div>
-			</div>
-		</div>
+		<ProductsFooter2 />
 	</div>
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-import CButton from "../../../components/CButton.vue"
-export default Vue.extend({
-  name: "PracticeMangement",
-  components: { CButton },
+import { Component, Vue } from "nuxt-property-decorator"
+import ProductsFooter2 from "../../../components/Providers/ProductsFooter2.vue"
+@Component({
+  components: { ProductsFooter2 },
 })
+export default class PracticeManagement extends Vue {}
 </script>

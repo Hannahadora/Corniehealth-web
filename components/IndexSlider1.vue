@@ -20,10 +20,11 @@
 			</div>
 		</div>
 
-		<hooper :settings="hooperSettings" class="mt-20">
+		<div class="mt-20 xl:hidden block">
+      <hooper :settings="hooperSettings">
 			<slide
 				v-for="(offer, index) in offers"
-				:key="index"  class="h-80 flex flex-col justify-center items-center bg-razzmataz-pry px-6 py-8 border-r border-white">
+				:key="index"  class="h-80 flex flex-col justify-center items-center text-white bg-razzmataz-pry px-6 py-8 border-r border-white">
 				<div class="flex items-center xl:justify-start justify-center">
 					<img class="mb-4" :src="offer.image" alt="" />
 				</div>
@@ -37,6 +38,7 @@
 
 			<hooper-pagination slot="hooper-addons"></hooper-pagination>
 		</hooper>
+    </div>
 	</div>
 </template>
 
@@ -83,6 +85,23 @@ export default {
           text: "Frequent lab visits are so old school. Access your diagnostic results, accompanying doctor's notes InApp.",
         },
       ],
+      hooperSettings: {
+        itemsToShow: 1,
+        centerMode: true,
+        breakpoints: {
+          1280: {
+            itemsToShow: 3,
+          },
+
+          1024: {
+            itemsToShow: 2,
+          },
+
+          768: {
+            itemsToShow: 1,
+          },
+        },
+      },
     }
   },
 }

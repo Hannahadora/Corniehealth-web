@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div
-			class="my-12 mx-6 grid xl:grid-cols-4 grid-cols-2 hidden gap-2"
+			class="my-12 mx-6 xl:grid xl:grid-cols-4 grid-cols-2 hidden gap-2"
 		>
 			<div
 				v-for="(choice, index) in choices"

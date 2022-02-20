@@ -106,3 +106,13 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.hooper-list {
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 100%;
+  max-height: 350px;
+  margin: auto;
+}
+</style>

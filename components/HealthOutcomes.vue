@@ -88,4 +88,12 @@ export default {
 .choices:hover img {
   filter: grayscale(1) invert(1) !important;
 }
+
+.hooper-list {
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 100%;
+  max-height: 350px;
+  margin: auto;
+}
 </style>

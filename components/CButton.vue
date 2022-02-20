@@ -1,18 +1,19 @@
 <template>
-	<button
-		:type="type"
-		class="btn"
-		:class="{
-			'primary-btn': primary,
-			'secondary-btn': secondary,
-			'tertiary-btn': tertiary,
-			'small-btn': small,
-			'rounded-btn': rounded,
-		}"
-		@click="$emit('click')"
-	>
-		<slot></slot>
-	</button>
+  <button
+    :type="type"
+    class="btn"
+    :class="{
+      'primary-btn': primary,
+      'secondary-btn': secondary,
+      'tertiary-btn': tertiary,
+      'small-btn': small,
+      'rounded-btn': rounded,
+    }"
+    :disabled="disabled"
+    @click="$emit('click')"
+  >
+    <slot></slot>
+  </button>
 </template>
 
 <script lang="ts">
@@ -23,6 +24,10 @@ export default Vue.extend({
     type: {
       type: String,
       default: "button",
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
     primary: {
       type: Boolean,
@@ -60,6 +65,12 @@ export default Vue.extend({
   padding: 10px 54px;
   border: 1px solid #080056;
   color: #080056;
+}
+
+.btn[disabled] {
+  background: #e1e3ea;
+  border-radius: 12px;
+  color: #949eb8;
 }
 
 .secondary-btn {

@@ -6,11 +6,13 @@
 				<li class="mr-6">
 					<NuxtLink class="pb-2" to="/appointments">Appointments</NuxtLink>
 				</li>
-				<li class="mr-6">
-					<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
+				<li class="mr-6 tooltip">
+					<span class="tooltiptext">Coming soon</span>
+					<span class="pb-2">Pharmacy</span>
 				</li>
-				<li class="mr-6">
-					<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
+				<li class="mr-6 tooltip">
+					<span class="tooltiptext">Coming soon</span>
+					<span class="pb-2">Lab tests</span>
 				</li>
 				<li
 					id="padwn"
@@ -18,13 +20,13 @@
 					class="relative mr-6"
 				>
 					<span class="flex items-center">
-						<NuxtLink
-							to="/patients"
+						<span
 							:class="{ 'nuxt-link-active': patientDropdown === true }"
-							class=""
+							class="tooltip"
 						>
 							For Patients
-						</NuxtLink>
+							<span class="tooltiptext">Coming soon</span>
+						</span>
 						<img
 							class="ml-2 cursor-pointer"
 							src="/images/bx_bx-chevron-down.svg"
@@ -62,9 +64,9 @@
 				</li>
 			</ul>
 			<div class="items-center xl:flex hidden">
-				<c-button type="button" class="mr-2" :primary="true" @click="goToLogin">
-					Sign in
-				</c-button>
+				<!-- <c-button type="button" class="mr-2" :primary="true" @click="goToLogin">
+          Sign in
+        </c-button> -->
 				<c-button type="button" :secondary="true" @click="goToSignup">
 					Sign up for free
 				</c-button>
@@ -134,13 +136,14 @@ export default Vue.extend({
       this.providerDropdown = false
     },
 
-    goToLogin() {
-    //   this.$router.push("/signin"); 
-	  location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signin"
-    },
+    // goToLogin() {
+    //   //   this.$router.push("/signin");
+    //   location.href =
+    //     "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signin"
+    // },
 
     goToSignup() {
-      this.$router.push("/signup"); 
+      this.$router.push("/signup")
     },
   },
 })
@@ -164,6 +167,15 @@ a.nuxt-link-active {
 
 .menu-icon {
   z-index: 999999999;
+}
+
+.tooltip {
+	cursor: pointer !important;
+}
+
+.tooltiptext {
+	background: #fe4d3c !important;
+	color: #fff !important;
 }
 
 @media screen and (max-width: 1024px) {

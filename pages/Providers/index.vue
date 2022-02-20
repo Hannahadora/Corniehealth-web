@@ -187,7 +187,7 @@
 			</div>
 
 			<div
-				class="my-12 mx-6 grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-x-6 gap-y-16"
+				class="mt-12 mb-20 mx-6 grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-x-6 gap-y-16"
 			>
 				<div
 					v-for="(priviledge, index) in providerPriviledges"
@@ -204,17 +204,7 @@
 				</div>
 			</div>
 
-			<div class="text-center mb-10 mt-16 xl:w-2/3 w-full mx-auto">
-				<h2 class="c-indigo">Experience our patient portal via</h2>
-				<div class="mt-12 flex items-center justify-center">
-					<div class="w-auto mr-6">
-						<c-button type="button" secondary small>CornieCare.com</c-button>
-					</div>
-					<div class="w-auto">
-						<c-button type="button" primary small>Contact Us</c-button>
-					</div>
-				</div>
-			</div>
+			
 
 			<div class="info-container py-4 px-6 border-none flex items-center mb-9">
 				<div class="mr-12">

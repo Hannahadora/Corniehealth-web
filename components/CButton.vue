@@ -1,19 +1,19 @@
 <template>
-  <button
-    :type="type"
-    class="btn"
-    :class="{
-      'primary-btn': primary,
-      'secondary-btn': secondary,
-      'tertiary-btn': tertiary,
-      'small-btn': small,
-      'rounded-btn': rounded,
-    }"
-    :disabled="disabled"
-    @click="$emit('click')"
-  >
-    <slot></slot>
-  </button>
+	<button
+		:type="type"
+		class="btn"
+		:class="{
+			'primary-btn': primary,
+			'secondary-btn': secondary,
+			'tertiary-btn': tertiary,
+			'small-btn': small,
+			'rounded-btn': rounded,
+		}"
+		:disabled="disabled"
+		@click="$emit('click')"
+	>
+		<slot></slot>
+	</button>
 </template>
 
 <script lang="ts">

@@ -1,77 +1,77 @@
 <template>
-  <div>
-    <hooper class="mb-8">
-      <slide>
-        <select-dropdown
-          class=""
-          head-text="Doctors"
-          icon="/images/book-appointment/icon-doctor-grey.png"
-          :options="specialty"
-        />
-      </slide>
-      <slide>
-        <select-dropdown
-          class=""
-          head-text="Location"
-          icon="/images/book-appointment/icon-location-grey.png"
-          :options="location"
-        />
-      </slide>
-      <slide>
-        <select-dropdown
-          class="w-auto"
-          head-text="Hospital"
-          icon="/images/book-appointment/icon-hospital-grey.png"
-          :options="hospital"
-        />
-      </slide>
-      <slide
-        ><select-dropdown
-          class=""
-          head-text="Experience"
-          icon="/images/book-appointment/icon-experience-grey.png"
-          :options="experience"
-      /></slide>
-      <slide>
-        <select-dropdown
-          class=""
-          head-text="Visit Type"
-          icon="/images/book-appointment/icon-visit-grey.png"
-          :options="visitType"
-        />
-      </slide>
-      <slide>
-        <select-dropdown
-          class=""
-          head-text="Insurance"
-          icon="/images/book-appointment/icon-insurance-grey.png"
-          :options="insurance"
-        />
-      </slide>
-      <slide>
-        <select-dropdown
-          class=""
-          head-text="Language"
-          icon="/images/book-appointment/icon-lang-grey.png"
-          :options="language"
-        />
-      </slide>
-      <slide>
-        <select-dropdown
-          class=""
-          head-text="Gender"
-          icon="/images/book-appointment/icon-gender-grey.png"
-          :options="gender"
-        />
-      </slide>
-    </hooper>
-  </div>
+	<div>
+		<hooper class="mb-8">
+			<slide>
+				<select-dropdown
+					class=""
+					head-text="Doctors"
+					icon="/images/book-appointment/icon-doctor-grey.png"
+					:options="specialty"
+				/>
+			</slide>
+			<slide>
+				<select-dropdown
+					class=""
+					head-text="Location"
+					icon="/images/book-appointment/icon-location-grey.png"
+					:options="location"
+				/>
+			</slide>
+			<slide>
+				<select-dropdown
+					class="w-auto"
+					head-text="Hospital"
+					icon="/images/book-appointment/icon-hospital-grey.png"
+					:options="hospital"
+				/>
+			</slide>
+			<slide
+			><select-dropdown
+				class=""
+				head-text="Experience"
+				icon="/images/book-appointment/icon-experience-grey.png"
+				:options="experience"
+			/></slide>
+			<slide>
+				<select-dropdown
+					class=""
+					head-text="Visit Type"
+					icon="/images/book-appointment/icon-visit-grey.png"
+					:options="visitType"
+				/>
+			</slide>
+			<slide>
+				<select-dropdown
+					class=""
+					head-text="Insurance"
+					icon="/images/book-appointment/icon-insurance-grey.png"
+					:options="insurance"
+				/>
+			</slide>
+			<slide>
+				<select-dropdown
+					class=""
+					head-text="Language"
+					icon="/images/book-appointment/icon-lang-grey.png"
+					:options="language"
+				/>
+			</slide>
+			<slide>
+				<select-dropdown
+					class=""
+					head-text="Gender"
+					icon="/images/book-appointment/icon-gender-grey.png"
+					:options="gender"
+				/>
+			</slide>
+		</hooper>
+	</div>
 </template>
 
 <script>
 // import CSwiper from "./CSwiper.vue"
 
-import { Hooper, Slide, Pagination as HooperPagination } from "hooper"
+import { Hooper, Slide } from "hooper"
 import "hooper/dist/hooper.css"
 
 export default {
@@ -80,7 +80,6 @@ export default {
     // CSwiper,
     Hooper,
     Slide,
-    HooperPagination,
   },
 
   data() {

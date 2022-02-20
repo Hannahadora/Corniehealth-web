@@ -109,7 +109,7 @@ export default {
       this.agree = val
     },
     async submit() {
-		this.$router.push('/book-appointment/book-a-doctor/step2')
+      this.$router.push("/book-appointment/book-a-doctor/step2")
       try {
         this.disabled = true
         const response = await this.$axios.post(

@@ -67,10 +67,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
+import { namespace } from "vuex-class"
 import CButton from "~/components/CButton.vue"
 import Cornieradio from "~/components/cornieradio.vue"
 
-import { namespace } from "vuex-class"
 
 const appointment = namespace("appointment")
 @Component({
@@ -79,7 +79,7 @@ const appointment = namespace("appointment")
 })
 export default class BookDoctorPage extends Vue {
   bookedPractitionerBefore: string = ""
-//   bookedPractitionerBefore: string = ""
+  //   bookedPractitionerBefore: string = ""
   selectedDate: string = ""
   selectedTime: string = ""
   availableDays: Array<any> = []
@@ -117,16 +117,16 @@ export default class BookDoctorPage extends Vue {
   }
 
   @appointment.Getter
-  getSelectedTime!: "";
+    getSelectedTime!: "";
 
   @appointment.Getter
-  getSelectedDate!: "";
+    getSelectedDate!: "";
 
   created(): void {
     this.getAvailableDays()
     this.getAvailableTime()
-	this.selectedTime = this.getSelectedTime
-	this.selectedDate = this.getSelectedDate
+    this.selectedTime = this.getSelectedTime
+    this.selectedDate = this.getSelectedDate
   }
 
 }

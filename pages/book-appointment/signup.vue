@@ -12,11 +12,11 @@
 						class="w-full h-auto bg-white rounded-md shadow-md p-5 overflow-hidden"
 					>
 						<h2 class="text-sm text-primary">Create Account</h2>
-                        <div class="my-4 p-4 bg-cblue-100">
-                            <span>
-                                You must be 18 or older to create a CornieCare Patient Online account. Parents must create dependent accounts for patients under 18.
-                            </span>
-                        </div>
+						<div class="my-4 p-4 bg-cblue-100">
+							<span>
+								You must be 18 or older to create a CornieCare Patient Online account. Parents must create dependent accounts for patients under 18.
+							</span>
+						</div>
 						<form class="h-auto mt-10" @submit.prevent="submit">
 							<div class="md:grid grid-cols-12 gap-3">
 								<div class="col-span-6 mb-3">
@@ -163,7 +163,7 @@ export default {
       this.agree = val
     },
     async submit() {
-		this.$router.push('/book-appointment/book-a-doctor/step2')
+      this.$router.push("/book-appointment/book-a-doctor/step2")
       try {
         this.disabled = true
         const response = await this.$axios.post(

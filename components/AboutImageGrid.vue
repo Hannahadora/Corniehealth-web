@@ -1,31 +1,31 @@
 <template>
-  <div>
-    <div class="xl:grid hidden grid-cols-4">
-      <img src="/images/about/image 62.svg" alt="" />
-      <img src="/images/about/image 61.svg" alt="" />
-      <img src="/images/about/img (2).svg" alt="" />
-      <img src="/images/about/image 60.svg" alt="" />
-    </div>
+	<div>
+		<div class="xl:grid hidden grid-cols-4">
+			<img class="w-full" src="/images/about/image 62.svg" alt="" />
+			<img class="w-full" src="/images/about/image 61.svg" alt="" />
+			<img class="w-full" src="/images/about/img (2).svg" alt="" />
+			<img class="w-full" src="/images/about/image 60.svg" alt="" />
+		</div>
 
-    <div class="xl:hidden block">
-      <hooper :settings="hooperSettings">
-        <slide>
-          <img src="/images/about/image 62.svg" alt="" />
-        </slide>
-        <slide>
-          <img src="/images/about/image 61.svg" alt="" />
-        </slide>
-        <slide>
-          <img src="/images/about/img (2).svg" alt="" />
-        </slide>
-        <slide>
-          <img src="/images/about/image 60.svg" alt="" />
-        </slide>
+		<div class="xl:hidden block">
+			<hooper :settings="hooperSettings">
+				<slide>
+					<img src="/images/about/image 62.svg" alt="" />
+				</slide>
+				<slide>
+					<img src="/images/about/image 61.svg" alt="" />
+				</slide>
+				<slide>
+					<img src="/images/about/img (2).svg" alt="" />
+				</slide>
+				<slide>
+					<img src="/images/about/image 60.svg" alt="" />
+				</slide>
 
-        <hooper-navigation slot="hooper-addons"></hooper-navigation>
-      </hooper>
-    </div>
-  </div>
+				<hooper-navigation slot="hooper-addons"></hooper-navigation>
+			</hooper>
+		</div>
+	</div>
 </template>
 
 <script>

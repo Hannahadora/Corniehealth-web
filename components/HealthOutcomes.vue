@@ -85,7 +85,7 @@ export default {
   border-radius: 8px;
 }
 
-.choices:hover img {
+.choices:hover img {  
   filter: grayscale(1) invert(1) !important;
 }
 

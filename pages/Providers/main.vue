@@ -225,7 +225,7 @@
 				</div>
 			</div>
 
-			<div class="grid grid-cols-6 gap-6">
+			<div class="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 gridcols-1 gap-6">
 				<NuxtLink to="/providers/products/patient-experience">
 					<div class="mb-6 img-rack">
 						<img src="/images/providers/Nasal spray-rafiki 1.png" alt="" />

@@ -21,24 +21,24 @@
 		</div>
 
 		<div class="mt-20 xl:hidden block">
-      <hooper :settings="hooperSettings">
-			<slide
-				v-for="(offer, index) in offers"
-				:key="index"  class="h-80 flex flex-col justify-center items-center text-white bg-razzmataz-pry px-6 py-8 border-r border-white">
-				<div class="flex items-center xl:justify-start justify-center">
-					<img class="mb-4" :src="offer.image" alt="" />
-				</div>
-				<div class="h-16">
-					<span class="sub-titles-1">{{ offer.title }}</span>
-				</div>
-				<p class="mt-4">
-					{{ offer.text }}
-				</p>
-			</slide>
+			<hooper :settings="hooperSettings">
+				<slide
+					v-for="(offer, index) in offers"
+					:key="index"  class="h-80 flex flex-col justify-center items-center text-white bg-razzmataz-pry px-6 py-8 border-r border-white">
+					<div class="flex items-center xl:justify-start justify-center">
+						<img class="mb-4" :src="offer.image" alt="" />
+					</div>
+					<div class="h-16">
+						<span class="sub-titles-1">{{ offer.title }}</span>
+					</div>
+					<p class="mt-4">
+						{{ offer.text }}
+					</p>
+				</slide>
 
-			<hooper-pagination slot="hooper-addons"></hooper-pagination>
-		</hooper>
-    </div>
+				<hooper-pagination slot="hooper-addons"></hooper-pagination>
+			</hooper>
+		</div>
 	</div>
 </template>
 
@@ -106,3 +106,13 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.hooper-list {
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 100%;
+  max-height: 350px;
+  margin: auto;
+}
+</style>

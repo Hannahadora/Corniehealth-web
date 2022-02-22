@@ -15,8 +15,8 @@
 					and other healthcare providers.
 				</h1>
 				<p class="mb-14 xl:w-3/5 w-full mx-auto">
-					Explore our curated options and instantly book your preferred
-					provider. No calls or messages are required.
+					View all practice information and ratings, no calls or messaging
+					required
 				</p>
 
 				<img

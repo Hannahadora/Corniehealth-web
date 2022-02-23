@@ -82,7 +82,7 @@
                     @change="handleAgree"
                   />
                   <div class="text-sm">
-                    I agree to CornieHealth's
+                    I agree to Cornie Health
                     <a href="#" class="text-red-400">Terms of service</a> and
                     <a href="#" class="text-red-400">Privacy policy</a>
                   </div>
@@ -122,7 +122,7 @@
       <template #banner>
         <div class="flex justify-center items-center">
           <heart-pulse class="mr-3" />
-          <div class="text-xs">Connected. Patient-Centric. Supportive.</div>
+          <div class="text-xs">Connected. Patient-Centric. Supportive</div>
         </div>
         <div class="text-center text-2xl font-bold">
           Connected, Simple Practice Management Software.

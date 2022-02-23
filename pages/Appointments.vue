@@ -15,8 +15,8 @@
 					and other healthcare providers.
 				</h1>
 				<p class="mb-14 xl:w-3/5 w-full mx-auto">
-					Explore our curated options and instantly book your preferred
-					provider. No calls or messages are required.
+					View all practice information and ratings, no calls or messaging
+					required
 				</p>
 
 				<img
@@ -85,46 +85,9 @@
 		</div>
 
 		<div class="c-wrapper xl:mt-0 mt-16">
-			<div class="xl:grid block grid-cols-5 text-white bg-razzmataz-pry py-2">
-				<div
-					class="px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
-				>
-					<img class="mb-4" src="/images/book-appointment.svg" alt="" />
-					<span class="sub-titles-1">Manage Appointments</span>
-				</div>
-				<div
-					class="tooltip px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
-				>
-					<span class="tooltiptext">Coming soon</span>
-					<img
-						class="mb-4"
-						src="/images/appointments/healthicons_doctor-male-outline.png"
-						alt=""
-					/>
-					<span class="sub-titles-1">Shop Pharmacy</span>
-				</div>
-				<div
-					class="tooltip px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
-				>
-					<span class="tooltiptext">Coming soon</span>
-					<img class="mb-4" src="/images/carbon_medication.svg" alt="" />
-					<span class="sub-titles-1">Book Lab Tests</span>
-				</div>
-				<div
-					class="tooltip px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
-				>
-					<span class="tooltiptext">Coming soon</span>
-					<img class="mb-4" src="/images/carbon_result.svg" alt="" />
-					<span class="sub-titles-1">Shop Plan</span>
-				</div>
-				<div
-					class="px-6 py-2 border-r border-white xl:block flex flex-col items-center justify-center"
-				>
-					<img class="mb-4" src="/images/carbon_result.svg" alt="" />
-					<span class="sub-titles-1">My Health Records</span>
-				</div>
-			</div>
 
+			<appoint-slider-1 />
+			
 			<div class="text-center xl:w-1/2 w-full mx-auto mt-20 xl:mb-24 mb-16">
 				<h2 class="c-indigo">
 					Our service is free. We deliver affordable healthcare, at no extra

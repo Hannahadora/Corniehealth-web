@@ -1,5 +1,5 @@
 <template>
-	<div class="relative">
+	<div id="mainG" class="relative">
 		<div
 			class="select-wrapper"
 			:class="{ active: active }"
@@ -56,7 +56,8 @@
 import { Component, Vue } from "nuxt-property-decorator"
 import CornieCheckbox from "./CornieCheckbox.vue"
 
-// import { vClickOutside } from "v-click-outside"
+import { clickOutside } from "@/plugins/my-clickoutside"
+
 @Component({
   components: { CornieCheckbox },
   props: {
@@ -80,8 +81,6 @@ export default class SelectDropdown extends Vue {
   selected: String = ""
   optionIds: Array<any> = []
 
-  // clickOutside: vClickOutside.directive
-
   selectOption(option: any) {
     // this.option = true
     this.selected = option
@@ -91,6 +90,12 @@ export default class SelectDropdown extends Vue {
 
   closeOption() {
     this.openOption = false
+  }
+
+  mounted() {
+    clickOutside("mainG", () => {
+      this.openOption = false
+    })
   }
 
   created() {

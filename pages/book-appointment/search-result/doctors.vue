@@ -1,62 +1,13 @@
 <template>
 	<div>
-		<div
-			class="grid xl:grid-cols-8 grid-cols-2 gap-4 items-center justify-between mb-12"
-		>
-			<select-dropdown
-				class=""
-				head-text="Doctors"
-				icon="/images/book-appointment/icon-doctor-grey.png"
-				:options="specialty"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Location"
-				icon="/images/book-appointment/icon-location-grey.png"
-				:options="location"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Hospital"
-				icon="/images/book-appointment/icon-hospital-grey.png"
-				:options="hospital"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Experience"
-				icon="/images/book-appointment/icon-experience-grey.png"
-				:options="experience"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Visit Type"
-				icon="/images/book-appointment/icon-visit-grey.png"
-				:options="visitType"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Insurance"
-				icon="/images/book-appointment/icon-insurance-grey.png"
-				:options="insurance"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Language"
-				icon="/images/book-appointment/icon-lang-grey.png"
-				:options="language"
-			/>
-			<select-dropdown
-				class=""
-				head-text="Gender"
-				icon="/images/book-appointment/icon-gender-grey.png"
-				:options="gender"
-			/>
-		</div>
+		<dropdowns-doctors-area />
 
 		<div
 			class="info-container xl:p-6 p-4 w-full flex xl:flex-row flex-col items-start mb-12"
 		>
-			<div class="xl:w-4/12 w-full xl:border-r border-b xl:pb-0 pb-8">
+			<div
+				class="xl:w-4/12 w-full xl:border-r xl:border-b-0 border-b xl:pb-0 pb-8"
+			>
 				<div class="flex items-center">
 					<img class="mr-4" src="/images/book-appointment/Avatar.png" alt="" />
 					<div class="">
@@ -170,7 +121,7 @@
 						v-for="(day, index) in availableDays"
 						:key="index"
 						class="text-center ap-card px-12 py-2 xl:w-auto w-full"
-						:class="{ 'ap-card-active': selectedDate === day }"
+						:class="{ 'ap-card-active': selectedDate === day.date }"
 						@click="handleDate(day)"
 					>
 						<span class="sub-titles-2">{{ day.date }}</span
@@ -224,80 +175,35 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
+import { namespace } from "vuex-class"
+import DropdownsDoctorsArea from "~/components/DropdownsDoctorsArea.vue"
+
+const appointment = namespace("appointment")
 @Component({
-  components: {},
+  components: {
+    DropdownsDoctorsArea,
+  },
 })
 export default class DoctorsPage extends Vue {
-  specialty: Array<any> = [
-    "All",
-    "Dentists",
-    "ENT",
-    "General Practice",
-    "Obstetricians & Gynecologists",
-    "Pedriatricians",
-    "Urologist",
-  ]
-
-  location: Array<any> = [
-    "Lagos",
-    "Abuja",
-    "Port Harcourt",
-    "Delta",
-    "Kwara",
-    "Ibadan",
-    "Calabar",
-    "Benin",
-  ]
-
-  hospital: Array<any> = [
-    "All",
-    "Blue Cross Hospital",
-    "Eko Hospital",
-    "Evercare Hospital",
-    "Lagoon Hospital",
-    "Good Times",
-    "Blue Foundation",
-    "New Times",
-  ]
-
-  experience: Array<any> = [
-    "All",
-    "1-5 years",
-    "6-10 years",
-    "11-15 years",
-    "16-20 years",
-  ]
-
-  visitType: Array<any> = [
-    "All",
-    "Option 1",
-    "Option 2",
-    "Option 3",
-    "Option 4",
-    "Option 5",
-  ]
-
-  insurance: Array<any> = [
-    "All",
-    "1-5 years",
-    "6-10 years",
-    "11-15 years",
-    "16-20 years",
-  ]
-
-  language: Array<any> = ["All", "English", "Yoruba", "Igbo", "Hausa"]
-  gender: Array<any> = ["All", "Male", "Female"]
-  selectedDate: string = ""
+  selectedDate: string = "Wed, 24 Nov"
   selectedTime: string = ""
   availableDays: Array<any> = []
   availableTime: Array<any> = []
 
+  @appointment.Mutation
+    SET_SELECTEDDATE!: (data: any) => void
+
+  @appointment.Mutation
+    SET_SELECTEDTIME!: (data: any) => void
+
   handleDate(val: any) {
-    this.selectedDate = val
+    this.selectedDate = val.date
+    this.SET_SELECTEDDATE(val.date)
   }
 
   handleTime(val: any) {
     this.selectedTime = val
+    this.SET_SELECTEDTIME(val)
   }
 
   getAvailableDays() {
@@ -325,8 +231,12 @@ export default class DoctorsPage extends Vue {
   }
 }
 </script>
-{
 
 <style scoped>
-
+.ap-card-active {
+  background: #f0f4fe;
+  border: 1px solid #080056;
+  box-shadow: 0px 15px 40px rgba(20, 31, 21, 0.04);
+  border-radius: 8px;
+}
 </style>

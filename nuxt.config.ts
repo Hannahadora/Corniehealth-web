@@ -29,8 +29,6 @@ export default defineNuxtConfig({
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    // '~/plugins/choices.ts',
-    // '~/plugins/utils.ts'
     { src: "~/plugins/utils.js", mode: "client" },
     { src: "~/plugins/choices.js", mode: "client" },
     { src: "~/plugins/vue-awesome-swiper", mode: "client" },
@@ -58,4 +56,15 @@ export default defineNuxtConfig({
   build: {
     transpile: ["vee-validate/dist/rules"],
   },
+
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  // axios: {},
+  // env
+  env: {
+    baseUrl: process.env.BASE_URL || "http://localhost:3000"
+  },
+  publicRuntimeConfig: {
+    baseUrl: process.env.BASE_URL
+  },
+
 })

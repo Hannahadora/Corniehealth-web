@@ -1,7 +1,6 @@
 import { GetterTree, ActionTree, MutationTree } from "vuex"
 // import { RootState } from './types'
 
-import axios from "~/plugins/axios";
 
 // const api = axios
 

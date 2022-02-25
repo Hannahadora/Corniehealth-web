@@ -256,7 +256,7 @@ export default {
     setupEventListener() {
       this.eventListener = e => {
         if (
-          e.target != this.$refs.dropdown &&
+          e.target !== this.$refs.dropdown &&
           !this.$refs.select.contains(e.target)
         ) {
           this.itemListVisible = false

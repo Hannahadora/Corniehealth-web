@@ -32,14 +32,13 @@ export const mutations: MutationTree<RootState> = {
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  registerPatient: async ({ commit, dispatch }, data) => {
+  registerPatient: async ({ commit }, data) => {
     commit("SET_LOADING", true);
     try {
-      const res = await api.post("/api/v1/")
+      const res = await api.post("/api/v1/", data)
       // if(res.status === 'true') {
       commit("SET_PATIENTS", res.data)
       // }
-      console.log(res)
       return res
     } catch (err) {
       console.log(err);
@@ -47,15 +46,14 @@ export const actions: ActionTree<RootState, RootState> = {
       commit("SET_LOADING", false);
     }
   },
-  verifyUser: async ({ commit, dispatch }, data) => {
+  verifyUser: async ({ commit }, data) => {
     commit("SET_LOADING", true);
     try {
-      const res = await api.post("/api/v1/")
+      const res = await api.post("/api/v1/", data)
       // if(res.status === 'true') {
       commit("SET_USER", res.data)
       // }
       return res
-      console.log(res)
     } catch (err) {
       console.log(err);
     } finally {

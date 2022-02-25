@@ -28,14 +28,13 @@ export const mutations: MutationTree<RootState> = {
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  findPractitioners: async ({ commit, dispatch }, search) => {
+  findPractitioners: async ({ commit }, search) => {
     commit("SET_LOADING", true);
     try {
       const res = await api.post(`/api/v1/booking-site_open/find?search=${search}`)
       // if(res.status === 'true') {
       commit("SET_PRACTITIONERS", res.data)
       // }
-      console.log(res)
     } catch (err) {
       console.log(err);
     } finally {

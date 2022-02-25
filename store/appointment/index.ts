@@ -1,38 +1,41 @@
-import { StoreOptions } from "vuex";
+import { GetterTree, ActionTree, MutationTree } from "vuex"
+// import { RootState } from './types'
 
-interface AppointmentState {
-  appointment: Array<any>;
-  selectedDate: String;
-  selectedTime: String;
 
+// const api = axios
+
+export const state = () => ({
+  appointment: [],
+  selectedDate: "",
+  selectedTime: ""
+})
+
+export type RootState = ReturnType<typeof state>
+
+export const getters: GetterTree<RootState, RootState> = {
+  getSelectedTime(state) {
+    return state.selectedTime
+  },
+  getSelectedDate(state) {
+    return state.selectedDate
+  }
 }
 
-export default {
-  namespaced: true,
-  state: {
-    appointment: [],
-    selectedDate: "",
-    selectedTime: ""
+export const mutations: MutationTree<RootState> = {
+  SET_SELECTEDDATE(state, data) {
+    state.selectedDate = data
+  },
+  SET_SELECTEDTIME(state, data) {
+    state.selectedTime = data
+  }
+}
+
+export const actions: ActionTree<RootState, RootState> = {
+  saveSelectedDate({ commit }, data: any) {
+    commit("SET_SELECTEDDATE", data)
+  },
+  saveSelectedTime({ commit }, data: any) {
+    commit("SET_SELECTEDTIME", data)
   },
 
-  getters: {
-    getSelectedTime(state) {
-      return state.selectedTime
-    },
-    getSelectedDate(state) {
-      return state.selectedDate
-    }
-  },
-
-  mutations: {
-    SET_SELECTEDDATE(state, data) {
-      state.selectedDate = data
-    },
-    SET_SELECTEDTIME(state, data) {
-      state.selectedTime = data
-    }
-  },
-  actions: {
-
-  },
-} as StoreOptions<AppointmentState>;
+}

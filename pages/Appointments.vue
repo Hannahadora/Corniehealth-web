@@ -316,7 +316,8 @@ export default class AppointmentPage extends Vue {
   cityName: String = ""
 
   goToBookingPage() {
-    this.$router.push("/book-appointment/search-result/doctors")
+    // this.$router.push("/book-appointment/search-result/doctors")
+    this.$store.dispatch("practitioners/findPractitioners", this.providerName)
   }
 
   goToSignup() {

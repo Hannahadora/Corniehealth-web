@@ -40,7 +40,7 @@
 		<div
 			class="grid xl:grid-cols-6 grid-cols-3 gap-6 items-center justify-between mt-6"
 		>
-			<divh
+			<div
 				v-for="(time, index) in availableTime"
 				:key="index"
 				class="time-card xl:px-8 px-6 py-2"
@@ -48,7 +48,7 @@
 				@click="handleTime(time)"
 			>
 				<span class="">{{ time }}</span>
-			</divh>
+			</div>
 		</div>
 
 		<div class="mt-12">
@@ -59,7 +59,7 @@
 				small
 				@click="$router.push('/book-appointment/signup')"
 			>
-				Continue
+				Sign up to continue
 			</c-button>
 		</div>
 	</div>

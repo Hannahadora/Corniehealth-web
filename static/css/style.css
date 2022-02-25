@@ -123,6 +123,9 @@ p {
 }
 
 
+#lcd .dropdown-list-wrapper {
+  right: 20px !important;
+}
 
 /* cards in book appointment screens */
 .ap-card {

@@ -11,7 +11,7 @@
 					<div
 						class="w-full h-auto bg-white rounded-md shadow-md p-5 overflow-hidden"
 					>
-						<h2 class="text-sm text-primary">Sign In to CornieHealth</h2>
+						<h2 class="text-sm text-primary">Sign In to Cornie Health</h2>
 
 						<form class="h-auto mt-10" @submit.prevent="submit">
 							<div class="">
@@ -69,7 +69,7 @@
 			<template #banner>
 				<div class="flex justify-center items-center">
 					<heart-pulse class="mr-3" />
-					<div class="text-xs">Connectd. Patient-Centric. Supportive.</div>
+					<div class="text-xs">Connected. Patient-Centric. Supportive.</div>
 				</div>
 				<div class="text-center text-2xl font-bold">
 					Connected, Simple Practice Management Software.

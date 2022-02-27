@@ -204,7 +204,7 @@ export default {
 <style scoped>
 .hooper-slide {
   width: auto !important;
-  padding: 0px 16px 0px 0px !important;
+  padding: 0px 5px 0px 0px !important;
 }
 
 .hooper-list {

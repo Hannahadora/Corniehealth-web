@@ -206,7 +206,7 @@
 
 			
 
-			<div class="info-container py-4 px-6 border-none flex items-center mb-9">
+			<div class="info-container py-4 px-6 border-none flex lg:flex-row flex-col items-center mb-9">
 				<div class="mr-12">
 					<img src="/images/providers/img.png" alt="" />
 				</div>
@@ -225,7 +225,7 @@
 				</div>
 			</div>
 
-			<div class="grid items-center xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 gridcols-1 gap-6">
+			<!-- <div class="grid items-center xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 gridcols-1 gap-6">
 				<NuxtLink to="/providers/products/patient-experience">
 					<div class="mb-6 img-rack">
 						<img src="/images/providers/Nasal spray-rafiki 1.png" alt="" />
@@ -262,7 +262,9 @@
 					</div>
 					<span class="sub-titles-2 c-indigo">Analytics</span>
 				</NuxtLink>
-			</div>
+			</div> -->
+
+			<provider-image-grid />
 
 			<div class="mt-28 flex items-center justify-center mb-36">
 				<div class="w-auto mr-6">

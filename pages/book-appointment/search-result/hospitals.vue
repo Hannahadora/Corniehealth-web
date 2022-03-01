@@ -1,37 +1,6 @@
 <template>
 	<div>
-		<div class="flex items-center mb-12">
-			<select-dropdown
-				class="mr-4"
-				head-text="Doctors"
-				icon="/images/book-appointment/icon-doctor-grey.png"
-				:options="specialty"
-			/>
-			<select-dropdown
-				class="mr-4"
-				head-text="Location"
-				icon="/images/book-appointment/icon-location-grey.png"
-				:options="location"
-			/>
-			<select-dropdown
-				class="mr-4"
-				head-text="Hospital"
-				icon="/images/book-appointment/icon-hospital-grey.png"
-				:options="hospital"
-			/>
-			<select-dropdown
-				class="mr-4"
-				head-text="Rating"
-				icon="/images/book-appointment/icon-rating-grey.png"
-				:options="rating"
-			/>
-			<select-dropdown
-				class="mr-4"
-				head-text="Insurance"
-				icon="/images/book-appointment/icon-insurance-grey.png"
-				:options="insurance"
-			/>
-		</div>
+		<hospitals-dropdown-area />
 
 		<div class="info-container p-6 mb-12">
 			<div class="flex items-center mb-8">
@@ -113,9 +82,7 @@
 					type="button"
 					secondary
 					small
-					@click="
-						$router.push({ path: '/book-appointment/hospital-profile' })
-					"
+					@click="$router.push({ path: '/book-appointment/hospital-profile' })"
 				>View Profile</c-button
 				>
 			</div>
@@ -129,53 +96,5 @@ import CButton from "~/components/CButton.vue"
 @Component({
   components: { CButton },
 })
-export default class HospitalsPage extends Vue {
-  specialty: Array<any> = [
-    "All",
-    "Dentists",
-    "ENT",
-    "General Practice",
-    "Obstetricians & Gynecologists",
-    "Pedriatricians",
-    "Urologist",
-  ]
-
-  location: Array<any> = [
-    "Lagos",
-    "Abuja",
-    "Port Harcourt",
-    "Delta",
-    "Kwara",
-    "Ibadan",
-    "Calabar",
-    "Benin",
-  ]
-
-  hospital: Array<any> = [
-    "All",
-    "Blue Cross Hospital",
-    "Eko Hospital",
-    "Evercare Hospital",
-    "Lagoon Hospital",
-    "Good Times",
-    "Blue Foundation",
-    "New Times",
-  ]
-
-  rating: Array<any> = [
-    "All",
-    "1-5 years",
-    "6-10 years",
-    "11-15 years",
-    "16-20 years",
-  ]
-
-  insurance: Array<any> = [
-    "All",
-    "1-5 years",
-    "6-10 years",
-    "11-15 years",
-    "16-20 years",
-  ]
-}
+export default class HospitalsPage extends Vue {}
 </script>

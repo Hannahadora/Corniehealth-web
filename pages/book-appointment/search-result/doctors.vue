@@ -178,7 +178,6 @@ import { Component, Vue } from "nuxt-property-decorator"
 import { namespace } from "vuex-class"
 import DropdownsDoctorsArea from "~/components/DropdownsDoctorsArea.vue"
 
-
 const appointment = namespace("appointment")
 @Component({
   components: {
@@ -198,7 +197,7 @@ export default class DoctorsPage extends Vue {
     SET_SELECTEDTIME!: (data: any) => void
 
   handleDate(val: any) {
-    this.selectedDate = val
+    this.selectedDate = val.date
     this.SET_SELECTEDDATE(val.date)
   }
 
@@ -233,4 +232,11 @@ export default class DoctorsPage extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.ap-card-active {
+  background: #f0f4fe;
+  border: 1px solid #080056;
+  box-shadow: 0px 15px 40px rgba(20, 31, 21, 0.04);
+  border-radius: 8px;
+}
+</style>

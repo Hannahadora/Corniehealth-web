@@ -43,7 +43,7 @@
 				<li id="prdwn" v-click-outside="closeProviderDropdown" class="relative">
 					<span class="mr-6 flex items-center">
 						<NuxtLink
-							to="/providers"
+							to="/providers/main"
 							:class="{ 'nuxt-link-active': providerDropdown === true }"
 							class=""
 						>

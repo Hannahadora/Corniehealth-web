@@ -1,51 +1,56 @@
 <template>
 	<div>
 		<div
-			class="my-12 mx-6 xl:grid xl:grid-cols-4 grid-cols-2 hidden gap-2"
+			class="mt-12 mb-20 mx-6 xl:grid hidden grid-cols-4 gap-x-6 gap-y-16"
 		>
 			<div
-				v-for="(choice, index) in choices"
+				v-for="(priviledge, index) in providerPriviledges"
 				:key="index"
 				class="py-12 px-6 cursor-pointer choices c-shadow"
 			>
-				<img class="mb-7 choices-img" :src="choice.image" alt="" />
-				<span class="sub-titles-1">{{ choice.title }}</span>
-				<p class="mt-6">{{ choice.text }}</p>
+				<div class="flex items-center justify-center">
+					<img class="mb-7 choices-img" :src="priviledge.image" alt="" />
+				</div>
+				<div class="h-16 text-center">
+					<span class="sub-titles-1">{{ priviledge.title }}</span>
+				</div>
+				<p class="mt-6 text-center">{{ priviledge.text }}</p>
 			</div>
 		</div>
 
 		<div class="xl:hidden block mt-20">
 			<hooper :settings="hooperSettings">
-				<slide v-for="(choice, index) in choices" :key="index"  class="h-80 py-12 px-6 text-center cursor-pointer choices c-shadow">
+				<slide
+					v-for="(priviledge, index) in providerPriviledges"
+					:key="index"
+					class="py-12 px-6 cursor-pointer choices c-shadow"
+				>
 					<div class="flex items-center justify-center">
-						<img class="mb-7 choices-img" :src="choice.image" alt="" />
+						<img class="mb-7 choices-img" :src="priviledge.image" alt="" />
 					</div>
-					<span class="sub-titles-1">{{ choice.title }}</span>
-					<p class="mt-6 text-center">{{ choice.text }}</p>
+					<div class="h-16 text-center">
+						<span class="sub-titles-1">{{ priviledge.title }}</span>
+					</div>
+					<p class="mt-6 text-center">{{ priviledge.text }}</p>
 				</slide>
 
 				<!-- <hooper-navigation slot="hooper-addons"></hooper-navigation> -->
 				<hooper-pagination slot="hooper-addons"></hooper-pagination>
 				<!-- <hooper-progress slot="hooper-addons"></hooper-progress> -->
 			</hooper>
-
 		</div>
 	</div>
 </template>
 
 <script>
-import {
-  Hooper,
-  Slide,
-  Pagination as HooperPagination,
-} from "hooper"
-import { choices } from "../plugins/choices"
+import { Hooper, Slide, Pagination as HooperPagination } from "hooper"
+import { providerPriviledges } from "../plugins/providerPriviledges"
 // import CSwiper from "./CSwiper.vue"
 
 import "hooper/dist/hooper.css"
 
 export default {
-  name: "HealthOutcomes",
+  name: "ProviderPriviledgeGrid",
   components: {
     // CSwiper,
     Hooper,
@@ -55,7 +60,7 @@ export default {
 
   data() {
     return {
-      choices,
+      providerPriviledges,
       hooperSettings: {
         itemsToShow: 1,
         centerMode: true,
@@ -85,7 +90,7 @@ export default {
   border-radius: 8px;
 }
 
-.choices:hover img {  
+.choices:hover img {
   filter: grayscale(1) invert(1) !important;
 }
 
@@ -95,5 +100,8 @@ export default {
   width: 100%;
   max-height: 350px;
   margin: auto;
+}
+.hooper-slide {
+    height: 400px !important;
 }
 </style>

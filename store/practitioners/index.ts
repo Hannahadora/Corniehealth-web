@@ -31,7 +31,7 @@ export const actions: ActionTree<RootState, RootState> = {
   findPractitioners: async ({ commit }, search) => {
     commit("SET_LOADING", true);
     try {
-      const res = await api.post(`/api/v1/booking-site_open/find?search=${search}`)
+      const res = await api.post(`/api/v1/booking_site_open/find?search=${search}`)
       // if(res.status === 'true') {
       commit("SET_PRACTITIONERS", res.data)
       // }

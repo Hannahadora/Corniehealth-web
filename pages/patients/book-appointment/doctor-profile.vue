@@ -3,47 +3,64 @@
 		<div class="c-wrapper xl:mt-40 mt-16">
 			<div class="info-container px-6 pt-6 pb-7">
 				<div class="flex items-center">
-					<img
-						class="mr-4"
-						src="/images/book-appointment/unsplash_gkZ-k3xf25w.png"
-						alt=""
-					/>
+					<img class="mr-4" src="/images/book-appointment/Avatar.png" alt="" />
 					<div class="xl:flex block items-center">
-						<h3 class="mr-4">Reddington Hospital</h3>
+						<h3 class="mr-4">Dr. Sarah Smith | F</h3>
+						<img src="/images/book-appointment/ratings.png" alt="" />
 					</div>
 				</div>
 
 				<div class="mt-8 xl:grid block grid-cols-4 gap-x-8 gap-y-8">
+					
 					<div class="flex items-start xl:mb-0 mb-6">
 						<img
 							class="mr-2"
-							src="/images/book-appointment/icon-sethos-white.png"
-							alt=""
-						/>
-						<div>
-							<span class="sub-titles-2 text-black-xiketic mb-2">Doctors</span>
-							<p class="text-grey-blue mr-2">18</p>
-						</div>
-					</div>
-
-					<div class="flex items-start xl:mb-0 mb-6">
-						<img
-							class="mr-2"
-							src="/images/book-appointment/icon (3).png"
+							src="/images/book-appointment/icon-doctor-white.png"
 							alt=""
 						/>
 						<div>
 							<span class="sub-titles-2 text-black-xiketic mb-2"
-							>Patients Seen</span
+							>Specialization</span
 							>
-							<p class="text-grey-blue mr-2">24</p>
+							<p class="text-grey-blue mr-2">Dentist</p>
 						</div>
 					</div>
 
 					<div class="flex items-start xl:mb-0 mb-6">
 						<img
 							class="mr-2"
-							src="/images/book-appointment/Icon-date-white.png"
+							src="/images/book-appointment/icon-date-white.png"
+							alt=""
+						/>
+						<div>
+							<span class="sub-titles-2 text-black-xiketic mb-2"
+							>Clinical Experience</span
+							>
+							<p class="text-grey-blue mr-2">20 Years</p>
+						</div>
+					</div>
+
+					<div class="flex items-start xl:mb-0 mb-6">
+						<img
+							class="mr-2"
+							src="/images/book-appointment/Icon-fee-white.png"
+							alt=""
+						/>
+						<div>
+							<span class="sub-titles-2 text-black-xiketic mb-2"
+							>Consultation Fee</span
+							>
+							<p>
+								<span class="text-grey-blue mr-2"><u>₦ 34,500</u></span> ₦
+								20,500
+							</p>
+						</div>
+					</div>
+
+					<div class="flex items-start xl:mb-0 mb-6">
+						<img
+							class="mr-2"
+							src="/images/book-appointment/icon-date-white.png"
 							alt=""
 						/>
 						<div>
@@ -57,19 +74,15 @@
 					<div class="flex items-start xl:mb-0 mb-6">
 						<img
 							class="mr-2"
-							src="/images/book-appointment/icon-star-white.png"
+							src="/images/book-appointment/icon (3).png"
 							alt=""
 						/>
 						<div>
 							<span class="sub-titles-2 text-black-xiketic mb-2"
-							>Hospital Rating</span
+							>Patient Reviews</span
 							>
-							<p class="text-grey-blue mr-2">
-								<img
-									class="mr-2"
-									src="/images/book-appointment/ratings.png"
-									alt=""
-								/>
+							<p class="text-grey-blue">
+								1st May 2021<span class="ml-4 text-razzmataz-pry">View</span>
 							</p>
 						</div>
 					</div>
@@ -84,7 +97,7 @@
 							<span class="sub-titles-2 text-black-xiketic mb-2"
 							>Phone Number</span
 							>
-							<p class="text-grey-blue">+234 813 563 8883</p>
+							<p class="text-grey-blue mr-2">+234 813 563 8883</p>
 						</div>
 					</div>
 
@@ -97,18 +110,6 @@
 						<div>
 							<span class="sub-titles-2 text-black-xiketic mb-2">Email</span>
 							<p class="text-grey-blue mr-2">Mikeobi@reddington.com</p>
-						</div>
-					</div>
-
-					<div class="flex items-start xl:mb-0 mb-6">
-						<img
-							class="mr-2"
-							src="/images/book-appointment/icon-lang-white.png"
-							alt=""
-						/>
-						<div>
-							<span class="sub-titles-2 text-black-xiketic mb-2">Website</span>
-							<p class="text-grey-blue mr-2">www.reddington.com.ng</p>
 						</div>
 					</div>
 
@@ -130,7 +131,7 @@
 				View address in map
 			</p>
 
-			<div class="info-container p-6 mb-28">
+			<div class="info-container p-6">
 				<ul class="flex items-center border-b mb-8">
 					<li
 						v-for="(tab, index) in tabs"
@@ -143,13 +144,15 @@
 					</li>
 				</ul>
 
-				<div v-if="activeTab === 'Specialties'">
-					<hospital-specialties />
+				<div v-if="activeTab === 'Basic'">
+					<basic-info />
 				</div>
-				<div v-if="activeTab === 'Doctors'">
-					<doctor-info />
+				<div v-if="activeTab === 'Reviews'">
+					<reviews />
 				</div>
-				<div v-if="activeTab === 'Insurance'"></div>
+				<div v-if="activeTab === 'Insurance'">
+					<insurance />
+				</div>
 			</div>
 		</div>
 	</div>
@@ -157,15 +160,16 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
-import DoctorInfo from "../../components/BookAppointment/Profile/DoctorInfo.vue"
-import HospitalSpecialties from "../../components/BookAppointment/Profile/HospitalSpecialties.vue"
+import BasicInfo from "../../../components/BookAppointment/Profile/BasicInfo.vue"
+import Insurance from "../../../components/BookAppointment/Profile/Insurance.vue"
+import Reviews from "../../../components/BookAppointment/Profile/Reviews.vue"
 @Component({
-  components: { DoctorInfo, HospitalSpecialties },
+  components: { BasicInfo, Reviews, Insurance },
   layout: "book-appointment",
 })
 export default class ProfileDetails extends Vue {
-  activeTab: string = "Specialties"
-  tabs: Array<any> = ["Specialties", "Doctors", "Insurance"]
+  activeTab: string = "Basic"
+  tabs: Array<any> = ["Basic", "Reviews", "Insurance"]
 
   handleActiveTab(tab: any) {
     this.activeTab = tab

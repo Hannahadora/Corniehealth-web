@@ -306,7 +306,7 @@ export default class IndexPage extends Vue {
   cityName: String = ""
 
   goToBookingPage() {
-    this.$router.push("/book-appointment/search-result/doctors")
+    this.$router.push("/patients/book-appointment/search-result/doctors")
   }
 }
 </script>

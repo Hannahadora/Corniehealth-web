@@ -29,7 +29,6 @@
 				:key="index"
 				class="text-center ap-card px-12 py-2 xl:w-auto w-full"
 				:class="{ 'ap-card-active': selectedDate === day.date }"
-				@click="handleDate(day)"
 			>
 				<span class="sub-titles-2">{{ day.date }}</span
 				><br />
@@ -45,7 +44,6 @@
 				:key="index"
 				class="time-card xl:px-8 px-6 py-2"
 				:class="{ 'time-card-active': selectedTime === time }"
-				@click="handleTime(time)"
 			>
 				<span class="">{{ time }}</span>
 			</div>
@@ -57,10 +55,13 @@
 				type="button"
 				:secondary="true"
 				small
-				@click="$router.push('/book-appointment/signup')"
+				@click="$router.push('/patients/book-appointment/login')"
 			>
-				Sign up to continue
+				Sign in to continue
 			</c-button>
+			<div class="mt-7 text-center ">
+				<span class="sub-titles-1 text-razzmataz-pry" @click="$router.push('/patients/book-appointment/signup')">Don’t have an account? Sign up</span>
+			</div>
 		</div>
 	</div>
 </template>

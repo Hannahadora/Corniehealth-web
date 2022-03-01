@@ -1,110 +1,43 @@
 <template>
-	<div>
-		<!-- <div class="mb-8 xl:grid hidden grid-cols-8 gap-4 dgridG">
+  <div class="block">
+    <hooper class="mb-8" :settings="hooperSettings">
+      <slide>
         <multiselectsearch
           icon="/images/book-appointment/icon-doctor-grey.png"
           placeholder="Specialty"
           :items="specialty"
         />
+      </slide>
+      <slide>
         <multiselectsearch
           icon="/images/book-appointment/icon-location-grey.png"
           placeholder="Location"
           :items="location"
         />
+      </slide>
+      <slide>
         <multiselectsearch
           icon="/images/book-appointment/icon-hospital-grey.png"
           placeholder="Hospital"
           :items="hospital"
         />
+      </slide>
+      <slide>
         <multiselectsearch
-          icon="/images/book-appointment/icon-experience-grey.png"
-          placeholder="Experience"
-          :items="experience"
+          icon="/images/book-appointment/icon-insurance-grey.png"
+          placeholder="Rating"
+          :items="rating"
         />
-        <multiselectsearch
-          icon="/images/book-appointment/icon-visit-grey.png"
-          placeholder="Visit Type"
-          :items="visitType"
-        />
+      </slide>
+      <slide>
         <multiselectsearch
           icon="/images/book-appointment/icon-insurance-grey.png"
           placeholder="Insurance"
           :items="insurance"
         />
-        <multiselectsearch
-          icon="/images/book-appointment/icon-lang-grey.png"
-          placeholder="Language"
-          :items="language"
-        />
-        <multiselectsearch id="lcd"
-          icon="/images/book-appointment/icon-gender-grey.png"
-          placeholder="Gender"
-          :items="gender"
-        />
-    </div> -->
-
-		<div class=" block">
-			<hooper class="mb-8" :settings="hooperSettings">
-				<slide>
-					<multiselectsearch
-						icon="/images/book-appointment/icon-doctor-grey.png"
-						placeholder="Specialty"
-						:items="specialty"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
-						icon="/images/book-appointment/icon-location-grey.png"
-						placeholder="Location"
-						:items="location"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
-						icon="/images/book-appointment/icon-hospital-grey.png"
-						placeholder="Hospital"
-						:items="hospital"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
-						icon="/images/book-appointment/icon-experience-grey.png"
-						placeholder="Experience"
-						:items="experience"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
-						icon="/images/book-appointment/icon-visit-grey.png"
-						placeholder="Visit Type"
-						:items="visitType"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
-						icon="/images/book-appointment/icon-insurance-grey.png"
-						placeholder="Insurance"
-						:items="insurance"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
-						icon="/images/book-appointment/icon-lang-grey.png"
-						placeholder="Language"
-						:items="language"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
-						id="lcd"
-						icon="/images/book-appointment/icon-gender-grey.png"
-						placeholder="Gender"
-						:items="gender"
-					/>
-				</slide>
-			</hooper>
-		</div>
-	</div>
+      </slide>
+    </hooper>
+  </div>
 </template>
 
 <script>
@@ -114,7 +47,7 @@ import { Hooper, Slide } from "hooper"
 import "hooper/dist/hooper.css"
 
 export default {
-  name: "DropdownDoctorArea",
+  name: "HospitalDropdownArea",
   components: {
     // CSwiper,
     Hooper,
@@ -177,15 +110,7 @@ export default {
         "New Times",
       ],
 
-      experience: [
-        "All",
-        "1-5 years",
-        "6-10 years",
-        "11-15 years",
-        "16-20 years",
-      ],
-
-      visitType: ["Visit", "Walk in", "Virtual"],
+      rating: ["All", "1-5 years", "6-10 years", "11-15 years", "16-20 years"],
 
       insurance: [
         "All",
@@ -194,8 +119,6 @@ export default {
         "11-15 years",
         "16-20 years",
       ],
-      language: ["English", "Yoruba", "Ibo", "Hausa", "French"],
-      gender: ["All", "Male", "Female"],
     }
   },
 }
@@ -212,8 +135,6 @@ export default {
   max-height: auto !important;
   overflow-x: visible !important;
 }
-
-
 
 /* .hooper-list {
   overflow-x: auto;

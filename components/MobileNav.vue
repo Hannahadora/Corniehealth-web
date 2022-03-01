@@ -30,13 +30,21 @@
 				/>
 			</div>
 			<div class="xl:relative mb-6">
-				<p
-					:class="{ 'active-dropdown': providerDropdown === true }"
-					class="pb-2 flex items-center gap-2 cursor-pointer"
-					@click="providerDropdown = !providerDropdown"
-				>
-					For Providers<img src="/images/bx_bx-chevron-down.svg" alt="" />
-				</p>
+				<span class="mr-6 flex items-center" @click="$emit('closeMenu')">
+					<NuxtLink
+						to="/providers/main"
+						:class="{ 'nuxt-link-active': providerDropdown === true }"
+						class=""
+					>
+						For Providers
+					</NuxtLink>
+					<img
+						class="ml-2 cursor-pointer"
+						src="/images/bx_bx-chevron-down.svg"
+						alt=""
+						@click="providerDropdown = !providerDropdown"
+					/>
+				</span>
 				<providers-dropdown
 					v-if="providerDropdown"
 					class="xl:absolute xl:top-16 xl:right-0"

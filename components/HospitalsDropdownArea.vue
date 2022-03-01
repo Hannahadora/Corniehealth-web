@@ -1,43 +1,43 @@
 <template>
-  <div class="block">
-    <hooper class="mb-8" :settings="hooperSettings">
-      <slide>
-        <multiselectsearch
-          icon="/images/book-appointment/icon-doctor-grey.png"
-          placeholder="Specialty"
-          :items="specialty"
-        />
-      </slide>
-      <slide>
-        <multiselectsearch
-          icon="/images/book-appointment/icon-location-grey.png"
-          placeholder="Location"
-          :items="location"
-        />
-      </slide>
-      <slide>
-        <multiselectsearch
-          icon="/images/book-appointment/icon-hospital-grey.png"
-          placeholder="Hospital"
-          :items="hospital"
-        />
-      </slide>
-      <slide>
-        <multiselectsearch
-          icon="/images/book-appointment/icon-insurance-grey.png"
-          placeholder="Rating"
-          :items="rating"
-        />
-      </slide>
-      <slide>
-        <multiselectsearch
-          icon="/images/book-appointment/icon-insurance-grey.png"
-          placeholder="Insurance"
-          :items="insurance"
-        />
-      </slide>
-    </hooper>
-  </div>
+	<div class="block">
+		<hooper class="mb-8" :settings="hooperSettings">
+			<slide>
+				<multiselectsearch
+					icon="/images/book-appointment/icon-doctor-grey.png"
+					placeholder="Specialty"
+					:items="specialty"
+				/>
+			</slide>
+			<slide>
+				<multiselectsearch
+					icon="/images/book-appointment/icon-location-grey.png"
+					placeholder="Location"
+					:items="location"
+				/>
+			</slide>
+			<slide>
+				<multiselectsearch
+					icon="/images/book-appointment/icon-hospital-grey.png"
+					placeholder="Hospital"
+					:items="hospital"
+				/>
+			</slide>
+			<slide>
+				<multiselectsearch
+					icon="/images/book-appointment/icon-insurance-grey.png"
+					placeholder="Rating"
+					:items="rating"
+				/>
+			</slide>
+			<slide>
+				<multiselectsearch
+					icon="/images/book-appointment/icon-insurance-grey.png"
+					placeholder="Insurance"
+					:items="insurance"
+				/>
+			</slide>
+		</hooper>
+	</div>
 </template>
 
 <script>

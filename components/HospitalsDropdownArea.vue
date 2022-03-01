@@ -1,5 +1,5 @@
 <template>
-	<div class="block">
+	<div class="block h-slider">
 		<hooper class="mb-8" :settings="hooperSettings">
 			<slide>
 				<multiselectsearch
@@ -125,15 +125,18 @@ export default {
 </script>
 
 <style scoped>
-.hooper-slide {
+.h-slider .hooper-slide {
   width: auto !important;
   padding: 0px 5px 0px 0px !important;
 }
 
-.hooper-list {
+.h-slider .hooper-list {
   height: 500px !important;
   max-height: auto !important;
   overflow-x: visible !important;
+}
+.h-slider .hooper {
+height: auto !important;
 }
 
 /* .hooper-list {

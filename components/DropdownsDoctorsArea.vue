@@ -43,7 +43,7 @@
         />
     </div> -->
 
-		<div class=" block">
+		<div class="block d-slider">
 			<hooper class="mb-8" :settings="hooperSettings">
 				<slide>
 					<multiselectsearch
@@ -202,18 +202,20 @@ export default {
 </script>
 
 <style scoped>
-.hooper-slide {
+.d-slider .hooper-slide {
   width: auto !important;
   padding: 0px 5px 0px 0px !important;
 }
 
-.hooper-list {
+.d-slider .hooper-list {
   height: 500px !important;
   max-height: auto !important;
-  overflow-x: visible !important;
+  overflow: visible !important;
 }
 
-
+.d-slider .hooper {
+height: auto !important;
+}
 
 /* .hooper-list {
   overflow-x: auto;

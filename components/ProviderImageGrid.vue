@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <!-- <div
+	<div>
+		<!-- <div
       class="grid items-center xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 gridcols-1 gap-6"
     >
       <NuxtLink to="/providers/products/patient-experience">
@@ -47,73 +47,73 @@
       </NuxtLink>
     </div> -->
 
-    <div class="">
-      <hooper :settings="hooperSettings">
-        <slide>
-          <NuxtLink to="/providers/products/patient-experience">
-            <div class="mb-6 img-rack">
-              <img src="/images/providers/Nasal spray-rafiki 1.png" alt="" />
-            </div>
-            <span class="sub-titles-2 c-indigo">Patient Experience</span>
-          </NuxtLink>
-        </slide>
-        <slide>
-          <NuxtLink to="/providers/products/emr-emh">
-            <div class="mb-6 img-rack">
-              <img
-                src="/images/providers/Breast cancer research-rafiki 1.png"
-                alt=""
-              />
-            </div>
-            <span class="sub-titles-2 c-indigo">EMR/EHR</span>
-          </NuxtLink>
-        </slide>
-        <slide>
-          <NuxtLink to="/providers/products/patient-experience">
-            <div class="mb-6 img-rack">
-              <img src="/images/providers/Medicine-pana 1.png" alt="" />
-            </div>
-            <span class="sub-titles-2 c-indigo">Practice Workflows</span>
-          </NuxtLink>
-        </slide>
-        <slide>
-          <NuxtLink to="/providers/products/billing-and-payment">
-            <div class="mb-6 img-rack">
-              <img
-                src="/images/providers/Credit Card Payment-rafiki 1.png"
-                alt=""
-              />
-            </div>
-            <span class="sub-titles-2 c-indigo">Billing & Payment</span>
-          </NuxtLink>
-        </slide>
-        <slide>
-          <NuxtLink to="/providers/products/patient-portal">
-            <div class="mb-6 img-rack">
-              <img
-                src="/images/providers/Ophthalmologist-rafiki 1.png"
-                alt=""
-              />
-            </div>
-            <span class="sub-titles-2 c-indigo">Patient Portal</span>
-          </NuxtLink>
-        </slide>
-        <slide>
-          <NuxtLink to="/providers/products/analytics">
-            <div class="mb-6 img-rack">
-              <img
-                src="/images/providers/Business analytics-rafiki 1.png"
-                alt=""
-              />
-            </div>
-            <span class="sub-titles-2 c-indigo">Analytics</span>
-          </NuxtLink>
-        </slide>
+		<div class="">
+			<hooper :settings="hooperSettings">
+				<slide>
+					<NuxtLink to="/providers/products/patient-experience">
+						<div class="mb-6 img-rack">
+							<img src="/images/providers/Nasal spray-rafiki 1.png" alt="" />
+						</div>
+						<span class="sub-titles-2 c-indigo">Patient Experience</span>
+					</NuxtLink>
+				</slide>
+				<slide>
+					<NuxtLink to="/providers/products/emr-emh">
+						<div class="mb-6 img-rack">
+							<img
+								src="/images/providers/Breast cancer research-rafiki 1.png"
+								alt=""
+							/>
+						</div>
+						<span class="sub-titles-2 c-indigo">EMR/EHR</span>
+					</NuxtLink>
+				</slide>
+				<slide>
+					<NuxtLink to="/providers/products/patient-experience">
+						<div class="mb-6 img-rack">
+							<img src="/images/providers/Medicine-pana 1.png" alt="" />
+						</div>
+						<span class="sub-titles-2 c-indigo">Practice Workflows</span>
+					</NuxtLink>
+				</slide>
+				<slide>
+					<NuxtLink to="/providers/products/billing-and-payment">
+						<div class="mb-6 img-rack">
+							<img
+								src="/images/providers/Credit Card Payment-rafiki 1.png"
+								alt=""
+							/>
+						</div>
+						<span class="sub-titles-2 c-indigo">Billing & Payment</span>
+					</NuxtLink>
+				</slide>
+				<slide>
+					<NuxtLink to="/providers/products/patient-portal">
+						<div class="mb-6 img-rack">
+							<img
+								src="/images/providers/Ophthalmologist-rafiki 1.png"
+								alt=""
+							/>
+						</div>
+						<span class="sub-titles-2 c-indigo">Patient Portal</span>
+					</NuxtLink>
+				</slide>
+				<slide>
+					<NuxtLink to="/providers/products/analytics">
+						<div class="mb-6 img-rack">
+							<img
+								src="/images/providers/Business analytics-rafiki 1.png"
+								alt=""
+							/>
+						</div>
+						<span class="sub-titles-2 c-indigo">Analytics</span>
+					</NuxtLink>
+				</slide>
 
-        <hooper-navigation slot="hooper-addons"></hooper-navigation>
-      </hooper>
-    </div>
-  </div>
+				<hooper-navigation slot="hooper-addons"></hooper-navigation>
+			</hooper>
+		</div>
+	</div>
 </template>
 
 <script>

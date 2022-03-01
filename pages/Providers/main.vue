@@ -186,27 +186,11 @@
 				>
 			</div>
 
-			<div
-				class="mt-12 mb-20 mx-6 grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-x-6 gap-y-16"
-			>
-				<div
-					v-for="(priviledge, index) in providerPriviledges"
-					:key="index"
-					class="py-12 px-6 cursor-pointer choices c-shadow"
-				>
-					<div class="flex items-center justify-center">
-						<img class="mb-7 choices-img" :src="priviledge.image" alt="" />
-					</div>
-					<div class="h-16 text-center">
-						<span class="sub-titles-1">{{ priviledge.title }}</span>
-					</div>
-					<p class="mt-6 text-center">{{ priviledge.text }}</p>
-				</div>
-			</div>
+			<provider-priviledge-grid />
 
 			
 
-			<div class="info-container py-4 px-6 border-none flex lg:flex-row flex-col items-center mb-9">
+			<div class="info-container py-4 px-6 border-none flex lg:flex-row flex-col items-center mb-9 xl:mt-10 mt-40">
 				<div class="mr-12">
 					<img src="/images/providers/img.png" alt="" />
 				</div>
@@ -225,45 +209,6 @@
 				</div>
 			</div>
 
-			<!-- <div class="grid items-center xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 gridcols-1 gap-6">
-				<NuxtLink to="/providers/products/patient-experience">
-					<div class="mb-6 img-rack">
-						<img src="/images/providers/Nasal spray-rafiki 1.png" alt="" />
-					</div>
-					<span class="sub-titles-2 c-indigo">Patient Experience</span>
-				</NuxtLink>
-				<NuxtLink to="/providers/products/emr-emh">
-					<div class="mb-6 img-rack">
-						<img src="/images/providers/Breast cancer research-rafiki 1.png" alt="" />
-					</div>
-					<span class="sub-titles-2 c-indigo">EMR/EHR</span>
-				</NuxtLink>
-				<NuxtLink to="/providers/products/patient-experience">
-					<div class="mb-6 img-rack">
-						<img src="/images/providers/Medicine-pana 1.png" alt="" />
-					</div>
-					<span class="sub-titles-2 c-indigo">Practice Workflows</span>
-				</NuxtLink>
-				<NuxtLink to="/providers/products/billing-and-payment">
-					<div class="mb-6 img-rack">
-						<img src="/images/providers/Credit Card Payment-rafiki 1.png" alt="" />
-					</div>
-					<span class="sub-titles-2 c-indigo">Billing & Payment</span>
-				</NuxtLink>
-				<NuxtLink to="/providers/products/patient-portal">
-					<div class="mb-6 img-rack">
-						<img src="/images/providers/Ophthalmologist-rafiki 1.png" alt="" />
-					</div>
-					<span class="sub-titles-2 c-indigo">Patient Portal</span>
-				</NuxtLink>
-				<NuxtLink to="/providers/products/analytics">
-					<div class="mb-6 img-rack">
-						<img src="/images/providers/Business analytics-rafiki 1.png" alt="" />
-					</div>
-					<span class="sub-titles-2 c-indigo">Analytics</span>
-				</NuxtLink>
-			</div> -->
-
 			<provider-image-grid />
 
 			<div class="mt-28 flex items-center justify-center mb-36">
@@ -280,13 +225,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
-import { providerPriviledges } from "../../plugins/providerPriviledges"
 import CButton from "~/components/CButton.vue"
+import ProviderPriviledgeGrid from "~/components/ProviderPriviledgeGrid.vue"
 @Component({
-  components: { CButton },
+  components: { CButton, ProviderPriviledgeGrid },
 })
 export default class ProvidersMain extends Vue {
-  providerPriviledges: Array<any> = providerPriviledges
 }
 </script>
 

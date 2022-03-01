@@ -225,8 +225,9 @@ height: auto !important;
   margin: auto;
 } */
 @media screen and (max-width: 1280) {
-  .hooper-list {
+  .d-slider .hooper-list {
     overflow-x: hidden !important;
+    overflow-y: visible !important;
   }
 }
 </style>

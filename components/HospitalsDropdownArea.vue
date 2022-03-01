@@ -133,7 +133,7 @@ export default {
 .h-slider .hooper-list {
   height: 500px !important;
   max-height: auto !important;
-  overflow-x: visible !important;
+  overflow: visible !important;
 }
 .h-slider .hooper {
 height: auto !important;

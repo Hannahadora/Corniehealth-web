@@ -36,8 +36,6 @@ export const actions: ActionTree<RootState, RootState> = {
       commit("SET_PRACTITIONERS", res.data)
       // }
       return res
-    } catch (err) {
-      console.log(err);
     } finally {
       commit("SET_LOADING", false);
     }
@@ -50,8 +48,6 @@ export const actions: ActionTree<RootState, RootState> = {
       commit("SET_PRACTITIONERS", res.data)
       // }
       return res
-    } catch (err) {
-      console.log(err);
     } finally {
       commit("SET_LOADING", false);
     }
@@ -64,8 +60,6 @@ export const actions: ActionTree<RootState, RootState> = {
       commit("SET_PRACTITIONERS", res.data)
       // }
       return res
-    } catch (err) {
-      console.log(err);
     } finally {
       commit("SET_LOADING", false);
     }

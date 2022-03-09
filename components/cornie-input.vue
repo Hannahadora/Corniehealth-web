@@ -12,15 +12,7 @@
 				</span>
 				<span v-if="required" class="text-danger ml-1"> * </span>
 			</label>
-			<div
-				class="flex rounded-md border-1"
-				:class="{
-					'border-red-500': Boolean(errorMessage),
-					'border-green-400': meta.valid && meta.touched,
-					'bg-gray-100 border-gray-100': disabled,
-					...errorClasses,
-				}"
-			>
+			<div class="flex rounded-md border-1">
 				<div
 					v-if="$slots.prepend"
 					class="border-r-2 rounded-lg p-2 bg-white flex items-center justify-center"

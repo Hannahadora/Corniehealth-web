@@ -54,7 +54,12 @@
 						</nuxt-link>
 					</div>
 					<div class="my-10 w-full text-center">
-						Have an account? <span class="text-red-400">Sign in</span>
+						Have an account?
+						<span
+							class="text-red-400 cursor-pointer hover:text-red-300"
+							@click="handleSignin"
+						>Sign in</span
+						>
 					</div>
 				</div>
 			</div>
@@ -76,5 +81,11 @@ export default {
     ProviderIcon,
   },
   layout: "auth",
+  methods: {
+    async handleSignin() {
+      location.href =
+        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+    },
+  },
 }
 </script>

@@ -105,10 +105,12 @@ export default class CornieSelect extends Vue {
   id = ""
 
   get displayVal() {
-    if (!this.modelValue || this.items.length < 1) return  ""
+    // if (!this.modelValue || this.items.length < 1) return
 
-    const selected = this.selectedItem
-    return selected?.display || selected || ""
+    // const selected = this.selectedItem
+    // const toReturn = selected?.display || selected || ""
+
+    return ""
   }
 
   get selectedItem() {

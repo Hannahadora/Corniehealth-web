@@ -113,6 +113,7 @@
 </template>
 
 <script>
+import { ValidationObserver, ValidationProvider } from "vee-validate"
 import Auth from "@/components/auth/auth.vue"
 import HeartPulse from "@/components/icons/heartpulse.vue"
 import CornieInput from "@/components/CornieInput.vue"
@@ -129,6 +130,8 @@ export default {
     CornieCheckbox,
     CornieSelect,
     CornieDialog,
+    ValidationObserver,
+    ValidationProvider,
   },
   layout: "auth",
   data: () => ({
@@ -143,12 +146,45 @@ export default {
       dialCode: "+234",
       phoneNo: "",
       email: "",
-      // providerProfile: "Independent physician",
-      // practiceName: "NA",
       patientProfile: "",
     },
   }),
+  computed: {
+    formCompleted: {
+      get() {
+        if (
+          this.form.firstName !== "" &&
+          this.form.lastName !== "" &&
+          this.form.phoneNumber.number !== "" &&
+          this.form.email !== "" &&
+          this.form.patientProfile !== "" &&
+          this.agree
+        )
+          return true
+
+        return false
+      },
+    },
+  },
   methods: {
+    reset() {
+      this.form.firstName = ""
+      this.form.lastName = ""
+      this.form.phoneNumber.dialCode = "+234"
+      this.form.phoneNumber.number = ""
+      this.form.email = ""
+      this.form.patientProfile = ""
+    },
+
+    async handleSignin() {
+      location.href =
+        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+    },
+
+    hideDialog() {
+      this.showDiag = false
+      this.reset()
+    },
     handleChange(val) {
       this.form.patientProfile = val
     },
@@ -163,7 +199,7 @@ export default {
           this.form
         )
 
-        if (response.success) {
+        if (response.data.success) {
           this.showDiag = true
           this.disabled = false
         }

@@ -4,7 +4,7 @@
 	>
 		<div class="lg:col-span-6 lg:h-full lg:relative lg:pr-20">
 			<nuxt-link to="/" class="lg:absolute top-3 left-0 cursor-pointer z-40">
-				<logo-icon />
+				<logo-icon class="fill-current w-14 h-14 lg:w-20 lg:h-20" />
 			</nuxt-link>
 
 			<div

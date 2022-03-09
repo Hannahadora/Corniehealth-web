@@ -146,7 +146,7 @@
 
 				<img
 					class="col-span-2 md:row-span-2 md:order-2 order-3"
-					src="/images/img-center.png"
+					src="/images/Img-center.png"
 					alt=""
 				/>
 
@@ -290,9 +290,9 @@ export default class IndexPage extends Vue {
 }
 
 .p-image {
-	background-position: center !important;
-	background-size: cover !important;
-	background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
 }
 
 @media screen and (max-width: 1024px) {

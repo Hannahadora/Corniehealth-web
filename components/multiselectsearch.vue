@@ -347,13 +347,14 @@ export default {
 .active {
   color: #fff;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   background: #080056;
   border: 1px solid #080056;
   box-sizing: border-box;
   border-radius: 8px;
   white-space: nowrap;
+  max-width: 200px;
 }
 
 input[type="checkbox"]:after {

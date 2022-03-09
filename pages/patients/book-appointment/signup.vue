@@ -194,7 +194,6 @@ export default {
   data: () => ({
     disabled: false,
     showDiag: false,
-    url: "https://corniehealth.herokuapp.com",
     agree: false,
     activeTab: 0,
     form: {

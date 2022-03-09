@@ -1,11 +1,11 @@
 <template>
 	<div>
 		<div
-			class="xl:w-full lg:w-2/3 w-full mx-auto flex xl:grid block grid-cols-5 gap-2"
+			class="xl:w-full lg:w-2/3 w-full mx-auto xl:grid block grid-cols-5 gap-2"
 		>
 			<div v-click-outside="closePractitionerDropdown" class="relative col-span-2">
-				<div class="input-wrapper flex items-center py-3 px-5">
-					<img class="xl:mr-6 mr-4" src="/images/cil_location-pin.svg" alt="" />
+				<div class="input-wrapper flex items-center py-3 px-5 xl:mb-0 mb-4">
+					<img class="xl:mr-6 mr-4" src="/images/search.svg" alt="" />
 
 					<input
 						v-model="providerName"
@@ -20,14 +20,14 @@
 						type="text"
 						placeholder="Name or specialty"
 						required
-						class="w-10/12 focus:outline-none text-sm mb-4 xl:hidden block"
+						class="w-10/12 focus:outline-none text-sm xl:hidden block"
 						@input="$emit('input', $event.target.value)"
 					/>
 				</div>
 
 				<div v-if="practitionersDropdown">
 					<div
-						class="w-full max-h-80 overflow-y-scroll mt-10 bg-white px-2 py-4 shadow absolute block top-10"
+						class="w-full max-h-80 overflow-y-scroll z-20 mt-10 bg-white px-2 py-4 shadow absolute block top-10"
 					>
 						<div class="w-full text-left mb-2">
 							<div class="ddh w-full px-2 py-4">Specialty</div>
@@ -102,7 +102,7 @@
 
 				<div
 					v-if="openLocations"
-					class="w-full max-h-80 overflow-y-scroll mt-10 bg-white px-2 py-4 shadow absolute block top-10"
+					class="w-full max-h-80 overflow-y-scroll z-20 mt-10 bg-white px-2 py-4 shadow absolute block top-10"
 				>
 					<div
 						v-for="(location, index) in rLocations"

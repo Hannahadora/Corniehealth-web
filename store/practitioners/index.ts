@@ -13,7 +13,7 @@ export const state = () => ({
 export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
-  getrelatedPractioners(state) {
+  getRelatedPractitioners(state) {
     return state.practitioners
   },
 }
@@ -31,15 +31,43 @@ export const actions: ActionTree<RootState, RootState> = {
   findPractitioners: async ({ commit }, search) => {
     commit("SET_LOADING", true);
     try {
-      const res = await api.post(`/api/v1/booking_site_open/find?search=${search}`)
-      // if(res.status === 'true') {
+      const res = await api.get(`/api/v1/booking_site_open/find?search=${search}`)
+      // if(res.success === 'true') {
       commit("SET_PRACTITIONERS", res.data)
       // }
+      return res
+    } catch (err) {
+      console.log(err);
+    } finally {
+      commit("SET_LOADING", false);
+    }
+  },
+  findBySpecialty: async ({ commit }, search) => {
+    commit("SET_LOADING", true);
+    try {
+      const res = await api.get(`/api/v1/booking_site_open/find/searchBySpecialty?search=${search}`)
+      // if(res.success === 'true') {
+      commit("SET_PRACTITIONERS", res.data)
+      // }
+      return res
+    } catch (err) {
+      console.log(err);
+    } finally {
+      commit("SET_LOADING", false);
+    }
+  },
+  findByPractice: async ({ commit }, search) => {
+    commit("SET_LOADING", true);
+    try {
+      const res = await api.get(`/api/v1/booking_site_open/find/searchByPacticeName?search=${search}`)
+      // if(res.success === 'true') {
+      commit("SET_PRACTITIONERS", res.data)
+      // }
+      return res
     } catch (err) {
       console.log(err);
     } finally {
       commit("SET_LOADING", false);
     }
   }
-
 }

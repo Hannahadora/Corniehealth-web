@@ -54,7 +54,7 @@
 					class="border p-2"
 					name=""
 					cols="20"
-					rows="5"
+					rows="10"
 				></textarea>
 				<span class="text-right text-xs italic font-semibold">0/255</span>
 			</div>
@@ -65,7 +65,7 @@
 					type="button"
 					:primary="true"
 					small
-					@click="$router.go(-1)"
+					@click="$router.push({ path: '/book-appointment/' })"
 				>
 					Cancel
 				</c-button>
@@ -74,7 +74,7 @@
 					type="button"
 					secondary
 					small
-					@click="$router.push({ path: '/patients/book-appointment/booking-confirmed' })"
+					@click="$router.push({ path: '/book-appointment/confirm-payment' })"
 				>
 					Confirm
 				</c-button>
@@ -90,7 +90,7 @@ import { Component, Vue } from "nuxt-property-decorator"
   //   components: { CButton },
   layout: "book-appointment",
 })
-export default class ConfirmPaymentPage extends Vue {}
+export default class BookingConfirmed extends Vue {}
 </script>
 
 <style scoped>

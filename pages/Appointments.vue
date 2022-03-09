@@ -35,37 +35,7 @@
 					alt=""
 				/>
 
-				<div
-					class="xl:w-full lg:w-2/3 w-full mx-auto flex xl:flex-row flex-col items-center justify-center"
-				>
-					<input-comp
-						v-model="providerName"
-						class="xl:w-2/5 xl:flex hidden"
-						input-icon="/images/search.svg"
-						placeholder="Provider name, practice name or specialty"
-					/>
-					<input-comp
-						v-model="providerName"
-						class="w-full xl:hidden block"
-						input-icon="/images/search.svg"
-						placeholder="Name or specialty"
-					/>
-					<input-comp
-						v-model="cityName"
-						class="xl:ml-1 xl:mt-0 mt-4 xl:w-2/5 w-full"
-						input-icon="/images/cil_location-pin.svg"
-						placeholder="City name or Zip/Postal code"
-					/>
-					<div class="xl:ml-1 xl:mt-0 mt-4 xl:w-1/5 w-full">
-						<c-button
-							type="button"
-							class="w-full"
-							:tertiary="true"
-							@click="goToBookingPage"
-						>Search</c-button
-						>
-					</div>
-				</div>
+				<filter-practitioner-area />
 
 				<div class="mt-2 xl:block hidden">
 					<p>
@@ -85,9 +55,8 @@
 		</div>
 
 		<div class="c-wrapper xl:mt-0 mt-16">
-
 			<appoint-slider-1 />
-			
+
 			<div class="text-center xl:w-1/2 w-full mx-auto mt-20 xl:mb-24 mb-16">
 				<h2 class="c-indigo">
 					Our service is free. We deliver affordable healthcare, at no extra
@@ -304,25 +273,22 @@
 import { Component, Vue } from "nuxt-property-decorator"
 import CButton from "../components/CButton.vue"
 import InputComp from "../components/InputComp.vue"
+import FilterPractitionerArea from "~/components/FilterPractitionerArea.vue"
 
 @Component({
   components: {
     CButton,
     InputComp,
+    FilterPractitionerArea,
   },
 })
 export default class AppointmentPage extends Vue {
-  providerName: String = ""
-  cityName: String = ""
-
-  goToBookingPage() {
-    // this.$router.push("/patients/book-appointment/search-result/doctors")
-    this.$store.dispatch("practitioners/findPractitioners", this.providerName)
-  }
 
   goToSignup() {
     this.$router.push("/signup")
   }
+
+  async created() {}
 }
 </script>
 <style scoped>

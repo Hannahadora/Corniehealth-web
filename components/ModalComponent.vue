@@ -1,24 +1,24 @@
 <template>
-  <div
-    class="d-modal"
-  >
-    <div
-      v-if="isActive"
-      class="d-modal__content c-centered"
-      ref="content"
-      @keydown="onKeydown"
-      role="document"
-      :tabindex="isActive ? 0 : undefined"
-    >
-      <slot></slot>
-    </div>
-  </div>
+	<div
+		class="d-modal"
+	>
+		<div
+			v-if="isActive"
+			ref="content"
+			class="d-modal__content c-centered"
+			role="document"
+			:tabindex="isActive ? 0 : undefined"
+			@keydown="onKeydown"
+		>
+			<slot></slot>
+		</div>
+	</div>
 </template>
 
 <script>
 export default {
   name: "ModalComponent",
-  layout: 'auth',
+  layout: "auth",
   data() {
     return {
       isActive: true
@@ -33,6 +33,12 @@ export default {
         this.hide()
       }
     },
+  },
+
+  beforeMount() {
+    this.$nextTick(() => {
+      this.isActive && this.show()
+    })
   },
 
   methods: {
@@ -55,12 +61,6 @@ export default {
       this.$emit("keydown", e)
     },
   },
-
-  beforeMount() {
-    this.$nextTick(() => {
-      this.isActive && this.show()
-    })
-  },
 }
 </script>
 
@@ -74,11 +74,11 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0; 
   transition: opacity 0.3s ease-in-out;
   background: rgb(0, 0, 0, 0.3);
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   z-index: 999999.99;
 }
 

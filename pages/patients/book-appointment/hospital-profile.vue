@@ -179,4 +179,12 @@ export default class ProfileDetails extends Vue {
   font-weight: 600;
   color: #14171f;
 }
+
+.info-container > ul > li:nth-of-type(1) {
+	padding-left: 0px;
+}
+
+.info-container > ul > li:nth-of-type(3) {
+	padding-right: 0px;
+}
 </style>

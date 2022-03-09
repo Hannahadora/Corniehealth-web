@@ -1,8 +1,8 @@
 <template>
 	<div
-		class="px-20 w-full h-screen bg-primary lg:grid grid-cols-12 overflow-y-auto overflow-x-hidden py-5 md:py-0"
+		class="xl:px-24 lg:px-10 px-5 w-full h-screen bg-primary lg:grid grid-cols-12 overflow-y-auto overflow-x-hidden lg:py-11 py-5"
 	>
-		<div class="lg:col-span-5 lg:h-full lg:relative lg:pr-20">
+		<div class="lg:col-span-6 lg:h-full lg:relative lg:pr-20">
 			<nuxt-link to="/" class="lg:absolute top-3 left-0 cursor-pointer z-40">
 				<logo-icon />
 			</nuxt-link>
@@ -25,7 +25,7 @@
 			</div>
 		</div>
 
-		<div class="lg:col-span-7">
+		<div class="lg:col-span-6 lg:my-11">
 			<slot />
 		</div>
 	</div>

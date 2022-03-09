@@ -35,40 +35,8 @@
 					required
 				</p>
 
-				<div
-					class="xl:w-full lg:w-2/3 w-full mx-auto flex xl:flex-row flex-col items-center justify-center"
-				>
-					<input-comp
-						v-model="providerName"
-						type="text"
-						class="xl:mr-2 xl:mb-0 xl:w-2/5 xl:flex hidden"
-						input-icon="/images/search.svg"
-						placeholder="Provider name, practice name or specialty"
-					/>
-					<input-comp
-						v-model="providerName"
-						type="text"
-						class="w-full mb-4 xl:hidden flex"
-						input-icon="/images/search.svg"
-						placeholder="Name or specialty"
-					/>
-					<input-comp
-						v-model="cityName"
-						type="text"
-						class="xl:mr-2 mr-0 xl:mb-0 mb-4 xl:w-2/5 w-full"
-						input-icon="/images/cil_location-pin.svg"
-						placeholder="City name or Zip/Postal code"
-					/>
-					<div class="xl:w-1/5 w-full">
-						<c-button
-							type="button"
-							class="w-full"
-							:tertiary="true"
-							@click="goToBookingPage"
-						>Search</c-button
-						>
-					</div>
-				</div>
+				<filter-practitioner-area />
+
 				<div>
 					<img
 						class="header-image mx-auto lg:mt-0 mt-16"
@@ -294,20 +262,17 @@
 import { Component, Vue } from "nuxt-property-decorator"
 import CButton from "../components/CButton.vue"
 import HealthOutcomes from "../components/HealthOutcomes.vue"
+import FilterPractitionerArea from "~/components/FilterPractitionerArea.vue"
 
 @Component({
   components: {
     CButton,
     HealthOutcomes,
+    FilterPractitionerArea,
   },
 })
 export default class IndexPage extends Vue {
-  providerName: String = ""
-  cityName: String = ""
 
-  goToBookingPage() {
-    this.$router.push("/patients/book-appointment/search-result/doctors")
-  }
 }
 </script>
 

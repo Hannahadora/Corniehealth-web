@@ -125,7 +125,7 @@
 				type="button"
 				:primary="true"
 				small
-				@click="$router.push({ path: '/book-appointment/confirm-payment' })"
+				@click="$router.push({ path: '/patients/book-appointment/confirm-payment' })"
 			>
 				skip
 			</c-button>
@@ -135,7 +135,7 @@
 				small
 				:secondary="haveInsurance.length !== 0"
 				:disabled="!haveInsurance.length"
-				@click="$router.push({ path: '/book-appointment/confirm-payment' })"
+				@click="$router.push({ path: '/patients/book-appointment/confirm-payment' })"
 			>
 				Continue
 			</c-button>

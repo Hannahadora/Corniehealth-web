@@ -15,8 +15,8 @@
 				</div>
 			</div>
 
-			<div class="grid grid-cols-2 gap-6">
-				<div class="flex items-center col-span-2">
+			<div class="lg:grid block grid-cols-2 gap-4">
+				<div class="lg:mb-0 mb-4 flex items-start col-span-2">
 					<img
 						class="mr-3"
 						src="/images/book-appointment/icon-doctor-grey.png"
@@ -27,7 +27,7 @@
 						Medicine (3) | Pathologist (5)</span
 					>
 				</div>
-				<div class="flex items-center">
+				<div class="lg:mb-0 mb-4 flex items-start">
 					<img
 						class="mr-3"
 						src="/images/book-appointment/icon-sethos-grey.png"
@@ -35,7 +35,7 @@
 					/>
 					<span class="">23 Doctors</span>
 				</div>
-				<div class="flex items-center">
+				<div class="lg:mb-0 mb-4 flex items-start">
 					<img
 						class="mr-3"
 						src="/images/book-appointment/icon-patients-grey.png"
@@ -43,7 +43,7 @@
 					/>
 					<span class="">1034 Patients seen</span>
 				</div>
-				<div class="flex items-center">
+				<div class="lg:mb-0 mb-4 flex items-start">
 					<img
 						class="mr-3"
 						src="/images/book-appointment/icon-lang-grey.png"
@@ -51,7 +51,7 @@
 					/>
 					<span class="">www.reddington.com.ng</span>
 				</div>
-				<div class="flex items-center">
+				<div class="lg:mb-0 mb-4 flex items-start">
 					<img
 						class="mr-3"
 						src="/images/book-appointment/icon-phone-white.png"
@@ -59,7 +59,7 @@
 					/>
 					<span class="">+234 802 000 0000</span>
 				</div>
-				<div class="flex items-center">
+				<div class="lg:mb-0 mb-4 flex items-start">
 					<img
 						class="mr-3"
 						src="/images/book-appointment/icon-location-grey.png"
@@ -67,7 +67,7 @@
 					/>
 					<span class="">234 Admiralty Way Lekki, Lagos, Nigeria</span>
 				</div>
-				<div class="flex items-center">
+				<div class="lg:mb-0 mb-4 flex items-start">
 					<img
 						class="mr-3"
 						src="/images/book-appointment/icon-date-white.png"
@@ -82,7 +82,7 @@
 					type="button"
 					secondary
 					small
-					@click="$router.push({ path: '/book-appointment/hospital-profile' })"
+					@click="$router.push({ path: '/patients/book-appointment/hospital-profile' })"
 				>View Profile</c-button
 				>
 			</div>

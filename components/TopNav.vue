@@ -1,5 +1,8 @@
 <template>
-	<div class="header bg-white w-full fixed top-0">
+	<div
+		class="header bg-white w-full fixed top-0"
+		:class="{ 'z-0': modalIsOpen, 'z-998': !modalIsOpen }"
+	>
 		<div class="w-full flex items-center justify-between">
 			<CornieLogo />
 			<ul class="header-nav xl:flex hidden items-center justify-between">
@@ -98,10 +101,12 @@
 import Vue from "vue"
 import vClickOutside from "v-click-outside"
 // import CButton from "./CButton.vue"
+import { mapGetters } from "vuex"
 import CornieLogo from "./CornieLogo.vue"
 import MobileNav from "./MobileNav.vue"
 import PatientsDropdown from "./PatientsDropdown.vue"
 import ProvidersDropdown from "./ProvidersDropdown.vue"
+
 
 export default Vue.extend({
   name: "TopNav",
@@ -124,6 +129,16 @@ export default Vue.extend({
       sideMenu: false,
     }
   },
+
+  computed: {
+    ...mapGetters({
+      modalIsOpen: ["misc/modalState"],
+    }),
+  },
+
+  // get modalIsOpen() {
+  // 	return this.$store.getters['misc/modalState']
+  // },
 
   methods: {
     openSideMenu() {
@@ -154,7 +169,7 @@ export default Vue.extend({
   padding: 18px 72px;
   box-shadow: 0px 0px 1px rgba(46, 41, 78, 0.02),
     0px 2px 4px rgba(46, 41, 78, 0.08);
-  z-index: 998;
+  /* z-index: 99; */
 }
 
 a.nuxt-link-active {
@@ -170,12 +185,16 @@ a.nuxt-link-active {
 }
 
 .tooltip {
-	cursor: pointer !important;
+  cursor: pointer !important;
 }
 
 .tooltiptext {
-	background: #fe4d3c !important;
-	color: #fff !important;
+  background: #fe4d3c !important;
+  color: #fff !important;
+}
+
+.z-998 {
+  z-index: 998;
 }
 
 @media screen and (max-width: 1024px) {

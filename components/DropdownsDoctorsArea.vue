@@ -111,7 +111,8 @@
 // import CSwiper from "./CSwiper.vue"
 
 import { Hooper, Slide } from "hooper"
-import "hooper/dist/hooper.css"
+// import "hooper/dist/hooper.css"
+import "../static/css/doctorhooper.css"
 
 export default {
   name: "DropdownDoctorArea",
@@ -202,31 +203,5 @@ export default {
 </script>
 
 <style scoped>
-.d-slider .hooper-slide {
-  width: auto !important;
-  padding: 0px 5px 0px 0px !important;
-}
 
-.d-slider .hooper-list {
-  height: 500px !important;
-  max-height: auto !important;
-  overflow: visible !important;
-}
-
-.d-slider .hooper {
-height: auto !important;
-}
-
-/* .hooper-list {
-  overflow-x: auto;
-  overflow-y: auto;
-  width: 100%;
-  max-height: 350px;
-  margin: auto;
-} */
-/* @media screen and (max-width: 1280) {
-  .d-slider .hooper-list {
-  overflow: visible !important;
-  }
-} */
 </style>

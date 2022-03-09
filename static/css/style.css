@@ -24,6 +24,10 @@ body {
   border-radius: 16px;
 }
 
+input:focus {
+  outline: none;
+}
+
 .c-indigo {
   color: #080056;
 }

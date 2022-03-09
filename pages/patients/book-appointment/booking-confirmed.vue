@@ -90,7 +90,7 @@ import { Component, Vue } from "nuxt-property-decorator"
   //   components: { CButton },
   layout: "book-appointment",
 })
-export default class ConfirmPaymentPage extends Vue {}
+export default class BookingConfirmed extends Vue {}
 </script>
 
 <style scoped>

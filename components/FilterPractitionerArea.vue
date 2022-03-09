@@ -3,7 +3,10 @@
 		<div
 			class="xl:w-full lg:w-2/3 w-full mx-auto xl:grid block grid-cols-5 gap-2"
 		>
-			<div v-click-outside="closePractitionerDropdown" class="relative col-span-2">
+			<div
+				v-click-outside="closePractitionerDropdown"
+				class="relative col-span-2"
+			>
 				<div class="input-wrapper flex items-center py-3 px-5 xl:mb-0 mb-4">
 					<img class="xl:mr-6 mr-4" src="/images/search.svg" alt="" />
 
@@ -104,6 +107,7 @@
 					v-if="openLocations"
 					class="w-full max-h-80 overflow-y-scroll z-20 mt-10 bg-white px-2 py-4 shadow absolute block top-10"
 				>
+					<div class="ddh w-full px-2 py-4">Select State/Region or City</div>
 					<div
 						v-for="(location, index) in rLocations"
 						:key="index"
@@ -135,7 +139,7 @@
 import vClickOutside from "v-click-outside"
 export default {
   name: "FilterPractitioner",
-  
+
   directives: {
     clickOutside: vClickOutside.directive,
   },
@@ -147,7 +151,7 @@ export default {
       cityName: "",
       searchResult: [],
       rLocations: [],
-      defLocation: [ 
+      defLocation: [
         "Lagos",
         "Abuja",
         "Port Harcourt",
@@ -246,7 +250,7 @@ export default {
     },
 
     async goToBookingPage() {
-      if(this.cityName !== "" && this.providerName !== "")  {
+      if (this.cityName !== "" && this.providerName !== "") {
         try {
           const res = await this.$store.dispatch(
             "practitioners/findPractitioners",
@@ -256,7 +260,7 @@ export default {
           this.searchResult = res.data
 
           this.$router.push("/patients/book-appointment/search-result/doctors")
-        //   }
+          //   }
         } catch (err) {
           console.log(err)
         }
@@ -273,6 +277,12 @@ export default {
   padding: 16px auto 16px 8px;
   text-align: left;
   width: 100%;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #667499;
 }
 .input-wrapper {
   border: 1px solid #c5c4d4;

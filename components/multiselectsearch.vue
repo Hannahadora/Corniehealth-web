@@ -100,7 +100,7 @@ function isObject(value) {
 }
 
 export default {
-  name: "DSelect",
+  name: "MSelect",
 
   props: {
     value: {
@@ -243,13 +243,13 @@ export default {
     },
     selectItem(item) {
       this.active = true
-      this.selectedItems.push(item)
-      if(this.selectedItems.length === 1) {
-        this.selectedItem = item
-      } else if(this.selectedItems.length > 1) {
-        this.selectedItem = item
-      }
-      // this.selectedItem = item
+      // this.selectedItems.push(item)
+      // if(this.selectedItems.length === 1) {
+      //   this.selectedItem = item
+      // } else if(this.selectedItems.length > 1) {
+      //   this.selectedItem = item
+      // }
+      this.selectedItem = item
       // this.itemListVisible = false
       this.$emit("input", this.returnObject ? item : item[this.itemValueProp])
     },

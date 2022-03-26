@@ -57,6 +57,13 @@ input:focus {
   background: #080056;
 }
 
+.bg-cotton-ball {
+  background-color: #f0f4fe;
+}
+.bg-lighter-blue {
+  background-color: #F6F8F9 !important;
+}
+
 .text-razzmataz-pry {
   color: #fe4d3c;
 }

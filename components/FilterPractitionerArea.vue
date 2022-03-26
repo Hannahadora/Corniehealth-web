@@ -40,34 +40,38 @@
 								class="block"
 							>
 								<li
-									class="px-2 py-4 capitalize hover:bg-gray-100 cursor-pointer"
+									class="capitalize px-2 py-4 capitalize hover:bg-gray-100 cursor-pointer"
 									@click="selectProvider(specialty)"
 								>
 									{{ specialty }}
 								</li>
 							</ul>
-							<div v-if="specialties.length === 0" class="text-razzmataz-pry">
-								None found
-							</div>
-						</div>
-						<div class="w-full text-left mb-2">
-							<div class="ddh w-full px-2 py-4">Practice</div>
-							<ul
-								v-for="(practice, index) in practices"
-								:key="index"
-								class="block"
+							<div
+								v-if="!loading && specialties.length === 0"
+								class="text-razzmataz-pry"
 							>
-								<li
-									class="px-2 py-4 capitalize hover:bg-gray-100 cursor-pointer"
-									@click="selectProvider(practice)"
-								>
-									{{ practice }}
-								</li>
-							</ul>
-							<div v-if="practices.length === 0" class="text-razzmataz-pry">
 								None found
 							</div>
+							<div v-if="loading" class="text-blue-500 text-center text-xs">Loading</div>
 						</div>
+						<!-- <div class="w-full text-left mb-2">
+              <div class="ddh w-full px-2 py-4">Practice</div>
+              <ul
+                v-for="(practice, index) in practices"
+                :key="index"
+                class="block"
+              >
+                <li
+                  class="px-2 py-4 capitalize hover:bg-gray-100 cursor-pointer"
+                  @click="selectProvider(practice)"
+                >
+                  {{ practice }}
+                </li>
+              </ul>
+              <div v-if="practices.length === 0" class="text-razzmataz-pry">
+                None found
+              </div>
+            </div> -->
 						<div class="w-full text-left">
 							<div class="ddh w-full px-2 py-4">Practitioners</div>
 							<ul
@@ -76,15 +80,19 @@
 								class="block"
 							>
 								<li
-									class="px-2 py-4 capitalize hover:bg-gray-100 cursor-pointer"
+									class="capitalize px-2 py-4 capitalize hover:bg-gray-100 cursor-pointer"
 									@click="selectProvider(practitioner)"
 								>
 									{{ practitioner }}
 								</li>
 							</ul>
-							<div v-if="practitioners.length === 0" class="text-razzmataz-pry">
+							<div
+								v-if="!loading && practitioners.length === 0"
+								class="text-razzmataz-pry"
+							>
 								None found
 							</div>
+							<div v-if="loading" class="text-blue-500 text-center text-xs">Loading</div>
 						</div>
 					</div>
 				</div>
@@ -116,9 +124,10 @@
 					>
 						{{ location }}
 					</div>
-					<div v-if="rLocations.length === 0">
+					<div v-if="!loading && rLocations.length === 0">
 						<span class="text-razzmataz-pry">None found</span>
 					</div>
+					<div v-if="loading" class="text-blue-500 text-center text-xs">Loading</div>
 				</div>
 			</div>
 			<div class="xl:ml-1 xl:mt-0 mt-4">
@@ -171,6 +180,7 @@ export default {
       specialties: [],
       practices: [],
       practitioners: [],
+      loading: false,
     }
   },
 
@@ -193,9 +203,7 @@ export default {
     cityName() {
       if (this.cityName !== "") {
         this.openLocations = true
-        this.rLocations = this.defLocation.filter(el =>
-          el.toLowerCase().includes(this.cityName.toLowerCase())
-        )
+        this.findCity()
       } else this.openLocations = false
     },
 
@@ -210,11 +218,16 @@ export default {
   created() {},
 
   methods: {
+
     selectCity(location) {
       this.cityName = location
       setTimeout(() => {
         this.openLocations = false
       }, 500)
+      this.$store.dispatch(
+        "misc/updateSelectedLocation",
+        this.cityName
+      )
     },
 
     selectProvider(pname) {
@@ -222,39 +235,62 @@ export default {
       setTimeout(() => {
         this.practitionersDropdown = false
       }, 500)
+      this.$store.dispatch(
+        "misc/updateSelectedSpecialty",
+        this.providerName
+      )
     },
 
     closeLocationDropdown() {
       this.openLocations = false
+      this.rLocations.forEach(el => {
+        if (this.cityName !== el || this.rLocations.length === 0) {
+          this.cityName = ""
+        }
+      })
     },
     closePractitionerDropdown() {
       this.practitionersDropdown = false
+      const allD =
+        this.specialties.map(el => el) && this.practitioners.map(el => el)
+      allD.forEach(el => {
+        if (this.providerName !== el) {
+          this.providerName = ""
+        }
+      })
+    },
+
+    async findCity() {
+      this.loading = true
+      const res = await this.$store.dispatch(
+        "practitioners/findLocations",
+        this.cityName
+      )
+      this.loading = true
+      // if (res.success === "true") {
+      this.rLocations = res.data.data || []
+      // }
     },
 
     async findProviders() {
+      this.loading = true
       const res = await this.$store.dispatch(
-        "practitioners/findPractitioners",
+        "practitioners/providersDropdown",
         this.providerName
       )
-      if (res.success === "true") {
-        this.specialties = res.data.specialty.filter(el =>
-          el.toLowerCase().includes(this.providerName.toLowerCase())
-        )
-        this.practices = res.data.practice.filter(el =>
-          el.toLowerCase().includes(this.providerName.toLowerCase())
-        )
-        this.practitioners = res.data.practitioners.filter(el =>
-          el.toLowerCase().includes(this.providerName.toLowerCase())
-        )
-      }
+      this.loading = false
+      // if (res.success === "true") {
+      this.specialties = res.data.data.specialties
+      this.practitioners = res.data.data.providers.map(el => el.name)
+      // }
     },
 
     async goToBookingPage() {
       if (this.cityName !== "" && this.providerName !== "") {
         try {
           const res = await this.$store.dispatch(
-            "practitioners/findPractitioners",
-            this.providerName
+            "practitioners/findPractitionersPart",
+            { specialty: this.providerName, location: this.cityName }
           )
           //   if (res.success === "true") {
           this.searchResult = res.data

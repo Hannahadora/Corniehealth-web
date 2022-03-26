@@ -9,9 +9,8 @@
 				<li class="mr-6">
 					<NuxtLink class="pb-2" to="/appointments">Appointments</NuxtLink>
 				</li>
-				<li class="mr-6 tooltip">
-					<span class="tooltiptext">Coming soon</span>
-					<span class="pb-2">Pharmacy</span>
+				<li class="mr-6">
+					<NuxtLink to="/pharmacy" class="pb-2">Pharmacy</NuxtLink>
 				</li>
 				<li class="mr-6 tooltip">
 					<span class="tooltiptext">Coming soon</span>

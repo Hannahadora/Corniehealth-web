@@ -47,59 +47,67 @@
 			<hooper class="mb-8" :settings="hooperSettings">
 				<slide>
 					<multiselectsearch
+						v-model="search.specialty"
 						icon="/images/book-appointment/icon-doctor-grey.png"
 						placeholder="Specialty"
-						:items="specialty"
+						:items="specialties"
 					/>
 				</slide>
 				<slide>
 					<multiselectsearch
+						v-model="search.location"
 						icon="/images/book-appointment/icon-location-grey.png"
 						placeholder="Location"
-						:items="location"
+						:items="locations"
 					/>
 				</slide>
 				<slide>
 					<multiselectsearch
+						v-model="search.hospital"
 						icon="/images/book-appointment/icon-hospital-grey.png"
 						placeholder="Hospital"
-						:items="hospital"
+						:items="hospitals"
 					/>
 				</slide>
 				<slide>
 					<multiselectsearch
+						v-model="search.experience"
 						icon="/images/book-appointment/icon-experience-grey.png"
 						placeholder="Experience"
-						:items="experience"
+						:items="experiences"
 					/>
 				</slide>
 				<slide>
 					<multiselectsearch
+						v-model="search.visitType"
 						icon="/images/book-appointment/icon-visit-grey.png"
 						placeholder="Visit Type"
-						:items="visitType"
+						:items="visitTypes"
 					/>
 				</slide>
 				<slide>
 					<multiselectsearch
+						v-model="search.insurance"
 						icon="/images/book-appointment/icon-insurance-grey.png"
 						placeholder="Insurance"
-						:items="insurance"
+						:items="insurances"
 					/>
 				</slide>
 				<slide>
 					<multiselectsearch
+						v-model="search.language"
 						icon="/images/book-appointment/icon-lang-grey.png"
 						placeholder="Language"
-						:items="language"
+						:items="languages"
 					/>
 				</slide>
 				<slide>
 					<multiselectsearch
 						id="lcd"
+						v-model="search.gender"
 						icon="/images/book-appointment/icon-gender-grey.png"
 						placeholder="Gender"
-						:items="gender"
+						:items="genders"
 					/>
 				</slide>
 			</hooper>
@@ -124,6 +132,16 @@ export default {
 
   data() {
     return {
+      search: {
+        specialty: "",
+        location: "",
+        hospital: "",
+        experience: "",
+        language: "",
+        visitType: "",
+        gender: "",
+        insurance: "",
+      },
       hooperSettings: {
         itemsToShow: 1,
         centerMode: false,
@@ -146,7 +164,7 @@ export default {
         },
       },
 
-      specialty: [
+      specialties: [
         "All",
         "Dentists",
         "ENT",
@@ -156,7 +174,7 @@ export default {
         "Urologist",
       ],
 
-      location: [
+      locations: [
         "Lagos",
         "Abuja",
         "Port Harcourt",
@@ -167,7 +185,7 @@ export default {
         "Benin",
       ],
 
-      hospital: [
+      hospitals: [
         "All",
         "Blue Cross Hospital",
         "Eko Hospital",
@@ -178,7 +196,7 @@ export default {
         "New Times",
       ],
 
-      experience: [
+      experiences: [
         "All",
         "1-5 years",
         "6-10 years",
@@ -186,22 +204,41 @@ export default {
         "16-20 years",
       ],
 
-      visitType: ["Visit", "Walk in", "Virtual"],
+      visitTypes: ["Visit", "Walk in", "Virtual"],
 
-      insurance: [
+      insurances: [
         "All",
         "1-5 years",
         "6-10 years",
         "11-15 years",
         "16-20 years",
       ],
-      language: ["English", "Yoruba", "Ibo", "Hausa", "French"],
-      gender: ["All", "Male", "Female"],
+      languages: ["English", "Yoruba", "Ibo", "Hausa", "French"],
+      genders: ["All", "Male", "Female"],
     }
   },
+
+  watch: {
+    search() {
+      try {
+        this.$store.dispatch(
+          "practitioners/findPractitionersAll",
+          { ...this.search }
+        )
+        //   if (res.success === "true") {
+        // this.searchResult = res.data
+        //   }
+      } catch (err) {
+        console.log(err)
+      }
+    },
+  },
+
+  mounted() {
+    this.search.specialty = this.$store.getters["misc/selectedSpecialty"]
+    this.search.location = this.$store.getters["misc/selectedLocation"]
+  }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,4 +1,4 @@
-import { GetterTree, ActionTree, MutationTree } from "vuex"
+import { GetterTree, ActionTree, MutationTree  } from "vuex"
 // import { RootState } from './types'
 
 import axios from "~/plugins/axios";
@@ -131,33 +131,3 @@ export const actions: ActionTree<RootState, RootState> = {
 
 
 }
-
-
-
-import { StoreOptions } from "vuex";
-
-interface MiscState {
-  modal: false;
-}
-
-export default {
-  namespaced: true,
-  state: {
-    modal: false,
-  },
-  getters: {
-    modalState(state) {
-      return state.modal
-    },
-  },
-  mutations: {
-    SET_MODALSTATE(state, data) {
-      state.modal = data
-    },
-  },
-  actions: {
-    updateModalState({ commit }, data: any) {
-      commit("SET_MODALSTATE", data)
-    },
-  },
-} as StoreOptions<MiscState>;

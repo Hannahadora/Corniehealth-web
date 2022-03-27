@@ -27,7 +27,7 @@
 						@input="$emit('input', $event.target.value)"
 					/>
 
-          <img src="/images/carbon_camera.png" alt="">
+					<img src="/images/carbon_camera.png" alt="">
 				</div>
 
 				<div v-if="practitionersDropdown">
@@ -297,8 +297,8 @@ export default {
       //     //   if (res.success === "true") {
       //     this.searchResult = res.data
 
-          this.$router.push(`/pharmacy/search-result/${this.productName}`)
-          //   }
+        this.$router.push(`/pharmacy/search-result/${this.productName}`)
+        //   }
       //   } catch (err) {
       //     console.log(err)
       //   }

@@ -1,5 +1,13 @@
 <template>
   <div class="c-wrapper">
+    <div class="grid grid-cols-5 gap-7">
+      <div class="bg-white c-border rounded"></div>
+
+      <div class="col-span-4">
+        <h2 class="c-indigo font-bold">Anti-malaria bundle</h2>
+      </div>
+    </div>
+
     <div class="bg-white rounded c-shadow p-4 mt-7 my-20">
       <div class="flex items-center justify-between mb-4">
         <h4 class="font-bold c-indigo">Pharmacy's popular products</h4>
@@ -34,9 +42,9 @@
 
         <div class="grid grid-cols-4 gap-2 mt-5">
           <NuxtLink
-            :to="`/pharmacy/search-result/product-details/${product.name}`"
             v-for="(product, idx) in products"
             :key="idx"
+            :to="`/pharmacy/search-result/product-details/${product.name}`"
             class="product-card"
           >
             <div class="flex flex-col items-center justify-center mb-6">
@@ -84,6 +92,8 @@ export default class ProductDetails extends Vue {
       newPrice: "N13, 950.00",
       rate: "/images/book-appointment/ratings.png",
       image: "/images/image 1 (3).png",
+      description:
+        "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
     },
     {
       name: "Panadol Extra",
@@ -91,6 +101,7 @@ export default class ProductDetails extends Vue {
       newPrice: "N1000.00",
       rate: "/images/book-appointment/ratings.png",
       image: "/images/image 1 (4).png",
+      description: "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
     },
     {
       name: "Medicine aid",
@@ -98,6 +109,7 @@ export default class ProductDetails extends Vue {
       newPrice: "NGN3,400.00",
       rate: "/images/book-appointment/ratings.png",
       image: "/images/image 1 (5).png",
+      description: "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
     },
     {
       name: "Nature’s Field Vitamin",
@@ -105,6 +117,7 @@ export default class ProductDetails extends Vue {
       newPrice: "NGN8,100.00",
       rate: "/images/book-appointment/ratings.png",
       image: "/images/image 1 (6).png",
+      description: "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
     },
   ]
 }

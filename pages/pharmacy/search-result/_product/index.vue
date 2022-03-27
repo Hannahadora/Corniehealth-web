@@ -93,9 +93,10 @@
 						</div>
 
 						<div class="grid grid-cols-4 gap-2 mt-5">
-							<NuxtLink :to="`/pharmacy/search-result/product-details/${product.name}`"
+							<NuxtLink
 								v-for="(product, idx) in products"
 								:key="idx"
+								:to="`/pharmacy/search-result/product-details/${product.name}`"
 								class="product-card"
 							>
 								<div class="flex flex-col items-center justify-center mb-6">
@@ -165,10 +166,12 @@
 						</div>
 
 						<div class="grid grid-cols-4 gap-2 mt-5">
-							<NuxtLink :to="`/pharmacy/search-result/product-details/${product.name}`"
+							<NuxtLink
 								v-for="(product, idx) in products"
 								:key="idx"
+								:to="`/pharmacy/search-result/product-details/${product.name}`"
 								class="product-card"
+								@click="selectProduct(product)"
 							>
 								<div class="flex flex-col items-center justify-center mb-6">
 									<img :src="product.image" alt="" />
@@ -284,6 +287,10 @@ export default class searchResult extends Vue {
       image: "/images/image 1 (6).png",
     },
   ]
+
+  selectProduct(product: any) {
+	  this.$store.dispatch('products/selectProduct', product)
+  }
 }
 </script>
 

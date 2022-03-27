@@ -11,21 +11,23 @@
 					<img class="xl:mr-6 mr-4" src="/images/akar-icons_search.png" alt="" />
 
 					<input
-						v-model="providerName"
+						v-model="productName"
 						type="text"
-						placeholder="Provider name, practice name or specialty"
+						placeholder="Search by generic medication or by brand "
 						required
 						class="w-10/12 focus:outline-none text-sm xl:mr-2 xl:mb-0 xl:block hidden"
 						@input="$emit('input', $event.target.value)"
 					/>
 					<input
-						v-model="providerName"
+						v-model="productName"
 						type="text"
-						placeholder="Name or specialty"
+						placeholder="Medication"
 						required
 						class="w-10/12 focus:outline-none text-sm xl:hidden block"
 						@input="$emit('input', $event.target.value)"
 					/>
+
+          <img src="/images/carbon_camera.png" alt="">
 				</div>
 
 				<div v-if="practitionersDropdown">
@@ -104,7 +106,7 @@
 					<input
 						v-model="cityName"
 						type="text"
-						placeholder="City name or Zip/Postal code"
+						placeholder="Location/City"
 						required
 						class="w-10/12 focus:outline-none text-sm"
 						@input="$emit('input', $event.target.value)"
@@ -133,11 +135,11 @@
 			<div class="xl:ml-1 xl:mt-0 mt-4">
 				<button
 					type="button"
-					class="w-full text-white bg-c-indigo py-3 px-12"
+					class="w-full text-white bg-c-indigo py-3 px-5"
 					:tertiary="true"
 					@click="goToBookingPage"
 				>
-					Search
+					Search best prices
 				</button>
 			</div>
 		</div>
@@ -156,7 +158,7 @@ export default {
     return {
       openLocations: false,
       practitionersDropdown: false,
-      providerName: "",
+      productName: "",
       cityName: "",
       searchResult: [],
       rLocations: [],
@@ -184,7 +186,7 @@ export default {
     }
   },
 
-  //   @Watch("providerName", { immediate: true }) onInput() {
+  //   @Watch("productName", { immediate: true }) onInput() {
   //     this.practitionersDropdown = true
   //     const res: any = this.$store.dispatch(
   //       "practitioners/findPractitioners",
@@ -207,8 +209,8 @@ export default {
       } else this.openLocations = false
     },
 
-    providerName() {
-      if (this.providerName !== "") {
+    productName() {
+      if (this.productName !== "") {
         this.practitionersDropdown = true
         this.findProviders()
       } else this.practitionersDropdown = false
@@ -231,13 +233,13 @@ export default {
     },
 
     selectProvider(pname) {
-      this.providerName = pname
+      this.productName = pname
       setTimeout(() => {
         this.practitionersDropdown = false
       }, 500)
       this.$store.dispatch(
         "misc/updateSelectedSpecialty",
-        this.providerName
+        this.productName
       )
     },
 
@@ -254,8 +256,8 @@ export default {
       const allD =
         this.specialties.map(el => el) && this.practitioners.map(el => el)
       allD.forEach(el => {
-        if (this.providerName !== el) {
-          this.providerName = ""
+        if (this.productName !== el) {
+          this.productName = ""
         }
       })
     },
@@ -276,7 +278,7 @@ export default {
       this.loading = true
       const res = await this.$store.dispatch(
         "practitioners/providersDropdown",
-        this.providerName
+        this.productName
       )
       this.loading = false
       // if (res.success === "true") {
@@ -286,20 +288,20 @@ export default {
     },
 
     async goToBookingPage() {
-      if (this.cityName !== "" && this.providerName !== "") {
-        try {
-          const res = await this.$store.dispatch(
-            "practitioners/findPractitionersPart",
-            { specialty: this.providerName, location: this.cityName }
-          )
-          //   if (res.success === "true") {
-          this.searchResult = res.data
+      if (this.cityName !== "" && this.productName !== "") {
+      //   try {
+      //     const res = await this.$store.dispatch(
+      //       "practitioners/findPractitionersPart",
+      //       { specialty: this.productName, location: this.cityName }
+      //     )
+      //     //   if (res.success === "true") {
+      //     this.searchResult = res.data
 
-          this.$router.push("/patients/book-appointment/search-result/doctors")
+          this.$router.push(`/pharmacy/search-result/${this.productName}`)
           //   }
-        } catch (err) {
-          console.log(err)
-        }
+      //   } catch (err) {
+      //     console.log(err)
+      //   }
       }
     },
   },

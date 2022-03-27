@@ -1,82 +1,82 @@
 <template>
-  <div class="c-wrapper">
-    <div class="grid grid-cols-5 gap-7">
-      <div class="bg-white c-border rounded"></div>
+	<div class="c-wrapper">
+		<div class="grid grid-cols-5 gap-7">
+			<div class="bg-white c-border rounded"></div>
 
-      <div class="col-span-4">
-        <h2 class="c-indigo font-bold">Anti-malaria bundle</h2>
-      </div>
-    </div>
+			<div class="col-span-4">
+				<h2 class="c-indigo font-bold">{{ dProduct.name }}</h2>
+			</div>
+		</div>
 
-    <div class="bg-white rounded c-shadow p-4 mt-7 my-20">
-      <div class="flex items-center justify-between mb-4">
-        <h4 class="font-bold c-indigo">Pharmacy's popular products</h4>
-        <hr class="w-1/2" />
-        <div class="flex items-center">
-          <p class="text-razzmataz-pry mr-2">View All</p>
-          <img src="/images/bi_arrow-down (1).png" alt="" />
-        </div>
-      </div>
+		<div class="bg-white rounded c-shadow p-4 mt-7 my-20">
+			<div class="flex items-center justify-between mb-4">
+				<h4 class="font-bold c-indigo">Pharmacy's popular products</h4>
+				<hr class="w-1/2" />
+				<div class="flex items-center">
+					<p class="text-razzmataz-pry mr-2">View All</p>
+					<img src="/images/bi_arrow-down (1).png" alt="" />
+				</div>
+			</div>
 
-      <div class="mt-10">
-        <div class="flex items-center justify-between">
-          <div class="w-10/12 flex items-center">
-            <p class="mr-4">Related tags:</p>
-            <span class="tag-div mr-4">Multi-Vitamins</span>
-            <span class="tag-div mr-4">Protein Supplements</span>
-          </div>
+			<div class="mt-10">
+				<div class="flex items-center justify-between">
+					<div class="w-10/12 flex items-center">
+						<p class="mr-4">Related tags:</p>
+						<span class="tag-div mr-4">Multi-Vitamins</span>
+						<span class="tag-div mr-4">Protein Supplements</span>
+					</div>
 
-          <div class="flex items-center">
-            <img
-              class="cursor-pointer mr-2"
-              src="/images/akar-icons_chevron-right.png"
-              alt=""
-            />
-            <img
-              class="cursor-pointer"
-              src="/images/akar-icons_chevron-right (1).png"
-              alt=""
-            />
-          </div>
-        </div>
+					<div class="flex items-center">
+						<img
+							class="cursor-pointer mr-2"
+							src="/images/akar-icons_chevron-right.png"
+							alt=""
+						/>
+						<img
+							class="cursor-pointer"
+							src="/images/akar-icons_chevron-right (1).png"
+							alt=""
+						/>
+					</div>
+				</div>
 
-        <div class="grid grid-cols-4 gap-2 mt-5">
-          <NuxtLink
-            v-for="(product, idx) in products"
-            :key="idx"
-            :to="`/pharmacy/search-result/product-details/${product.name}`"
-            class="product-card"
-          >
-            <div class="flex flex-col items-center justify-center mb-6">
-              <img :src="product.image" alt="" />
-            </div>
-            <span class="sub-titles-2 font-bold c-indigo mb-2">{{
-              product.name
-            }}</span>
-            <img class="mb-2" :src="product.rate" alt="" />
-            <div class="mb-6 flex items-center">
-              <p v-if="product.oldPrice" class="mr-6 text-razzmataz-pry">
-                {{ product.oldPrice }}
-              </p>
-              <p>{{ product.newPrice }}</p>
-            </div>
-            <div class="flex items-center justify-center mb-6">
-              <button
-                type="button"
-                class="text-base font-bold border border-indigo-900 rounded c-indigo bg-white px-9 py-3"
-                @click="$router.push('/signin')"
-              >
-                Add to cart
-              </button>
-            </div>
-            <span class="sub-titles-2 font-bold c-indigo mb-2"
-              >Product Info</span
-            >
-          </NuxtLink>
-        </div>
-      </div>
-    </div>
-  </div>
+				<div class="grid grid-cols-4 gap-2 mt-5">
+					<NuxtLink
+						v-for="(product, idx) in products"
+						:key="idx"
+						:to="`/pharmacy/search-result/product-details/${product.name}`"
+						class="product-card"
+					>
+						<div class="flex flex-col items-center justify-center mb-6">
+							<img :src="product.image" alt="" />
+						</div>
+						<span class="sub-titles-2 font-bold c-indigo mb-2">{{
+							product.name
+						}}</span>
+						<img class="mb-2" :src="product.rate" alt="" />
+						<div class="mb-6 flex items-center">
+							<p v-if="product.oldPrice" class="mr-6 text-razzmataz-pry">
+								{{ product.oldPrice }}
+							</p>
+							<p>{{ product.newPrice }}</p>
+						</div>
+						<div class="flex items-center justify-center mb-6">
+							<button
+								type="button"
+								class="text-base font-bold border border-indigo-900 rounded c-indigo bg-white px-9 py-3"
+								@click="$router.push('/signin')"
+							>
+								Add to cart
+							</button>
+						</div>
+						<span class="sub-titles-2 font-bold c-indigo mb-2"
+						>Product Info</span
+						>
+					</NuxtLink>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
@@ -120,6 +120,10 @@ export default class ProductDetails extends Vue {
       description: "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
     },
   ]
+
+  dProduct() {
+    return this.$store.getters['products/selectedProduct']
+  }
 }
 </script>
 

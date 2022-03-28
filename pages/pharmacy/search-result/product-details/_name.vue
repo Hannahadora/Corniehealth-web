@@ -1,10 +1,107 @@
 <template>
 	<div class="c-wrapper">
-		<div class="grid grid-cols-5 gap-7">
-			<div class="bg-white c-border rounded"></div>
+		<div class="flex items-start">
+			<div class="bg-white c-border rounded p-4 w-1/3 mr-7">
+				<div>
+					<img :src="dProduct.image" alt="" />
+				</div>
+				<div class="mt-6 grid grid-cols-4 gap-6">
+					<img class="w-20 h-20 c-border" :src="dProduct.altImgmage1" alt="" />
+					<img class="w-20 h-20 c-border" :src="dProduct.altImgmage2" alt="" />
+					<img class="w-20 h-20 c-border" :src="dProduct.altImgmage3" alt="" />
+					<img class="w-20 h-20 c-border" :src="dProduct.altImgmage4" alt="" />
+				</div>
+				<div class="flex items-center justify-center mt-6">
+					<button
+						type="button"
+						class="w-full text-base font-bold border border-indigo-900 rounded c-indigo bg-white py-3 flex items-center justify-center"
+						@click="$router.push('/signin')"
+					>
+						<img
+							class="mr-2"
+							src="/images/ant-design_shopping-cart-outlined.png"
+							alt=""
+						/>
+						<span>Add to cart</span>
+					</button>
+				</div>
+				<div class="flex items-center justify-center mt-6">
+					<button
+						type="button"
+						class="w-full text-base font-bold bg-razzmataz-pry rounded text-white py-3 flex items-center justify-center"
+						@click="$router.push('/signin')"
+					>
+						<img
+							class="mr-2"
+							src="/images/ant-design_shopping-cart-outlined.png"
+							alt=""
+						/>
+						<span>Contact pharmacy</span>
+					</button>
+				</div>
+				<div class="flex items-center justify-center mt-6">
+					<button
+						type="button"
+						class="w-full text-base font-bold border border-indigo-900 rounded c-indigo bg-white py-3 flex items-center justify-center"
+						@click="$router.push('/signin')"
+					>
+						<img
+							class="mr-2"
+							src="/images/ant-design_shopping-cart-outlined.png"
+							alt=""
+						/>
+						<span>Chat now</span>
+					</button>
+				</div>
+			</div>
 
-			<div class="col-span-4">
+			<div class="w-2/3 c-border p-4">
 				<h2 class="c-indigo font-bold">{{ dProduct.name }}</h2>
+
+				<h3 class="my-12 font-bold c-indigo">Description</h3>
+				<p class="mb-12">
+					Bevon Capsule is a combination of vitamins, minerals, and antioxidants
+					that helps to ensure good health. It is used to treat vitamin
+					deficiencies and anemia. This capsule helps to increase physical
+					strength and immunity power. It improves nerve function and blood
+					circulation. It boosts the energy levels and keeps active all day. It
+					prevents oxidative stress and tissue damage.
+				</p>
+
+				<div class="border-b flex items-center">
+					<div
+						class="px-6 py-4 sub-titles-2 c-border cursor-pointer"
+						:class="{
+							'bg-razzmataz-pry text-white border-none': activeTab === 'product-details',
+						}"
+						@click="activeTab = 'product-details'"
+					>
+						Product Details
+					</div>
+					<div
+						class="px-6 py-4 sub-titles-2 c-border cursor-pointer"
+						:class="{
+							'bg-razzmataz-pry text-white border-none': activeTab === 'pharmacy-profile',
+						}"
+						@click="activeTab = 'pharmacy-profile'"
+					>
+						Pharmacy Profile
+					</div>
+					<div
+						class="px-6 py-4 sub-titles-2 c-border cursor-pointer"
+						:class="{
+							'bg-razzmataz-pry text-white border-none': activeTab === 'buyer-reviews',
+						}"
+						@click="activeTab = 'buyer-reviews'"
+					>
+						Buyer Reviews
+					</div>
+				</div>
+				<div>
+					<product-details v-if="activeTab === 'product-details'" />
+					<pharmacy-profile v-if="activeTab === 'pharmacy-profile'" />
+					<pharmacy-message />
+				</div>
 			</div>
 		</div>
 
@@ -60,13 +157,18 @@
 							</p>
 							<p>{{ product.newPrice }}</p>
 						</div>
-						<div class="flex items-center justify-center mb-6">
+						<div class="flex items-center justify-center my-6">
 							<button
 								type="button"
-								class="text-base font-bold border border-indigo-900 rounded c-indigo bg-white px-9 py-3"
+								class="w-full text-base font-bold border border-indigo-900 rounded c-indigo bg-white px-9 py-3 flex items-center"
 								@click="$router.push('/signin')"
 							>
-								Add to cart
+								<img
+									class="mr-2"
+									src="/images/ant-design_shopping-cart-outlined.png"
+									alt=""
+								/>
+								<span>Add to cart</span>
 							</button>
 						</div>
 						<span class="sub-titles-2 font-bold c-indigo mb-2"
@@ -81,10 +183,13 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
+import PharmacyMessage from "~/components/Pharmacy/PharmacyMessage.vue"
+import PharmacyProfile from "~/components/Pharmacy/PharmacyProfile.vue"
+import ProductDetails from "~/components/Pharmacy/ProductDetails.vue"
 @Component({
-  components: {},
+  components: {ProductDetails, PharmacyMessage, PharmacyProfile},
 })
-export default class ProductDetails extends Vue {
+export default class ProductDetailsPage extends Vue {
   products = [
     {
       name: "Anti-malaria  bundle",
@@ -101,7 +206,8 @@ export default class ProductDetails extends Vue {
       newPrice: "N1000.00",
       rate: "/images/book-appointment/ratings.png",
       image: "/images/image 1 (4).png",
-      description: "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
+      description:
+        "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
     },
     {
       name: "Medicine aid",
@@ -109,7 +215,8 @@ export default class ProductDetails extends Vue {
       newPrice: "NGN3,400.00",
       rate: "/images/book-appointment/ratings.png",
       image: "/images/image 1 (5).png",
-      description: "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
+      description:
+        "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
     },
     {
       name: "Nature’s Field Vitamin",
@@ -117,12 +224,15 @@ export default class ProductDetails extends Vue {
       newPrice: "NGN8,100.00",
       rate: "/images/book-appointment/ratings.png",
       image: "/images/image 1 (6).png",
-      description: "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
+      description:
+        "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
     },
   ]
 
+  activeTab = "product-details"
+
   dProduct() {
-    return this.$store.getters['products/selectedProduct']
+    return this.$store.getters["products/selectedProduct"]
   }
 }
 </script>

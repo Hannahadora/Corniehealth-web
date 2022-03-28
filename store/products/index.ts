@@ -3,12 +3,11 @@ import { GetterTree, ActionTree, MutationTree } from "vuex"
 
 // const api = axios
 
-export const ProductState = () => ({
-  namespace: true,
-  selectedProduct: null,
+export const state = () => ({
+  selectedProduct: {},
 })
 
-export type RootState = ReturnType<typeof ProductState>
+export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
   selectedProduct(state) {

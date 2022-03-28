@@ -3,14 +3,13 @@ import { GetterTree, ActionTree, MutationTree } from "vuex"
 
 // const api = axios
 
-export const MiscState = () => ({
-  namespace: true,
+export const state = () => ({
   modal: false,
   location: "",
   specialty: ""
 })
 
-export type RootState = ReturnType<typeof MiscState>
+export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
   modalState(state) {

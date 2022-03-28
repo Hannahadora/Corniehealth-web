@@ -141,7 +141,10 @@
 						</div>
 					</div>
 
-					<div class="bg-center bg-no-repeat bg-cover h-60 " style="background: url('/images/img 6 (1).png"></div>
+					<div
+						class="bg-center bg-no-repeat bg-cover h-60"
+						style="background: url('/images/img 6 (1).png"
+					></div>
 
 					<div class="mt-10">
 						<div class="flex items-center justify-between">
@@ -186,13 +189,18 @@
 									</p>
 									<p>{{ product.newPrice }}</p>
 								</div>
-								<div class="flex items-center justify-center mb-6">
+								<div class="flex items-center justify-center mt-6">
 									<button
 										type="button"
-										class="text-base font-bold border border-indigo-900 rounded c-indigo bg-white px-9 py-3"
+										class="w-full text-base font-bold border border-indigo-900 rounded c-indigo bg-white px-9 py-3 flex items-center"
 										@click="$router.push('/signin')"
 									>
-										Add to cart
+										<img
+											class="mr-2"
+											src="/images/ant-design_shopping-cart-outlined.png"
+											alt=""
+										/>
+										<span>Add to cart</span>
 									</button>
 								</div>
 								<span class="sub-titles-2 font-bold c-indigo mb-2"
@@ -209,8 +217,11 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
+import { namespace } from "vuex-class"
 import PharmFilter from "~/components/PharmFilter.vue"
 import PharmSlider1 from "~/components/PharmSlider1.vue"
+
+const products = namespace("products")
 @Component({
   components: {
     PharmFilter,
@@ -258,7 +269,7 @@ export default class searchResult extends Vue {
   ]
 
   products = [
-   {
+    {
       name: "Anti-malaria  bundle",
       oldPrice: "N13, 950.00",
       newPrice: "N13, 950.00",
@@ -273,7 +284,8 @@ export default class searchResult extends Vue {
       newPrice: "N1000.00",
       rate: "/images/book-appointment/ratings.png",
       image: "/images/image 1 (4).png",
-      description: "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
+      description:
+        "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
     },
     {
       name: "Medicine aid",
@@ -281,7 +293,8 @@ export default class searchResult extends Vue {
       newPrice: "NGN3,400.00",
       rate: "/images/book-appointment/ratings.png",
       image: "/images/image 1 (5).png",
-      description: "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
+      description:
+        "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
     },
     {
       name: "Nature’s Field Vitamin",
@@ -289,12 +302,17 @@ export default class searchResult extends Vue {
       newPrice: "NGN8,100.00",
       rate: "/images/book-appointment/ratings.png",
       image: "/images/image 1 (6).png",
-      description: "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
+      description:
+        "Bevon Capsule is a combination of vitamins, minerals, and antioxidants that helps to ensure good health. It is used to treat vitamin deficiencies and anemia. This capsule helps to increase physical strength and immunity power. It improves nerve function and blood circulation. It boosts the energy levels and keeps active all day. It prevents oxidative stress and tissue damage.",
     },
   ]
 
+  @products.Mutation
+    SET_SELECTEDPRODUCT!: (data: any) => void
+
   selectProduct(product: any) {
-	  this.$store.dispatch("products/selectProduct", product)
+    //   this.$store.dispatch("products/selectProduct", product)
+    this.SET_SELECTEDPRODUCT(product)
   }
 }
 </script>
@@ -312,8 +330,8 @@ export default class searchResult extends Vue {
 .product-card {
   display: flex;
   flex-direction: column;
-   justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
   padding: 24px 16px;
   border: 1px solid #e5e5e5;
   box-sizing: border-box;

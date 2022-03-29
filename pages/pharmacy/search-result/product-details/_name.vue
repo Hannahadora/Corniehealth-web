@@ -33,7 +33,7 @@
 					>
 						<img
 							class="mr-2"
-							src="/images/ant-design_shopping-cart-outlined.png"
+							src="/images/bx_bx-phone-call.svg"
 							alt=""
 						/>
 						<span>Contact pharmacy</span>
@@ -47,7 +47,7 @@
 					>
 						<img
 							class="mr-2"
-							src="/images/ant-design_shopping-cart-outlined.png"
+							src="/images/carbon_chat-bot.svg"
 							alt=""
 						/>
 						<span>Chat now</span>
@@ -56,7 +56,30 @@
 			</div>
 
 			<div class="w-2/3 c-border p-4">
-				<h2 class="c-indigo font-bold">{{ dProduct.name }}</h2>
+				<h2 class="c-indigo font-bold mb-5">{{ dProduct.name }}</h2>
+
+				<div class="flex items-center mb-8">
+					<img class="h-5 w-40 mr-4" src="/images/book-appointment/ratings.png" alt="">
+					<span>2 reviews</span>
+				</div>
+
+				<div class="flex items-center justify-between">
+					<div class="w-1/3 flex items-center mr-9">
+						<h4 class="c-indigo">NGN3,400.00</h4>
+						<span class="text-razzmataz-pry text-sm ml-4">N6, 950.00</span>
+					</div>
+
+					<div class="mr-9 flex items-center">
+						<cornie-select placeholder="2" class="p-4" />
+						<label class="c-border pl-6 py-5 pr-6" for="">Quantity</label>
+					</div>
+					<div class="mr-9">
+						<cornie-select placeholder="Form" class="p-4" />
+					</div>
+					<div class="mr-9">
+						<cornie-select placeholder="Container" class="p-4" />
+					</div>
+				</div>
 
 				<h3 class="my-12 font-bold c-indigo">Description</h3>
 				<p class="mb-12">
@@ -100,6 +123,7 @@
 				<div>
 					<product-details v-if="activeTab === 'product-details'" />
 					<pharmacy-profile v-if="activeTab === 'pharmacy-profile'" />
+					<buyer-review v-if="activeTab === 'buyer-reviews'" />
 					<pharmacy-message />
 				</div>
 			</div>
@@ -183,11 +207,13 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
+import CornieSelect from "~/components/CornieSelect.vue"
+import BuyerReview from "~/components/Pharmacy/BuyerReview.vue"
 import PharmacyMessage from "~/components/Pharmacy/PharmacyMessage.vue"
 import PharmacyProfile from "~/components/Pharmacy/PharmacyProfile.vue"
 import ProductDetails from "~/components/Pharmacy/ProductDetails.vue"
 @Component({
-  components: {ProductDetails, PharmacyMessage, PharmacyProfile},
+  components: {ProductDetails, PharmacyMessage, PharmacyProfile, BuyerReview, CornieSelect},
 })
 export default class ProductDetailsPage extends Vue {
   products = [

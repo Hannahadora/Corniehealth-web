@@ -33,7 +33,7 @@
 					alt=""
 				/>
 
-				<filter-practitioner-area />
+				<pharm-filter />
 
 				<div class="mt-2 xl:block hidden"></div>
 				<div>
@@ -280,7 +280,6 @@
 					<div class="border px-4 py-4 flex items-center py-3 px-5">
 						<img class="xl:mr-6 mr-4 w-5 h-5" src="/images/search.svg" alt="" />
 						<input
-							v-model="cityName"
 							type="text"
 							placeholder="Enter city or state"
 							required
@@ -325,7 +324,6 @@
 import { Component, Vue } from "nuxt-property-decorator"
 import CButton from "../../components/CButton.vue"
 import InputComp from "../../components/InputComp.vue"
-import FilterPractitionerArea from "~/components/FilterPractitionerArea.vue"
 import PharmSlider1 from "~/components/PharmSlider1.vue"
 import PharmSlider2 from "~/components/PharmSlider2.vue"
 
@@ -333,7 +331,6 @@ import PharmSlider2 from "~/components/PharmSlider2.vue"
   components: {
     CButton,
     InputComp,
-    FilterPractitionerArea,
     PharmSlider1,
     PharmSlider2,
   },

@@ -8,7 +8,7 @@
 
 		<div class="w-full lg:grid grid-cols-2 block gap-8 items-start mb-12">
 			<div
-				v-for="practitioner in 3"
+				v-for="practitioner in availablePractitioners"
 				:key="practitioner.id"
 				class="info-container xl:p-6 p-4 xl:mb-0 mb-8"
 			>

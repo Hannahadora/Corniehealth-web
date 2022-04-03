@@ -1,5 +1,5 @@
 <template>
-	<div class="">
+	<div class="relative">
 		<div v-if="label" class="mb-2">
 			<label>{{ label }}</label>
 		</div>

@@ -5,7 +5,7 @@
 				<div class="flex items-center">
 					<img class="mr-4" src="/images/book-appointment/Avatar.png" alt="" />
 					<div class="xl:flex block items-center">
-						<h3 class="mr-4">Dr. Sarah Smith | F</h3>
+						<h3 class="mr-4">Dr. {{ practitioner.name }} | F</h3>
 						<img src="/images/book-appointment/ratings.png" alt="" />
 					</div>
 				</div>
@@ -22,7 +22,7 @@
 							<span class="sub-titles-2 text-black-xiketic mb-2"
 							>Specialization</span
 							>
-							<p class="text-grey-blue mr-2">Dentist</p>
+							<p class="text-grey-blue mr-2">{{ practitioner.Specialization }}</p>
 						</div>
 					</div>
 
@@ -36,7 +36,7 @@
 							<span class="sub-titles-2 text-black-xiketic mb-2"
 							>Clinical Experience</span
 							>
-							<p class="text-grey-blue mr-2">20 Years</p>
+							<p class="text-grey-blue mr-2">{{ practitioner.clinical}} Years</p>
 						</div>
 					</div>
 
@@ -52,7 +52,7 @@
 							>
 							<p>
 								<span class="text-grey-blue mr-2"><u>₦ 34,500</u></span> ₦
-								20,500
+								{{ practitioner.consultationRate }}
 							</p>
 						</div>
 					</div>
@@ -67,7 +67,7 @@
 							<span class="sub-titles-2 text-black-xiketic mb-2"
 							>Active Since</span
 							>
-							<p class="text-grey-blue mr-2">1st May 2021</p>
+							<p class="text-grey-blue mr-2">{{ practitioner.activeSince }}</p>
 						</div>
 					</div>
 
@@ -97,7 +97,7 @@
 							<span class="sub-titles-2 text-black-xiketic mb-2"
 							>Phone Number</span
 							>
-							<p class="text-grey-blue mr-2">+234 813 563 8883</p>
+							<p class="text-grey-blue mr-2">{{ practitioner.phoneNumber }}</p>
 						</div>
 					</div>
 
@@ -109,7 +109,7 @@
 						/>
 						<div>
 							<span class="sub-titles-2 text-black-xiketic mb-2">Email</span>
-							<p class="text-grey-blue mr-2">Mikeobi@reddington.com</p>
+							<p class="text-grey-blue mr-2">{{ practitioner.email }}</p>
 						</div>
 					</div>
 
@@ -121,7 +121,7 @@
 						/>
 						<div>
 							<span class="sub-titles-2 text-black-xiketic mb-2">Address</span>
-							<p class="text-grey-blue mr-2">234 Admiralty Way Lekki, Lagos</p>
+							<p class="text-grey-blue mr-2">{{ practitioner.address }}</p>
 						</div>
 					</div>
 				</div>
@@ -160,9 +160,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
-import BasicInfo from "../../../components/BookAppointment/Profile/BasicInfo.vue"
-import Insurance from "../../../components/BookAppointment/Profile/Insurance.vue"
-import Reviews from "../../../components/BookAppointment/Profile/Reviews.vue"
+import { namespace } from "vuex-class"
+import BasicInfo from "../../../../components/BookAppointment/Profile/BasicInfo.vue"
+import Insurance from "../../../../components/BookAppointment/Profile/Insurance.vue"
+import Reviews from "../../../../components/BookAppointment/Profile/Reviews.vue"
+
+const practitioners = namespace("practitioners")
 @Component({
   components: { BasicInfo, Reviews, Insurance },
   layout: "book-appointment",
@@ -171,8 +174,18 @@ export default class ProfileDetails extends Vue {
   activeTab: string = "Basic"
   tabs: Array<any> = ["Basic", "Reviews", "Insurance"]
 
+  practitioner = {}
+
+  @practitioners.Getter
+    selectedPractitioner!: []
+
   handleActiveTab(tab: any) {
     this.activeTab = tab
+  }
+
+  async created() {
+    this.$store.dispatch("practitioners/getAPractitionerProfile", this.$route.params.id)
+    this.practitioner = this.selectedPractitioner
   }
 }
 </script>

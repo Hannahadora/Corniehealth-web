@@ -8,7 +8,8 @@ const api = axios
 export const state = () => ({
   practitioners: [],
   loading: false,
-  searchedLocations: []
+  searchedLocations: [],
+  practitionerProfile: {}
 })
 
 export type RootState = ReturnType<typeof state>
@@ -20,6 +21,11 @@ export const getters: GetterTree<RootState, RootState> = {
   getRelatedLocations(state) {
     return state.searchedLocations
   },
+  
+  selectedPractitioner(state) {
+    return state.practitionerProfile
+  },
+  
 }
 
 export const mutations: MutationTree<RootState> = {
@@ -32,6 +38,10 @@ export const mutations: MutationTree<RootState> = {
   SET_LOCATIONS(state, data) {
     state.searchedLocations = data
   },
+  SET_PRACTITIONER(state, data) {
+    state.practitionerProfile = data
+  },
+  
 }
 
 export const actions: ActionTree<RootState, RootState> = {
@@ -117,6 +127,18 @@ export const actions: ActionTree<RootState, RootState> = {
       const res = await api.get(`/booking-website/specialty-practices?query=${query}`)
       // if(res.success === 'true') {
       // commit("SET_PRACTITIONERS", res.data)
+      // }
+      return res
+    } finally {
+      commit("SET_LOADING", false);
+    }
+  },
+  getAPractitionerProfile: async ({ commit }, practitionerId: string) => {
+    commit("SET_LOADING", true);
+    try {
+      const res = await api.get(`/booking-website/get-profile/${practitionerId}`)
+      // if(res.success === 'true') {
+      commit("SET_PRACTITIONER", res.data)
       // }
       return res
     } finally {

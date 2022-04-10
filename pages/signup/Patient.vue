@@ -140,7 +140,6 @@ import CornieInput from "@/components/CornieInput.vue"
 import CornieCheckbox from "@/components/CornieCheckbox.vue"
 import CornieSelect from "@/components/CornieSelect.vue"
 import CornieDialog from "@/components/CornieDialog.vue"
-
 export default {
   name: "PatientScreen",
   components: {
@@ -183,7 +182,6 @@ export default {
           this.agree
         )
           return true
-
         return false
       },
     },
@@ -197,12 +195,10 @@ export default {
       this.form.email = ""
       this.form.patientProfile = ""
     },
-
     async handleSignin() {
       location.href =
         "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
     },
-
     hideDialog() {
       this.showDiag = false
       this.reset()
@@ -220,7 +216,6 @@ export default {
           `${this.url}/api/v1/early-access`,
           this.form
         )
-
         if (response.data.success) {
           this.showDiag = true
           this.disabled = false

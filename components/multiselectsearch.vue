@@ -1,5 +1,5 @@
 <template>
-	<div class="">
+	<div class="relative">
 		<div v-if="label" class="mb-2">
 			<label>{{ label }}</label>
 		</div>
@@ -100,7 +100,7 @@ function isObject(value) {
 }
 
 export default {
-  name: "DSelect",
+  name: "MSelect",
 
   props: {
     value: {
@@ -243,13 +243,13 @@ export default {
     },
     selectItem(item) {
       this.active = true
-      this.selectedItems.push(item)
-      if(this.selectedItems.length === 1) {
-        this.selectedItem = item
-      } else if(this.selectedItems.length > 1) {
-        this.selectedItem = item
-      }
-      // this.selectedItem = item
+      // this.selectedItems.push(item)
+      // if(this.selectedItems.length === 1) {
+      //   this.selectedItem = item
+      // } else if(this.selectedItems.length > 1) {
+      //   this.selectedItem = item
+      // }
+      this.selectedItem = item
       // this.itemListVisible = false
       this.$emit("input", this.returnObject ? item : item[this.itemValueProp])
     },
@@ -347,13 +347,14 @@ export default {
 .active {
   color: #fff;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   background: #080056;
   border: 1px solid #080056;
   box-sizing: border-box;
   border-radius: 8px;
   white-space: nowrap;
+  max-width: 200px;
 }
 
 input[type="checkbox"]:after {

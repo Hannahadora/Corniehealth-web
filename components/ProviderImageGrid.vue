@@ -169,7 +169,7 @@ export default {
   justify-content: center;
 }
 .hooper-list {
-  overflow: hidden;
+  overflow: hidden !important;
   width: 100%;
   max-height: 350px;
   margin: auto;

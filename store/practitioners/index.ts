@@ -21,11 +21,11 @@ export const getters: GetterTree<RootState, RootState> = {
   getRelatedLocations(state) {
     return state.searchedLocations
   },
-  
+
   selectedPractitioner(state) {
     return state.practitionerProfile
   },
-  
+
 }
 
 export const mutations: MutationTree<RootState> = {
@@ -41,7 +41,7 @@ export const mutations: MutationTree<RootState> = {
   SET_PRACTITIONER(state, data) {
     state.practitionerProfile = data
   },
-  
+
 }
 
 export const actions: ActionTree<RootState, RootState> = {
@@ -109,7 +109,7 @@ export const actions: ActionTree<RootState, RootState> = {
       commit("SET_LOADING", false);
     }
   },
-  async findPractitionersPart({ commit }, { specialty, location}) {
+  async findPractitionersPart({ commit }, { specialty, location }) {
     commit("SET_LOADING", true);
     try {
       const res = await api.get(`/booking-website/search/practitioners?specialty=${specialty}&location=${location}`)

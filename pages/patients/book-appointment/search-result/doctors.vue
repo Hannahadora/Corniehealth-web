@@ -1,109 +1,121 @@
 <template>
-	<div>
-		<dropdowns-doctors-area />
+  <div>
+    <dropdowns-doctors-area />
 
-		<div v-if="availablePractitioners.length === 0">
-			<h1 class="text-center mt-10">None found</h1>
-		</div>
+    <div v-if="availablePractitioners.length === 0">
+      <h1 class="text-center mt-10">None found</h1>
+    </div>
 
-		<div class="w-full lg:grid grid-cols-2 block gap-8 items-start mb-12">
-			<div
-				v-for="practitioner in availablePractitioners"
-				:key="practitioner.id"
-				class="info-container xl:p-6 p-4 xl:mb-0 mb-8"
-			>
-				<div class="w-full xl:pb-0 pb-8">
-					<div class="flex items-center">
-						<img
-							class="mr-4"
-							src="/images/book-appointment/Avatar.png"
-							alt=""
-						/>
-						<div class="">
-							<h3 class="mr-4">
-								Dr. {{ practitioner.firstName }} {{ practitioner.lastName }}
-							</h3>
-							<img src="/images/book-appointment/ratings.png" alt="" />
-						</div>
-					</div>
+    <div class="w-full lg:grid grid-cols-2 block gap-8 items-start mb-12">
+      <div v-if="loading">
+        <div
+          v-for="(i, idx) in 2"
+          :key="idx"
+          class="info-container xl:p-6 p-4 xl:mb-0 mb-8"
+        >
+          <DoctorsResultSkeleton />
+        </div>
+      </div>
+      <div
+        v-for="practitioner in availablePractitioners.slice(0, 10)"
+        :key="practitioner.id"
+        class="info-container xl:p-6 p-4 xl:mb-0 mb-8"
+      >
+        <div class="w-full xl:pb-0 pb-8">
+          <div class="flex items-center">
+            <img
+              class="mr-4 w-16 h-16 rounded-full"
+              :src="practitioner.photo"
+              alt=""
+            />
+            <div class="">
+              <h3 class="mr-4">
+                {{ practitioner.designation }} {{ practitioner.name }}
+              </h3>
+              <img
+                :src="`/images/ratings/${practitioner.rating}star.svg`"
+                alt=""
+              />
+            </div>
+          </div>
 
-					<div class="mt-6 grid grid-cols-1 gap-4">
-						<div class="flex items-start">
-							<img
-								class="mr-2"
-								src="/images/book-appointment/icon-doctor-white.png"
-								alt=""
-							/>
-							<div>
-								<p class="mr-2">{{ practitioner.specialty }}</p>
-							</div>
-						</div>
+          <div class="mt-6 grid grid-cols-1 gap-4">
+            <div class="flex items-start">
+              <img
+                class="mr-2"
+                src="/images/book-appointment/icon-doctor-white.png"
+                alt=""
+              />
+              <div>
+                <p class="mr-2">{{ practitioner.specialty }}</p>
+              </div>
+            </div>
 
-						<div class="flex items-start">
-							<img
-								class="mr-2"
-								src="/images/book-appointment/icon-doctor-white.png"
-								alt=""
-							/>
-							<div>
-								<p class="mr-2">Visit Type - {{ practitioner.visitType }}</p>
-							</div>
-						</div>
+            <div class="flex items-start">
+              <img
+                class="mr-2"
+                src="/images/book-appointment/icon-doctor-white.png"
+                alt=""
+              />
+              <div>
+                <p class="mr-2">Visit Type - {{ practitioner.visitType }}</p>
+              </div>
+            </div>
 
-						<div class="flex items-start">
-							<img
-								class="mr-2"
-								src="/images/book-appointment/icon-lang-white.png"
-								alt=""
-							/>
-							<div>
-								<p class="mr-2">English | Yoruba</p>
-							</div>
-						</div>
+            <div class="flex items-start">
+              <img
+                class="mr-2"
+                src="/images/book-appointment/icon-lang-white.png"
+                alt=""
+              />
+              <div>
+                <p class="mr-2">English | Yoruba</p>
+              </div>
+            </div>
 
-						<div class="flex items-start">
-							<img
-								class="mr-2"
-								src="/images/book-appointment/Icon-fee-white.png"
-								alt=""
-							/>
-							<div>
-								<p class="mr-2">
-									Consultation Fee - {{ practitioner.consultationRate }}
-								</p>
-							</div>
-						</div>
-					</div>
+            <div class="flex items-start">
+              <img
+                class="mr-2"
+                src="/images/book-appointment/Icon-fee-white.png"
+                alt=""
+              />
+              <div>
+                <p class="mr-2">
+                  Consultation Fee - {{ practitioner.consultationRate }}
+                </p>
+              </div>
+            </div>
+          </div>
 
-					<div
-						class="flex xl:flex-row flex-col items-center xl:justify-between justify-center xl:mt-6 mt-8"
-					>
-						<c-button
-							type="button"
-							class="xl:mr-6 xl:mb-0 mb-6 xl:w-1/2 w-full"
-							:primary="true"
-							small
-							@click="viewProfile(practitioner)"
-						>
-							View profile
-						</c-button>
-						<c-button
-							class="xl:w-1/2 w-full"
-							type="button"
-							:secondary="true"
-							small
-							@click="
-								openAppointmentModal(practitioner)
-								SET_MODALSTATE(true)
-							"
-						>
-							Book Appointment
-						</c-button>
-					</div>
-				</div>
-			</div>
+          <div
+            class="flex xl:flex-row flex-col items-center xl:justify-between justify-center xl:mt-6 mt-8"
+          >
+            <c-button
+              type="button"
+              class="xl:mr-6 xl:mb-0 mb-6 xl:w-1/2 w-full"
+              :primary="true"
+              small
+              @click="viewProfile(practitioner)"
+            >
+              View profile
+            </c-button>
+            <c-button
+              class="xl:w-1/2 w-full"
+              type="button"
+              :secondary="true"
+              small
+              @click="
+                openAppointmentModal(practitioner)
+                SET_MODALSTATE(true)
+              "
+            >
+              Book Appointment
+            </c-button>
+          </div>
+        </div>
+      </div>
 
-			<!-- <div class="info-container xl:p-6 p-4 xl:mb-0 mb-8">
+      <!-- <div class="info-container xl:p-6 p-4 xl:mb-0 mb-8">
         <div class="w-full xl:pb-0 pb-8">
           <div class="flex items-center">
             <img
@@ -195,7 +207,7 @@
           </div>
         </div>
  -->
-			<!-- <div class="xl:w-8/12 w-full xl:pl-6 xl:mt-0 mt-8">
+      <!-- <div class="xl:w-8/12 w-full xl:pl-6 xl:mt-0 mt-8">
           <div class="flex items-center justify-between">
             <span class="sub-titles-1 text-razzmataz-pry whitespace-nowrap"
               >Doctor’s Availability</span
@@ -270,16 +282,13 @@
             </c-button>
           </div>
         </div> -->
-			<!-- </div> -->
-		</div>
+      <!-- </div> -->
+    </div>
 
-		<cornie-modal :model-value="show" center class="w-full h-full">
-			<appointment-modal
-				:id="practitionerId"
-				@close="show = false"
-			/>
-		</cornie-modal>
-	</div>
+    <cornie-modal :model-value="show" center class="w-full h-full">
+      <appointment-modal :id="practitionerId" @close="show = false" />
+    </cornie-modal>
+  </div>
 </template>
 
 <script lang="ts">
@@ -298,7 +307,7 @@ const misc = namespace("misc")
     DropdownsDoctorsArea,
     ModalComponent,
     CornieModal,
-    AppointmentModal
+    AppointmentModal,
   },
 })
 export default class DoctorsPage extends Vue {
@@ -310,18 +319,19 @@ export default class DoctorsPage extends Vue {
   availablePractitioners = []
   practitionerId = ""
   show = false
+  loading = false
 
   @appointment.Mutation
-    SET_SELECTEDDATE!: (data: any) => void
+  SET_SELECTEDDATE!: (data: any) => void
 
   @misc.Mutation
-    SET_MODALSTATE!: (data: any) => void
+  SET_MODALSTATE!: (data: any) => void
 
   @appointment.Mutation
-    SET_SELECTEDTIME!: (data: any) => void
+  SET_SELECTEDTIME!: (data: any) => void
 
   @practitioners.Getter
-    getRelatedPractitioners!: []
+  getRelatedPractitioners!: []
 
   handleDate(val: any) {
     this.selectedDate = val.date
@@ -333,7 +343,6 @@ export default class DoctorsPage extends Vue {
     this.SET_SELECTEDTIME(val)
   }
 
-  
   viewProfile(practitioner: any) {
     this.$router.push(`/patients/doctor/${practitioner.id}/profile`)
   }
@@ -345,6 +354,9 @@ export default class DoctorsPage extends Vue {
 
   created() {
     this.availablePractitioners = this.getRelatedPractitioners
+    if(!this.getRelatedPractitioners) {
+      this.loading = true
+    }
   }
 }
 </script>

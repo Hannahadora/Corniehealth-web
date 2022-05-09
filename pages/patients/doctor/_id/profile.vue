@@ -3,15 +3,16 @@
 		<div class="c-wrapper xl:mt-40 mt-16">
 			<div class="info-container px-6 pt-6 pb-7">
 				<div class="flex items-center">
-					<img class="mr-4" src="/images/book-appointment/Avatar.png" alt="" />
+					<img class="mr-4 w-20 h-20 rounded-full" :src="practitioner.photo" alt="" />
 					<div class="xl:flex block items-center">
-						<h3 class="mr-4">Dr. {{ practitioner.name }} | F</h3>
-						<img src="/images/book-appointment/ratings.png" alt="" />
+						<h3 class="mr-4">
+							{{ practitioner && practitioner.name }}
+						</h3>
+						<img :src="`/images/ratings/${practitioner.rating}star.svg`" alt="" />
 					</div>
 				</div>
 
 				<div class="mt-8 xl:grid block grid-cols-4 gap-x-8 gap-y-8">
-					
 					<div class="flex items-start xl:mb-0 mb-6">
 						<img
 							class="mr-2"
@@ -22,7 +23,9 @@
 							<span class="sub-titles-2 text-black-xiketic mb-2"
 							>Specialization</span
 							>
-							<p class="text-grey-blue mr-2">{{ practitioner.Specialization }}</p>
+							<p class="text-grey-blue mr-2">
+								{{ practitioner && practitioner.Specialization }}
+							</p>
 						</div>
 					</div>
 
@@ -36,7 +39,12 @@
 							<span class="sub-titles-2 text-black-xiketic mb-2"
 							>Clinical Experience</span
 							>
-							<p class="text-grey-blue mr-2">{{ practitioner.clinical}} Years</p>
+							<p class="text-grey-blue mr-2">
+								{{
+									practitioner && practitioner.clinicalExperienceInMonths
+								}}
+								Years
+							</p>
 						</div>
 					</div>
 
@@ -51,8 +59,8 @@
 							>Consultation Fee</span
 							>
 							<p>
-								<span class="text-grey-blue mr-2"><u>₦ 34,500</u></span> ₦
-								{{ practitioner.consultationRate }}
+								<span class="text-grey-blue mr-2"><u></u></span> ₦
+								{{ practitioner && practitioner.consultationFeePerHour }}
 							</p>
 						</div>
 					</div>
@@ -64,10 +72,12 @@
 							alt=""
 						/>
 						<div>
-							<span class="sub-titles-2 text-black-xiketic mb-2"
+							<span class="sub-titles-2 text-black-xiketic capitalize mb-2"
 							>Active Since</span
 							>
-							<p class="text-grey-blue mr-2">{{ practitioner.activeSince }}</p>
+							<p class="text-grey-blue mr-2">
+								{{ formatDate(practitioner && practitioner.activeSince) }}
+							</p>
 						</div>
 					</div>
 
@@ -82,7 +92,7 @@
 							>Patient Reviews</span
 							>
 							<p class="text-grey-blue">
-								1st May 2021<span class="ml-4 text-razzmataz-pry">View</span>
+								<span class="ml-4 text-razzmataz-pry">View</span>
 							</p>
 						</div>
 					</div>
@@ -97,7 +107,9 @@
 							<span class="sub-titles-2 text-black-xiketic mb-2"
 							>Phone Number</span
 							>
-							<p class="text-grey-blue mr-2">{{ practitioner.phoneNumber }}</p>
+							<p class="text-grey-blue mr-2">
+								{{ practitioner && practitioner.phone }}
+							</p>
 						</div>
 					</div>
 
@@ -109,7 +121,9 @@
 						/>
 						<div>
 							<span class="sub-titles-2 text-black-xiketic mb-2">Email</span>
-							<p class="text-grey-blue mr-2">{{ practitioner.email }}</p>
+							<p class="text-grey-blue capitalize mr-2">
+								{{ practitioner && practitioner.email }}
+							</p>
 						</div>
 					</div>
 
@@ -121,7 +135,9 @@
 						/>
 						<div>
 							<span class="sub-titles-2 text-black-xiketic mb-2">Address</span>
-							<p class="text-grey-blue mr-2">{{ practitioner.address }}</p>
+							<p class="text-grey-blue capitalize mr-2">
+								{{ practitioner && practitioner.address }}
+							</p>
 						</div>
 					</div>
 				</div>
@@ -145,13 +161,13 @@
 				</ul>
 
 				<div v-if="activeTab === 'Basic'">
-					<basic-info />
+					<basic-info :practioner="practitioner" />
 				</div>
 				<div v-if="activeTab === 'Reviews'">
-					<reviews />
+					<reviews :practioner="practitioner" />
 				</div>
 				<div v-if="activeTab === 'Insurance'">
-					<insurance />
+					<insurance :practioner="practitioner" />
 				</div>
 			</div>
 		</div>
@@ -177,15 +193,28 @@ export default class ProfileDetails extends Vue {
   practitioner = {}
 
   @practitioners.Getter
-    selectedPractitioner!: []
+    selectedPractitioner!: {}
+
+  @practitioners.Getter
+    getInitPractitionerData!: {}
 
   handleActiveTab(tab: any) {
     this.activeTab = tab
   }
 
+  formatDate(x: any) {
+    return (new Date(x).toLocaleString("en-US"))
+  }
+
   async created() {
-    this.$store.dispatch("practitioners/getAPractitionerProfile", this.$route.params.id)
-    this.practitioner = this.selectedPractitioner
+    await this.$store.dispatch(
+      "practitioners/getAPractitionerProfile",
+      this.$route.params.id
+    )
+    this.practitioner = {
+      ...this.selectedPractitioner,
+      ...this.getInitPractitionerData,
+    }
   }
 }
 </script>

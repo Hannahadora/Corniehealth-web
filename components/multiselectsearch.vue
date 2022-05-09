@@ -42,6 +42,7 @@
 						type="text"
 						:placeholder="searchPlaceHolder"
 						@blur="closeItemList(true)"
+						@keyup="getSearchValue"
 					/>
 				</div>
 				<div v-if="newItemText" class="dropdown-section py-2 px-4">
@@ -243,14 +244,8 @@ export default {
     },
     selectItem(item) {
       this.active = true
-      // this.selectedItems.push(item)
-      // if(this.selectedItems.length === 1) {
-      //   this.selectedItem = item
-      // } else if(this.selectedItems.length > 1) {
-      //   this.selectedItem = item
-      // }
       this.selectedItem = item
-      // this.itemListVisible = false
+      this.itemListVisible = false
       this.$emit("input", this.returnObject ? item : item[this.itemValueProp])
     },
     setupEventListener() {
@@ -267,6 +262,7 @@ export default {
     teardownEventListener() {
       document.body.removeEventListener("click", this.eventListener)
     },
+
     setValue(value) {
       if (isObject(value) && this.returnObject) {
         value = value[this.itemValueProp]
@@ -275,6 +271,10 @@ export default {
         return item[this.itemValueProp] === value
       })
     },
+
+    getSearchValue() {
+      this.$emit("query", this.search)
+    }
   },
 }
 </script>

@@ -53,6 +53,7 @@
 						icon="/images/book-appointment/icon-doctor-grey.png"
 						placeholder="Specialty"
 						:items="specialties"
+						@query="findProviders"
 					/>
 				</slide>
 				<slide>
@@ -61,6 +62,7 @@
 						icon="/images/book-appointment/icon-location-grey.png"
 						placeholder="Location"
 						:items="locations"
+						@query="findCity"
 					/>
 				</slide>
 				<slide>
@@ -134,6 +136,7 @@ export default {
 
   data() {
     return {
+      loading: "",
       search: {
         specialty: "",
         location: "",
@@ -166,26 +169,9 @@ export default {
         },
       },
 
-      specialties: [
-        "All",
-        "Dentists",
-        "ENT",
-        "General Practice",
-        "Obstetricians & Gynecologists",
-        "Pedriatricians",
-        "Urologist",
-      ],
+      specialties: [],
 
-      locations: [
-        "Lagos",
-        "Abuja",
-        "Port Harcourt",
-        "Delta",
-        "Kwara",
-        "Ibadan",
-        "Calabar",
-        "Benin",
-      ],
+      locations: [],
 
       hospitals: [
         "All",
@@ -223,10 +209,9 @@ export default {
   watch: {
     search() {
       try {
-        this.$store.dispatch(
-          "practitioners/findPractitionersAll",
-          { ...this.search }
-        )
+        this.$store.dispatch("practitioners/findPractitionersAll", {
+          ...this.search,
+        })
         //   if (res.success === "true") {
         // this.searchResult = res.data
         //   }
@@ -239,7 +224,31 @@ export default {
   mounted() {
     this.search.specialty = this.$store.getters["misc/selectedSpecialty"]
     this.search.location = this.$store.getters["misc/selectedLocation"]
-  }
+  },
+
+  methods: {
+    async findProviders(query) {
+      this.loading = true
+      const res = await this.$store.dispatch(
+        "practitioners/providersDropdown",
+        query || null
+      )
+      this.loading = false
+      this.specialties = res.data.data.specialties
+    },
+
+    async findCity(query) {
+      this.loading = true
+      const res = await this.$store.dispatch(
+        "practitioners/findLocations",
+        query || null
+      )
+      this.loading = false
+      // if (res.success === "true") {
+      this.locations = res.data.data || []
+      // }
+    },
+  },
 }
 </script>
 
@@ -264,17 +273,15 @@ export default {
 } */
 
 .carousel {
-      width: 100%;
-      display: flex;
-      /* overflow-x: scroll; */
-    }
-    .carousel::-webkit-scrollbar {
-      display: none;
-    }
-    .carousel {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    } 
-
-
+  width: 100%;
+  display: flex;
+  /* overflow-x: scroll; */
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+.carousel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 </style>

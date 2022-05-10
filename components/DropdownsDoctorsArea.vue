@@ -137,7 +137,17 @@ export default {
   data() {
     return {
       loading: "",
-      search: {},
+      search: {
+        specialty: null,
+        location: null,
+        hospital: null,
+        min: 1,
+        max: 5,
+        visitType: null,
+        insurance: null,
+        language: null,
+        gender: null
+      },
       hooperSettings: {
         itemsToShow: 1,
         centerMode: false,

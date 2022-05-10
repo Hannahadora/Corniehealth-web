@@ -6,10 +6,11 @@ import axios from "~/plugins/axios";
 const api = axios
 
 export const state = () => ({
-  practitioners: [],
+  practitioners: null,
   loading: false,
   searchedLocations: [],
-  practitionerProfile: {}
+  practitionerProfile: {},
+  initPractitionerData: {}
 })
 
 export type RootState = ReturnType<typeof state>
@@ -21,9 +22,15 @@ export const getters: GetterTree<RootState, RootState> = {
   getRelatedLocations(state) {
     return state.searchedLocations
   },
+  loadingState(state) {
+    return state.loading
+  },
 
   selectedPractitioner(state) {
     return state.practitionerProfile
+  },
+  getInitPractitionerData(state) {
+    return state.initPractitionerData
   },
 
 }
@@ -40,6 +47,9 @@ export const mutations: MutationTree<RootState> = {
   },
   SET_PRACTITIONER(state, data) {
     state.practitionerProfile = data
+  },
+  SET_INITPRACTITIONERDATA(state, data) {
+    state.initPractitionerData = data
   },
 
 }
@@ -96,14 +106,8 @@ export const actions: ActionTree<RootState, RootState> = {
   async findPractitionersAll({ commit }, { specialty, location, hospital, min, max, language, gender }) {
     commit("SET_LOADING", true);
     try {
-      // const pracQuery = [
-      //   "specialty", "location", "hospital", "min", "max", "language", "gender"
-      // ]
-      // pracQuery.map(query => query)
       const res = await api.get(`/booking-website/search/practitioners?specialty=${specialty}&location=${location}&hospital=${hospital}&min=${min}&max=${max}&language=${language}&gender=${gender}`)
-      // if(res.success === 'true') {
       commit("SET_PRACTITIONERS", res.data.data)
-      // }
       return res
     } finally {
       commit("SET_LOADING", false);
@@ -125,9 +129,6 @@ export const actions: ActionTree<RootState, RootState> = {
     commit("SET_LOADING", true);
     try {
       const res = await api.get(`/booking-website/specialty-practices?query=${query}`)
-      // if(res.success === 'true') {
-      // commit("SET_PRACTITIONERS", res.data)
-      // }
       return res
     } finally {
       commit("SET_LOADING", false);
@@ -138,7 +139,7 @@ export const actions: ActionTree<RootState, RootState> = {
     try {
       const res = await api.get(`/booking-website/get-profile/${practitionerId}`)
       // if(res.success === 'true') {
-      commit("SET_PRACTITIONER", res.data)
+      commit("SET_PRACTITIONER", res.data.data)
       // }
       return res
     } finally {

@@ -3,7 +3,7 @@
 		<div>
 			<span class="sub-titles-1 mb-2">Bio</span>
 			<p class="text-grey-blue">
-				{{ practitioner.bio || "No bio" }}
+				{{ practitioner && practitioner.bio || "No bio" }}
 			</p>
 		</div>
 
@@ -14,7 +14,7 @@
 				conditions
 			</p>
 
-			<div v-for="(service, idx) in practitioner.Services" :key="idx">
+			<div v-for="(service, idx) in practitioner && practitioner.Services" :key="idx">
 				<div class="mt-4 flex items-center">
 					<img src="/images/book-appointment/arrow-right.png" alt="" />
 					<span class="ml-2 small-text">{{ service }}</span>

@@ -137,16 +137,7 @@ export default {
   data() {
     return {
       loading: "",
-      search: {
-        specialty: "",
-        location: "",
-        hospital: "",
-        experience: "",
-        language: "",
-        visitType: "",
-        gender: "",
-        insurance: "",
-      },
+      search: {},
       hooperSettings: {
         itemsToShow: 1,
         centerMode: false,
@@ -207,17 +198,21 @@ export default {
   },
 
   watch: {
-    search() {
-      try {
-        this.$store.dispatch("practitioners/findPractitionersAll", {
-          ...this.search,
-        })
-        //   if (res.success === "true") {
-        // this.searchResult = res.data
-        //   }
-      } catch (err) {
-        console.log(err)
-      }
+    search: {
+      handler() {
+        try {
+          const res = this.$store.dispatch("practitioners/findPractitionersAll", {
+            ...this.search,
+            location: null,
+          })
+          //   if (res.success === "true") {
+          this.searchResult = res.data
+          //   }
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deep: true,
     },
   },
 

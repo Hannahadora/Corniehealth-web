@@ -106,14 +106,8 @@ export const actions: ActionTree<RootState, RootState> = {
   async findPractitionersAll({ commit }, { specialty, location, hospital, min, max, language, gender }) {
     commit("SET_LOADING", true);
     try {
-      // const pracQuery = [
-      //   "specialty", "location", "hospital", "min", "max", "language", "gender"
-      // ]
-      // pracQuery.map(query => query)
       const res = await api.get(`/booking-website/search/practitioners?specialty=${specialty}&location=${location}&hospital=${hospital}&min=${min}&max=${max}&language=${language}&gender=${gender}`)
-      // if(res.success === 'true') {
       commit("SET_PRACTITIONERS", res.data.data)
-      // }
       return res
     } finally {
       commit("SET_LOADING", false);

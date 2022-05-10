@@ -178,7 +178,6 @@ export default {
       itemListVisible: false,
       search: "",
       selectedItem: null,
-      selectedItems: [],
       active: false,
     }
   },

@@ -17,11 +17,11 @@
 				<span>
 					<img class="mr-2" :src="icon" alt="" />
 				</span>
-				<div v-if="selectedItem && active" class="">
+				<div v-if="selectedItem && active" class="overflow-x-hidden lowercase">
 					{{ selectedItem[itemLabelProp] }}
 				</div>
 				<template v-else>
-					<span class="cursor-pointer mx-2 text-grey-blue">{{
+					<span class="cursor-pointer mx-2 text-grey-blue overflow-x-hidden lowercase">{{
 						placeholder
 					}}</span>
 				</template>
@@ -251,7 +251,7 @@ export default {
       this.eventListener = e => {
         if (
           e.target !== this.$refs.dropdown &&
-          !this.$refs.select.contains(e.target)
+          !this.$refs?.select?.contains(e.target)
         ) {
           this.itemListVisible = false
         }

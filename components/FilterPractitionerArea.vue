@@ -296,7 +296,7 @@ export default {
           this.searchResult = res.data
 
           this.$router.push(
-            `/patients/book-appointment/${this.providerName.toLowerCase()}/doctors`
+            `/patients/book-appointment/search/doctors?query=${this.providerName.toLowerCase()}`
           )
           this.loading = false
           //   }

@@ -1,5 +1,5 @@
 <template>
-	<div class="w-full xl:mt-16 mt-14">
+	<div class="w-full xl:my-16 my-14">
 		<div class="c-wrapper xl:mt-40 mt-16">
 			<div class="info-container px-6 pt-6 pb-7">
 				<div class="flex items-center">
@@ -24,7 +24,7 @@
 							>Specialization</span
 							>
 							<p class="text-grey-blue mr-2">
-								{{ practitioner && practitioner.Specialization }}
+								{{ practitioner && practitioner.specialization }}
 							</p>
 						</div>
 					</div>
@@ -75,8 +75,8 @@
 							<span class="sub-titles-2 text-black-xiketic capitalize mb-2"
 							>Active Since</span
 							>
-							<p class="text-grey-blue mr-2">
-								{{ formatDate(practitioner && practitioner.activeSince) }}
+							<p class="text-grey-blue mr-2" v-if="practitioner && practitioner.activeSince">
+								{{ formatDate(practitioner.activeSince) }}
 							</p>
 						</div>
 					</div>
@@ -131,8 +131,7 @@
 						<img
 							class="mr-2"
 							src="/images/book-appointment/icon-location-white.png"
-							alt=""
-						/>
+							alt="" />
 						<div>
 							<span class="sub-titles-2 text-black-xiketic mb-2">Address</span>
 							<p class="text-grey-blue capitalize mr-2">
@@ -161,14 +160,14 @@
 				</ul>
 
 				<div v-if="activeTab === 'Basic'">
-					<basic-info :practioner="practitioner" />
+					<basic-info :practitioner="practitioner"></basic-info>
 				</div>
 				<div v-if="activeTab === 'Reviews'">
-					<reviews :practioner="practitioner" />
+					<reviews :practitioner="practitioner"></reviews>
 				</div>
-				<div v-if="activeTab === 'Insurance'">
+				<!-- <div v-if="activeTab === 'Insurance'">
 					<insurance :practioner="practitioner" />
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -188,9 +187,9 @@ const practitioners = namespace("practitioners")
 })
 export default class ProfileDetails extends Vue {
   activeTab: string = "Basic"
-  tabs: Array<any> = ["Basic", "Reviews", "Insurance"]
+  tabs: Array<any> = ["Basic", "Reviews"]
 
-  practitioner = {}
+  practitioner = <any>{}
 
   @practitioners.Getter
     selectedPractitioner!: {}
@@ -203,7 +202,7 @@ export default class ProfileDetails extends Vue {
   }
 
   formatDate(x: any) {
-    return (new Date(x).toLocaleString("en-US"))
+    return (new Date(x).toLocaleString("en-US"));
   }
 
   async created() {

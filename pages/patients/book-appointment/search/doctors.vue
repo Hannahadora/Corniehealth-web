@@ -161,6 +161,7 @@ import DropdownsDoctorsArea from "~/components/DropdownsDoctorsArea.vue"
 import ModalComponent from "~/components/ModalComponent.vue"
 import CornieModal from "~/components/CornieModal.vue"
 import AppointmentModal from "~/components/AppointmentModal.vue"
+import { watch } from "less"
 
 const appointment = namespace("appointment")
 const practitioners = namespace("practitioners")

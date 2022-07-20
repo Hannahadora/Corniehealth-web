@@ -1,175 +1,84 @@
 <template>
-	<div>
-		<!-- <div class="mb-8 flex items-start flex-no-wrap space-x-4 dgridG overflow-x-scroll h-auto border-4"> -->
-		<!-- <div class="flex items-start flex-nowrap space-x-4 carousel">
-			<multiselectsearch
-				icon="/images/book-appointment/icon-doctor-grey.png"
-				placeholder="Specialty"
-				:items="specialties"
-			/>
-			<multiselectsearch
-				icon="/images/book-appointment/icon-location-grey.png"
-				placeholder="Location"
-				:items="locations"
-			/>
-			<multiselectsearch
-				icon="/images/book-appointment/icon-hospital-grey.png"
-				placeholder="Hospital"
-				:items="hospitals"
-			/>
-			<multiselectsearch
-				icon="/images/book-appointment/icon-experience-grey.png"
-				placeholder="Experience"
-				:items="experiences"
-			/>
-			<multiselectsearch
-				icon="/images/book-appointment/icon-visit-grey.png"
-				placeholder="Visit Type"
-				:items="visitTypes"
-			/>
-			<multiselectsearch
-				icon="/images/book-appointment/icon-insurance-grey.png"
-				placeholder="Insurance"
-				:items="insurances"
-			/>
-			<multiselectsearch
-				icon="/images/book-appointment/icon-lang-grey.png"
-				placeholder="Language"
-				:items="languages"
-			/>
-			<multiselectsearch
-				id="lcd"
-				icon="/images/book-appointment/icon-gender-grey.png"
-				placeholder="Gender"
-				:items="genders"
-			/>
-		</div> -->
-
-		<div class="block d-slider">
-			<hooper class="mb-8" :settings="hooperSettings">
-				<slide>
-					<multiselectsearch
-						v-model="search.specialty"
-						icon="/images/book-appointment/icon-doctor-grey.png"
-						placeholder="Specialty"
-						:items="specialties"
-						@query="findProviders"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
-						v-model="search.location"
-						icon="/images/book-appointment/icon-location-grey.png"
-						placeholder="Location"
-						:items="locations"
-						@query="findCity"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
-						v-model="search.hospital"
-						icon="/images/book-appointment/icon-hospital-grey.png"
-						placeholder="Hospital"
-						:items="hospitals"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
-						v-model="search.experience"
-						icon="/images/book-appointment/icon-experience-grey.png"
-						placeholder="Experience"
-						:items="experiences"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
-						v-model="search.visitType"
-						icon="/images/book-appointment/icon-visit-grey.png"
-						placeholder="Visit Type"
-						:items="visitTypes"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
+	<div class="w-full">
+		<div class="mb-8">
+			<div class="h-full xl:grid grid-cols-7 flex flex-wrap gap-4">
+				<multiselectsearch
+					v-model="search.specialty"
+					icon="/images/book-appointment/icon-doctor-grey.png"
+					:placeholder="specialtyPlaceholder"
+					:items="specialties"
+					:active="specialtyActive"
+					@query="findProviders"
+				/>
+				<multiselectsearch
+					v-model="search.location"
+					icon="/images/book-appointment/icon-location-grey.png"
+					:placeholder="locationPlaceholder"
+					:items="locations"
+					:active="locationActive"
+					@query="findCity"
+				/>
+				<multiselectsearch
+					v-model="search.hospital"
+					icon="/images/book-appointment/icon-hospital-grey.png"
+					:placeholder="hospitalPlaceholder"
+					:items="hospitals"
+					:active="hospitalActive"
+				/>
+				<multiselectsearch
+					v-model="search.experience"
+					icon="/images/book-appointment/icon-experience-grey.png"
+					placeholder="Experience"
+					:items="experiences"
+				/>
+				<multiselectsearch
+					v-model="search.visitType"
+					icon="/images/book-appointment/icon-visit-grey.png"
+					placeholder="Visit Type"
+					:items="visitTypes"
+				/>
+				<!-- <multiselectsearch
 						v-model="search.insurance"
 						icon="/images/book-appointment/icon-insurance-grey.png"
 						placeholder="Insurance"
 						:items="insurances"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
-						v-model="search.language"
-						icon="/images/book-appointment/icon-lang-grey.png"
-						placeholder="Language"
-						:items="languages"
-					/>
-				</slide>
-				<slide>
-					<multiselectsearch
-						id="lcd"
-						v-model="search.gender"
-						icon="/images/book-appointment/icon-gender-grey.png"
-						placeholder="Gender"
-						:items="genders"
-					/>
-				</slide>
-			</hooper>
+					/> -->
+				<multiselectsearch
+					v-model="search.language"
+					icon="/images/book-appointment/icon-lang-grey.png"
+					placeholder="Language"
+					:items="languages"
+				/>
+				<multiselectsearch
+					id="lcd"
+					v-model="search.gender"
+					icon="/images/book-appointment/icon-gender-grey.png"
+					placeholder="Gender"
+					:items="genders"
+				/>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-// import CSwiper from "./CSwiper.vue"
-
-import { Hooper, Slide } from "hooper"
-// import "hooper/dist/hooper.css"
-import "../static/css/doctorhooper.css"
-
 export default {
   name: "DropdownDoctorArea",
-  components: {
-    // CSwiper,
-    Hooper,
-    Slide,
-  },
 
   data() {
     return {
-      loading: "",
+      loading: false,
       search: {
         specialty: null,
         location: null,
         hospital: null,
         min: 1,
-        max: 5,
+        max: 1,
         visitType: null,
         insurance: null,
         language: null,
         gender: null
       },
-      hooperSettings: {
-        itemsToShow: 1,
-        centerMode: false,
-        breakpoints: {
-          1440: {
-            itemsToShow: 0,
-          },
-          1280: {
-            itemsToShow: 6,
-          },
-          1024: {
-            itemsToShow: 4,
-          },
-          768: {
-            itemsToShow: 2,
-          },
-          414: {
-            itemsToShow: 2.5,
-          },
-        },
-      },
-
       specialties: [],
 
       locations: [],
@@ -204,6 +113,33 @@ export default {
       ],
       languages: ["English", "Yoruba", "Ibo", "Hausa", "French"],
       genders: ["All", "Male", "Female"],
+      specialtyActive: false,
+      locationActive: false,
+      hospitalActive: false,
+    }
+  },
+
+  computed: {
+    specialtyPlaceholder() {
+      if(this.search.specialty) {
+        return this.search.specialty
+      } else {
+        return "Specialty"
+      }
+    },
+    locationPlaceholder() {
+      if(this.search.location) {
+        return this.search.location
+      } else {
+        return "Location"
+      }
+    },
+    hospitalPlaceholder() {
+      if(this.search.hospital) {
+        return this.search.hospital
+      } else {
+        return "Hospital"
+      }
     }
   },
 
@@ -211,24 +147,32 @@ export default {
     search: {
       handler() {
         try {
+          this.loading = true
           const res = this.$store.dispatch("practitioners/findPractitionersAll", {
             ...this.search,
             location: null,
           })
           //   if (res.success === "true") {
           this.searchResult = res.data
+          this.$router.push(
+            `/patients/book-appointment/search/doctors?query=${this.search.specialty.toLowerCase()}`
+          )
           //   }
         } catch (err) {
           console.log(err)
+        } finally {
+          this.loading = false
         }
       },
       deep: true,
     },
   },
-
+  
+  
   mounted() {
     this.search.specialty = this.$store.getters["misc/selectedSpecialty"]
     this.search.location = this.$store.getters["misc/selectedLocation"]
+    this.setActiveStates()
   },
 
   methods: {
@@ -253,40 +197,26 @@ export default {
       this.locations = res.data.data || []
       // }
     },
+
+    setActiveStates() {
+      if(this.search.specialty) {
+        this.specialtyActive = true
+      }if(this.search.location) {
+        this.locationActive = true
+      }if(this.search.hospital) {
+        this.hospitalActive = true
+      }
+    },
   },
 }
 </script>
 
 <style scoped>
-/* width */
-/* ::-webkit-scrollbar {
-  width: 0px;
-} */
-
-/* Track */
-/* ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
-  display: none;
-} */
-
-/* Handle */
-/* ::-webkit-scrollbar-thumb {
-  background: red;
-  border-radius: 10px;
-  display: none;
-} */
-
-.carousel {
-  width: 100%;
-  display: flex;
-  /* overflow-x: scroll; */
+.x-scroll {
+  overflow-x: scroll;
 }
-.carousel::-webkit-scrollbar {
-  display: none;
-}
-.carousel {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.y-visible {
+  overflow-y: visible !important;
+  height: 80px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<div ref="mainboard">
-		<dropdowns-doctors-area />
+		<dropdowns-doctors-area :search="search" />
 
 		<div v-if="!loading && availablePractitioners.length === 0">
 			<h1 class="text-center mt-10">None found</h1>
@@ -155,7 +155,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "nuxt-property-decorator"
+import { Component, Vue, Watch } from "nuxt-property-decorator"
 import { namespace } from "vuex-class"
 import DropdownsDoctorsArea from "~/components/DropdownsDoctorsArea.vue"
 import ModalComponent from "~/components/ModalComponent.vue"
@@ -186,6 +186,7 @@ export default class DoctorsPage extends Vue {
   pages: number = 0
   currentPage: number = 1
   filteredPractitioners = <any>[]
+  search = <any>{}
 
   @appointment.Mutation
     SET_SELECTEDDATE!: (data: any) => void
@@ -204,6 +205,21 @@ export default class DoctorsPage extends Vue {
 
   @practitioners.Getter
     loadingState!: false
+
+	
+  @Watch("query")
+  onChange() {
+    this.loading = true
+    this.$store.dispatch("practitioners/findPractitionersAll", {
+      ...this.search,
+      location: null, min: 1, max: 1, specialty: this.query
+    })
+		  this.loading = false
+  }
+
+  get query() {
+    return this.$route?.query?.query as string
+  }
 
   setTotalPage() {
     const x: number =

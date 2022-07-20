@@ -23,18 +23,6 @@
 				/>
 				<span class="text-grey-eth font-bold">Hospital/Clinic</span>
 			</NuxtLink>
- 
-			<NuxtLink
-				:to="'/patients/book-appointment/search/labs'"
-				class="mr-6 pb-4 flex items-center"
-			>
-				<img
-					class="mr-2 sub-titles-1"
-					src="/images/book-appointment/Icon-lab-black.png"
-					alt=""
-				/>
-				<span class="text-grey-eth font-bold">Labs</span>
-			</NuxtLink>
 		</div>
 
 		<NuxtChild />

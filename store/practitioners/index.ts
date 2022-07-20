@@ -55,18 +55,6 @@ export const mutations: MutationTree<RootState> = {
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  // findPractitioners: async ({ commit }, search) => {
-  //   commit("SET_LOADING", true);
-  //   try {
-  //     const res = await api.get(`/booking_site_open/find?search=${search}`)
-  //     // if(res.success === 'true') {
-  //     commit("SET_PRACTITIONERS", res.data)
-  //     // }
-  //     return res
-  //   } finally {
-  //     commit("SET_LOADING", false);
-  //   }
-  // },
   findBySpecialty: async ({ commit }, search) => {
     commit("SET_LOADING", true);
     try {

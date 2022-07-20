@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<TopNav />
-		<Nuxt class="mt-32" />
+		<Nuxt class="xl:mt-32 mt-28" />
 	</div>
 </template>
 
@@ -10,7 +10,7 @@ import Vue from "vue"
 import TopNav from "../components/TopNav.vue"
 export default Vue.extend({
   name: "BookingAppointmentLayout",
-  components: { TopNav }
+  components: { TopNav },
 })
 </script>
 

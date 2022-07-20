@@ -9,6 +9,7 @@
 			'small-btn': small,
 			'rounded-btn': rounded,
 		}"
+		:disabled="disabled"
 		@click="$emit('click')"
 	>
 		<slot></slot>
@@ -23,6 +24,10 @@ export default Vue.extend({
     type: {
       type: String,
       default: "button",
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
     primary: {
       type: Boolean,
@@ -62,6 +67,12 @@ export default Vue.extend({
   color: #080056;
 }
 
+.btn[disabled] {
+  background: #e1e3ea;
+  border-radius: 12px;
+  color: #949eb8;
+}
+
 .secondary-btn {
   background: #fe4d3c;
   padding: 10px 45px;
@@ -76,7 +87,7 @@ export default Vue.extend({
 }
 
 .small-btn {
-  padding: 13px 20px !important;
+  padding: 13px 38px !important;
   /* width: 196px !important; */
 }
 

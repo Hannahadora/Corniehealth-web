@@ -18,7 +18,8 @@ export default defineNuxtConfig({
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      { rel: "stylesheet", type: "text/css", href: "/style.css" },
+      { rel: "stylesheet", type: "text/css", href: "/css/style.css" },
+      { rel: "stylesheet", type: "text/css", href: "/css/tooltip.css" },
     ],
   },
 
@@ -28,11 +29,11 @@ export default defineNuxtConfig({
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    // '~/plugins/choices.ts',
-    // '~/plugins/utils.ts'
     { src: "~/plugins/utils.js", mode: "client" },
+    { src: "~/plugins/vee-validate.js", mode: "client" },
     { src: "~/plugins/choices.js", mode: "client" },
     { src: "~/plugins/vue-awesome-swiper", mode: "client" },
+    { src: "~/plugins/localStorage.client.ts", mode: "client" }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -57,4 +58,15 @@ export default defineNuxtConfig({
   build: {
     transpile: ["vee-validate/dist/rules"],
   },
+
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  // axios: {},
+  // env
+  env: {
+    baseUrl: process.env.BASE_URL || "http://localhost:3000"
+  },
+  publicRuntimeConfig: {
+    baseUrl: process.env.BASE_URL
+  },
+
 })

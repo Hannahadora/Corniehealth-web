@@ -1,14 +1,17 @@
 <template>
-	<div v-click-outside="closeOption" class="relative" >
+	<div id="mainG" class="relative">
 		<div
 			class="select-wrapper"
 			:class="{ active: active }"
 			@click="openOption = !openOption"
 		>
-			<div class="flex items-center">
+			<div class="flex items-center justify-between">
 				<img class="" :src="icon" alt="" />
-				<span class="selected cursor-pointer mx-2 text-grey-blue" :class="{'text-white': active}">
-					{{ selected ? selected : headText  }}
+				<span
+					class="selected cursor-pointer mx-2 text-grey-blue"
+					:class="{ 'text-white': active }"
+				>
+					{{ selected ? selected : headText }}
 				</span>
 				<img
 					class="cursor-pointer"
@@ -18,25 +21,32 @@
 			</div>
 		</div>
 
-		<div 
+		<div
 			v-if="openOption"
 			class="options-card absolute top-16 w-80 max-h-72 overflow-y-scroll"
 		>
 			<div v-for="(option, index) in options" :key="index" class="px-4 py-3">
-				<input
+				<cornie-checkbox
 					:id="option"
-					type="checkbox"
-					:name="options"
-					class="w-6 h-6"
 					:v-model="optionIds[option]"
+					:name="option"
+					:label="option"
+					@change="selectOption(option)"
 				/>
-				<label
-					class="mb-4 cursor-pointer"
-					:for="option"
-					@click="selectOption(option)"
-				>
-					{{ option }}
-				</label>
+				<!-- <input
+          :id="option"
+          type="checkbox"
+          :name="options"
+          class="w-6 h-6"
+          :v-model="optionIds[option]"
+        /> -->
+				<!-- <label
+          class="mb-4 cursor-pointer"
+          :for="option"
+          @click="selectOption(option)"
+        >
+          {{ option }}
+        </label> -->
 			</div>
 		</div>
 	</div>
@@ -44,9 +54,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
+import CornieCheckbox from "./CornieCheckbox.vue"
 
-// import { vClickOutside } from "v-click-outside"
+import { clickOutside } from "@/plugins/my-clickoutside"
+
 @Component({
+  components: { CornieCheckbox },
   props: {
     options: {
       type: Array,
@@ -68,10 +81,6 @@ export default class SelectDropdown extends Vue {
   selected: String = ""
   optionIds: Array<any> = []
 
-  
-  // clickOutside: vClickOutside.directive
-
-
   selectOption(option: any) {
     // this.option = true
     this.selected = option
@@ -81,6 +90,12 @@ export default class SelectDropdown extends Vue {
 
   closeOption() {
     this.openOption = false
+  }
+
+  mounted() {
+    clickOutside("mainG", () => {
+      this.openOption = false
+    })
   }
 
   created() {
@@ -105,7 +120,8 @@ export default class SelectDropdown extends Vue {
   border: 1px solid #080056;
   box-sizing: border-box;
   border-radius: 8px;
-  padding: 16px;
+  padding: 12px;
+  white-space: nowrap;
 }
 
 .active {
@@ -117,5 +133,6 @@ export default class SelectDropdown extends Vue {
   border: 1px solid #080056;
   box-sizing: border-box;
   border-radius: 8px;
+  width: fit-content;
 }
 </style>

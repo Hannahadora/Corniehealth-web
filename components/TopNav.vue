@@ -1,16 +1,20 @@
 <template>
-	<div class="header bg-white w-full fixed top-0">
+	<div
+		class="header bg-white w-full fixed top-0"
+		:class="{ 'z-0': modalIsOpen, 'z-998': !modalIsOpen }"
+	>
 		<div class="w-full flex items-center justify-between">
 			<CornieLogo />
 			<ul class="header-nav xl:flex hidden items-center justify-between">
 				<li class="mr-6">
-					<NuxtLink class="pb-2" to="/Appointments">Appointments</NuxtLink>
+					<NuxtLink class="pb-2" to="/appointments">Appointments</NuxtLink>
 				</li>
 				<li class="mr-6">
-					<NuxtLink class="pb-2" to="/Pharmacy">Pharmacy</NuxtLink>
+					<NuxtLink to="/pharmacy" class="pb-2">Pharmacy</NuxtLink>
 				</li>
-				<li class="mr-6">
-					<NuxtLink class="pb-2" to="/LabTest">Lab tests</NuxtLink>
+				<li class="mr-6 tooltip">
+					<span class="tooltiptext">Coming soon</span>
+					<span class="pb-2">Lab tests</span>
 				</li>
 				<li
 					id="padwn"
@@ -18,13 +22,13 @@
 					class="relative mr-6"
 				>
 					<span class="flex items-center">
-						<NuxtLink
-							to="/patients"
+						<span
 							:class="{ 'nuxt-link-active': patientDropdown === true }"
-							class=""
+							class="tooltip"
 						>
 							For Patients
-						</NuxtLink>
+							<span class="tooltiptext">Coming soon</span>
+						</span>
 						<img
 							class="ml-2 cursor-pointer"
 							src="/images/bx_bx-chevron-down.svg"
@@ -41,7 +45,7 @@
 				<li id="prdwn" v-click-outside="closeProviderDropdown" class="relative">
 					<span class="mr-6 flex items-center">
 						<NuxtLink
-							to="/providers"
+							to="/providers/main"
 							:class="{ 'nuxt-link-active': providerDropdown === true }"
 							class=""
 						>
@@ -62,9 +66,9 @@
 				</li>
 			</ul>
 			<div class="items-center xl:flex hidden">
-				<c-button type="button" class="mr-2" :primary="true" @click="goToLogin">
-					Sign in
-				</c-button>
+				<!-- <c-button type="button" class="mr-2" :primary="true" @click="goToLogin">
+          Sign in
+        </c-button> -->
 				<c-button type="button" :secondary="true" @click="goToSignup">
 					Sign up for free
 				</c-button>
@@ -96,10 +100,12 @@
 import Vue from "vue"
 import vClickOutside from "v-click-outside"
 // import CButton from "./CButton.vue"
+import { mapGetters } from "vuex"
 import CornieLogo from "./CornieLogo.vue"
 import MobileNav from "./MobileNav.vue"
 import PatientsDropdown from "./PatientsDropdown.vue"
 import ProvidersDropdown from "./ProvidersDropdown.vue"
+
 
 export default Vue.extend({
   name: "TopNav",
@@ -123,6 +129,16 @@ export default Vue.extend({
     }
   },
 
+  computed: {
+    ...mapGetters({
+      modalIsOpen: ["misc/modalState"],
+    }),
+  },
+
+  // get modalIsOpen() {
+  // 	return this.$store.getters['misc/modalState']
+  // },
+
   methods: {
     openSideMenu() {
       this.sideMenu = !this.sideMenu
@@ -134,13 +150,14 @@ export default Vue.extend({
       this.providerDropdown = false
     },
 
-    goToLogin() {
-    //   this.$router.push("/signin"); 
-	  location.href = "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signin"
-    },
+    // goToLogin() {
+    //   //   this.$router.push("/signin");
+    //   location.href =
+    //     "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signin"
+    // },
 
     goToSignup() {
-      this.$router.push("/signup"); 
+      this.$router.push("/signup")
     },
   },
 })
@@ -151,7 +168,7 @@ export default Vue.extend({
   padding: 18px 72px;
   box-shadow: 0px 0px 1px rgba(46, 41, 78, 0.02),
     0px 2px 4px rgba(46, 41, 78, 0.08);
-  z-index: 998;
+  /* z-index: 99; */
 }
 
 a.nuxt-link-active {
@@ -164,6 +181,19 @@ a.nuxt-link-active {
 
 .menu-icon {
   z-index: 999999999;
+}
+
+.tooltip {
+  cursor: pointer !important;
+}
+
+.tooltiptext {
+  background: #fe4d3c !important;
+  color: #fff !important;
+}
+
+.z-998 {
+  z-index: 998;
 }
 
 @media screen and (max-width: 1024px) {

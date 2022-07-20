@@ -3,7 +3,7 @@
 		<cornie-dialog
 			v-if="showDiag"
 			:firstname="form.firstName"
-			@close-diag="showDiag = false"
+			@close-diag="hideDialog"
 		/>
 		<auth>
 			<template #default>
@@ -12,81 +12,95 @@
 						class="w-full h-auto bg-white rounded-md shadow-md p-5 overflow-hidden"
 					>
 						<h2 class="text-sm text-primary">Early Access Registration</h2>
-						<form class="h-auto mt-10" @submit.prevent="submit">
-							<div class="grid grid-cols-12 gap-3">
-								<div class="col-span-6 mb-3">
-									<cornie-input
-										v-model="form.firstName"
-										label="First Name"
-										placeholder="--Enter--"
-										required
-									></cornie-input>
+						<ValidationObserver v-slot="{}">
+							<form class="h-auto mt-10" @submit.prevent="submit">
+								<div class="md:grid grid-cols-12 gap-3">
+									<div class="col-span-6 mb-3">
+										<cornie-input
+											v-model="form.firstName"
+											label="First Name"
+											placeholder="--Enter--"
+											required
+										></cornie-input>
+									</div>
+									<div class="col-span-6 mb-3">
+										<cornie-input
+											v-model="form.lastName"
+											label="Last Name"
+											placeholder="--Enter--"
+											required
+										></cornie-input>
+									</div>
+									<div class="col-span-6 mb-3">
+										<cornie-input
+											v-model="form.phoneNumber.number"
+											label="Phone Number"
+											type="tel"
+											placeholder="--Enter--"
+											required
+										></cornie-input>
+									</div>
+									<div class="col-span-6 mb-3">
+										<ValidationProvider
+											v-slot="{ errors }"
+											name="email"
+											rules="email"
+										>
+											<cornie-input
+												v-model="form.email"
+												label="Email Addrees"
+												placeholder="--Enter--"
+												type="email"
+												required
+											></cornie-input>
+											<span class="text-red-500 text-xs">{{ errors[0] }}</span>
+										</ValidationProvider>
+									</div>
+									<div class="col-span-12 mb-3">
+										<cornie-input
+											v-model="form.organizationName"
+											label="Organization Name"
+											placeholder="--Enter--"
+											required
+										></cornie-input>
+									</div>
 								</div>
-								<div class="col-span-6 mb-3">
-									<cornie-input
-										v-model="form.lastName"
-										label="Last Name"
-										placeholder="--Enter--"
-										required
-									></cornie-input>
+								<div class="w-full flex items-center">
+									<cornie-checkbox
+										v-model="agree"
+										class="mr-1"
+										@change="handleAgree"
+									/>
+									<div class="text-sm">
+										I agree to Cornie Health
+										<a href="#" class="text-red-400">Terms of service</a> and
+										<a href="#" class="text-red-400">Privacy policy</a>
+									</div>
 								</div>
-								<div class="col-span-6 mb-3">
-									<cornie-input
-										v-model="form.phoneNumber.number"
-										label="Mobile"
-										type="tel"
-										placeholder="--Enter--"
-										required
-									></cornie-input>
+								<div class="w-full mt-5">
+									<button
+										class="rounded-md w-full text-center font-bold py-2"
+										:class="[
+											!formCompleted
+												? 'bg-gray-300 text-gray-400'
+												: 'bg-red-500 text-white hover:bg-red-400',
+										]"
+									>
+										Submit
+									</button>
 								</div>
-								<div class="col-span-6 mb-3">
-									<cornie-input
-										v-model="form.email"
-										label="Email Addrees"
-										placeholder="--Enter--"
-										type="email"
-										required
-									></cornie-input>
-								</div>
-								<div class="col-span-12 mb-3">
-									<cornie-input
-										v-model="form.organizationName"
-										label="Organization Name"
-										placeholder="--Enter--"
-										required
-									></cornie-input>
-								</div>
-							</div>
-							<div class="w-full flex items-center">
-								<cornie-checkbox
-									v-model="agree"
-									class="mr-1"
-									@change="handleAgree"
-								/>
-								<div class="text-sm">
-									I agree to CorieHealth's
-									<a href="#" class="text-red-400">Terms of service</a> and
-									<a href="#" class="text-red-400">Private policy</a>
-								</div>
-							</div>
-							<div class="w-full mt-5">
-								<button
-									class="rounded-md w-full text-center font-bold py-2"
-									:class="[
-										!agree || disabled
-											? 'bg-gray-300 text-gray-400'
-											: 'bg-red-500 text-white hover:bg-red-400',
-									]"
-								>
-									Submit
-								</button>
-							</div>
-						</form>
+							</form>
+						</ValidationObserver>
 						<div class="my-6 w-full text-center">
-							Have an account? <span class="text-red-400">Sign in</span>
+							Have an account?
+							<span
+								class="text-red-400 hover:text-red-300 cursor-pointer"
+								@click="handleSignin"
+							>Sign in</span
+							>
 						</div>
 						<div class="w-full text-center">
-							<a href="#">Terms of use</a> | <a href="#">Private policy</a> |
+							<a href="#">Terms of use</a> | <a href="#">Privacy policy</a> |
 							<a href="#">Help</a> | 2021 Cornie Health Ltd.
 						</div>
 					</div>
@@ -95,21 +109,23 @@
 			<template #banner>
 				<div class="flex justify-center items-center">
 					<heart-pulse class="mr-3" />
-					<div>Connectd. Patient-Centric,Supportive.</div>
+					<div class="text-xs">Connected. Patient-Centric. Supportive</div>
 				</div>
-				<h2 class="text-center">
+				<div class="text-center text-2xl font-bold pb-5">
 					Connected, Simple Practice Management Software.
-				</h2>
+				</div>
 			</template>
 		</auth>
 	</div>
 </template>
 
 <script>
+import { ValidationObserver, ValidationProvider } from "vee-validate"
 import Auth from "@/components/auth/auth.vue"
 import HeartPulse from "@/components/icons/heartpulse.vue"
 import CornieInput from "@/components/CornieInput.vue"
 import CornieCheckbox from "@/components/CornieCheckbox.vue"
+import CornieDialog from "@/components/CornieDialog.vue"
 
 export default {
   name: "PayerComponent",
@@ -118,6 +134,9 @@ export default {
     HeartPulse,
     CornieInput,
     CornieCheckbox,
+    CornieDialog,
+    ValidationObserver,
+    ValidationProvider,
   },
   layout: "auth",
   data: () => ({
@@ -134,16 +153,52 @@ export default {
         number: "",
       },
       email: "",
-      providerProfile: "",
-      practiceName: "",
       organizationName: "",
-      patientProfile: "corporate",
+      // providerProfile: "a",
+      // practiceName: "b",
     },
   }),
+  computed: {
+    formCompleted: {
+      get() {
+        if (
+          this.form.firstName !== "" &&
+          this.form.lastName !== "" &&
+          this.form.phoneNumber.number !== "" &&
+          this.form.email !== "" &&
+          this.form.organizationName !== "" &&
+          this.agree
+        )
+          return true
+
+        return false
+      },
+    },
+  },
   methods: {
     handleAgree(val) {
       this.agree = val
     },
+    hideDialog() {
+      this.showDiag = false
+      this.reset()
+    },
+    reset() {
+      this.form.firstName = ""
+      this.form.lastName = ""
+      this.form.phoneNumber.dialCode = "+234"
+      this.form.phoneNumber.number = ""
+      this.form.email = ""
+      // this.providerProfile = ""
+      // this.practiceName = ""
+      this.organizationName = ""
+    },
+
+    async handleSignin() {
+      location.href =
+        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login"
+    },
+
     async submit() {
       try {
         this.disabled = true
@@ -152,7 +207,7 @@ export default {
           this.form
         )
 
-        if (response.success) {
+        if (response.data.success) {
           this.showDiag = true
           this.disabled = false
         }

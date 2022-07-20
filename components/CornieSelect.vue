@@ -84,13 +84,19 @@ export default {
       type: String,
       default: "--Select--",
     },
-    label: String,
+    label: {
+      type: String,
+      default: "",
+    },
     required: Boolean,
     readonly: {
       type: Boolean,
       default: false,
     },
-    labelicon: String,
+    labelicon: {
+      type: String,
+      default: "",
+    },
   },
   data() {
     return {

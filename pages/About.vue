@@ -82,12 +82,7 @@
 			</div>
 		</div>
 
-		<div class="grid grid-cols-4">
-			<img src="/images/about/image 62.svg" alt="" />
-			<img src="/images/about/image 61.svg" alt="" />
-			<img src="/images/about/img (2).svg" alt="" />
-			<img src="/images/about/image 60.svg" alt="" />
-		</div>
+		<about-image-grid />
 
 		<div class="sect-2 bg-cblue-100 relative">
 			<img class="absolute left-0 top-0" src="/images/about/map.svg" alt="" />

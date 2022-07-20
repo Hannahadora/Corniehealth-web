@@ -17,11 +17,11 @@
 				<span>
 					<img class="mr-2" :src="icon" alt="" />
 				</span>
-				<div v-if="selectedItem && active" class="overflow-x-hidden lowercase">
+				<div v-if="selectedItem && active" class="overflow-x-hidden lowercase" style="white-space: nowrap;">
 					{{ selectedItem[itemLabelProp] }}
 				</div>
 				<template v-else>
-					<span class="cursor-pointer mx-2 text-grey-blue overflow-x-hidden lowercase">{{
+					<span class="cursor-pointer mx-2 overflow-x-hidden lowercase" :class="[active ? 'text-white' : 'text-grey-blue']" style="white-space: nowrap;">{{
 						placeholder
 					}}</span>
 				</template>
@@ -128,6 +128,11 @@ export default {
       type: String,
       default: ""
     },
+    active: {
+      type: Boolean,
+      default: false
+    },
+
     /*
      * an array of primitives or objects
      */
@@ -178,7 +183,6 @@ export default {
       itemListVisible: false,
       search: "",
       selectedItem: null,
-      active: false,
     }
   },
 
@@ -344,7 +348,7 @@ export default {
 }
 
 .active {
-  color: #fff;
+  color: #ffffff !important;
   font-weight: bold;
   font-size: 14px;
   line-height: 24px;
@@ -354,6 +358,7 @@ export default {
   border-radius: 8px;
   white-space: nowrap;
   max-width: 200px;
+  opacity: 1!important;
 }
 
 input[type="checkbox"]:after {

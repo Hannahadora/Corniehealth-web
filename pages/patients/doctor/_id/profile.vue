@@ -75,7 +75,7 @@
 							<span class="sub-titles-2 text-black-xiketic capitalize mb-2"
 							>Active Since</span
 							>
-							<p class="text-grey-blue mr-2" v-if="practitioner && practitioner.activeSince">
+							<p v-if="practitioner && practitioner.activeSince" class="text-grey-blue mr-2">
 								{{ formatDate(practitioner.activeSince) }}
 							</p>
 						</div>

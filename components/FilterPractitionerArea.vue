@@ -45,7 +45,7 @@
 									class="lowercase px-2 py-4 hover:bg-gray-100 cursor-pointer"
 									@click="selectProvider(specialty)"
 								>
-									{{ specialty }}
+									{{ specialty.name }}
 								</li>
 							</ul>
 							<div
@@ -87,7 +87,7 @@
 									class="lowercase px-2 py-4 hover:bg-gray-100 cursor-pointer"
 									@click="selectProvider(practitioner)"
 								>
-									{{ practitioner }}
+									{{ practitioner.name }}
 								</li>
 							</ul>
 							<div
@@ -198,7 +198,7 @@ export default {
     cityName() {
       if (this.cityName !== "") {
         this.openLocations = true
-        this.findCity(this.cityName)
+        // this.findCity(this.cityName)
       } else this.openLocations = false
     },
 
@@ -222,9 +222,12 @@ export default {
     },
 
     selectProvider(pname) {
-      this.providerName = pname
+      this.providerName = pname.name
+      this.rLocations = pname.locations
+      this.cityName = pname.locations[0] || ''
       setTimeout(() => {
         this.practitionersDropdown = false
+        this.openLocations = false
       }, 500)
       this.$store.dispatch("misc/updateSelectedSpecialty", this.providerName)
     },
@@ -242,28 +245,28 @@ export default {
       this.practitionersDropdown = false
       const em =
         this.specialties &&
-        this.specialties.find(el => el === this.providerName)
+        this.specialties.find(el => el.name === this.providerName)
       if (!em) {
         this.providerName = ""
       }
     },
 
-    async findCity(query) {
-      this.loading = true
-      const res = await this.$store.dispatch(
-        "practitioners/findLocations",
-        query
-      )
-      this.loading = false
-      // if (res.success === "true") {
-      this.rLocations = res.data.data || []
-      // }
-    },
+    // async findCity(query) {
+    //   this.loading = true
+    //   const res = await this.$store.dispatch(
+    //     "practitioners/findLocations",
+    //     query
+    //   )
+    //   this.loading = false
+    //   // if (res.success === "true") {
+    //   this.rLocations = res.data.data || []
+    //   // }
+    // },
 
     async findProviders(query) {
       this.loading = true
       const res = await this.$store.dispatch(
-        "practitioners/providersDropdown",
+        "practitioners/searchForPractitioners",
         query
       )
       this.loading = false

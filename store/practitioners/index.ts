@@ -55,42 +55,54 @@ export const mutations: MutationTree<RootState> = {
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  findBySpecialty: async ({ commit }, search) => {
+  searchForPractitioners: async ({ commit }, search) => {
     commit("SET_LOADING", true);
     try {
-      const res = await api.get(`/booking_site_open/find/searchBySpecialty?search=${search}`)
-      // if(res.success === 'true') {
-      commit("SET_PRACTITIONERS", res.data)
-      // }
+      const res: any = await api.get(`/booking-website/search?query=${search}`)
+      if (res.success === 'true') {
+        commit("SET_PRACTITIONERS", res.data)
+      }
       return res
     } finally {
       commit("SET_LOADING", false);
     }
   },
-  findByPractice: async ({ commit }, search) => {
-    commit("SET_LOADING", true);
-    try {
-      const res = await api.get(`/booking_site_open/find/searchByPacticeName?search=${search}`)
-      // if(res.success === 'true') {
-      commit("SET_PRACTITIONERS", res.data)
-      // }
-      return res
-    } finally {
-      commit("SET_LOADING", false);
-    }
-  },
-  findLocations: async ({ commit }, query) => {
-    commit("SET_LOADING", true);
-    try {
-      const res = await api.get(`/booking-website/locations?query=${query}`)
-      // if(res.success === 'true') {
-      commit("SET_LOCATIONS", res.data)
-      // }
-      return res
-    } finally {
-      commit("SET_LOADING", false);
-    }
-  },
+  // findBySpecialty: async ({ commit }, search) => {
+  //   commit("SET_LOADING", true);
+  //   try {
+  //     const res = await api.get(`/booking_site_open/find/searchBySpecialty?search=${search}`)
+  //     // if(res.success === 'true') {
+  //     commit("SET_PRACTITIONERS", res.data)
+  //     // }
+  //     return res
+  //   } finally {
+  //     commit("SET_LOADING", false);
+  //   }
+  // },
+  // findByPractice: async ({ commit }, search) => {
+  //   commit("SET_LOADING", true);
+  //   try {
+  //     const res = await api.get(`/booking_site_open/find/searchByPacticeName?search=${search}`)
+  //     // if(res.success === 'true') {
+  //     commit("SET_PRACTITIONERS", res.data)
+  //     // }
+  //     return res
+  //   } finally {
+  //     commit("SET_LOADING", false);
+  //   }
+  // },
+  // findLocations: async ({ commit }, query) => {
+  //   commit("SET_LOADING", true);
+  //   try {
+  //     const res = await api.get(`/booking-website/locations?query=${query}`)
+  //     // if(res.success === 'true') {
+  //     commit("SET_LOCATIONS", res.data)
+  //     // }
+  //     return res
+  //   } finally {
+  //     commit("SET_LOADING", false);
+  //   }
+  // },
   async findPractitionersAll({ commit }, { specialty, location, hospital, min, max, language, gender }) {
     commit("SET_LOADING", true);
     try {
@@ -113,15 +125,7 @@ export const actions: ActionTree<RootState, RootState> = {
       commit("SET_LOADING", false);
     }
   },
-  providersDropdown: async ({ commit }, query) => {
-    commit("SET_LOADING", true);
-    try {
-      const res = await api.get(`/booking-website/specialty-practices?query=${query}`)
-      return res
-    } finally {
-      commit("SET_LOADING", false);
-    }
-  },
+ 
   getAPractitionerProfile: async ({ commit }, practitionerId: string) => {
     commit("SET_LOADING", true);
     try {

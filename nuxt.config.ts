@@ -32,7 +32,6 @@ export default defineNuxtConfig({
     { src: "~/plugins/utils.js", mode: "client" },
     { src: "~/plugins/vee-validate.js", mode: "client" },
     { src: "~/plugins/choices.js", mode: "client" },
-    { src: "~/plugins/vue-awesome-swiper", mode: "client" },
     { src: "~/plugins/localStorage.client.ts", mode: "client" }
   ],
 

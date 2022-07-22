@@ -1,6 +1,6 @@
 <template>
 	<div ref="mainboard">
-		<dropdowns-doctors-area :search="search" />
+		<select-group :search="search" />
 
 		<div v-if="!loading && availablePractitioners.length === 0">
 			<h1 class="text-center mt-10">None found</h1>
@@ -157,7 +157,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "nuxt-property-decorator"
 import { namespace } from "vuex-class"
-import DropdownsDoctorsArea from "~/components/DropdownsDoctorsArea.vue"
+import SelectGroup from "~/components/SelectGroup.vue"
 import ModalComponent from "~/components/ModalComponent.vue"
 import CornieModal from "~/components/CornieModal.vue"
 import AppointmentModal from "~/components/AppointmentModal.vue"
@@ -167,7 +167,7 @@ const practitioners = namespace("practitioners")
 const misc = namespace("misc")
 @Component({
   components: {
-    DropdownsDoctorsArea,
+    SelectGroup,
     ModalComponent,
     CornieModal,
     AppointmentModal,
@@ -274,7 +274,7 @@ export default class DoctorsPage extends Vue {
     } else {
       this.loading = false
       this.setTotalPage()
-      this.filteredPractitioners = this.availablePractitioners.slice(this.currentPage - 1, this.currentPage + 9)
+      this.filteredPractitioners = this.availablePractitioners?.slice(this.currentPage - 1, this.currentPage + 9)
     }
   }
 }

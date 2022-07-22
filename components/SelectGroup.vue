@@ -26,12 +26,14 @@
 					:active="hospitalActive"
 				/>
 				<multiselectsearch
+					v-if="!$route.path.includes('hospital')"
 					v-model="search.experience"
 					icon="/images/book-appointment/icon-experience-grey.png"
 					placeholder="Experience"
 					:items="experiences"
 				/>
 				<multiselectsearch
+					v-if="!$route.path.includes('hospital')"
 					v-model="search.visitType"
 					icon="/images/book-appointment/icon-visit-grey.png"
 					placeholder="Visit Type"
@@ -44,12 +46,21 @@
 						:items="insurances"
 					/> -->
 				<multiselectsearch
+					v-if="!$route.path.includes('doctor')"
+					v-model="search.rating"
+					icon="/images/book-appointment/icon-insurance-grey.png"
+					placeholder="Rating"
+					:items="ratings"
+				/>
+				<multiselectsearch
+					v-if="!$route.path.includes('hospital')"
 					v-model="search.language"
 					icon="/images/book-appointment/icon-lang-grey.png"
 					placeholder="Language"
 					:items="languages"
 				/>
 				<multiselectsearch
+					v-if="!$route.path.includes('hospital')"
 					id="lcd"
 					v-model="search.gender"
 					icon="/images/book-appointment/icon-gender-grey.png"
@@ -63,7 +74,7 @@
 
 <script>
 export default {
-  name: "DropdownDoctorArea",
+  name: "SelectGroup",
 
   data() {
     return {
@@ -103,7 +114,7 @@ export default {
       ],
 
       visitTypes: ["Visit", "Walk in", "Virtual"],
-
+      ratings: ["All", "1 star", "2 stars", "3 stars", "4 stars, 5 stars"],
       insurances: [
         "All",
         "1-5 years",
@@ -155,7 +166,7 @@ export default {
           //   if (res.success === "true") {
           this.searchResult = res.data
           this.$router.push(
-            `/patients/book-appointment/search/doctors?query=${this.search.specialty.toLowerCase()}`
+            `${this.$route.path}?query=${this.search.specialty.toLowerCase()}`
           )
           //   }
         } catch (err) {

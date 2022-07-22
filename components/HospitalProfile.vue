@@ -56,14 +56,14 @@
 				</div>
 			</div>
 
-			<div class="mt-10">
+			<div v-if="!$route.params.id" class="mt-10">
 				<c-button
 					type="button"
 					secondary
 					small
 					@click="
 						$router.push({
-							path: `/patients/book-appointment/hospital/${hospitalId}`,
+							path: `/patients/book-appointment/hospital/${hospitalId}/info`,
 						})
 					"
 				>View Profile</c-button

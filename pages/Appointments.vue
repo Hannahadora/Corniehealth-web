@@ -38,7 +38,7 @@
 					alt=""
 				/>
 
-				<filter-practitioner-area />
+				<provider-search />
 
 				<div class="mt-2 xl:block hidden">
 					<p>
@@ -276,13 +276,13 @@
 import { Component, Vue } from "nuxt-property-decorator"
 import CButton from "../components/CButton.vue"
 import InputComp from "../components/InputComp.vue"
-import FilterPractitionerArea from "~/components/FilterPractitionerArea.vue"
+import ProviderSearch from "~/components/ProviderSearch.vue"
 
 @Component({
   components: {
     CButton,
     InputComp,
-    FilterPractitionerArea,
+    ProviderSearch,
   },
 })
 export default class AppointmentPage extends Vue {

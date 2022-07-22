@@ -38,7 +38,7 @@
 					<p>No calls or messages are required.</p>
 				</div>
 
-				<filter-practitioner-area />
+				<provider-search />
 
 				<div>
 					<img
@@ -265,13 +265,13 @@
 import { Component, Vue } from "nuxt-property-decorator"
 import CButton from "../components/CButton.vue"
 import HealthOutcomes from "../components/HealthOutcomes.vue"
-import FilterPractitionerArea from "~/components/FilterPractitionerArea.vue"
+import ProviderSearch from "~/components/ProviderSearch.vue"
 
 @Component({
   components: {
     CButton,
     HealthOutcomes,
-    FilterPractitionerArea,
+    ProviderSearch,
   },
 })
 export default class IndexPage extends Vue {}

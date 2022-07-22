@@ -43,39 +43,42 @@
 							>
 								<li
 									class="lowercase px-2 py-4 hover:bg-gray-100 cursor-pointer"
-									@click="selectProvider(specialty)"
+									@click="selectProvider(specialty, 'specialty')"
 								>
 									{{ specialty.name }}
 								</li>
 							</ul>
 							<div
 								v-if="!loading && specialties.length === 0"
-								class="text-razzmataz-pry"
+								class="text-razzmataz-pry text-xs"
 							>
 								None found
 							</div>
 							<div v-if="loading" class="text-blue-500 text-center text-xs">
-								Loading
+								...
 							</div>
 						</div>
-						<!-- <div class="w-full text-left mb-2">
-              <div class="ddh w-full px-2 py-4">Practice</div>
-              <ul
-                v-for="(practice, index) in practices"
-                :key="index"
-                class="block"
-              >
-                <li
-                  class="px-2 py-4 lowercase hover:bg-gray-100 cursor-pointer"
-                  @click="selectProvider(practice)"
-                >
-                  {{ practice }}
-                </li>
-              </ul>
-              <div v-if="practices.length === 0" class="text-razzmataz-pry">
-                None found
-              </div>
-            </div> -->
+						<div class="w-full text-left mb-2">
+							<div class="ddh w-full px-2 py-4">Provider</div>
+							<ul
+								v-for="(provider, index) in providers"
+								:key="index"
+								class="block"
+							>
+								<li
+									class="px-2 py-4 lowercase hover:bg-gray-100 cursor-pointer"
+									@click="selectProvider(provider, 'provider')"
+								>
+									{{ provider.name }}
+								</li>
+							</ul>
+							<div v-if="providers.length === 0" class="text-razzmataz-pry text-xs">
+								None found
+							</div>
+							<div v-if="loading" class="text-blue-500 text-center text-xs">
+								...
+							</div>
+						</div>
 						<div class="w-full text-left">
 							<div class="ddh w-full px-2 py-4">Practitioners</div>
 							<ul
@@ -85,19 +88,19 @@
 							>
 								<li
 									class="lowercase px-2 py-4 hover:bg-gray-100 cursor-pointer"
-									@click="selectProvider(practitioner)"
+									@click="selectProvider(practitioner, 'practitioner')"
 								>
 									{{ practitioner.name }}
 								</li>
 							</ul>
 							<div
 								v-if="!loading && practitioners.length === 0"
-								class="text-razzmataz-pry"
+								class="text-razzmataz-pry text-xs"
 							>
 								None found
 							</div>
 							<div v-if="loading" class="text-blue-500 text-center text-xs">
-								Loading
+								...
 							</div>
 						</div>
 					</div>
@@ -122,6 +125,12 @@
 				>
 					<div class="ddh w-full px-2 py-4">Select State/Region or City</div>
 					<div
+						class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer"
+						@click="selectCity('Everywhere')"
+					>
+						Everywhere
+					</div>
+					<div
 						v-for="(location, index) in rLocations"
 						:key="index"
 						class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer"
@@ -129,12 +138,9 @@
 					>
 						{{ location }}
 					</div>
-					<!-- <div class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer">
-						Anywhere
-					</div> -->
-					<div v-if="!loading && rLocations.length === 0">
+					<!-- <div v-if="!loading && rLocations.length === 0">
 						<span class="text-razzmataz-pry">None found</span>
-					</div>
+					</div> -->
 					<div v-if="loading" class="text-blue-500 text-center text-xs">
 						Loading
 					</div>
@@ -149,7 +155,7 @@
 					:disabled="loading"
 					@click="goToBookingPage"
 				>
-					Search
+					{{ type === "provider" || type === "practitioner" ? "Go" : "Search" }}
 				</button>
 			</div>
 		</form>
@@ -159,7 +165,7 @@
 <script>
 import vClickOutside from "v-click-outside"
 export default {
-  name: "FilterPractitioner",
+  name: "ProviderSearch",
 
   directives: {
     clickOutside: vClickOutside.directive,
@@ -168,31 +174,38 @@ export default {
     return {
       openLocations: false,
       practitionersDropdown: false,
+      type: "",
+      provider: "",
       providerName: "",
       cityName: "",
       searchResult: [],
       rLocations: [],
       specialties: [],
-      practices: [],
+      providers: [],
       practitioners: [],
       loading: false,
     }
   },
 
-  //   @Watch("providerName", { immediate: true }) onInput() {
-  //     this.practitionersDropdown = true
-  //     const res: any = this.$store.dispatch(
-  //       "practitioners/findPractitioners",
-  //       this.providerNam
-  //     )
-  //     this.searchResult = res.data
-  //   }
-  //   @Watch("cityName", { immediate: true }) input() {
-  //     if(this.cityName !== "") {
-  //       this.openLocations = true
-  //       this.rLocations = this.defLocation.filter((el) => el.toLowerCase().includes(this.cityName.toLowerCase()))
-  //     } else this.openLocations = false
-  //   }
+  computed: {
+    payload() {
+      let data
+      if (this.cityName !== "") {
+        data = {
+          specialty: this.providerName,
+          location: this.cityName,
+        }
+      }
+      if (this.cityName === "Everywhere" || "") {
+        data = {
+          specialty: this.providerName,
+          location: undefined,
+        }
+      }
+
+      return data
+    },
+  },
 
   watch: {
     cityName() {
@@ -221,13 +234,14 @@ export default {
       this.$store.dispatch("misc/updateSelectedLocation", this.cityName)
     },
 
-    selectProvider(pname) {
-      this.providerName = pname.name
-      this.rLocations = pname.locations
-      this.cityName = pname.locations[0] || ''
+    selectProvider(value, type) {
+      this.provider = value
+      this.providerName = value.name
+      this.type = type
+      this.rLocations = value.locations
       setTimeout(() => {
         this.practitionersDropdown = false
-        this.openLocations = false
+        this.openLocations = true
       }, 500)
       this.$store.dispatch("misc/updateSelectedSpecialty", this.providerName)
     },
@@ -236,19 +250,25 @@ export default {
       this.openLocations = false
       const em =
         this.rLocations && this.rLocations.find(el => el === this.cityName)
-      if (!em) {
+      if (!em || this.cityName !== "Everywhere") {
         this.cityName = ""
       }
     },
 
     closePractitionerDropdown() {
       this.practitionersDropdown = false
-      const em =
-        this.specialties &&
-        this.specialties.find(el => el.name === this.providerName)
-      if (!em) {
-        this.providerName = ""
-      }
+      // const xspecialty = this.specialties?.find(
+      //   el => el.name === this.providerName
+      // )
+      // const xpractitioners = this.practitioners?.find(
+      //   el => el.name === this.providerName
+      // )
+      // const xproviders = this.providers?.find(
+      //   el => el.name === this.providerName
+      // )
+      // if (!xspecialty || !xpractitioners || !xproviders) {
+      //   this.providerName = ""
+      // }
     },
 
     // async findCity(query) {
@@ -264,50 +284,48 @@ export default {
     // },
 
     async findProviders(query) {
-      this.loading = true
-      const res = await this.$store.dispatch(
-        "practitioners/searchForPractitioners",
-        query
-      )
-      this.loading = false
-      // if (res.success === "true") {
-      this.specialties = res.data.data.specialties
-      this.practitioners = res.data.data.providers.map(el => el.name)
-      // }
+      try {
+        this.loading = true
+        const res = await this.$store.dispatch(
+          "practitioners/searchForPractitioners",
+          query
+        )
+        if (res.data.success === true) {
+          this.specialties = res.data.data.specialties
+          this.practitioners = res.data.data.practitioners
+          this.providers = res.data.data.providers
+        }
+      } catch (err) {
+        alert(err.message)
+      } finally {
+        this.loading = false
+      }
     },
 
     async goToBookingPage() {
-      if (this.providerName !== "") {
-        let data
-        if (this.cityName !== "") {
-          data = {
-            specialty: this.providerName,
-            location: this.cityName,
-          }
-        } else {
-          data = {
-            specialty: this.providerName,
-          }
-        }
+      if (this.type === "specialty") {
         try {
           this.loading = true
           const res = await this.$store.dispatch(
-            "practitioners/findPractitionersPart",
-            { ...data }
+            "practitioners/fetchPractice",
+            { ...this.payload }
           )
-          //   if (res.success === "true") {
-          this.searchResult = res.data
+          // if (res.data.success === true) {
+          this.searchResult = res.data.data
 
           this.$router.push(
             `/patients/book-appointment/search/doctors?query=${this.providerName.toLowerCase()}`
           )
           this.loading = false
-          //   }
+          // }
         } catch (err) {
           console.log(err)
         } finally {
           this.loading = false
         }
+      } else if (this.type === "practitioner") {
+        this.$router.push(`/patients/doctor/${this.provider.id}/profile`)
+        // this.SET_INITPRACTITIONERDATA(practitioner)
       }
     },
   },

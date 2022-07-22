@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<select-group :search="search" />
+		<div>
+			<img src="" alt="">
+		</div>
 		<hospital-profile />
 	</div>
 </template>
@@ -12,7 +14,7 @@ import SelectGroup from "~/components/SelectGroup.vue"
 @Component({
   components: { CButton, SelectGroup },
 })
-export default class HospitalsPage extends Vue {
+export default class HospitalProfile extends Vue {
   search: string = ""
 }
 </script>

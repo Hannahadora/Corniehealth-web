@@ -10,15 +10,15 @@
 						class="mr-9"
 						name="insurance"
 						label="Yes"
+						model-value="yes"
 						value="yes"
-						@change="handleHaveInsurance"
 					/>
 					<cornieradio
 						v-model="haveInsurance"
 						name="insurance"
 						label="No"
+						model-value="no"
 						value="no"
-						@change="handleHaveInsurance"
 					/>
 				</div>
 			</form>
@@ -32,27 +32,27 @@
 			<form action="" class="flex items-center justify-center mt-4">
 				<div class="flex items-center justify-center">
 					<cornieradio
-						v-model="insuranceProvider"
+						v-model="insuranceprovider"
 						class="mr-9"
 						name="insuranceprovider"
 						label="Employer"
+						model-value="employer"
 						value="employer"
-						@change="handleInsuranceProvider"
 					/>
 					<cornieradio
-						v-model="insuranceProvider"
+						v-model="insuranceprovider"
 						name="insuranceprovider"
 						label="Private"
+						model-value="private"
 						value="private"
-						@change="handleInsuranceProvider"
 					/>
 				</div>
 			</form>
 		</div>
 
 		<div
-			v-if="insuranceProvider === 'employer' && haveInsurance === 'yes'"
-			class="xl:w-1/2 w-full mx-auto my-8"
+			v-if="insuranceprovider === 'employer' && haveInsurance === 'yes'"
+			class="w-1/2 mx-auto my-8"
 		>
 			<cornie-input placeholder="Enter employer's name" class="" />
 			<span class="mt-1 text-grey-blue small text-sm italic"
@@ -62,7 +62,7 @@
 		</div>
 
 		<div
-			v-if="insuranceProvider === 'private' && haveInsurance === 'yes'"
+			v-if="insuranceprovider === 'private' && haveInsurance === 'yes'"
 			class="c-w-45 mx-auto text-center"
 		>
 			<h4 class="mt-12 text-center">Select your insurance plan</h4>
@@ -73,9 +73,7 @@
 
 			<form action="" class="w-full mx-auto mt-8">
 				<div class="mt-8">
-					<label class="text-left block text-xs mb-1 font-bold"
-					>Insurance Carrier</label
-					>
+					<label class="text-left block text-xs mb-1 font-bold">Insurance Carrier</label>
 					<cornie-select
 						v-model="insuranceCarrier"
 						class="w-full"
@@ -88,9 +86,7 @@
 				</div>
 
 				<div class="mt-8">
-					<label class="text-left block text-xs mb-1 font-bold"
-					>Insurance Plan</label
-					>
+					<label class="text-left block text-xs mb-1 font-bold">Insurance Plan</label>
 					<cornie-select
 						v-model="insurancePlan"
 						class="w-full"
@@ -119,22 +115,22 @@
 			</form>
 		</div>
 
-		<div class="xl:w-2/5 w-full mx-auto mt-12 flex items-cente justify-center">
+		<div class="w-2/5 mx-auto mt-12 flex items-cente justify-center">
 			<c-button
 				class="w-1/2 mr-6"
+				n
 				type="button"
 				:primary="true"
 				small
-				@click="$router.push({ path: '/book-appointment/confirm-payment' })"
+				@click="$router.push({ path: '/book-appointment/' })"
 			>
 				skip
 			</c-button>
 			<c-button
 				class="w-1/2"
 				type="button"
+				secondary
 				small
-				:secondary="haveInsurance.length !== 0"
-				:disabled="!haveInsurance.length"
 				@click="$router.push({ path: '/book-appointment/confirm-payment' })"
 			>
 				Continue
@@ -161,9 +157,8 @@ import CornieSelect from "~/components/CornieSelect.vue"
   layout: "InsuranceQuestion",
 })
 export default class BookDoctorPage extends Vue {
-  disabled: Boolean = true
   haveInsurance: string = ""
-  insuranceProvider: string = ""
+  insuranceprovider: string = ""
   insuranceCarrier: string = ""
   insurancePlan: string = ""
   billInsurance: boolean = false
@@ -180,26 +175,25 @@ export default class BookDoctorPage extends Vue {
   handleAgree(val: any) {
     this.billInsurance = val
   }
-
-  handleHaveInsurance(val: any) {
-    this.haveInsurance = val
-    this.disabled = false
-  }
-
-  handleInsuranceProvider(val: any) {
-    this.insuranceProvider = val
-  }
 }
 </script>
 
 <style scoped>
-.c-w-45 {
-  width: 45%;
+.ap-card {
+  background: #f0f4fe;
+  border: 0.5px solid #c2c7d6;
+  box-shadow: 0px 15px 40px rgba(20, 31, 21, 0.04);
+  border-radius: 8px;
 }
 
-@media screen and (max-width: 1024px) {
-  .c-w-45 {
-    width: 100%;
-  }
+.time-card {
+  background: #ffffff;
+  border: 1px solid #c2c7d6;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.c-w-45 {
+  width: 45%;
 }
 </style>

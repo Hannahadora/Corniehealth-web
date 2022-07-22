@@ -6,40 +6,94 @@ import axios from "~/plugins/axios";
 const api = axios
 
 export const state = () => ({
-  practitioners: [],
-  loading: false
+  practitioners: null,
+  searchedLocations: [],
+  practitionerProfile: {},
+  initPractitionerData: {}
 })
 
 export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
-  getrelatedPractioners(state) {
+  getRelatedPractitioners(state) {
     return state.practitioners
   },
+  getRelatedLocations(state) {
+    return state.searchedLocations
+  },
+  selectedPractitioner(state) {
+    return state.practitionerProfile
+  },
+  getInitPractitionerData(state) {
+    return state.initPractitionerData
+  },
+
 }
 
 export const mutations: MutationTree<RootState> = {
   SET_PRACTITIONERS(state, data) {
     state.practitioners = data
   },
-  SET_LOADING(state, data) {
-    state.loading = data
+  SET_PRACTITIONER(state, data) {
+    state.practitionerProfile = data
   },
+  SET_INITPRACTITIONERDATA(state, data) {
+    state.initPractitionerData = data
+  },
+
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  findPractitioners: async ({ commit }, search) => {
-    commit("SET_LOADING", true);
+  searchForPractitioners: async ({ commit }, search: any ) => {
     try {
-      const res = await api.post(`/api/v1/booking-site_open/find?search=${search}`)
-      // if(res.status === 'true') {
-      commit("SET_PRACTITIONERS", res.data)
-      // }
-    } catch (err) {
-      console.log(err);
+      const res: any = await api.get(`/booking-website/search?query=${search}`)
+      if (res.data.success === true) {
+        commit("SET_PRACTITIONERS", res.data.data)
+      }
+      return res
     } finally {
-      commit("SET_LOADING", false);
+    }
+  },
+  // findLocations: async ({ commit }, query) => {
+  //   commit("SET_LOADING", true);
+  //   try {
+  //     const res = await api.get(`/booking-website/locations?query=${query}`)
+  //     // if(res.success === 'true') {
+  //     commit("SET_LOCATIONS", res.data)
+  //     // }
+  //     return res
+  //   } finally {
+  //     commit("SET_LOADING", false);
+  //   }
+  // },
+  async findPractitionersAll({ commit }, { specialty, location, hospital, min, max, language, gender }) {
+    try {
+      const res = await api.get(`/booking-website/search/practitioners?specialty=${specialty}&location=${location}&hospital=${hospital}&min=${min}&max=${max}&language=${language}&gender=${gender}`)
+      commit("SET_PRACTITIONERS", res.data.data)
+      return res
+    } finally {
+    }
+  },
+  
+  async fetchPractice({ commit }, { specialty, location }) {
+    try {
+      const res: any = await api.get(`/booking-website/practice/search?specialty=${specialty}&location=${location}`)
+      if (res.data.success === true) {
+        commit("SET_PRACTITIONERS", res.data.data)
+      }
+      return res
+    } finally {
+    }
+  },
+
+  getAPractitionerProfile: async ({ commit }, practitionerId: string) => {
+    try {
+      const res = await api.get(`/booking-website/get-profile/${practitionerId}`)
+      // if(res.success === 'true') {
+      commit("SET_PRACTITIONER", res.data.data)
+      // }
+      return res
+    } finally {
     }
   }
-
 }

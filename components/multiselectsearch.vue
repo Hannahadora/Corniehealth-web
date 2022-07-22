@@ -1,5 +1,5 @@
 <template>
-	<div class="">
+	<div class="relative">
 		<div v-if="label" class="mb-2">
 			<label>{{ label }}</label>
 		</div>
@@ -17,11 +17,11 @@
 				<span>
 					<img class="mr-2" :src="icon" alt="" />
 				</span>
-				<div v-if="selectedItem && active" class="">
+				<div v-if="selectedItem && active" class="overflow-x-hidden lowercase" style="white-space: nowrap;">
 					{{ selectedItem[itemLabelProp] }}
 				</div>
 				<template v-else>
-					<span class="cursor-pointer mx-2 text-grey-blue">{{
+					<span class="cursor-pointer mx-2 overflow-x-hidden lowercase" :class="[active ? 'text-white' : 'text-grey-blue']" style="white-space: nowrap;">{{
 						placeholder
 					}}</span>
 				</template>
@@ -42,6 +42,7 @@
 						type="text"
 						:placeholder="searchPlaceHolder"
 						@blur="closeItemList(true)"
+						@keyup="getSearchValue"
 					/>
 				</div>
 				<div v-if="newItemText" class="dropdown-section py-2 px-4">
@@ -100,7 +101,7 @@ function isObject(value) {
 }
 
 export default {
-  name: "DSelect",
+  name: "MSelect",
 
   props: {
     value: {
@@ -127,6 +128,11 @@ export default {
       type: String,
       default: ""
     },
+    active: {
+      type: Boolean,
+      default: false
+    },
+
     /*
      * an array of primitives or objects
      */
@@ -177,8 +183,6 @@ export default {
       itemListVisible: false,
       search: "",
       selectedItem: null,
-      selectedItems: [],
-      active: false,
     }
   },
 
@@ -243,21 +247,15 @@ export default {
     },
     selectItem(item) {
       this.active = true
-      this.selectedItems.push(item)
-      if(this.selectedItems.length === 1) {
-        this.selectedItem = item
-      } else if(this.selectedItems.length > 1) {
-        this.selectedItem = item
-      }
-      // this.selectedItem = item
-      // this.itemListVisible = false
+      this.selectedItem = item
+      this.itemListVisible = false
       this.$emit("input", this.returnObject ? item : item[this.itemValueProp])
     },
     setupEventListener() {
       this.eventListener = e => {
         if (
           e.target !== this.$refs.dropdown &&
-          !this.$refs.select.contains(e.target)
+          !this.$refs?.select?.contains(e.target)
         ) {
           this.itemListVisible = false
         }
@@ -267,6 +265,7 @@ export default {
     teardownEventListener() {
       document.body.removeEventListener("click", this.eventListener)
     },
+
     setValue(value) {
       if (isObject(value) && this.returnObject) {
         value = value[this.itemValueProp]
@@ -275,6 +274,10 @@ export default {
         return item[this.itemValueProp] === value
       })
     },
+
+    getSearchValue() {
+      this.$emit("query", this.search)
+    }
   },
 }
 </script>
@@ -345,15 +348,17 @@ export default {
 }
 
 .active {
-  color: #fff;
+  color: #ffffff !important;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   background: #080056;
   border: 1px solid #080056;
   box-sizing: border-box;
   border-radius: 8px;
   white-space: nowrap;
+  max-width: 200px;
+  opacity: 1!important;
 }
 
 input[type="checkbox"]:after {

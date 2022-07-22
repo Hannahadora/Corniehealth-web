@@ -10,7 +10,7 @@ import Vue from "vue"
 import TopNav from "../components/TopNav.vue"
 export default Vue.extend({
   name: "BookingAppointmentLayout",
-  components: { TopNav }
+  components: { TopNav },
 })
 </script>
 

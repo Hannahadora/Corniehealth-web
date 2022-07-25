@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<linear-loader v-if="loading" />
 		<form
 			class="xl:w-full lg:w-2/3 w-full mx-auto xl:grid block grid-cols-5 gap-2"
 		>
@@ -34,73 +35,61 @@
 					<div
 						class="w-full max-h-80 overflow-y-scroll z-20 mt-10 bg-white px-2 py-4 shadow absolute block top-10"
 					>
-						<div class="w-full text-left mb-2">
-							<div class="ddh w-full px-2 py-4">Specialty</div>
-							<ul
-								v-for="(specialty, index) in specialties"
-								:key="index"
-								class="block"
-							>
-								<li
-									class="lowercase px-2 py-4 hover:bg-gray-100 cursor-pointer"
-									@click="selectProvider(specialty, 'specialty')"
+						<div v-if="loading" class="text-blue-500 text-center text-xs">
+							Searching
+						</div>
+
+						<div v-if="!loading && specialties.length > 0">
+							<div class="w-full text-left mb-2">
+								<div class="ddh w-full px-2 py-4">Specialty</div>
+								<ul
+									v-for="(specialty, index) in specialties"
+									:key="index"
+									class="block"
 								>
-									{{ specialty.name }}
-								</li>
-							</ul>
-							<div
-								v-if="!loading && specialties.length === 0"
-								class="text-razzmataz-pry text-xs"
-							>
-								None found
-							</div>
-							<div v-if="loading" class="text-blue-500 text-center text-xs">
-								...
+									<li
+										class="lowercase px-2 py-4 hover:bg-gray-100 cursor-pointer"
+										@click="selectProvider(specialty, 'specialty')"
+									>
+										{{ specialty.name }}
+									</li>
+								</ul>
 							</div>
 						</div>
-						<div class="w-full text-left mb-2">
-							<div class="ddh w-full px-2 py-4">Provider</div>
-							<ul
-								v-for="(provider, index) in providers"
-								:key="index"
-								class="block"
-							>
-								<li
-									class="px-2 py-4 lowercase hover:bg-gray-100 cursor-pointer"
-									@click="selectProvider(provider, 'provider')"
+
+						<div v-if="providers.length > 0">
+							<div class="w-full text-left mb-2">
+								<div class="ddh w-full px-2 py-4">Provider</div>
+								<ul
+									v-for="(provider, index) in providers"
+									:key="index"
+									class="block"
 								>
-									{{ provider.name }}
-								</li>
-							</ul>
-							<div v-if="providers.length === 0" class="text-razzmataz-pry text-xs">
-								None found
-							</div>
-							<div v-if="loading" class="text-blue-500 text-center text-xs">
-								...
+									<li
+										class="px-2 py-4 lowercase hover:bg-gray-100 cursor-pointer"
+										@click="selectProvider(provider, 'provider')"
+									>
+										{{ provider.name }}
+									</li>
+								</ul>
 							</div>
 						</div>
-						<div class="w-full text-left">
-							<div class="ddh w-full px-2 py-4">Practitioners</div>
-							<ul
-								v-for="(practitioner, index) in practitioners"
-								:key="index"
-								class="block"
-							>
-								<li
-									class="lowercase px-2 py-4 hover:bg-gray-100 cursor-pointer"
-									@click="selectProvider(practitioner, 'practitioner')"
+
+						<div v-if="!loading && practitioners.length > 0">
+							<div class="w-full text-left">
+								<div class="ddh w-full px-2 py-4">Practitioners</div>
+								<ul
+									v-for="(practitioner, index) in practitioners"
+									:key="index"
+									class="block"
 								>
-									{{ practitioner.name }}
-								</li>
-							</ul>
-							<div
-								v-if="!loading && practitioners.length === 0"
-								class="text-razzmataz-pry text-xs"
-							>
-								None found
-							</div>
-							<div v-if="loading" class="text-blue-500 text-center text-xs">
-								...
+									<li
+										class="lowercase px-2 py-4 hover:bg-gray-100 cursor-pointer"
+										@click="selectProvider(practitioner, 'practitioner')"
+									>
+										{{ practitioner.name }}
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -125,12 +114,6 @@
 				>
 					<div class="ddh w-full px-2 py-4">Select State/Region or City</div>
 					<div
-						class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer"
-						@click="selectCity('Everywhere')"
-					>
-						Everywhere
-					</div>
-					<div
 						v-for="(location, index) in rLocations"
 						:key="index"
 						class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer"
@@ -138,11 +121,16 @@
 					>
 						{{ location }}
 					</div>
-					<!-- <div v-if="!loading && rLocations.length === 0">
-						<span class="text-razzmataz-pry">None found</span>
-					</div> -->
+					<div v-if="!loading && rLocations.length === 0">
+						<div
+							class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer"
+							@click="selectCity('Everywhere')"
+						>
+							Everywhere
+						</div>
+					</div>
 					<div v-if="loading" class="text-blue-500 text-center text-xs">
-						Loading
+						Searching
 					</div>
 				</div>
 			</div>
@@ -211,7 +199,9 @@ export default {
     cityName() {
       if (this.cityName !== "") {
         this.openLocations = true
-        // this.findCity(this.cityName)
+        if (this.type === "specialty") {
+          this.findCity(this.cityName)
+        }
       } else this.openLocations = false
     },
 
@@ -238,10 +228,12 @@ export default {
       this.provider = value
       this.providerName = value.name
       this.type = type
-      this.rLocations = value.locations
+      if (this.type !== "specialty") {
+        this.rLocations = value.locations
+        this.cityName = value.locations[0]
+      }
       setTimeout(() => {
         this.practitionersDropdown = false
-        this.openLocations = true
       }, 500)
       this.$store.dispatch("misc/updateSelectedSpecialty", this.providerName)
     },
@@ -271,17 +263,17 @@ export default {
       // }
     },
 
-    // async findCity(query) {
-    //   this.loading = true
-    //   const res = await this.$store.dispatch(
-    //     "practitioners/findLocations",
-    //     query
-    //   )
-    //   this.loading = false
-    //   // if (res.success === "true") {
-    //   this.rLocations = res.data.data || []
-    //   // }
-    // },
+    async findCity(query) {
+      this.loading = true
+      const res = await this.$store.dispatch(
+        "practitioners/findLocations",
+        query
+      )
+      this.loading = false
+      if (res.data.success === true) {
+        this.rLocations = res.data.data || []
+      }
+    },
 
     async findProviders(query) {
       try {
@@ -325,6 +317,9 @@ export default {
         }
       } else if (this.type === "practitioner") {
         this.$router.push(`/patients/doctor/${this.provider.id}/profile`)
+        // this.SET_INITPRACTITIONERDATA(practitioner)
+      } else if (this.type === "provider") {
+        this.$router.push(`/patients/hospital/${this.provider.id}/info`)
         // this.SET_INITPRACTITIONERDATA(practitioner)
       }
     },

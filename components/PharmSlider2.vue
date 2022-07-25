@@ -36,14 +36,12 @@
 
 <script>
 import { Hooper, Slide, Pagination as HooperPagination } from "hooper"
-// import CSwiper from "./CSwiper.vue"
 
 import "hooper/dist/hooper.css"
 
 export default {
   name: "PharmSlider2",
   components: {
-    // CSwiper,
     Hooper,
     Slide,
     HooperPagination,

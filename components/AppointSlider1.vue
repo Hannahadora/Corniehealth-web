@@ -97,7 +97,6 @@
 </template>
 
 <script>
-// import CSwiper from "./CSwiper.vue"
 
 import { Hooper, Slide, Pagination as HooperPagination } from "hooper"
 import "hooper/dist/hooper.css"
@@ -105,7 +104,6 @@ import "hooper/dist/hooper.css"
 export default {
   name: "AppointSlider1",
   components: {
-    // CSwiper,
     Hooper,
     Slide,
     HooperPagination,

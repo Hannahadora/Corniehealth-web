@@ -1,5 +1,7 @@
 <template>
 	<div class="w-full">
+		<linear-loader v-if="loading" />
+
 		<div class="mb-8">
 			<div class="h-full xl:grid grid-cols-7 flex flex-wrap gap-4">
 				<multiselectsearch
@@ -24,6 +26,7 @@
 					:placeholder="hospitalPlaceholder"
 					:items="hospitals"
 					:active="hospitalActive"
+					@query="findHospitals"
 				/>
 				<multiselectsearch
 					v-if="!$route.path.includes('hospital')"
@@ -73,37 +76,31 @@
 </template>
 
 <script>
+import LinearLoader from "./LinearLoader.vue"
 export default {
   name: "SelectGroup",
+  components: { LinearLoader },
 
   data() {
     return {
       loading: false,
       search: {
-        specialty: null,
-        location: null,
-        hospital: null,
+        specialty: undefined,
+        location: undefined,
+        hospital: undefined,
         min: 1,
         max: 1,
-        visitType: null,
-        insurance: null,
-        language: null,
-        gender: null
+        insurance: undefined,
+        language: undefined,
+        gender: undefined,
+        rating: undefined,
+        visitType: undefined,
       },
       specialties: [],
 
       locations: [],
 
-      hospitals: [
-        "All",
-        "Blue Cross Hospital",
-        "Eko Hospital",
-        "Evercare Hospital",
-        "Lagoon Hospital",
-        "Good Times",
-        "Blue Foundation",
-        "New Times",
-      ],
+      hospitals: [],
 
       experiences: [
         "All",
@@ -132,26 +129,26 @@ export default {
 
   computed: {
     specialtyPlaceholder() {
-      if(this.search.specialty) {
+      if (this.search.specialty) {
         return this.search.specialty
       } else {
         return "Specialty"
       }
     },
     locationPlaceholder() {
-      if(this.search.location) {
+      if (this.search.location) {
         return this.search.location
       } else {
         return "Location"
       }
     },
     hospitalPlaceholder() {
-      if(this.search.hospital) {
+      if (this.search.hospital) {
         return this.search.hospital
       } else {
         return "Hospital"
       }
-    }
+    },
   },
 
   watch: {
@@ -159,11 +156,13 @@ export default {
       handler() {
         try {
           this.loading = true
-          const res = this.$store.dispatch("practitioners/findPractitionersAll", {
-            ...this.search,
-            location: null,
-          })
-          //   if (res.success === "true") {
+          const res = this.$store.dispatch(
+            "practitioners/findPractitionersAll",
+            {
+              ...this.search,
+            }
+          )
+          //   if (res.data.success === true) {
           this.searchResult = res.data
           this.$router.push(
             `${this.$route.path}?query=${this.search.specialty.toLowerCase()}`
@@ -178,8 +177,6 @@ export default {
       deep: true,
     },
   },
-  
-  
   mounted() {
     this.search.specialty = this.$store.getters["misc/selectedSpecialty"]
     this.search.location = this.$store.getters["misc/selectedLocation"]
@@ -190,7 +187,7 @@ export default {
     async findProviders(query) {
       this.loading = true
       const res = await this.$store.dispatch(
-        "practitioners/providersDropdown",
+        "practitioners/findPractitionerByName",
         query || null
       )
       this.loading = false
@@ -208,13 +205,26 @@ export default {
       this.locations = res.data.data || []
       // }
     },
+    async findHospitals(query) {
+      this.loading = true
+      const res = await this.$store.dispatch(
+        "practitioners/findHospitals",
+        query || null
+      )
+      this.loading = false
+      // if (res.success === "true") {
+      this.hospitals = res.data.data || []
+      // }
+    },
 
     setActiveStates() {
-      if(this.search.specialty) {
+      if (this.search.specialty) {
         this.specialtyActive = true
-      }if(this.search.location) {
+      }
+      if (this.search.location) {
         this.locationActive = true
-      }if(this.search.hospital) {
+      }
+      if (this.search.hospital) {
         this.hospitalActive = true
       }
     },

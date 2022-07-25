@@ -2,7 +2,7 @@
 	<div class="c-wrapper w-full xl:mt-40 mt-20">
 		<div class="mt-16 mb-12 flex items-center">
 			<NuxtLink
-				to="/patients/book-appointment/search-result/doctors"
+				:to="'/patients/book-appointment/search/doctors'"
 				class="mr-6 pb-4 flex items-center"
 			>
 				<img
@@ -13,7 +13,7 @@
 				<span class="text-grey-eth font-bold">Doctors</span>
 			</NuxtLink>
 			<NuxtLink
-				to="/patients/book-appointment/search-result/hospitals"
+				:to="'/patients/book-appointment/search/hospitals'"
 				class="mr-6 pb-4 flex items-center"
 			>
 				<img
@@ -22,18 +22,6 @@
 					alt=""
 				/>
 				<span class="text-grey-eth font-bold">Hospital/Clinic</span>
-			</NuxtLink>
- 
-			<NuxtLink
-				to="/patients/book-appointment/search-result/labs"
-				class="mr-6 pb-4 flex items-center"
-			>
-				<img
-					class="mr-2 sub-titles-1"
-					src="/images/book-appointment/Icon-lab-black.png"
-					alt=""
-				/>
-				<span class="text-grey-eth font-bold">Labs</span>
 			</NuxtLink>
 		</div>
 

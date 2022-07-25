@@ -43,7 +43,6 @@
 </template>
 
 <script>
-// import CSwiper from "./CSwiper.vue"
 
 import {
   Hooper,
@@ -55,7 +54,6 @@ import "hooper/dist/hooper.css"
 export default {
   name: "IndexSlider1",
   components: {
-    // CSwiper,
     Hooper,
     Slide,
     HooperPagination,

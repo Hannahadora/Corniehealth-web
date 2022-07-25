@@ -45,14 +45,12 @@
 <script>
 import { Hooper, Slide, Pagination as HooperPagination } from "hooper"
 import { providerPriviledges } from "../plugins/providerPriviledges"
-// import CSwiper from "./CSwiper.vue"
 
 import "hooper/dist/hooper.css"
 
 export default {
   name: "ProviderPriviledgeGrid",
   components: {
-    // CSwiper,
     Hooper,
     Slide,
     HooperPagination,

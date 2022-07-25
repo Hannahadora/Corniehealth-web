@@ -184,6 +184,10 @@ export default {
   },
 
   methods: {
+    // removeEmptyKey(obj) {
+    //   if
+    // },
+     
     async findProviders(query) {
       this.loading = true
       const res = await this.$store.dispatch(

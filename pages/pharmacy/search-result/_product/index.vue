@@ -15,6 +15,7 @@
 							@click="genList = !genList"
 						/>
 					</div>
+				
 
 					<div v-if="genList" class="px-8 pt-6">
 						<div

@@ -40,14 +40,12 @@ import {
   Pagination as HooperPagination,
 } from "hooper"
 import { choices } from "../plugins/choices"
-// import CSwiper from "./CSwiper.vue"
 
 import "hooper/dist/hooper.css"
 
 export default {
   name: "HealthOutcomes",
   components: {
-    // CSwiper,
     Hooper,
     Slide,
     HooperPagination,

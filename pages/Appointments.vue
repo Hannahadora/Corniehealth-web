@@ -14,10 +14,13 @@
 					Find the best doctors <br class="xl:block hidden" />
 					and other healthcare providers.
 				</h1>
-				<p class="mb-14 xl:w-3/5 w-full mx-auto">
-					View all practice information and ratings, no calls or messaging
-					required
-				</p>
+				<div class="mb-14 text-center">
+					<p>
+						Explore our curated options and instantly book your preferred
+						provider.
+					</p>
+					<p>No calls or messages are required.</p>
+				</div>
 
 				<img
 					class="absolute xl:bottom-11 bottom-2 xl:right-11 right-2 xl:w-auto w-24 xl:h-auto h-20"
@@ -35,7 +38,7 @@
 					alt=""
 				/>
 
-				<filter-practitioner-area />
+				<provider-search />
 
 				<div class="mt-2 xl:block hidden">
 					<p>
@@ -273,13 +276,13 @@
 import { Component, Vue } from "nuxt-property-decorator"
 import CButton from "../components/CButton.vue"
 import InputComp from "../components/InputComp.vue"
-import FilterPractitionerArea from "~/components/FilterPractitionerArea.vue"
+import ProviderSearch from "~/components/ProviderSearch.vue"
 
 @Component({
   components: {
     CButton,
     InputComp,
-    FilterPractitionerArea,
+    ProviderSearch,
   },
 })
 export default class AppointmentPage extends Vue {

@@ -30,12 +30,15 @@
 					Find the best doctors <br class="xl:block hidden" />
 					and other healthcare providers.
 				</h1>
-				<p class="mb-14">
-					View all practice information and ratings, no calls or messaging
-					required
-				</p>
+				<div class="mb-14 text-center">
+					<p>
+						Explore our curated options and instantly book your preferred
+						provider.
+					</p>
+					<p>No calls or messages are required.</p>
+				</div>
 
-				<filter-practitioner-area />
+				<provider-search />
 
 				<div>
 					<img
@@ -262,18 +265,16 @@
 import { Component, Vue } from "nuxt-property-decorator"
 import CButton from "../components/CButton.vue"
 import HealthOutcomes from "../components/HealthOutcomes.vue"
-import FilterPractitionerArea from "~/components/FilterPractitionerArea.vue"
+import ProviderSearch from "~/components/ProviderSearch.vue"
 
 @Component({
   components: {
     CButton,
     HealthOutcomes,
-    FilterPractitionerArea,
+    ProviderSearch,
   },
 })
-export default class IndexPage extends Vue {
-
-}
+export default class IndexPage extends Vue {}
 </script>
 
 <style scoped>

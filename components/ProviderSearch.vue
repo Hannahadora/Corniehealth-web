@@ -113,7 +113,6 @@
 					class="w-full max-h-80 overflow-y-scroll z-20 mt-10 bg-white px-2 py-4 shadow absolute block top-10"
 				>
 					<div class="ddh w-full px-2 py-4">Select State/Region or City</div>
-
 					<div
 						v-for="(location, index) in rLocations"
 						:key="index"

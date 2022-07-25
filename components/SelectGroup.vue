@@ -177,7 +177,6 @@ export default {
       deep: true,
     },
   },
-
   mounted() {
     this.search.specialty = this.$store.getters["misc/selectedSpecialty"]
     this.search.location = this.$store.getters["misc/selectedLocation"]

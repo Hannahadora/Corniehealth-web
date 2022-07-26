@@ -24,108 +24,19 @@
 				class="w-full lg:grid grid-cols-2 block gap-8 items-start mb-12"
 			>
 				<div
-					v-for="practitioner in filteredPractitioners &&
-						filteredPractitioners"
+					v-for="practitioner in filteredPractitioners && filteredPractitioners"
 					:key="practitioner.id"
 					class="info-container xl:p-6 p-4 xl:mb-0 mb-8"
 				>
-					<div class="w-full xl:pb-0 pb-8">
-						<div class="flex items-center">
-							<img
-								class="mr-4 w-16 h-16 rounded-full"
-								:src="practitioner.photo"
-								alt=""
-							/>
-							<div class="">
-								<div class="mr-4 sub-titles-1">
-									{{ practitioner.name }}
-								</div>
-								<div class="mt-1 text-base">
-									{{ practitioner.designation }}
-								</div>
-								<img
-									:src="`/images/ratings/${practitioner.rating}star.svg`"
-									alt=""
-								/>
-							</div>
-						</div>
-
-						<div class="mt-6 grid grid-cols-1 gap-4">
-							<div class="flex items-start">
-								<img
-									class="mr-2"
-									src="/images/book-appointment/icon-doctor-white.png"
-									alt=""
-								/>
-								<div>
-									<p class="mr-2">{{ practitioner.specialty }}</p>
-								</div>
-							</div>
-
-							<div class="flex items-start">
-								<img
-									class="mr-2"
-									src="/images/book-appointment/icon-doctor-white.png"
-									alt=""
-								/>
-								<div>
-									<p class="mr-2">Visit Type - {{ practitioner.visitType }}</p>
-								</div>
-							</div>
-
-							<div class="flex items-start">
-								<img
-									class="mr-2"
-									src="/images/book-appointment/icon-lang-white.png"
-									alt=""
-								/>
-								<div>
-									<p class="mr-2">{{ practitioner.language }}</p>
-								</div>
-							</div>
-
-							<div class="flex items-start">
-								<img
-									class="mr-2"
-									src="/images/book-appointment/Icon-fee-white.png"
-									alt=""
-								/>
-								<div>
-									<p class="mr-2">
-										Consultation Fee - {{ practitioner.consultationFeePerHour }}
-									</p>
-								</div>
-							</div>
-						</div>
-
-						<div
-							class="flex xl:flex-row flex-col items-center xl:justify-between justify-center xl:mt-6 mt-8"
-						>
-							<c-button
-								type="button"
-								class="xl:mr-6 xl:mb-0 mb-6 xl:w-1/2 w-full"
-								:primary="true"
-								small
-								@click="viewProfile(practitioner)"
-							>
-								View profile
-							</c-button>
-							<c-button
-								class="xl:w-1/2 w-full"
-								type="button"
-								:secondary="true"
-								small
-								@click="
-									openAppointmentModal(practitioner)
-									SET_MODALSTATE(true)
-								"
-							>
-								Book Appointment
-							</c-button>
-						</div>
-					</div>
+					<doctors-card
+						:practitioner="practitioner"
+						@viewProfile="viewProfile(practitioner)"
+						@openAppointmentModal="
+							openAppointmentModal(practitioner)
+							SET_MODALSTATE(true)
+						"
+					/>
 				</div>
-
 				<div
 					v-if="pages > 0"
 					class="col-span-2 pagination flex items-center justify-center my-24"
@@ -161,6 +72,7 @@ import SelectGroup from "~/components/SelectGroup.vue"
 import ModalComponent from "~/components/ModalComponent.vue"
 import CornieModal from "~/components/CornieModal.vue"
 import AppointmentModal from "~/components/AppointmentModal.vue"
+import DoctorsCard from "~/components/BookAppointment/DoctorsCard.vue"
 
 const appointment = namespace("appointment")
 const practitioners = namespace("practitioners")
@@ -171,6 +83,7 @@ const misc = namespace("misc")
     ModalComponent,
     CornieModal,
     AppointmentModal,
+    DoctorsCard,
   },
 })
 export default class DoctorsPage extends Vue {
@@ -186,7 +99,7 @@ export default class DoctorsPage extends Vue {
   pages: number = 0
   currentPage: number = 1
   filteredPractitioners = <any>[]
-  search = <any>{};
+  search = <any>{}
 
   @appointment.Mutation
     SET_SELECTEDDATE!: (data: any) => void
@@ -206,15 +119,17 @@ export default class DoctorsPage extends Vue {
   @practitioners.Getter
     loadingState!: false
 
-	
   @Watch("query")
   onChange() {
     this.loading = true
     this.$store.dispatch("practitioners/findPractitionersAll", {
       ...this.search,
-      location: null, min: 1, max: 1, specialty: this.query
+      location: null,
+      min: 1,
+      max: 1,
+      specialty: this.query,
     })
-		  this.loading = false
+    this.loading = false
   }
 
   get query() {
@@ -249,8 +164,11 @@ export default class DoctorsPage extends Vue {
 
   setPage(page: any) {
     this.currentPage = page
-    this.filteredPractitioners = this.availablePractitioners.slice(page - 1, page + 9)
-    window.scrollTo(0,0)
+    this.filteredPractitioners = this.availablePractitioners.slice(
+      page - 1,
+      page + 9
+    )
+    window.scrollTo(0, 0)
   }
 
   nextPage() {
@@ -274,7 +192,10 @@ export default class DoctorsPage extends Vue {
     } else {
       this.loading = false
       this.setTotalPage()
-      this.filteredPractitioners = this.availablePractitioners?.slice(this.currentPage - 1, this.currentPage + 9)
+      this.filteredPractitioners = this.availablePractitioners?.slice(
+        this.currentPage - 1,
+        this.currentPage + 9
+      )
     }
   }
 }

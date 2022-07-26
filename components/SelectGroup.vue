@@ -154,13 +154,11 @@ export default {
   watch: {
     search: {
       handler() {
+        this.removeEmptyKey()
         try {
           this.loading = true
           const res = this.$store.dispatch(
-            "practitioners/findPractitionersAll",
-            {
-              ...this.search,
-            }
+            "practitioners/findPractitionersAll",{...this.search}
           )
           //   if (res.data.success === true) {
           this.searchResult = res.data
@@ -184,10 +182,14 @@ export default {
   },
 
   methods: {
-    // removeEmptyKey(obj) {
-    //   if
-    // },
-     
+    removeEmptyKey() {
+      Object.entries(this.search).forEach(([key, value]) => {
+        if (value === undefined || value === "") {
+          delete this.search[key]
+        }
+      })
+    },
+
     async findProviders(query) {
       this.loading = true
       const res = await this.$store.dispatch(

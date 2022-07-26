@@ -229,8 +229,8 @@ export default {
       this.providerName = value.name
       this.type = type
       if (this.type !== "specialty") {
-        this.rLocations = value.locations
-        this.cityName = value.locations[0]
+        this.rLocations = value.locations.map(el => el.name)
+        this.cityName = value.locations[0].name
       }
       setTimeout(() => {
         this.practitionersDropdown = false
@@ -316,10 +316,10 @@ export default {
           this.loading = false
         }
       } else if (this.type === "practitioner") {
-        this.$router.push(`/patients/doctor/${this.providerData.id}/profile`)
+        this.$router.push(`/patients/book-appointment/doctor/${this.providerData.id}/profile`)
         // this.SET_INITPRACTITIONERDATA(practitioner)
       } else if (this.type === "provider") {
-        this.$router.push(`/patients/hospital/${this.provider.id}/info`)
+        this.$router.push(`/patients/book-appointment/hospital/${this.provider.id}/info`)
         // this.SET_INITPRACTITIONERDATA(practitioner)
       }
     },

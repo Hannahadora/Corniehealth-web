@@ -1,36 +1,28 @@
 <template>
-	<div>
-		<div class="xl:grid hidden grid-cols-5 gap-6">
-			<img class="w-full" src="/images/about/image 62.svg" alt="" />
-			<img class="w-full" src="/images/about/image 61.svg" alt="" />
-			<img class="w-full" src="/images/about/img (2).svg" alt="" />
-			<img class="w-full" src="/images/about/image 60.svg" alt="" />
-			<img class="w-full" src="/images/about/image 60.svg" alt="" />
-		</div>
+  <div>
+    <div class="xl:grid hidden grid-cols-5 gap-6">
+      <div v-for="(photo, idx) in hospital.photos" :key="idx">
+        <img class="w-full" :src="photo" alt="" />
+      </div>
+    </div>
 
-		<div class="xl:hidden block">
-			<hooper :settings="hooperSettings">
-				<slide>
-					<img src="/images/about/image 62.svg" alt="" />
-				</slide>
-				<slide>
-					<img src="/images/about/image 61.svg" alt="" />
-				</slide>
-				<slide>
-					<img src="/images/about/img (2).svg" alt="" />
-				</slide>
-				<slide>
-					<img src="/images/about/image 60.svg" alt="" />
-				</slide>
+    <div class="xl:hidden block">
+      <hooper
+        :settings="hooperSettings"
+        v-for="(photo, idx) in hospital.photos"
+        :key="idx"
+      >
+        <slide>
+          <img class="w-full" :src="photo" alt="" />
+        </slide>
 
-				<hooper-navigation slot="hooper-addons"></hooper-navigation>
-			</hooper>
-		</div>
-	</div>
+        <hooper-navigation slot="hooper-addons"></hooper-navigation>
+      </hooper>
+    </div>
+  </div>
 </template>
 
 <script>
-
 import { Hooper, Slide, Navigation as HooperNavigation } from "hooper"
 import "hooper/dist/hooper.css"
 
@@ -40,6 +32,13 @@ export default {
     Hooper,
     Slide,
     HooperNavigation,
+  },
+
+  props: {
+    hospital: {
+      type: Object,
+      default: () => {},
+    },
   },
 
   data() {
@@ -65,7 +64,6 @@ export default {
   },
 }
 </script>
-
 
 <style scoped>
 .hooper-list {

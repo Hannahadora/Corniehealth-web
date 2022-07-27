@@ -302,14 +302,14 @@ export default {
             "practitioners/fetchPractice",
             { ...this.payload }
           )
-          // if (res.data.success === true) {
-          this.searchResult = res.data.data
+          if (res.data.success === true) {
+          // this.searchResult = res.data.data
 
           this.$router.push(
-            `/patients/book-appointment/search/doctors?query=${this.providerName.toLowerCase()}`
+            `/patients/book-appointment/search/doctors?specialty=${this.providerName.toLowerCase()}&location=${this.cityName.toLowerCase()}`
           )
           this.loading = false
-          // }
+          }
         } catch (err) {
           alert(err)
         } finally {
@@ -317,10 +317,8 @@ export default {
         }
       } else if (this.type === "practitioner") {
         this.$router.push(`/patients/book-appointment/doctor/${this.providerData.id}/profile`)
-        // this.SET_INITPRACTITIONERDATA(practitioner)
       } else if (this.type === "provider") {
-        this.$router.push(`/patients/book-appointment/hospital/${this.provider.id}/info`)
-        // this.SET_INITPRACTITIONERDATA(practitioner)
+        this.$router.push(`/patients/book-appointment/hospital/${this.providerData.id}/info`)
       }
     },
   },

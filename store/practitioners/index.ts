@@ -9,7 +9,9 @@ export const state = () => ({
   practitioners: null,
   searchedLocations: [],
   practitionerProfile: {},
-  initPractitionerData: {}
+  initPractitionerData: {},
+  providers: null,
+  providerData: {}
 })
 
 export type RootState = ReturnType<typeof state>
@@ -37,6 +39,12 @@ export const mutations: MutationTree<RootState> = {
   SET_PRACTITIONER(state, data) {
     state.practitionerProfile = data
   },
+  SET_PROVIDERS(state, data) {
+    state.providers = data
+  },
+  SET_PROVIDER(state, data) {
+    state.providerData = data
+  },
   SET_INITPRACTITIONERDATA(state, data) {
     state.initPractitionerData = data
   },
@@ -44,17 +52,14 @@ export const mutations: MutationTree<RootState> = {
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  searchForPractitioners: async ({ commit }, search: any ) => {
+  searchForPractitioners: async ({ commit }, search: any) => {
     try {
       const res: any = await api.get(`/booking-website/search?query=${search}`)
-      if (res.data.success === true) {
-        commit("SET_PRACTITIONERS", res.data.data)
-      }
       return res
     } finally {
     }
   },
-  
+
   findLocations: async ({ commit }, query) => {
     try {
       const res = await api.get(`/booking-website/locations?query=${query}`)
@@ -79,21 +84,42 @@ export const actions: ActionTree<RootState, RootState> = {
     }
   },
 
-  async findPractitionersAll({ commit }, { specialty, location, hospital, min, max, language, gender }) {
+  async fetchPractitioners({ commit }, { ...search }) {
+    const queryString = Object.keys(search).map(filter => {
+      if (search[filter] || Number.isInteger(search[filter])) {
+        return `${filter}=${search[filter]}`;
+      }
+      return null;
+    }).filter(item => item).join('&');
+
     try {
-      const res = await api.get(`/booking-website/search/practitioners?specialty=${specialty}&location=${location}&hospital=${hospital}&min=${min}&max=${max}&language=${language}&gender=${gender}`)
+      const res = await api.get(`/booking-website/search/practitioners?${queryString}`)
       commit("SET_PRACTITIONERS", res.data.data)
       return res
     } finally {
     }
   },
-  
+
   async fetchPractice({ commit }, { specialty, location }) {
     try {
       const res: any = await api.get(`/booking-website/practice/search?specialty=${specialty}&location=${location}`)
       if (res.data.success === true) {
-        commit("SET_PRACTITIONERS", res.data.data)
+        commit("SET_PROVIDERS", res.data.data)
       }
+      return res
+    } finally {
+    }
+  },
+
+  fetchProviderData: async ({ commit }, { practiceId, locationId }) => {
+    if (locationId) {
+      return `locationId=${locationId}`;
+    }
+    try {
+      const res = await api.get(`/booking-website/practice/${practiceId}?${locationId}`)
+      // if(res.success === 'true') {
+      commit("SET_PROVIDER", res.data.data)
+      // }
       return res
     } finally {
     }

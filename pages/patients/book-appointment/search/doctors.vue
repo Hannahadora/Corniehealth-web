@@ -26,7 +26,6 @@
 				<div
 					v-for="practitioner in filteredPractitioners && filteredPractitioners"
 					:key="practitioner.id"
-					class="info-container xl:p-6 p-4 xl:mb-0 mb-8"
 				>
 					<doctors-card
 						:practitioner="practitioner"
@@ -122,12 +121,8 @@ export default class DoctorsPage extends Vue {
   @Watch("query")
   onChange() {
     this.loading = true
-    this.$store.dispatch("practitioners/findPractitionersAll", {
+    this.$store.dispatch("practitioners/fetchPractitioners", {
       ...this.search,
-      location: null,
-      min: 1,
-      max: 1,
-      specialty: this.query,
     })
     this.loading = false
   }

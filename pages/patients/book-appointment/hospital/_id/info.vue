@@ -70,17 +70,17 @@ export default class HospitalDetails extends Vue {
   hospital: any = <any>{}
 
   get payload() {
-	return {
-		// locationId: "",
-		practiceId: this.$route.params.id
-	}
+    return {
+      // locationId: "",
+      practiceId: this.$route.params.id
+    }
   }
 
   handleActiveTab(tab: any) {
     this.activeTab = tab
   }
 
-   async fetchHospitalInfo() {
+  async fetchHospitalInfo() {
     try {
       this.loading = true
       const res = await this.$store.dispatch("practitioners/fetchProviderData", {
@@ -98,7 +98,7 @@ export default class HospitalDetails extends Vue {
   }
 
   async created() {
-	await this.fetchHospitalInfo()
+    await this.fetchHospitalInfo()
   }
 }
 </script>

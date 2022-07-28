@@ -1,24 +1,26 @@
 <template>
   <div>
-    <div class="xl:grid hidden grid-cols-5 gap-6">
-      <div v-for="(photo, idx) in hospital.photos" :key="idx">
-        <img class="w-full" :src="photo" alt="" />
+    <div class="xl:flex hidden items-center gap-6">
+      <div v-for="(photo, idx) in photos" :key="idx">
+        <img class="hospital-gallery-frame" :src="photo" alt="" />
       </div>
     </div>
 
     <div class="xl:hidden block">
       <hooper
-        :settings="hooperSettings"
-        v-for="(photo, idx) in hospital.photos"
+        v-for="(photo, idx) in photos"
         :key="idx"
+        :settings="hooperSettings"
       >
         <slide>
-          <img class="w-full" :src="photo" alt="" />
+          <img class="hospital-gallery-frame" :src="photo" alt="" />
         </slide>
 
         <hooper-navigation slot="hooper-addons"></hooper-navigation>
       </hooper>
     </div>
+
+    <div v-if="noPhoto" class="h-40">None</div>
   </div>
 </template>
 
@@ -62,6 +64,17 @@ export default {
       },
     }
   },
+
+  computed: {
+    photos() {
+      return this.hospital && this.hospital.photos
+    },
+    nophoto() {
+      return (
+        this.hospital && this.hospital.photos && this.hospital.photos.length < 1
+      )
+    },
+  },
 }
 </script>
 
@@ -72,5 +85,11 @@ export default {
   width: 100%;
   max-height: 350px;
   margin: auto;
+}
+
+.hospital-gallery-frame {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
 }
 </style>

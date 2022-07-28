@@ -1,80 +1,80 @@
 <template>
-  <div class="w-full">
-    <linear-loader v-if="loading" />
+	<div class="w-full">
+		<linear-loader v-if="loading" />
 
-    <div class="mb-8">
-      <div class="h-full xl:grid grid-cols-7 flex flex-wrap gap-4">
-        <multiselectsearch
-          v-model="search.specialty"
-          icon="/images/book-appointment/icon-doctor-grey.png"
-          :placeholder="specialtyPlaceholder"
-          :items="specialties"
-          :active="specialtyActive"
-          @query="findProviders"
-        />
-        <multiselectsearch
-          v-model="search.location"
-          icon="/images/book-appointment/icon-location-grey.png"
-          :placeholder="locationPlaceholder"
-          :items="locations"
-          :active="locationActive"
-          @query="findCity"
-        />
-        <multiselectsearch
-          v-model="search.hospital"
-          icon="/images/book-appointment/icon-hospital-grey.png"
-          :placeholder="hospitalPlaceholder"
-          itemLabelProp="name"
-          itemValueProp="id"
-          :items="hospitals"
-          :active="hospitalActive"
-          @query="findHospitals"
-        />
-        <multiselectsearch
-          v-if="!$route.path.includes('hospital')"
-          v-model="search.experience"
-          icon="/images/book-appointment/icon-experience-grey.png"
-          placeholder="Experience"
-          :items="experiences"
-        />
-        <multiselectsearch
-          v-if="!$route.path.includes('hospital')"
-          v-model="search.visitType"
-          icon="/images/book-appointment/icon-visit-grey.png"
-          placeholder="Visit Type"
-          :items="visitTypes"
-        />
-        <!-- <multiselectsearch
+		<div class="mb-8">
+			<div class="h-full xl:grid grid-cols-7 flex flex-wrap gap-4">
+				<multiselectsearch
+					v-model="search.specialty"
+					icon="/images/book-appointment/icon-doctor-grey.png"
+					:placeholder="specialtyPlaceholder"
+					:items="specialties"
+					:active="specialtyActive"
+					@query="findProviders"
+				/>
+				<multiselectsearch
+					v-model="search.location"
+					icon="/images/book-appointment/icon-location-grey.png"
+					:placeholder="locationPlaceholder"
+					:items="locations"
+					:active="locationActive"
+					@query="findCity"
+				/>
+				<multiselectsearch
+					v-model="search.hospital"
+					icon="/images/book-appointment/icon-hospital-grey.png"
+					:placeholder="hospitalPlaceholder"
+					item-label-prop="name"
+					item-value-prop="id"
+					:items="hospitals"
+					:active="hospitalActive"
+					@query="findHospitals"
+				/>
+				<multiselectsearch
+					v-if="!$route.path.includes('hospital')"
+					v-model="search.experience"
+					icon="/images/book-appointment/icon-experience-grey.png"
+					placeholder="Experience"
+					:items="experiences"
+				/>
+				<multiselectsearch
+					v-if="!$route.path.includes('hospital')"
+					v-model="search.visitType"
+					icon="/images/book-appointment/icon-visit-grey.png"
+					placeholder="Visit Type"
+					:items="visitTypes"
+				/>
+				<!-- <multiselectsearch
 						v-model="search.insurance"
 						icon="/images/book-appointment/icon-insurance-grey.png"
 						placeholder="Insurance"
 						:items="insurances"
 					/> -->
-        <multiselectsearch
-          v-if="!$route.path.includes('doctor')"
-          v-model="search.rating"
-          icon="/images/book-appointment/icon-insurance-grey.png"
-          placeholder="Rating"
-          :items="ratings"
-        />
-        <multiselectsearch
-          v-if="!$route.path.includes('hospital')"
-          v-model="search.language"
-          icon="/images/book-appointment/icon-lang-grey.png"
-          placeholder="Language"
-          :items="languages"
-        />
-        <multiselectsearch
-          v-if="!$route.path.includes('hospital')"
-          id="lcd"
-          v-model="search.gender"
-          icon="/images/book-appointment/icon-gender-grey.png"
-          placeholder="Gender"
-          :items="genders"
-        />
-      </div>
-    </div>
-  </div>
+				<multiselectsearch
+					v-if="!$route.path.includes('doctor')"
+					v-model="search.rating"
+					icon="/images/book-appointment/icon-insurance-grey.png"
+					placeholder="Rating"
+					:items="ratings"
+				/>
+				<multiselectsearch
+					v-if="!$route.path.includes('hospital')"
+					v-model="search.language"
+					icon="/images/book-appointment/icon-lang-grey.png"
+					placeholder="Language"
+					:items="languages"
+				/>
+				<multiselectsearch
+					v-if="!$route.path.includes('hospital')"
+					id="lcd"
+					v-model="search.gender"
+					icon="/images/book-appointment/icon-gender-grey.png"
+					placeholder="Gender"
+					:items="genders"
+				/>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>

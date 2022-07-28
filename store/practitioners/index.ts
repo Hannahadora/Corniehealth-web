@@ -90,7 +90,7 @@ export const actions: ActionTree<RootState, RootState> = {
         return `${filter}=${search[filter]}`;
       }
       return null;
-    }).filter(item => item).join('&');
+    }).filter(item => item).join("&");
 
     try {
       const res = await api.get(`/booking-website/search/practitioners?${queryString}`)

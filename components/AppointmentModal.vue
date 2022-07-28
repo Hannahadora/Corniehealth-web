@@ -3,7 +3,7 @@
 	<div class="c-indigo w-full p-10 xl:mt-0 mt-8 info-container">
 		<div class="flex items-center justify-between">
 			<span class="sub-titles-1 whitespace-nowrap"
-			>Dr. {{ practitioner.name }} Availability</span
+			>Dr. {{ practitioner && practitioner.name }} Availability</span
 			>
 
 			<div class="flex items-center ap-card1 px-3 py-2">
@@ -94,8 +94,7 @@ export default class DoctorsPage extends Vue {
   availableDays: Array<any> = []
   availableTime: Array<any> = []
   availablePractitioners = []
-
-  practitioner = {}
+  practitioner: any = <any>{}
 
   @practitioners.Getter
     selectedPractitioner!: []
@@ -151,7 +150,7 @@ export default class DoctorsPage extends Vue {
   proceedToBook() {
     this.SET_MODALSTATE(false)
     this.$nextTick(() => {
-      this.$router.push("/patients/book-appointment/book-a-doctor/step1")
+      this.$router.push(`/patients/book-appointment/doctor/${this.practitioner.id}/book/step1`)
     })
   }
 

@@ -305,10 +305,10 @@ export default {
           if (res.data.success === true) {
           // this.searchResult = res.data.data
 
-          this.$router.push(
-            `/patients/book-appointment/search/doctors?specialty=${this.providerName.toLowerCase()}&location=${this.cityName.toLowerCase()}`
-          )
-          this.loading = false
+            this.$router.push(
+              `/patients/book-appointment/search?specialty=${this.providerName.toLowerCase()}&location=${this.cityName.toLowerCase()}`
+            )
+            this.loading = false
           }
         } catch (err) {
           alert(err)

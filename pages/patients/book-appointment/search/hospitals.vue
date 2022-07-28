@@ -1,17 +1,17 @@
 <template>
-  <div>
-    <linear-loader v-if="loading" />
-    <select-group :search="search" />
-    <div v-for="hospital in hospitals" :key="hospital.id">
-      <hospital-profile :hospital="hospital" />
-    </div>
-    <div
-      class="h-80 flex items-center justify-center font-bold text-ceneter"
-      v-if="hospitals.length === 0"
-    >
-      None found
-    </div>
-  </div>
+	<div>
+		<linear-loader v-if="loading" />
+		<select-group :search="search" />
+		<div v-for="hospital in hospitals" :key="hospital.id">
+			<hospital-profile :hospital="hospital" />
+		</div>
+		<div
+			v-if="hospitals.length === 0"
+			class="h-80 flex items-center justify-center font-bold text-ceneter"
+		>
+			None found
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
@@ -47,7 +47,7 @@ export default class HospitalsPage extends Vue {
     try {
       this.loading = true
       this.$router.push(
-        `/patients/book-appointment/search/doctors?specialty=${this.search?.specialty.toLowerCase()}&location=${this.search?.specialty.toLowerCase()}`
+        `/patients/book-appointment/search/hospitals?specialty=${this.search?.specialty.toLowerCase()}&location=${this.search?.specialty.toLowerCase()}`
       )
       const res = await this.$store.dispatch("practitioners/fetchPractice", {
         ...this.payload,

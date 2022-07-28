@@ -32,17 +32,18 @@
 				</div>
 				<div v-if="activeTab === 'Doctors'" class="grid grid-cols-2 gap-8">
 					<div v-for="practitioner in practitioners" :key="practitioner.id">
-						<doctors-card :practitioner="practitioner" @viewProfile="viewProfile(practitioner)"
-              @openAppointmentModal="
-                openAppointmentModal(practitioner)"/>
+						<doctors-card
+							:practitioner="practitioner" @viewProfile="viewProfile(practitioner)"
+							@openAppointmentModal="
+								openAppointmentModal(practitioner)"/>
 					</div>
 				</div>
 				<div v-if="activeTab === 'Insurance'"></div>
 			</div>
 		</div>
-       <cornie-modal :model-value="show" center class="w-full h-full">
-        <appointment-modal :id="practitionerId" @close="show = false" />
-      </cornie-modal>
+		<cornie-modal :model-value="show" center class="w-full h-full">
+			<appointment-modal :id="practitionerId" @close="show = false" />
+		</cornie-modal>
 	</div>
 </template>
 

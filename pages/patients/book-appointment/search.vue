@@ -1,56 +1,56 @@
 <template>
-  <div>
-    <linear-loader v-if="loading" />
-    <div class="c-wrapper w-full xl:mt-40 mt-20">
-      <div class="mt-16 mb-12 flex items-center">
-        <div
-          @click="selectTab('doctors')"
-          :class="{ activetab: selectedTab === 'doctors' }"
-          class="mr-6 pb-4 flex items-center"
-        >
-          <img
-            class="mr-2 sub-titles-1"
-            src="/images/book-appointment/Icon-doctor-black.png"
-            alt=""
-          />
-          <span class="text-grey-eth font-bold">Doctors</span>
-        </div>
-        <div
-          @click="selectTab('hospitals')"
-          :class="{ activetab: selectedTab === 'hospitals' }"
-          class="mr-6 pb-4 flex items-center"
-        >
-          <img
-            class="mr-2 sub-titles-1"
-            src="/images/book-appointment/Icon-hospital-black.png"
-            alt=""
-          />
-          <span class="text-grey-eth font-bold">Hospital/Clinic</span>
-        </div>
-      </div>
+	<div>
+		<linear-loader v-if="loading" />
+		<div class="c-wrapper w-full xl:mt-40 mt-20">
+			<div class="mt-16 mb-12 flex items-center">
+				<div
+					:class="{ activetab: selectedTab === 'doctors' }"
+					class="mr-6 pb-4 flex items-center"
+					@click="selectTab('doctors')"
+				>
+					<img
+						class="mr-2 sub-titles-1"
+						src="/images/book-appointment/Icon-doctor-black.png"
+						alt=""
+					/>
+					<span class="text-grey-eth font-bold">Doctors</span>
+				</div>
+				<div
+					:class="{ activetab: selectedTab === 'hospitals' }"
+					class="mr-6 pb-4 flex items-center"
+					@click="selectTab('hospitals')"
+				>
+					<img
+						class="mr-2 sub-titles-1"
+						src="/images/book-appointment/Icon-hospital-black.png"
+						alt=""
+					/>
+					<span class="text-grey-eth font-bold">Hospital/Clinic</span>
+				</div>
+			</div>
 
-      <!-- <NuxtChild /> -->
+			<!-- <NuxtChild /> -->
 
-      <select-group @searchQuery="getSearchQuery" :tab="selectedTab" />
-      <div>
-        <div v-if="selectedTab === 'doctors'">
-          <doctors :practitioners="relatedPractitioners" />
-        </div>
-        <div v-if="selectedTab === 'hospitals'">
-          <hospitals :hospitals="relatedProviders" />
-        </div>
-      </div>
-    </div>
-  </div>
+			<select-group :tab="selectedTab" @searchQuery="getSearchQuery" />
+			<div>
+				<div v-if="selectedTab === 'doctors'">
+					<doctors :practitioners="relatedPractitioners" />
+				</div>
+				<div v-if="selectedTab === 'hospitals'">
+					<hospitals :hospitals="relatedProviders" />
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from "nuxt-property-decorator"
+import { namespace } from "vuex-class"
 import Doctors from "~/components/BookAppointment/Search/Doctors.vue"
 import Hospitals from "~/components/BookAppointment/Search/Hospitals.vue"
 import SelectGroup from "~/components/SelectGroup.vue"
 import LinearLoader from "~/components/LinearLoader.vue"
-import { namespace } from "vuex-class"
 
 const practitioners = namespace("practitioners")
 
@@ -64,15 +64,15 @@ export default class SearchResult extends Vue {
   loading: Boolean = false
 
   @practitioners.Getter
-  relatedPractitioners!: []
+    relatedPractitioners!: []
 
   @practitioners.Getter
-  relatedProviders!: []
+    relatedProviders!: []
 
-//   @Watch("search", { immediate: true }) updated() {
-//     this.fetchHospitals()
-//     this.fetchPractitioners()
-//   }
+  //   @Watch("search", { immediate: true }) updated() {
+  //     this.fetchHospitals()
+  //     this.fetchPractitioners()
+  //   }
 
   @Watch("selectedTab") onChange() {
     this.fetchData()
@@ -107,6 +107,7 @@ export default class SearchResult extends Vue {
       this.loading = false
     }
   }
+
   async fetchHospitals() {
     try {
       this.loading = true

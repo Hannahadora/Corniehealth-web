@@ -1,34 +1,34 @@
 <template>
-  <div>
-    <div v-for="hospital in hospitals" :key="hospital.id">
-      <hospital-profile :hospital="hospital" />
-    </div>
-    <div
-      v-if="hospitals.length === 0"
-      class="my-24 flex items-center justify-center font-bold text-ceneter"
-    >
-      <div class="text-center flex flex-col items-center justify-center">
-        <img class="mb-8" src="/images/doctor-bro.svg" alt="" />
-        <h3 class="mb-4">We couldn’t find any hospital matching your search</h3>
-        <p class="mb-8">Please modify and search again.</p>
-        <div>
-          <c-button
-          class="w-full"
-            type="button"
-            :secondary="true"
-            small
-            @click="$router.go(-1)"
-          >
-            Go Back
-          </c-button>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div>
+		<div v-for="hospital in hospitals" :key="hospital.id">
+			<hospital-profile :hospital="hospital" />
+		</div>
+		<div
+			v-if="hospitals.length === 0"
+			class="my-24 flex items-center justify-center font-bold text-ceneter"
+		>
+			<div class="text-center flex flex-col items-center justify-center">
+				<img class="mb-8" src="/images/doctor-bro.svg" alt="" />
+				<h3 class="mb-4">We couldn’t find any hospital matching your search</h3>
+				<p class="mb-8">Please modify and search again.</p>
+				<div>
+					<c-button
+						class="w-full"
+						type="button"
+						:secondary="true"
+						small
+						@click="$router.go(-1)"
+					>
+						Go Back
+					</c-button>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch, Prop } from "nuxt-property-decorator"
+import { Component, Vue, Prop } from "nuxt-property-decorator"
 import CButton from "~/components/CButton.vue"
 import HospitalProfile from "~/components/BookAppointment/HospitalProfile.vue"
 @Component({
@@ -39,7 +39,7 @@ export default class HospitalsPage extends Vue {
   loading: boolean = false
 
   @Prop({ type: Array })
-  hospitals!: any[]
+    hospitals!: any[]
 
   async created() {}
 }

@@ -30,14 +30,19 @@
 				<div v-if="activeTab === 'Specialties'">
 					<hospital-specialties :hospital="hospital" />
 				</div>
-				<div v-if="activeTab === 'Doctors'">
-					<div v-for="practitioner in hospital.practioners" :key="practitioner.id">
-						<doctors-card :practitioner="practitioner" />
+				<div v-if="activeTab === 'Doctors'" class="grid grid-cols-2 gap-8">
+					<div v-for="practitioner in practitioners" :key="practitioner.id">
+						<doctors-card :practitioner="practitioner" @viewProfile="viewProfile(practitioner)"
+              @openAppointmentModal="
+                openAppointmentModal(practitioner)"/>
 					</div>
 				</div>
 				<div v-if="activeTab === 'Insurance'"></div>
 			</div>
 		</div>
+       <cornie-modal :model-value="show" center class="w-full h-full">
+        <appointment-modal :id="practitionerId" @close="show = false" />
+      </cornie-modal>
 	</div>
 </template>
 
@@ -50,6 +55,8 @@ import BackBtn from "~/components/BackBtn.vue"
 import HospitalSpecialties from "~/components/BookAppointment/Profile/HospitalSpecialties.vue"
 import DoctorsCard from "~/components/BookAppointment/DoctorsCard.vue"
 import HospitalPhotos from "~/components/BookAppointment/HospitalPhotos.vue"
+import CornieModal from "~/components/CornieModal.vue"
+import AppointmentModal from "~/components/AppointmentModal.vue"
 
 @Component({
   components: {
@@ -59,15 +66,19 @@ import HospitalPhotos from "~/components/BookAppointment/HospitalPhotos.vue"
     BackBtn,
     HospitalSpecialties,
     DoctorsCard,
-    HospitalPhotos,
+    HospitalPhotos, CornieModal,
+    AppointmentModal,
   },
   layout: "book-appointment",
 })
 export default class HospitalDetails extends Vue {
   activeTab: string = "Specialties"
+  practitionerId: string = ""
   tabs: Array<any> = ["Specialties", "Doctors"]
   loading: boolean = false
   hospital: any = <any>{}
+  practitioners: Array<any> = []
+  show: Boolean = false
 
   get payload() {
     return {
@@ -97,8 +108,38 @@ export default class HospitalDetails extends Vue {
     }
   }
 
+  
+  viewProfile(practitioner: any) {
+    this.$router.push(
+      `/patients/book-appointment/doctor/${practitioner.id}/profile`
+    )
+  }
+
+  openAppointmentModal(practitioner: any) {
+    this.show = true
+    this.practitionerId = practitioner.id
+  }
+
+  async fetchPractitioners() {
+    try {
+      this.loading = true
+      const res = await this.$store.dispatch("practitioners/fetchPractitioners", {
+        hospital: this.$route.params.id,
+      })
+      if (res.data.success === true) {
+        this.practitioners = res.data.data
+        this.loading = false
+      }
+    } catch (err) {
+      alert(err)
+    } finally {
+      this.loading = false
+    }
+  }
+
   async created() {
     await this.fetchHospitalInfo()
+    await this.fetchPractitioners()
   }
 }
 </script>

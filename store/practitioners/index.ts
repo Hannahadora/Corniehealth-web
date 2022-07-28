@@ -1,7 +1,7 @@
 import { GetterTree, ActionTree, MutationTree } from "vuex"
 // import { RootState } from './types'
 
-import axios from "~/plugins/axios";
+import axios from "~/plugins/axios"
 
 const api = axios
 
@@ -17,8 +17,11 @@ export const state = () => ({
 export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
-  getRelatedPractitioners(state) {
+  relatedPractitioners(state) {
     return state.practitioners
+  },
+  relatedProviders(state) {
+    return state.providers
   },
   getRelatedLocations(state) {
     return state.searchedLocations
@@ -26,10 +29,12 @@ export const getters: GetterTree<RootState, RootState> = {
   selectedPractitioner(state) {
     return state.practitionerProfile
   },
+  selectedProvider(state) {
+    return state.providerData
+  },
   getInitPractitionerData(state) {
     return state.initPractitionerData
   },
-
 }
 
 export const mutations: MutationTree<RootState> = {
@@ -48,7 +53,6 @@ export const mutations: MutationTree<RootState> = {
   SET_INITPRACTITIONERDATA(state, data) {
     state.initPractitionerData = data
   },
-
 }
 
 export const actions: ActionTree<RootState, RootState> = {
@@ -78,7 +82,9 @@ export const actions: ActionTree<RootState, RootState> = {
 
   findPractitionerByName: async ({ commit }, query) => {
     try {
-      const res = await api.get(`/booking-website/search/practitionerByName?query=${query}`)
+      const res = await api.get(
+        `/booking-website/search/practitionerByName?query=${query}`
+      )
       return res
     } finally {
     }
@@ -94,6 +100,11 @@ export const actions: ActionTree<RootState, RootState> = {
 
     try {
       const res = await api.get(`/booking-website/search/practitioners?${queryString}`)
+      // async findPractitionersAll({ commit }, query) {
+      //   try {
+      //     const res = await api.get(`/booking-website/search/practitioners`, {
+      //       params: query,
+      //     })
       commit("SET_PRACTITIONERS", res.data.data)
       return res
     } finally {
@@ -102,7 +113,10 @@ export const actions: ActionTree<RootState, RootState> = {
 
   async fetchPractice({ commit }, { specialty, location }) {
     try {
-      const res: any = await api.get(`/booking-website/practice/search?specialty=${specialty}&location=${location}`)
+      const res: any = await api.get(
+        `/booking-website/practice/search?specialty=${specialty ?? ""
+        }&location=${location ?? ""}`
+      )
       if (res.data.success === true) {
         commit("SET_PROVIDERS", res.data.data)
       }
@@ -127,12 +141,14 @@ export const actions: ActionTree<RootState, RootState> = {
 
   getAPractitionerProfile: async ({ commit }, practitionerId: string) => {
     try {
-      const res = await api.get(`/booking-website/get-profile/${practitionerId}`)
+      const res = await api.get(
+        `/booking-website/get-profile/${practitionerId}`
+      )
       // if(res.success === 'true') {
       commit("SET_PRACTITIONER", res.data.data)
       // }
       return res
     } finally {
     }
-  }
+  },
 }

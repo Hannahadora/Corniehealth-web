@@ -1,153 +1,153 @@
 <template>
-	<div>
-		<linear-loader v-if="loading" />
-		<form
-			class="xl:w-full lg:w-2/3 w-full mx-auto xl:grid block grid-cols-5 gap-2"
-		>
-			<div
-				v-click-outside="closePractitionerDropdown"
-				class="relative col-span-2"
-			>
-				<div class="input-wrapper flex items-center py-3 px-5 xl:mb-0 mb-4">
-					<img
-						class="xl:mr-6 mr-4"
-						src="/images/akar-icons_search.png"
-						alt=""
-					/>
+  <div>
+    <linear-loader v-if="loading" />
+    <form
+      class="xl:w-full lg:w-2/3 w-full mx-auto xl:grid block grid-cols-5 gap-2"
+    >
+      <div
+        v-click-outside="closePractitionerDropdown"
+        class="relative col-span-2"
+      >
+        <div class="input-wrapper flex items-center py-3 px-5 xl:mb-0 mb-4">
+          <img
+            class="xl:mr-6 mr-4"
+            src="/images/akar-icons_search.png"
+            alt=""
+          />
 
-					<input
-						v-model="providerName"
-						type="text"
-						placeholder="Provider name, practice name or specialty"
-						required
-						class="w-10/12 focus:outline-none text-sm xl:mr-2 xl:mb-0 xl:block hidden"
-					/>
-					<input
-						v-model="providerName"
-						type="text"
-						placeholder="Name or specialty"
-						required
-						class="w-10/12 focus:outline-none text-sm xl:hidden block"
-					/>
-				</div>
+          <input
+            v-model="providerName"
+            type="text"
+            placeholder="Provider name, practice name or specialty"
+            required
+            class="w-10/12 focus:outline-none text-sm xl:mr-2 xl:mb-0 xl:block hidden"
+          />
+          <input
+            v-model="providerName"
+            type="text"
+            placeholder="Name or specialty"
+            required
+            class="w-10/12 focus:outline-none text-sm xl:hidden block"
+          />
+        </div>
 
-				<div v-if="practitionersDropdown">
-					<div
-						class="w-full max-h-80 overflow-y-scroll z-20 mt-10 bg-white px-2 py-4 shadow absolute block top-10"
-					>
-						<div v-if="loading" class="text-blue-500 text-center text-xs">
-							Searching
-						</div>
+        <div v-if="practitionersDropdown">
+          <div
+            class="w-full max-h-80 overflow-y-scroll z-20 mt-10 bg-white px-2 py-4 shadow absolute block top-10"
+          >
+            <div v-if="loading" class="text-blue-500 text-center text-xs">
+              Searching
+            </div>
 
-						<div v-if="!loading && specialties.length > 0">
-							<div class="w-full text-left mb-2">
-								<div class="ddh w-full px-2 py-4">Specialty</div>
-								<ul
-									v-for="(specialty, index) in specialties"
-									:key="index"
-									class="block"
-								>
-									<li
-										class="lowercase px-2 py-4 hover:bg-gray-100 cursor-pointer"
-										@click="selectProvider(specialty, 'specialty')"
-									>
-										{{ specialty.name }}
-									</li>
-								</ul>
-							</div>
-						</div>
+            <div v-if="!loading && specialties.length > 0">
+              <div class="w-full text-left mb-2">
+                <div class="ddh w-full px-2 py-4">Specialty</div>
+                <ul
+                  v-for="(specialty, index) in specialties"
+                  :key="index"
+                  class="block"
+                >
+                  <li
+                    class="lowercase px-2 py-4 hover:bg-gray-100 cursor-pointer"
+                    @click="selectProvider(specialty, 'specialty')"
+                  >
+                    {{ specialty.name }}
+                  </li>
+                </ul>
+              </div>
+            </div>
 
-						<div v-if="providers.length > 0">
-							<div class="w-full text-left mb-2">
-								<div class="ddh w-full px-2 py-4">Provider</div>
-								<ul
-									v-for="(provider, index) in providers"
-									:key="index"
-									class="block"
-								>
-									<li
-										class="px-2 py-4 lowercase hover:bg-gray-100 cursor-pointer"
-										@click="selectProvider(provider, 'provider')"
-									>
-										{{ provider.name }}
-									</li>
-								</ul>
-							</div>
-						</div>
+            <div v-if="providers.length > 0">
+              <div class="w-full text-left mb-2">
+                <div class="ddh w-full px-2 py-4">Provider</div>
+                <ul
+                  v-for="(provider, index) in providers"
+                  :key="index"
+                  class="block"
+                >
+                  <li
+                    class="px-2 py-4 lowercase hover:bg-gray-100 cursor-pointer"
+                    @click="selectProvider(provider, 'provider')"
+                  >
+                    {{ provider.name }}
+                  </li>
+                </ul>
+              </div>
+            </div>
 
-						<div v-if="!loading && practitioners.length > 0">
-							<div class="w-full text-left">
-								<div class="ddh w-full px-2 py-4">Practitioners</div>
-								<ul
-									v-for="(practitioner, index) in practitioners"
-									:key="index"
-									class="block"
-								>
-									<li
-										class="lowercase px-2 py-4 hover:bg-gray-100 cursor-pointer"
-										@click="selectProvider(practitioner, 'practitioner')"
-									>
-										{{ practitioner.name }}
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+            <div v-if="!loading && practitioners.length > 0">
+              <div class="w-full text-left">
+                <div class="ddh w-full px-2 py-4">Practitioners</div>
+                <ul
+                  v-for="(practitioner, index) in practitioners"
+                  :key="index"
+                  class="block"
+                >
+                  <li
+                    class="lowercase px-2 py-4 hover:bg-gray-100 cursor-pointer"
+                    @click="selectProvider(practitioner, 'practitioner')"
+                  >
+                    {{ practitioner.name }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-			<div v-click-outside="closeLocationDropdown" class="col-span-2 relative">
-				<div class="input-wrapper flex items-center py-3 px-5">
-					<img class="xl:mr-6 mr-4" src="/images/cil_location-pin.png" alt="" />
-					<input
-						v-model="cityName"
-						type="text"
-						placeholder="City name or Zip/Postal code"
-						required
-						class="w-10/12 focus:outline-none text-sm"
-					/>
-				</div>
+      <div v-click-outside="closeLocationDropdown" class="col-span-2 relative">
+        <div class="input-wrapper flex items-center py-3 px-5">
+          <img class="xl:mr-6 mr-4" src="/images/cil_location-pin.png" alt="" />
+          <input
+            v-model="cityName"
+            type="text"
+            placeholder="City name or Zip/Postal code"
+            required
+            class="w-10/12 focus:outline-none text-sm"
+          />
+        </div>
 
-				<div
-					v-if="openLocations"
-					class="w-full max-h-80 overflow-y-scroll z-20 mt-10 bg-white px-2 py-4 shadow absolute block top-10"
-				>
-					<div class="ddh w-full px-2 py-4">Select State/Region or City</div>
-					<div
-						v-for="(location, index) in rLocations"
-						:key="index"
-						class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer"
-						@click="selectCity(location)"
-					>
-						{{ location }}
-					</div>
-					<div v-if="!loading && rLocations.length === 0">
-						<div
-							class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer"
-							@click="selectCity('Everywhere')"
-						>
-							Everywhere
-						</div>
-					</div>
-					<div v-if="loading" class="text-blue-500 text-center text-xs">
-						Searching
-					</div>
-				</div>
-			</div>
-			<div class="xl:ml-1 xl:mt-0 mt-4">
-				<button
-					type="submit"
-					class="w-full text-white bg-c-indigo py-3 px-12"
-					:class="{ 'cursor-not-allowed bg-opacity-50': loading }"
-					:tertiary="true"
-					:disabled="loading"
-					@click="goToBookingPage"
-				>
-					{{ type === "provider" || type === "practitioner" ? "Go" : "Search" }}
-				</button>
-			</div>
-		</form>
-	</div>
+        <div
+          v-if="openLocations"
+          class="w-full max-h-80 overflow-y-scroll z-20 mt-10 bg-white px-2 py-4 shadow absolute block top-10"
+        >
+          <div class="ddh w-full px-2 py-4">Select State/Region or City</div>
+          <div
+            v-for="(location, index) in rLocations"
+            :key="index"
+            class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer"
+            @click="selectCity(location)"
+          >
+            {{ location }}
+          </div>
+          <div v-if="!loading && rLocations.length === 0">
+            <div
+              class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer"
+              @click="selectCity('Everywhere')"
+            >
+              Everywhere
+            </div>
+          </div>
+          <div v-if="loading" class="text-blue-500 text-center text-xs">
+            Searching
+          </div>
+        </div>
+      </div>
+      <div class="xl:ml-1 xl:mt-0 mt-4">
+        <button
+          type="submit"
+          class="w-full text-white bg-c-indigo py-3 px-12"
+          :class="{ 'cursor-not-allowed bg-opacity-50': loading }"
+          :tertiary="true"
+          :disabled="loading"
+          @click="goToBookingPage"
+        >
+          {{ type === "provider" || type === "practitioner" ? "Go" : "Search" }}
+        </button>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -229,7 +229,7 @@ export default {
       this.providerName = value.name
       this.type = type
       if (this.type !== "specialty") {
-        this.rLocations = value.locations.map(el => el.name)
+        this.rLocations = value.locations.map((el) => el.name)
         this.cityName = value.locations[0].name
       }
       setTimeout(() => {
@@ -241,7 +241,7 @@ export default {
     closeLocationDropdown() {
       this.openLocations = false
       const em =
-        this.rLocations && this.rLocations.find(el => el === this.cityName)
+        this.rLocations && this.rLocations.find((el) => el === this.cityName)
       if (!em || this.cityName !== "Everywhere") {
         this.cityName = ""
       }
@@ -299,11 +299,11 @@ export default {
         try {
           this.loading = true
           const res = await this.$store.dispatch(
-            "practitioners/fetchPractice",
+            "practitioners/fetchPractitioners",
             { ...this.payload }
           )
           if (res.data.success === true) {
-          // this.searchResult = res.data.data
+            // this.searchResult = res.data.data
 
             this.$router.push(
               `/patients/book-appointment/search?specialty=${this.providerName.toLowerCase()}&location=${this.cityName.toLowerCase()}`
@@ -316,9 +316,13 @@ export default {
           this.loading = false
         }
       } else if (this.type === "practitioner") {
-        this.$router.push(`/patients/book-appointment/doctor/${this.providerData.id}/profile`)
+        this.$router.push(
+          `/patients/book-appointment/doctor/${this.providerData.id}/profile`
+        )
       } else if (this.type === "provider") {
-        this.$router.push(`/patients/book-appointment/hospital/${this.providerData.id}/info`)
+        this.$router.push(
+          `/patients/book-appointment/hospital/${this.providerData.id}/info`
+        )
       }
     },
   },

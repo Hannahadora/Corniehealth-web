@@ -1,11 +1,25 @@
 <template>
   <div>
-    <linear-loader v-if="loading" />
     <div ref="mainboard">
-      <select-group :search="search" />
-
-      <div v-if="!loading && availablePractitioners.length === 0">
-        <h1 class="text-center mt-10">None found</h1>
+      <div v-if="!loading && practitioners.length === 0" class="mt-24">
+        <div class="text-center flex flex-col items-center justify-center">
+          <img class="mb-8" src="/images/doctor-bro.svg" alt="" />
+          <h3 class="mb-4">
+            We couldn’t find any doctor matching your search
+          </h3>
+          <p class="mb-8">Please modify and search again.</p>
+          <div>
+            <c-button
+              class="w-full"
+              type="button"
+              :secondary="true"
+              small
+              @click="$router.go(-1)"
+            >
+              Go Back
+            </c-button>
+          </div>
+        </div>
       </div>
 
       <div>
@@ -69,9 +83,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "nuxt-property-decorator"
+import { Component, Vue, Watch, Prop } from "nuxt-property-decorator"
 import { namespace } from "vuex-class"
-import SelectGroup from "~/components/SelectGroup.vue"
 import ModalComponent from "~/components/ModalComponent.vue"
 import CornieModal from "~/components/CornieModal.vue"
 import AppointmentModal from "~/components/AppointmentModal.vue"
@@ -82,7 +95,6 @@ const practitioners = namespace("practitioners")
 const misc = namespace("misc")
 @Component({
   components: {
-    SelectGroup,
     ModalComponent,
     CornieModal,
     AppointmentModal,
@@ -95,7 +107,6 @@ export default class DoctorsPage extends Vue {
   availableDays: Array<any> = []
   availableTime: Array<any> = []
   appointmentModal: boolean = false
-  availablePractitioners = []
   practitionerId = ""
   show = false
   loading = false
@@ -103,6 +114,9 @@ export default class DoctorsPage extends Vue {
   currentPage: number = 1
   filteredPractitioners = <any>[]
   search = <any>{}
+
+  @Prop({ type: Array })
+  practitioners!: any[]
 
   @appointment.Mutation
   SET_SELECTEDDATE!: (data: any) => void
@@ -113,32 +127,11 @@ export default class DoctorsPage extends Vue {
   @appointment.Mutation
   SET_SELECTEDTIME!: (data: any) => void
 
-  @practitioners.Getter
-  getRelatedPractitioners!: []
-
   @practitioners.Mutation
   SET_INITPRACTITIONERDATA!: (data: any) => void
 
-  @practitioners.Getter
-  loadingState!: false
-
-  @Watch("search", { immediate: true })
-  onChange() {
-    this.loading = true
-    this.$store.dispatch("practitioners/fetchPractitioners", {
-      ...this.search,
-    })
-    this.setFilteredPractitioners()
-    this.loading = false
-  }
-
-  get query() {
-    return this.$route?.query?.query as string
-  }
-
   setTotalPage() {
-    const x: number =
-      this.availablePractitioners && this.availablePractitioners.length / 10
+    const x: number = this.practitioners && this.practitioners.length / 10
     this.pages = Number(x.toFixed())
   }
 
@@ -156,17 +149,16 @@ export default class DoctorsPage extends Vue {
     this.$router.push(
       `/patients/book-appointment/doctor/${practitioner.id}/profile`
     )
-    this.SET_INITPRACTITIONERDATA(practitioner)
+    // this.SET_INITPRACTITIONERDATA(practitioner)
   }
 
   setFilteredPractitioners() {
-    this.availablePractitioners = this.getRelatedPractitioners
-    if (!this.getRelatedPractitioners) {
+    if (!this.practitioners) {
       this.loading = true
     } else {
       this.loading = false
       this.setTotalPage()
-      this.filteredPractitioners = this.availablePractitioners?.slice(
+      this.filteredPractitioners = this.practitioners?.slice(
         this.currentPage - 1,
         this.currentPage + 9
       )
@@ -180,10 +172,7 @@ export default class DoctorsPage extends Vue {
 
   setPage(page: any) {
     this.currentPage = page
-    this.filteredPractitioners = this.availablePractitioners.slice(
-      page - 1,
-      page + 9
-    )
+    this.filteredPractitioners = this.practitioners.slice(page - 1, page + 9)
     window.scrollTo(0, 0)
   }
 

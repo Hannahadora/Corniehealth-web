@@ -6,11 +6,11 @@ import axios from "~/plugins/axios";
 const api = axios
 
 export const state = () => ({
-  practitioners: null,
+  practitioners: [],
   searchedLocations: [],
   practitionerProfile: {},
   initPractitionerData: {},
-  providers: null,
+  providers: [],
   providerData: {}
 })
 

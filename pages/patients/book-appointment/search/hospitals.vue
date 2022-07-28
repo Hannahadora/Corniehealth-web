@@ -47,7 +47,7 @@ export default class HospitalsPage extends Vue {
     try {
       this.loading = true
       this.$router.push(
-        `/patients/book-appointment/search/hospitals?specialty=${this.search?.specialty.toLowerCase()}&location=${this.search?.specialty.toLowerCase()}`
+        `/patients/book-appointment/search/hospitals?specialty=${this.search && this.search.specialty.toLowerCase()}&location=${this.search && this.search.specialty.toLowerCase()}`
       )
       const res = await this.$store.dispatch("practitioners/fetchPractice", {
         ...this.payload,

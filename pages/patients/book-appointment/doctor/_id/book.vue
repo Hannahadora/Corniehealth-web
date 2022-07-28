@@ -1,39 +1,40 @@
 <template>
-  <div class="c-wrapper">
-    <back-btn class="mb-8 mt-28" />
-    <div class="mx-auto xl:w-3/5 w-full my-16">
-      <div class="flex flex-col items-center justify-center text-center">
-        <img class="w-40 h-40 rounded-full border"
-          :src="practitioner.photo"
-          alt=""
-        />
-      </div>
+	<div class="c-wrapper">
+		<back-btn class="mb-8 mt-28" />
+		<div class="mx-auto xl:w-3/5 w-full my-16">
+			<div class="flex flex-col items-center justify-center text-center">
+				<img
+					class="w-40 h-40 rounded-full border"
+					:src="practitioner.photo"
+					alt=""
+				/>
+			</div>
 
-      <div class="block text-center my-4">
-        <h3 class="mt-4 c-indigo">{{ practitioner && practitioner.designation }}. {{ practitioner && practitioner.name }} | </h3>
+			<div class="block text-center my-4">
+				<h3 class="mt-4 c-indigo">{{ practitioner && practitioner.designation }}. {{ practitioner && practitioner.name }} | </h3>
 
-        <span class="text-grey-blue mt-2">{{ practitioner && practitioner.email }}</span><br />
+				<span class="text-grey-blue mt-2">{{ practitioner && practitioner.email }}</span><br />
 
-        <div class="mt-4 flex items-center justify-center">
-          <img
-            class="mr-2"
-            src="/images/book-appointment/appointment-select.png"
-            alt=""
-          />
-          {{ activeDate }} | {{ activeTime }}
-        </div>
-      </div>
+				<div class="mt-4 flex items-center justify-center">
+					<img
+						class="mr-2"
+						src="/images/book-appointment/appointment-select.png"
+						alt=""
+					/>
+					{{ activeDate }} | {{ activeTime }}
+				</div>
+			</div>
 
-      <nuxt-child></nuxt-child>
-    </div>
-  </div>
+			<nuxt-child></nuxt-child>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
+import { namespace } from "vuex-class"
 import CButton from "~/components/CButton.vue"
 import BackBtn from "~/components/BackBtn.vue"
-import { namespace } from "vuex-class"
 const practitioners = namespace("practitioners")
 @Component({
   components: { CButton, BackBtn },
@@ -42,7 +43,7 @@ const practitioners = namespace("practitioners")
 export default class BookDoctorPage extends Vue {
   practitioner = <any>{}
   @practitioners.Getter
-  selectedPractitioner!: {}
+    selectedPractitioner!: {}
 
   async created() {
     await this.$store.dispatch(
@@ -55,11 +56,11 @@ export default class BookDoctorPage extends Vue {
   }
 
   get activeDate() {
-	return this.practitioner && new Date(this.practitioner.activeSince).toLocaleDateString()
+    return this.practitioner && new Date(this.practitioner.activeSince).toLocaleDateString()
   }
 
   get activeTime() {
-	return this.practitioner && new Date(this.practitioner.activeSince).toLocaleTimeString()
+    return this.practitioner && new Date(this.practitioner.activeSince).toLocaleTimeString()
   }
 
 

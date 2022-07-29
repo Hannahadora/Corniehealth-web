@@ -1,36 +1,30 @@
 <template>
 	<div>
-		<div class="xl:grid hidden grid-cols-5 gap-6">
-			<img class="w-full" src="/images/about/image 62.svg" alt="" />
-			<img class="w-full" src="/images/about/image 61.svg" alt="" />
-			<img class="w-full" src="/images/about/img (2).svg" alt="" />
-			<img class="w-full" src="/images/about/image 60.svg" alt="" />
-			<img class="w-full" src="/images/about/image 60.svg" alt="" />
+		<div class="xl:flex hidden items-center gap-6">
+			<div v-for="(photo, idx) in photos" :key="idx">
+				<img class="hospital-gallery-frame" :src="photo" alt="" />
+			</div>
 		</div>
 
 		<div class="xl:hidden block">
-			<hooper :settings="hooperSettings">
+			<hooper
+				v-for="(photo, idx) in photos"
+				:key="idx"
+				:settings="hooperSettings"
+			>
 				<slide>
-					<img src="/images/about/image 62.svg" alt="" />
-				</slide>
-				<slide>
-					<img src="/images/about/image 61.svg" alt="" />
-				</slide>
-				<slide>
-					<img src="/images/about/img (2).svg" alt="" />
-				</slide>
-				<slide>
-					<img src="/images/about/image 60.svg" alt="" />
+					<img class="hospital-gallery-frame" :src="photo" alt="" />
 				</slide>
 
 				<hooper-navigation slot="hooper-addons"></hooper-navigation>
 			</hooper>
 		</div>
+
+		<div v-if="noPhoto" class="h-40">None</div>
 	</div>
 </template>
 
 <script>
-
 import { Hooper, Slide, Navigation as HooperNavigation } from "hooper"
 import "hooper/dist/hooper.css"
 
@@ -40,6 +34,13 @@ export default {
     Hooper,
     Slide,
     HooperNavigation,
+  },
+
+  props: {
+    hospital: {
+      type: Object,
+      default: () => {},
+    },
   },
 
   data() {
@@ -63,9 +64,19 @@ export default {
       },
     }
   },
+
+  computed: {
+    photos() {
+      return this.hospital && this.hospital.photos
+    },
+    nophoto() {
+      return (
+        this.hospital && this.hospital.photos && this.hospital.photos.length < 1
+      )
+    },
+  },
 }
 </script>
-
 
 <style scoped>
 .hooper-list {
@@ -74,5 +85,11 @@ export default {
   width: 100%;
   max-height: 350px;
   margin: auto;
+}
+
+.hospital-gallery-frame {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
 }
 </style>

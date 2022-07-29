@@ -1,6 +1,5 @@
 <template>
 	<div class="w-full">
-		<linear-loader v-if="loading" />
 
 		<div class="mb-8">
 			<div class="h-full xl:grid grid-cols-7 flex flex-wrap gap-4">
@@ -24,19 +23,21 @@
 					v-model="search.hospital"
 					icon="/images/book-appointment/icon-hospital-grey.png"
 					:placeholder="hospitalPlaceholder"
+					item-label-prop="name"
+					item-value-prop="id"
 					:items="hospitals"
 					:active="hospitalActive"
 					@query="findHospitals"
 				/>
 				<multiselectsearch
-					v-if="!$route.path.includes('hospital')"
+					v-if="tab === 'doctors'"
 					v-model="search.experience"
 					icon="/images/book-appointment/icon-experience-grey.png"
 					placeholder="Experience"
 					:items="experiences"
 				/>
 				<multiselectsearch
-					v-if="!$route.path.includes('hospital')"
+					v-if="tab === 'doctors'"
 					v-model="search.visitType"
 					icon="/images/book-appointment/icon-visit-grey.png"
 					placeholder="Visit Type"
@@ -49,21 +50,21 @@
 						:items="insurances"
 					/> -->
 				<multiselectsearch
-					v-if="!$route.path.includes('doctor')"
+					v-if="tab === 'hospitals'"
 					v-model="search.rating"
 					icon="/images/book-appointment/icon-insurance-grey.png"
 					placeholder="Rating"
 					:items="ratings"
 				/>
 				<multiselectsearch
-					v-if="!$route.path.includes('hospital')"
+					v-if="tab === 'doctors'"
 					v-model="search.language"
 					icon="/images/book-appointment/icon-lang-grey.png"
 					placeholder="Language"
 					:items="languages"
 				/>
 				<multiselectsearch
-					v-if="!$route.path.includes('hospital')"
+					v-if="tab === 'doctors'"
 					id="lcd"
 					v-model="search.gender"
 					icon="/images/book-appointment/icon-gender-grey.png"
@@ -76,10 +77,16 @@
 </template>
 
 <script>
-import LinearLoader from "./LinearLoader.vue"
 export default {
   name: "SelectGroup",
-  components: { LinearLoader },
+  components: { },
+
+  props: {
+    tab: {
+      type: String,
+      default: "",
+    },
+  },
 
   data() {
     return {
@@ -88,8 +95,8 @@ export default {
         specialty: undefined,
         location: undefined,
         hospital: undefined,
-        min: 1,
-        max: 1,
+        min: undefined,
+        max: undefined,
         insurance: undefined,
         language: undefined,
         gender: undefined,
@@ -154,23 +161,12 @@ export default {
   watch: {
     search: {
       handler() {
-        this.removeEmptyKey()
-        try {
-          this.loading = true
-          const res = this.$store.dispatch(
-            "practitioners/findPractitionersAll",{...this.search}
-          )
-          //   if (res.data.success === true) {
-          this.searchResult = res.data
-          this.$router.push(
-            `${this.$route.path}?query=${this.search.specialty.toLowerCase()}`
-          )
-          //   }
-        } catch (err) {
-          alert(err)
-        } finally {
-          this.loading = false
-        }
+        this.$emit("searchQuery", this.search)
+        this.$router.push(
+          `${
+            this.$route.path
+          }?specialty=${this.search.specialty.toLowerCase()}?location=${this.search.location.toLowerCase()}`
+        )
       },
       deep: true,
     },
@@ -182,14 +178,6 @@ export default {
   },
 
   methods: {
-    removeEmptyKey() {
-      Object.entries(this.search).forEach(([key, value]) => {
-        if (value === undefined || value === "") {
-          delete this.search[key]
-        }
-      })
-    },
-
     async findProviders(query) {
       this.loading = true
       const res = await this.$store.dispatch(
@@ -207,7 +195,7 @@ export default {
         query || null
       )
       this.loading = false
-      // if (res.success === "true") {
+      // if (res.data.success === true) {
       this.locations = res.data.data || []
       // }
     },
@@ -218,7 +206,7 @@ export default {
         query || null
       )
       this.loading = false
-      // if (res.success === "true") {
+      // if (res.data.success === true) {
       this.hospitals = res.data.data || []
       // }
     },

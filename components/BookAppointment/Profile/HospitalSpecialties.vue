@@ -4,11 +4,17 @@
 			<p class="font-bold pl-2 border-l-4 border-red-500">Family Medicine</p>
 
 			<div
-				v-for="(specialty, index) in specialties"
+				v-for="(specialty, index) in hospital.specialties"
 				:key="index"
 				class="xl:mt-6"
 			>
-				<p class="">{{ specialty.name }}</p>
+				<p
+					class="cursor-pointer hover:text-red-500"
+					:class="{ 'text-red-500 font-bold': selectedSpecialty === specialty }"
+					@click="selectSpecialty(specialty)"
+				>
+					{{ specialty.name }}
+				</p>
 			</div>
 		</div>
 
@@ -26,17 +32,21 @@
 			</ul>
 
 			<div v-if="activeTab === 'Doctors'">
-				<list-of-doctors />
+				<div v-for="(practitioner, index) in practitioners" :key="index">
+					<list-of-doctors :practitioner="practitioner" />
+				</div>
 			</div>
 			<div v-if="activeTab === 'Services'">
-				<list-of-services />
+				<div v-for="(practitioner, index) in selectedSpecialty" :key="index">
+					<list-of-services />
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "nuxt-property-decorator"
+import { Component, Vue, Prop } from "nuxt-property-decorator"
 import ListOfDoctors from "./ListOfDoctors.vue"
 import ListOfServices from "./ListOfServices.vue"
 @Component({
@@ -46,25 +56,26 @@ export default class HospitalSpecialties extends Vue {
   specialties: Array<any> = []
   activeTab: string = "Doctors"
   tabs: Array<any> = ["Doctors", "Services"]
+  selectedSpecialty: any = <any>{}
 
-  getSpecialties() {
-    return (this.specialties = [
-      { name: "General Practice", total: "4" },
-      { name: "OBGYN", total: "5" },
-      { name: "Pediatrics", total: "6" },
-      { name: "Emergency Medicine", total: "3" },
-      { name: "Emergency Medicine", total: "3" },
-      { name: "Emergency Medicine", total: "3" },
-      { name: "Emergency Medicine", total: "3" },
-    ])
-  }
+  @Prop({ type: Object })
+    hospital!: any
 
   handleActiveTab(tab: any) {
     this.activeTab = tab
   }
 
+  selectSpecialty(specialty: any) {
+    this.selectedSpecialty = specialty
+  }
+
+  get practitioners() {
+    return this.selectedSpecialty && this.selectedSpecialty.practitioners
+  }
+
   created() {
-    this.getSpecialties()
+    this.selectedSpecialty =
+      this.hospital && this.hospital.specialties && this.hospital.specialties[0]
   }
 }
 </script>

@@ -64,7 +64,7 @@
 						/>
 						<div>
 							<p class="mr-2">
-								Consultation Fee - {{ practitioner.consultationFeePerHour }}
+								Consultation Fee - {{ practitioner.consultationRate }}
 							</p>
 						</div>
 					</div>

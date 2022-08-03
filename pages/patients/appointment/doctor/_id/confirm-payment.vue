@@ -1,38 +1,37 @@
 <template>
 	<div class="c-wrapper">
-		<div class="xl:w-2/3 w-full mx-auto xl:mt-24 mt-14">
+		<back-btn />
+		<div class="xl:w-2/3 w-full mx-auto xl:mt-4 mt-2">
 			<h2 class="xl:text-center text-left c-indigo mb-12">
-				Confirm your appointment
+				Review Your Booking
 			</h2>
 
 			<table class="border w-full">
 				<tr>
 					<td>Appointment With</td>
-					<td>Dr. Mike Obi</td>
+					<td>{{ selectedPractitioner.name }}</td>
 				</tr>
 				<tr>
 					<td>Date & Time</td>
-					<td>29, November 2021 | 21:00</td>
-				</tr>
-				<tr>
-					<td>Date & Time</td>
-					<td>29, November 2021 | 21:00</td>
+					<td>{{ getSelectedDate }} | {{ getSelectedTime}}</td>
 				</tr>
 				<tr>
 					<td>Consultation Fee</td>
-					<td>₦ 20,000.00</td>
+					<td>₦ {{ selectedPractitioner.ConsultationFeePerHour || 0 }}</td>
 				</tr>
 				<tr>
 					<td>Specialty</td>
-					<td>Dentistry</td>
+					<td>{{ selectedPractitioner.designation }}</td>
 				</tr>
 				<tr>
 					<td>Location</td>
-					<td>Reddington Hospital | 234 Admiralty Way Lekki, Lagos, Nigeria</td>
+					<td>{{ selectedPractitioner.address }}</td>
 				</tr>
 				<tr>
 					<td>Contact Info</td>
-					<td>+234 803 767 8909 | Mike.obi@reddington.ng</td>
+					<td>
+						{{ selectedPractitioner.phone }} | {{ selectedPractitioner.email }}
+					</td>
 				</tr>
 				<tr>
 					<td>Reason for Appointmment</td>
@@ -57,6 +56,7 @@
 					name=""
 					cols="20"
 					rows="5"
+					maxlength="255"
 				></textarea>
 				<span class="text-right text-xs italic font-semibold">0/255</span>
 			</div>
@@ -78,7 +78,7 @@
 					small
 					@click="
 						$router.push({
-							path: `/patients/appointment/soctor/${selectedPractitioner.id}/booking-confirmed`,
+							path: `/patients/appointment/doctor/${selectedPractitioner.id}/booking-confirmed`,
 						})
 					"
 				>
@@ -91,13 +91,15 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
-// import CButton from "~/components/CButton.vue"
 import { namespace } from "vuex-class"
+import CButton from "~/components/CButton.vue"
+import BackBtn from "~/components/BackBtn.vue"
 
 const practitioners = namespace("practitioners")
+const appointment = namespace("appointment")
 const patient = namespace("patient")
 @Component({
-  //   components: { CButton },
+  components: { CButton, BackBtn },
   layout: "appointment",
 })
 export default class ConfirmPaymentPage extends Vue {
@@ -106,6 +108,12 @@ export default class ConfirmPaymentPage extends Vue {
 
   @patient.Action
     findPatient!: (id: any) => void
+  
+  @appointment.Getter
+    getSelectedTime!: ""
+
+  @appointment.Getter
+    getSelectedDate!: ""
 
   async created() {
     if (this.$route.query.user) {

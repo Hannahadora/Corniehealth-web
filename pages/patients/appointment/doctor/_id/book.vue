@@ -1,7 +1,7 @@
 <template>
 	<div class="c-wrapper">
-		<back-btn class="mb-8 mt-28" />
-		<div class="mx-auto xl:w-3/5 w-full my-16">
+		<back-btn class="mt-28" />
+		<div class="mx-auto xl:w-3/5 w-full my-12">
 			<div class="flex flex-col items-center justify-center text-center">
 				<img
 					class="w-40 h-40 rounded-full border"

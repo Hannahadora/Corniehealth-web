@@ -79,7 +79,7 @@
 					small
 					@click="
 						$router.push({
-							path: `/patients/book-appointment/hospital/${hospital.id}/info`,
+							path: `/patients/appointment/hospital/${hospital.id}/info`,
 						})
 					"
 				>View Profile</c-button

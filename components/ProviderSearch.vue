@@ -306,7 +306,7 @@ export default {
             // this.searchResult = res.data.data
 
             this.$router.push(
-              `/patients/book-appointment/search?specialty=${this.providerName.toLowerCase()}&location=${this.cityName.toLowerCase()}`
+              `/patients/appointment/search?specialty=${this.providerName.toLowerCase()}&location=${this.cityName.toLowerCase()}`
             )
             this.loading = false
           }
@@ -317,11 +317,11 @@ export default {
         }
       } else if (this.type === "practitioner") {
         this.$router.push(
-          `/patients/book-appointment/doctor/${this.providerData.id}/profile`
+          `/patients/appointment/doctor/${this.providerData.id}/profile`
         )
       } else if (this.type === "provider") {
         this.$router.push(
-          `/patients/book-appointment/hospital/${this.providerData.id}/info`
+          `/patients/appointment/hospital/${this.providerData.id}/info`
         )
       }
     },

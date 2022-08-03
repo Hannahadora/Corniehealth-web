@@ -1,99 +1,99 @@
 <template>
-  <div class="c-wrapper">
-    <back-btn />
-    <div class="xl:w-2/3 w-full mx-auto xl:mt-4 mt-2">
-      <h2 class="xl:text-center text-left c-indigo mb-12">
-        Review Your Booking
-      </h2>
+	<div class="c-wrapper">
+		<back-btn />
+		<div class="xl:w-2/3 w-full mx-auto xl:mt-4 mt-2">
+			<h2 class="xl:text-center text-left c-indigo mb-12">
+				Review Your Booking
+			</h2>
 
-      <table class="border w-full">
-        <tr>
-          <td>Appointment With</td>
-          <td>{{ selectedPractitioner.name }}</td>
-        </tr>
-        <tr>
-          <td>Date & Time</td>
-          <td>{{ getSelectedDate }} | {{ getSelectedTime}}</td>
-        </tr>
-        <tr>
-          <td>Consultation Fee</td>
-          <td>₦ {{ selectedPractitioner.ConsultationFeePerHour || 0 }}</td>
-        </tr>
-        <tr>
-          <td>Specialty</td>
-          <td>{{ selectedPractitioner.designation }}</td>
-        </tr>
-        <tr>
-          <td>Location</td>
-          <td>{{ selectedPractitioner.address }}</td>
-        </tr>
-        <tr>
-          <td>Contact Info</td>
-          <td>
-            {{ selectedPractitioner.phone }} | {{ selectedPractitioner.email }}
-          </td>
-        </tr>
-        <tr>
-          <td>Reason for Appointmment</td>
-          <td>Consultation</td>
-        </tr>
-      </table>
+			<table class="border w-full">
+				<tr>
+					<td>Appointment With</td>
+					<td>{{ selectedPractitioner.name }}</td>
+				</tr>
+				<tr>
+					<td>Date & Time</td>
+					<td>{{ getSelectedDate }} | {{ getSelectedTime}}</td>
+				</tr>
+				<tr>
+					<td>Consultation Fee</td>
+					<td>₦ {{ selectedPractitioner.ConsultationFeePerHour || 0 }}</td>
+				</tr>
+				<tr>
+					<td>Specialty</td>
+					<td>{{ selectedPractitioner.designation }}</td>
+				</tr>
+				<tr>
+					<td>Location</td>
+					<td>{{ selectedPractitioner.address }}</td>
+				</tr>
+				<tr>
+					<td>Contact Info</td>
+					<td>
+						{{ selectedPractitioner.phone }} | {{ selectedPractitioner.email }}
+					</td>
+				</tr>
+				<tr>
+					<td>Reason for Appointmment</td>
+					<td>Consultation</td>
+				</tr>
+			</table>
 
-      <p class="my-8">
-        You may wish to share additional information about your condition and/or
-        the reason for this appointment. Should you have any emergency, kindly
-        contact your practitioner by phone.
-      </p>
+			<p class="my-8">
+				You may wish to share additional information about your condition and/or
+				the reason for this appointment. Should you have any emergency, kindly
+				contact your practitioner by phone.
+			</p>
 
-      <div class="flex flex-col w-full mb-20">
-        <label class="text-left block text-xs mb-1 font-bold" for=""
-          >Note</label
-        >
-        <textarea
-          id=""
-          placeholder="Write note for practitioner here"
-          class="border p-2"
-          name=""
-          cols="20"
-          rows="5"
-		  maxlength="255"
-        ></textarea>
-        <span class="text-right text-xs italic font-semibold">0/255</span>
-      </div>
+			<div class="flex flex-col w-full mb-20">
+				<label class="text-left block text-xs mb-1 font-bold" for=""
+				>Note</label
+				>
+				<textarea
+					id=""
+					placeholder="Write note for practitioner here"
+					class="border p-2"
+					name=""
+					cols="20"
+					rows="5"
+					maxlength="255"
+				></textarea>
+				<span class="text-right text-xs italic font-semibold">0/255</span>
+			</div>
 
-      <div class="w-full mx-auto mt-12 mb-72 flex items-center justify-center">
-        <c-button
-          class="w-1/2 mr-6"
-          type="button"
-          :primary="true"
-          small
-          @click="$router.go(-1)"
-        >
-          Cancel
-        </c-button>
-        <c-button
-          class="w-1/2"
-          type="button"
-          secondary
-          small
-          @click="
-            $router.push({
-              path: `/patients/appointment/doctor/${selectedPractitioner.id}/booking-confirmed`,
-            })
-          "
-        >
-          Confirm
-        </c-button>
-      </div>
-    </div>
-  </div>
+			<div class="w-full mx-auto mt-12 mb-72 flex items-center justify-center">
+				<c-button
+					class="w-1/2 mr-6"
+					type="button"
+					:primary="true"
+					small
+					@click="$router.go(-1)"
+				>
+					Cancel
+				</c-button>
+				<c-button
+					class="w-1/2"
+					type="button"
+					secondary
+					small
+					@click="
+						$router.push({
+							path: `/patients/appointment/doctor/${selectedPractitioner.id}/booking-confirmed`,
+						})
+					"
+				>
+					Confirm
+				</c-button>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
+import { namespace } from "vuex-class"
 import CButton from "~/components/CButton.vue"
 import BackBtn from "~/components/BackBtn.vue"
-import { namespace } from "vuex-class"
 
 const practitioners = namespace("practitioners")
 const appointment = namespace("appointment")
@@ -104,10 +104,10 @@ const patient = namespace("patient")
 })
 export default class ConfirmPaymentPage extends Vue {
   @practitioners.Getter
-  selectedPractitioner!: any
+    selectedPractitioner!: any
 
   @patient.Action
-  findPatient!: (id: any) => void
+    findPatient!: (id: any) => void
   
   @appointment.Getter
     getSelectedTime!: ""

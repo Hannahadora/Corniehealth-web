@@ -70,7 +70,7 @@ import AppointmentModal from "~/components/AppointmentModal.vue"
     HospitalPhotos, CornieModal,
     AppointmentModal,
   },
-  layout: "book-appointment",
+  layout: "appointment",
 })
 export default class HospitalDetails extends Vue {
   activeTab: string = "Specialties"
@@ -112,7 +112,7 @@ export default class HospitalDetails extends Vue {
   
   viewProfile(practitioner: any) {
     this.$router.push(
-      `/patients/book-appointment/doctor/${practitioner.id}/profile`
+      `/patients/appointment/doctor/${practitioner.id}/profile`
     )
   }
 

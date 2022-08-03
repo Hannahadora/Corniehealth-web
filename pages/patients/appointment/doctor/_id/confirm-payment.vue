@@ -1,7 +1,9 @@
 <template>
 	<div class="c-wrapper">
 		<div class="xl:w-2/3 w-full mx-auto xl:mt-24 mt-14">
-			<h2 class="xl:text-center text-left c-indigo mb-12">Confirm your appointment</h2>
+			<h2 class="xl:text-center text-left c-indigo mb-12">
+				Confirm your appointment
+			</h2>
 
 			<table class="border w-full">
 				<tr>
@@ -54,7 +56,7 @@
 					class="border p-2"
 					name=""
 					cols="20"
-					rows="10"
+					rows="5"
 				></textarea>
 				<span class="text-right text-xs italic font-semibold">0/255</span>
 			</div>
@@ -65,7 +67,7 @@
 					type="button"
 					:primary="true"
 					small
-					@click="$router.push({ path: '/book-appointment/' })"
+					@click="$router.go(-1)"
 				>
 					Cancel
 				</c-button>
@@ -74,7 +76,11 @@
 					type="button"
 					secondary
 					small
-					@click="$router.push({ path: '/book-appointment/confirm-payment' })"
+					@click="
+						$router.push({
+							path: `/patients/appointment/soctor/${selectedPractitioner.id}/booking-confirmed`,
+						})
+					"
 				>
 					Confirm
 				</c-button>
@@ -86,11 +92,33 @@
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
 // import CButton from "~/components/CButton.vue"
+import { namespace } from "vuex-class"
+
+const practitioners = namespace("practitioners")
+const patient = namespace("patient")
 @Component({
   //   components: { CButton },
-  layout: "book-appointment",
+  layout: "appointment",
 })
-export default class BookingConfirmed extends Vue {}
+export default class ConfirmPaymentPage extends Vue {
+  @practitioners.Getter
+    selectedPractitioner!: any
+
+  @patient.Action
+    findPatient!: (id: any) => void
+
+  async created() {
+    if (this.$route.query.user) {
+      this.findPatient(this.$route.query.user)
+    }
+    if (this.$route.query.practitioner) {
+      await this.$store.dispatch(
+        "practitioners/getAPractitionerProfile",
+        this.$route.params.id
+      )
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -99,7 +127,7 @@ tr {
   line-break: normal;
 }
 td {
-	font-size: 16px;
+  font-size: 16px;
   padding: 16px;
 }
 tr:nth-child(even) {
@@ -107,11 +135,11 @@ tr:nth-child(even) {
 }
 
 @media screen and (max-width: 768px) {
-	tr {
-		line-break: auto;
-	}
-	td {
-		font-size: 14px;
-	}
+  tr {
+    line-break: auto;
+  }
+  td {
+    font-size: 14px;
+  }
 }
 </style>

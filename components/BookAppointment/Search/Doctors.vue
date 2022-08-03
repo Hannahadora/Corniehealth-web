@@ -147,7 +147,7 @@ export default class DoctorsPage extends Vue {
 
   viewProfile(practitioner: any) {
     this.$router.push(
-      `/patients/book-appointment/doctor/${practitioner.id}/profile`
+      `/patients/appointment//doctor/${practitioner.id}/profile`
     )
     // this.SET_INITPRACTITIONERDATA(practitioner)
   }

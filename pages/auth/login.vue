@@ -70,7 +70,7 @@
 						<div class="my-6 w-full text-center">
 							Don’t have an account?<span
 								class="cursor-pointer text-red-400"
-								@click="$router.push('/patients/book-appointment/signup')"
+								@click="$router.push('/auth/signup')"
 							>
 								Sign Up</span
 							>
@@ -128,7 +128,7 @@ export default {
       this.agree = val
     },
     async submit() {
-      this.$router.push("/patients/book-appointment/book-a-doctor/step2")
+      this.$router.push("/patients/appointment/book-a-doctor/step2")
       try {
         this.disabled = true
         const response = await this.$axios.post(

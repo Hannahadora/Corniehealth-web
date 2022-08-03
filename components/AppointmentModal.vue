@@ -150,7 +150,7 @@ export default class DoctorsPage extends Vue {
   proceedToBook() {
     this.SET_MODALSTATE(false)
     this.$nextTick(() => {
-      this.$router.push(`/patients/book-appointment/doctor/${this.practitioner.id}/book/step1`)
+      this.$router.push(`/patients/appointment/doctor/${this.practitioner.id}/book/step1`)
     })
   }
 

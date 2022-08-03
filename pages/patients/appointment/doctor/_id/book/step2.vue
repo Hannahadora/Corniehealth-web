@@ -125,7 +125,9 @@
 				type="button"
 				:primary="true"
 				small
-				@click="$router.push({ path: '/patients/book-appointment/confirm-payment' })"
+				@click="
+					$router.push({ path: '/patients/appointment/confirm-payment' })
+				"
 			>
 				skip
 			</c-button>
@@ -135,7 +137,9 @@
 				small
 				:secondary="haveInsurance.length !== 0"
 				:disabled="!haveInsurance.length"
-				@click="$router.push({ path: '/patients/book-appointment/confirm-payment' })"
+				@click="
+					$router.push({ path: '/patients/appointment/confirm-payment' })
+				"
 			>
 				Continue
 			</c-button>
@@ -145,11 +149,14 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
+import { namespace } from "vuex-class"
 import CButton from "~/components/CButton.vue"
 import CornieCheckbox from "~/components/CornieCheckbox.vue"
 import CornieInput from "~/components/CornieInput.vue"
 import Cornieradio from "~/components/cornieradio.vue"
 import CornieSelect from "~/components/CornieSelect.vue"
+
+const patient = namespace("patient")
 @Component({
   components: {
     CButton,
@@ -158,7 +165,7 @@ import CornieSelect from "~/components/CornieSelect.vue"
     Cornieradio,
     CornieCheckbox,
   },
-  layout: "InsuranceQuestion",
+  layout: "appointment",
 })
 export default class BookDoctorPage extends Vue {
   disabled: Boolean = true
@@ -168,6 +175,10 @@ export default class BookDoctorPage extends Vue {
   insurancePlan: string = ""
   billInsurance: boolean = false
   policyNumber: string = ""
+  practitioner: any = {}
+
+  @patient.Mutation
+    SET_USER!: (data: any) => void
 
   handleInsuranceCarrier(val: any) {
     this.insuranceCarrier = val
@@ -188,6 +199,23 @@ export default class BookDoctorPage extends Vue {
 
   handleInsuranceProvider(val: any) {
     this.insuranceProvider = val
+  }
+
+  async created() {
+    if (this.$route.query.user) {
+      this.SET_USER(this.$route.query.user)
+    }
+    if (this.$route.query.practitioner) {
+      const res: any = await this.$store.dispatch(
+        "practitioners/getAPractitionerProfile",
+        this.$route.params.id
+      )
+      if (res.data.success === true) {
+        this.practitioner = {
+          ...res.data.data,
+        }
+      }
+    }
   }
 }
 </script>

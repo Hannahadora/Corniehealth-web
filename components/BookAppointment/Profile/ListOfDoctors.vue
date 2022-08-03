@@ -22,7 +22,7 @@
 					small
 					@click="
 						$router.push({
-							path: `/patients/book-appointment/doctor/${practitioner.id}/profile`,
+							path: `/patients/appointment//doctor/${practitioner.id}/profile`,
 						})
 					"
 				>

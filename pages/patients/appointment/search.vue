@@ -56,7 +56,7 @@ const practitioners = namespace("practitioners")
 
 @Component({
   components: { Doctors, Hospitals, SelectGroup, LinearLoader },
-  layout: "book-appointment",
+  layout: "appointment",
 })
 export default class SearchResult extends Vue {
   selectedTab: String = "doctors"

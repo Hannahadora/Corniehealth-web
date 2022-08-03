@@ -6,7 +6,7 @@ import axios from "~/plugins/axios";
 const api = axios
 
 export const state = () => ({
-  user: {},
+  user: null,
   loading: false
 })
 

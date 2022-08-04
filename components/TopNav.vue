@@ -72,8 +72,8 @@
 				<c-button v-if="!user" type="button" :secondary="true" @click="goToSignup">
 					Sign up for free
 				</c-button>
-				<div v-else>
-					{{ user.id }}
+				<div v-else class="font-bold cursor-pointer">
+					{{ user.user.firstName }} {{ user.user.lastName }}
 				</div>
 			</div>
 			<div class="xl:hidden block menu-icon">
@@ -134,7 +134,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       modalIsOpen: ["misc/modalState"],
-	  user: ["patient/getUser"]
+	  user: ["user/getUser"]
     }),
   },
 

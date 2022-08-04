@@ -56,11 +56,11 @@ export default class BookDoctorPage extends Vue {
   }
 
   get activeDate() {
-    return this.practitioner && new Date(this.practitioner.activeSince).toLocaleDateString()
+    return this.practitioner && new Date(this.practitioner?.activeSince).toLocaleDateString()
   }
 
   get activeTime() {
-    return this.practitioner && new Date(this.practitioner.activeSince).toLocaleTimeString()
+    return this.practitioner && new Date(this.practitioner?.activeSince).toLocaleTimeString()
   }
 
 

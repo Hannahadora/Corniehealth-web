@@ -1,6 +1,5 @@
 <template>
 	<div class="w-full">
-
 		<div class="mb-8">
 			<div class="h-full xl:grid grid-cols-7 flex flex-wrap gap-4">
 				<multiselectsearch
@@ -9,7 +8,7 @@
 					:placeholder="specialtyPlaceholder"
 					:items="specialties"
 					:active="specialtyActive"
-					@query="findProviders"
+					@query="findSpecialtys"
 				/>
 				<multiselectsearch
 					v-model="search.location"
@@ -79,7 +78,7 @@
 <script>
 export default {
   name: "SelectGroup",
-  components: { },
+  components: {},
 
   props: {
     tab: {
@@ -160,17 +159,21 @@ export default {
 
   watch: {
     search: {
-      handler() {
+      async handler() {
         this.$emit("searchQuery", this.search)
+        this.$emit("loadingState", this.loading)
         this.$router.push(
           `${
             this.$route.path
           }?specialty=${this.search.specialty.toLowerCase()}?location=${this.search.location.toLowerCase()}`
         )
+        await this.fetchPractitioners()
+        await this.fetchHospitals()
       },
       deep: true,
     },
   },
+
   mounted() {
     this.search.specialty = this.$store.getters["misc/selectedSpecialty"]
     this.search.location = this.$store.getters["misc/selectedLocation"]
@@ -178,16 +181,6 @@ export default {
   },
 
   methods: {
-    async findProviders(query) {
-      this.loading = true
-      const res = await this.$store.dispatch(
-        "practitioners/findPractitionerByName",
-        query || null
-      )
-      this.loading = false
-      this.specialties = res.data.data.specialties
-    },
-
     async findCity(query) {
       this.loading = true
       const res = await this.$store.dispatch(
@@ -211,6 +204,19 @@ export default {
       // }
     },
 
+    async findSpecialtys(query) {
+      this.loading = true
+      const res = await this.$store.dispatch(
+        "practitioners/searchForPractitioners",
+        query
+      )
+      if (res.data.success === true) {
+        const xspecialties = res.data.data.specialties
+        this.specialties = xspecialties.specialties.map(el => el.name)
+      }
+      this.loading = false
+    },
+
     setActiveStates() {
       if (this.search.specialty) {
         this.specialtyActive = true
@@ -220,6 +226,32 @@ export default {
       }
       if (this.search.hospital) {
         this.hospitalActive = true
+      }
+    },
+
+    async fetchHospitals() {
+      try {
+        this.loading = true
+        await this.$store.dispatch("practitioners/fetchPractice", {
+          ...this.search,
+        })
+      } catch (err) {
+        alert("There was error fetching Hospitals")
+      } finally {
+        this.loading = false
+      }
+    },
+
+    async fetchPractitioners() {
+      try {
+        this.loading = true
+        await this.$store.dispatch("practitioners/fetchPractitioners", {
+          ...this.search,
+        })
+      } catch (err) {
+        alert("There was error fetching Practitioners")
+      } finally {
+        this.loading = false
       }
     },
   },

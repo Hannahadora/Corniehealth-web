@@ -26,7 +26,7 @@ export const state = () => ({
 export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
-  getUser(state) {
+  userData(state) {
     return state.user
   },
   getToken(state) {

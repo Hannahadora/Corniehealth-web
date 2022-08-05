@@ -134,7 +134,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       modalIsOpen: ["misc/modalState"],
-	  user: ["user/getUser"]
+	  user: ["user/userData"]
     }),
   },
 

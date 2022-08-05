@@ -31,7 +31,7 @@
 
 			<!-- <NuxtChild /> -->
 
-			<select-group :tab="selectedTab" @searchQuery="getSearchQuery" />
+			<select-group :tab="selectedTab" @searchQuery="getSearchQuery" @loadingState="getLoadingState" />
 			<div>
 				<div v-if="selectedTab === 'doctors'">
 					<doctors :practitioners="relatedPractitioners" />
@@ -69,17 +69,16 @@ export default class SearchResult extends Vue {
   @practitioners.Getter
     relatedProviders!: []
 
-  //   @Watch("search", { immediate: true }) updated() {
-  //     this.fetchHospitals()
-  //     this.fetchPractitioners()
-  //   }
-
   @Watch("selectedTab") onChange() {
     this.fetchData()
   }
 
   getSearchQuery(values: any) {
     this.search = values
+  }
+
+  getLoadingState(value: Boolean) {
+    this.loading = value
   }
 
   selectTab(tab: string) {
@@ -95,12 +94,9 @@ export default class SearchResult extends Vue {
   async fetchPractitioners() {
     try {
       this.loading = true
-      await this.$store.dispatch(
-        "practitioners/fetchPractitioners",
-        {
-          ...this.payload
-        }
-      )
+      await this.$store.dispatch("practitioners/fetchPractitioners", {
+        ...this.payload,
+      })
     } catch (err) {
       alert("There was error fetching Practitioners")
     } finally {
@@ -112,7 +108,7 @@ export default class SearchResult extends Vue {
     try {
       this.loading = true
       await this.$store.dispatch("practitioners/fetchPractice", {
-        ...this.payload
+        ...this.payload,
       })
     } catch (err) {
       alert("There was error fetching Hospitals")

@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     { src: "~/plugins/utils.js", mode: "client" },
     { src: "~/plugins/vee-validate.js", mode: "client" },
     { src: "~/plugins/choices.js", mode: "client" },
-    { src: "~/plugins/localStorage.client.ts", mode: "client" }
+    { src: "~/plugins/localStorage.client.ts", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

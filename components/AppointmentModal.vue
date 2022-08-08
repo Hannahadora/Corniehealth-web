@@ -100,6 +100,9 @@ export default class DoctorsPage extends Vue {
     selectedPractitioner!: []
 
   @Prop({ type: String, default: "" })
+    locationId!: string
+
+  @Prop({ type: String, default: "" })
     id!: string
 
   @appointment.Mutation
@@ -113,6 +116,14 @@ export default class DoctorsPage extends Vue {
 
   @practitioners.Getter
     getRelatedPractitioners!: []
+
+  @practitioners.Action
+    fetchAvailability!: (
+    locationId: string,
+    id: string,
+    actor: any,
+    date: any
+  ) => void
 
   handleDate(val: any) {
     this.selectedDate = val.date
@@ -150,16 +161,22 @@ export default class DoctorsPage extends Vue {
   proceedToBook() {
     this.SET_MODALSTATE(false)
     this.$nextTick(() => {
-      this.$router.push(`/patients/appointment/doctor/${this.practitioner.id}/book/step1`)
+      this.$router.push(
+        `/patients/appointment/doctor/${this.practitioner.id}/book/step1`
+      )
     })
   }
 
   async created() {
-    await this.$store.dispatch(
-      "practitioners/getAPractitionerProfile",
-      this.id
-    )
+    await this.$store.dispatch("practitioners/getAPractitionerProfile", this.id)
     this.practitioner = this.selectedPractitioner
+    await this.$store.dispatch(
+      "practitioners/fetchAvailability",{
+        locationId: this.locationId,
+        id: this.id,
+        actor: this.practitioner.name,
+        date: new Date()
+      })
     this.getAvailableDays()
     this.getAvailableTime()
     this.SET_SELECTEDDATE(this.selectedDate)

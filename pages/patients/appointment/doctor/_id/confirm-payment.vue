@@ -13,7 +13,7 @@
 				</tr>
 				<tr>
 					<td>Date & Time</td>
-					<td>{{ getSelectedDate }} | {{ getSelectedTime}}</td>
+					<td>{{ getSelectedDate }} | {{ getSelectedTime }}</td>
 				</tr>
 				<tr>
 					<td>Consultation Fee</td>
@@ -97,7 +97,7 @@ import BackBtn from "~/components/BackBtn.vue"
 
 const practitioners = namespace("practitioners")
 const appointment = namespace("appointment")
-const patient = namespace("patient")
+const user = namespace("user")
 @Component({
   components: { CButton, BackBtn },
   layout: "appointment",
@@ -106,9 +106,12 @@ export default class ConfirmPaymentPage extends Vue {
   @practitioners.Getter
     selectedPractitioner!: any
 
-  @patient.Action
-    findPatient!: (id: any) => void
-  
+  @user.Action
+    findUser!: () => void
+
+  @user.Mutation
+    SET_TOKEN!: (token: any) => void
+
   @appointment.Getter
     getSelectedTime!: ""
 
@@ -116,8 +119,9 @@ export default class ConfirmPaymentPage extends Vue {
     getSelectedDate!: ""
 
   async created() {
-    if (this.$route.query.user) {
-      this.findPatient(this.$route.query.user)
+    if (this.$route.query.token) {
+      await this.SET_TOKEN(this.$route.query.token)
+      await this.findUser()
     }
     if (this.$route.query.practitioner) {
       await this.$store.dispatch(

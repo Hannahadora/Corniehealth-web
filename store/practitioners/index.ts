@@ -151,4 +151,14 @@ export const actions: ActionTree<RootState, RootState> = {
     } finally {
     }
   },
+
+  fetchAvailability: async ({ commit },{ locationId, id, actor, date }) => {
+    try {
+      const res = await api.get(
+        `/booking-website/day-view/${locationId}/practitioner/${id}?actor=${actor}&date=${date}`
+      )
+      return res
+    } finally {
+    }
+  },
 }

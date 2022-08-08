@@ -96,14 +96,14 @@
 							src="/images/book-appointment/icon (3).png"
 							alt=""
 						/>
-						<div>
+						<!-- <div>
 							<span class="sub-titles-2 text-black-xiketic mb-2"
 							>Patient Reviews</span
 							>
 							<p class="text-grey-blue">
 								<span class="ml-4 text-razzmataz-pry">View</span>
 							</p>
-						</div>
+						</div> -->
 					</div>
 
 					<div class="flex items-start xl:mb-0 mb-6">
@@ -172,9 +172,9 @@
 				<div v-if="activeTab === 'Basic'">
 					<basic-info :practitioner="practitioner"></basic-info>
 				</div>
-				<div v-if="activeTab === 'Reviews'">
+				<!-- <div v-if="activeTab === 'Reviews'">
 					<reviews :practitioner="practitioner"></reviews>
-				</div>
+				</div> -->
 				<!-- <div v-if="activeTab === 'Insurance'">
 					<insurance :practioner="practitioner" />
 				</div> -->

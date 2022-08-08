@@ -76,7 +76,7 @@
 			</div>
 
 			<cornie-modal :model-value="show" center class="w-full h-full">
-				<appointment-modal :id="practitionerId" @close="show = false" />
+				<appointment-modal :id="practitionerId" :location-id="locationId" @close="show = false" />
 			</cornie-modal>
 		</div>
 	</div>
@@ -133,6 +133,10 @@ export default class DoctorsPage extends Vue {
   setTotalPage() {
     const x: number = this.practitioners && this.practitioners.length / 10
     this.pages = Number(x.toFixed())
+  }
+
+  get locationId() {
+    return this.search.location
   }
 
   handleDate(val: any) {

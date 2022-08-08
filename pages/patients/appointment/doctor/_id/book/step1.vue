@@ -49,7 +49,7 @@
 			</div>
 		</div>
 
-		<div class="mt-12">
+		<div v-if="!userData" class="mt-12">
 			<c-button
 				class="w-full"
 				type="button"
@@ -67,6 +67,17 @@
 				>
 			</div>
 		</div>
+		<div v-else class="flex items-center justify-center">
+			<c-button
+				class="w-1/2"
+				type="button"
+				:secondary="true"
+				small
+				@click="handleSignin"
+			>
+				Continue
+			</c-button>
+		</div>
 	</div>
 </template>
 
@@ -77,6 +88,7 @@ import CButton from "~/components/CButton.vue"
 import Cornieradio from "~/components/cornieradio.vue"
 
 const appointment = namespace("appointment")
+const user = namespace("user")
 @Component({
   components: { CButton, Cornieradio },
   layout: "appointment",
@@ -133,6 +145,9 @@ export default class StepOne extends Vue {
 
   @appointment.Getter
     getSelectedDate!: ""
+
+  @user.Getter
+    userData!: any
 
   get practitionerId() {
     return this.practitioner?.id as string

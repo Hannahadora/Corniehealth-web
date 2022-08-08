@@ -40,13 +40,13 @@
 
 				<provider-search />
 
-				<div class="mt-2 xl:block hidden">
+				<!-- <div class="mt-2 xl:block hidden">
 					<p>
 						<span class="text-razzmataz-pry">Popular Searches:</span> Family
 						Medicine | Pediatrician | Dermatologist | ENT |
 						Gynecologist/Obstetrician | All Specialties
 					</p>
-				</div>
+				</div> -->
 				<div>
 					<img
 						class="header-image mx-auto mt-0"

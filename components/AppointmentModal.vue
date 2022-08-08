@@ -177,12 +177,6 @@ export default class DoctorsPage extends Vue {
         actor: this.practitioner.name,
         date: new Date()
       })
-    // await this.fetchAvailability(
-    //   this.locationId,
-    //   this.id,
-    //   this.practitioner,
-    //   new Date()
-    // )
     this.getAvailableDays()
     this.getAvailableTime()
     this.SET_SELECTEDDATE(this.selectedDate)

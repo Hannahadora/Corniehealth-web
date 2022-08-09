@@ -1,14 +1,6 @@
 <template>
 	<div class="xl:pt-20 pt-14">
-		<div class="bg-cblue-100 xl:px-32 py-16 h-52 text-center relative">
-			<h1 class="c-indigo mb-2">Patient Portal</h1>
-			<p class="flex items-center justify-center">
-				<img class="mr-2" src="/images/nav/home.svg" alt="" />
-				<span class="mr-2">Home /</span>
-				<img class="mr-2" src="/images/nav/about.svg" alt="" />
-				<span class="text-razzmataz-pry">Patient Portal</span>
-			</p>
-		</div>
+		<breadcrumbs />
 
 		<div class="py-14 bg-white">
 			<div
@@ -123,8 +115,9 @@
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
 import ProductsFooter2 from "../../../components/Providers/ProductsFooter2.vue"
+import Breadcrumbs from "~/components/Breadcrumbs.vue"
 @Component({
-  components: { ProductsFooter2 },
+  components: { ProductsFooter2, Breadcrumbs },
 })
 export default class PatientPortal extends Vue {}
 </script>

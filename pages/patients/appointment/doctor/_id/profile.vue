@@ -13,10 +13,10 @@
 						<h3 class="mr-4">
 							{{ practitioner && practitioner.name }}
 						</h3>
-						<img
+						<!-- <img
 							:src="`/images/ratings/${practitioner.rating}star.svg`"
 							alt=""
-						/>
+						/> -->
 					</div>
 				</div>
 
@@ -198,7 +198,7 @@ const practitioners = namespace("practitioners")
 })
 export default class ProfileDetails extends Vue {
   activeTab: string = "Basic"
-  tabs: Array<any> = ["Basic", "Reviews"]
+  tabs: Array<any> = ["Basic"]
 
   practitioner = <any>{}
 

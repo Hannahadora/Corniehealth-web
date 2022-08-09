@@ -217,12 +217,12 @@ export default {
 
   methods: {
     selectCity(location) {
-       if (this.type === "specialty") {
-      this.locationName = location
-       } else {
-      this.locationName = location.name
-      this.locationId = location.id
-       }
+      if (this.type === "specialty") {
+        this.locationName = location
+      } else {
+        this.locationName = location.name
+        this.locationId = location.id
+      }
       setTimeout(() => {
         this.openLocations = false
       }, 500)

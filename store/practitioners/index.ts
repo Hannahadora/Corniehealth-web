@@ -152,10 +152,19 @@ export const actions: ActionTree<RootState, RootState> = {
     }
   },
 
-  fetchAvailability: async ({ commit },{ locationId, id, actor, date }) => {
+  fetchAvailability: async ({ commit },{ locationId, id, date }) => {
     try {
       const res = await api.get(
-        `/booking-website/day-view/${locationId}/practitioner/${id}?actor=${actor}&date=${date}`
+        `/booking-website/day-view/${locationId}/practitioner/${id}?date=${date}`
+      )
+      return res
+    } finally {
+    }
+  },
+  bookPractitioner: async ({ commit }, data ) => {
+    try {
+      const res = await api.post(
+        `/patient-portal/appointment`, { data }
       )
       return res
     } finally {

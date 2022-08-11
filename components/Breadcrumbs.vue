@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <div class="bg-cblue-100 xl:px-32 py-16 h-52 text-center relative">
-      <h1 class="c-indigo mb-2 capitalize">{{ routeName }}</h1>
-      <p class="flex items-center justify-center">
-        <img class="mr-2" src="/images/nav/home.svg" alt="" />
-        <nuxt-link to="/" class="mr-2">Home /</nuxt-link>
-        <img class="mr-2" src="/images/nav/about.svg" alt="" />
-        <span class="text-razzmataz-pry capitalize">{{ routeName }}</span>
-      </p>
-    </div>
-  </div>
+	<div>
+		<div class="bg-cblue-100 xl:px-32 py-16 h-52 text-center relative">
+			<h1 class="c-indigo mb-2 capitalize">{{ routeName }}</h1>
+			<p class="flex items-center justify-center">
+				<img class="mr-2" src="/images/nav/home.svg" alt="" />
+				<nuxt-link to="/" class="mr-2">Home /</nuxt-link>
+				<img class="mr-2" src="/images/nav/about.svg" alt="" />
+				<span class="text-razzmataz-pry capitalize">{{ routeName }}</span>
+			</p>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">

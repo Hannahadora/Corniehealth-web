@@ -1,84 +1,101 @@
 <template>
-	<!-- <cornie-modal :modelValue="show" center class="w-full h-full"> -->
-	<div class="c-indigo w-full p-10 xl:mt-0 mt-8 info-container">
-		<div class="flex items-center justify-between">
-			<span class="sub-titles-1 whitespace-nowrap"
-			>Dr. {{ practitioner && practitioner.name }} Availability</span
-			>
+  <!-- <cornie-modal :modelValue="show" center class="w-full h-full"> -->
+  <div class="c-indigo w-full p-10 xl:mt-0 mt-8 info-container">
+    <div class="flex items-center justify-between">
+      <span class="sub-titles-1 whitespace-nowrap"
+        >Dr. {{ practitioner && practitioner.name }} Availability</span
+      >
 
-			<div class="flex items-center ap-card1 px-3 py-2">
-				<img
-					class="xl:mr-5 mr-2"
-					src="/images/book-appointment/icon-date-black.png"
-					alt=""
-				/>
-				<span class="dmSans xl:block hidden mr-5">Nov 24 - Nov 26</span>
-				<span class="dmSans xl:hidden block mr-2">Nov 24</span>
-				<img src="/images/bx_bx-chevron-down.svg" alt="" />
-			</div>
-		</div>
+      <!-- <div class="flex items-center ap-card1 px-3 py-2">
+        <img
+          class="xl:mr-5 mr-2"
+          src="/images/book-appointment/icon-date-black.png"
+          alt=""
+        />
+        <span class="dmSans xl:block hidden mr-5">Nov 24 - Nov 26</span>
+        <span class="dmSans xl:hidden block mr-2">Nov 24</span>
+        <img src="/images/bx_bx-chevron-down.svg" alt="" />
+      </div> -->
 
-		<div
-			class="xl:flex block items-center justify-between mt-8 xl:overflow-x-hidden overflow-x-scroll"
-		>
-			<div
-				v-for="(day, index) in availableDays"
-				:key="index"
-				class="text-center ap-card px-12 py-2 xl:w-auto w-full"
-				:class="{ 'ap-card-active': selectedDate === day.date }"
-				@click="handleDate(day)"
-			>
-				<span class="sub-titles-2">{{ day.date }}</span
-				><br />
-				<span class="text-grey-blue mt-2">{{ day.slot }}</span>
-			</div>
-		</div>
+      <div>
+        <!-- <Daterangecalendar /> -->
+      </div>
+    </div>
 
-		<div
-			class="grid xl:grid-cols-6 grid-cols-3 gap-6 items-center justify-between mt-6"
-		>
-			<div
-				v-for="(time, index) in availableTime"
-				:key="index"
-				class="time-card xl:px-8 px-6 py-2"
-				:class="{ 'time-card-active': selectedTime === time }"
-				@click="handleTime(time)"
-			>
-				<span class="">{{ time }}</span>
-			</div>
-		</div>
+    <div class="my-6 w-full">
+      <cornie-select
+        v-model="locationSelected"
+        placeholder="Select a particular location"
+        :readonly="false"
+        :items="practitionerLocations.map((el) => el.name)"
+        required
+        @changed="handleChange"
+      ></cornie-select>
+    </div>
 
-		<div
-			class="flex xl:flex-row flex-col items-center xl:justify-end justify-center mt-8"
-		>
-			<c-button
-				type="button"
-				class="xl:mr-2 xl:mb-0 mb-6 xl:w-auto w-full"
-				:primary="true"
-				small
-				@click="$emit('close')"
-			>
-				Close
-			</c-button>
-			<c-button
-				class="xl:w-auto w-full"
-				type="button"
-				:secondary="true"
-				small
-				:disabled="!selectedTime.length || !selectedDate.length"
-				@click="proceedToBook"
-			>
-				Book Appointment
-			</c-button>
-		</div>
-	</div>
-	<!-- </cornie-modal> -->
+    <div
+      class="xl:flex block items-center justify-between mt-8 xl:overflow-x-hidden overflow-x-scroll"
+    >
+      <div
+        v-for="(day, index) in availableDays"
+        :key="index"
+        class="text-center ap-card px-12 py-2 xl:w-auto w-full"
+        :class="{ 'ap-card-active': selectedDate === day.date }"
+        @click="handleDate(day)"
+      >
+        <span class="sub-titles-2">{{ day.date }}</span
+        ><br />
+        <span class="text-grey-blue mt-2">{{ day.slot }}</span>
+      </div>
+    </div>
+
+    <div
+      class="grid xl:grid-cols-6 grid-cols-3 gap-6 items-center justify-between mt-6"
+    >
+      <div
+        v-for="(time, index) in availableTime"
+        :key="index"
+        class="time-card xl:px-8 px-6 py-2"
+        :class="{ 'time-card-active': selectedTime === time }"
+        @click="handleTime(time)"
+      >
+        <span class="">{{ time }}</span>
+      </div>
+    </div>
+
+    <div
+      class="flex xl:flex-row flex-col items-center xl:justify-end justify-center mt-8"
+    >
+      <c-button
+        type="button"
+        class="xl:mr-2 xl:mb-0 mb-6 xl:w-auto w-full"
+        :primary="true"
+        small
+        @click="$emit('close')"
+      >
+        Close
+      </c-button>
+      <c-button
+        class="xl:w-auto w-full"
+        type="button"
+        :secondary="true"
+        small
+        :disabled="!selectedTime.length || !selectedDate.length"
+        @click="proceedToBook"
+      >
+        Book Appointment
+      </c-button>
+    </div>
+  </div>
+  <!-- </cornie-modal> -->
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "nuxt-property-decorator"
 import { namespace } from "vuex-class"
 import CornieModal from "~/components/CornieModal.vue"
+import CButton from "./CButton.vue"
+import CornieSelect from "./CornieSelect.vue"
 
 const appointment = namespace("appointment")
 const practitioners = namespace("practitioners")
@@ -86,6 +103,8 @@ const misc = namespace("misc")
 @Component({
   components: {
     CornieModal,
+    CButton,
+    CornieSelect,
   },
 })
 export default class DoctorsPage extends Vue {
@@ -95,35 +114,36 @@ export default class DoctorsPage extends Vue {
   availableTime: Array<any> = []
   availablePractitioners = []
   practitioner: any = <any>{}
+  locationSelected = ""
+  locationId = ""
 
   @practitioners.Getter
-    selectedPractitioner!: []
+  selectedPractitioner!: []
 
   @Prop({ type: String, default: "" })
-    locationId!: string
-
-  @Prop({ type: String, default: "" })
-    id!: string
+  id!: string
 
   @appointment.Mutation
-    SET_SELECTEDDATE!: (data: any) => void
+  SET_SELECTEDDATE!: (data: any) => void
+
+  @misc.Getter
+  practitionerLocations!: []
 
   @misc.Mutation
-    SET_MODALSTATE!: (data: any) => void
+  SET_MODALSTATE!: (data: any) => void
 
   @appointment.Mutation
-    SET_SELECTEDTIME!: (data: any) => void
+  SET_SELECTEDTIME!: (data: any) => void
 
   @practitioners.Getter
-    getRelatedPractitioners!: []
+  getRelatedPractitioners!: []
 
-  @practitioners.Action
-    fetchAvailability!: (
-    locationId: string,
-    id: string,
-    actor: any,
-    date: any
-  ) => void
+  findLocationId() {
+    const xlocation: any = this.practitionerLocations.find(
+      (el: any) => el.name === this.locationSelected
+    )
+    this.locationId = xlocation.id
+  }
 
   handleDate(val: any) {
     this.selectedDate = val.date
@@ -154,12 +174,12 @@ export default class DoctorsPage extends Vue {
     ])
   }
 
-  dontProceed() {
-    this.SET_MODALSTATE(false)
-  }
+  // dontProceed() {
+  //   this.SET_MODALSTATE(false)
+  // }
 
   proceedToBook() {
-    this.SET_MODALSTATE(false)
+    // this.SET_MODALSTATE(false)
     this.$nextTick(() => {
       this.$router.push(
         `/patients/appointment/doctor/${this.practitioner.id}/book/step1`
@@ -167,16 +187,26 @@ export default class DoctorsPage extends Vue {
     })
   }
 
+  async fetchAvailability() {
+    try {
+      await this.$store.dispatch("practitioners/fetchAvailability", {
+        locationId: this.locationId,
+        id: this.id,
+        // actor: "practitioner",
+        date: new Date().toISOString(),
+      })
+    } catch (error: any) {}
+  }
+
+  handleChange(value: any) {
+    this.locationSelected = value
+    this.findLocationId()
+    this.fetchAvailability()
+  }
+
   async created() {
     await this.$store.dispatch("practitioners/getAPractitionerProfile", this.id)
     this.practitioner = this.selectedPractitioner
-    await this.$store.dispatch(
-      "practitioners/fetchAvailability",{
-        locationId: this.locationId,
-        id: this.id,
-        actor: this.practitioner.name,
-        date: new Date()
-      })
     this.getAvailableDays()
     this.getAvailableTime()
     this.SET_SELECTEDDATE(this.selectedDate)

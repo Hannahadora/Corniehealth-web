@@ -1,6 +1,6 @@
 <template>
 	<div class="xl:pt-20 pt-16">
-	<breadcrumbs />
+		<breadcrumbs />
 
 		<div class="py-14 bg-white">
 			<div

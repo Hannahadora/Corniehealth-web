@@ -1,84 +1,86 @@
 <template>
-	<div>
-		<div class="text-center">
-			<h4 class="mt-12">Have you booked with this practitioner in the past?</h4>
-			<div class="flex items-center justify-center mt-8">
-				<cornieradio
-					v-model="bookedPractitionerBefore"
-					class="mr-9"
-					name="pastExp"
-					label="Yes"
-					value="yes"
-					@change="handleChecked"
-				/>
-				<cornieradio
-					v-model="bookedPractitionerBefore"
-					name="pastExp"
-					label="No"
-					value="no"
-					@change="handleChecked"
-				/>
-			</div>
-		</div>
+  <div>
+    <div class="text-center">
+      <h4 class="mt-12">Have you booked with this practitioner in the past?</h4>
+      <div class="flex items-center justify-center mt-8">
+        <cornieradio
+          v-model="bookedPractitionerBefore"
+          class="mr-9"
+          name="pastExp"
+          label="Yes"
+          value="yes"
+          @change="handleChecked"
+        />
+        <cornieradio
+          v-model="bookedPractitionerBefore"
+          name="pastExp"
+          label="No"
+          value="no"
+          @change="handleChecked"
+        />
+      </div>
+    </div>
 
-		<div
-			class="xl:flex block items-center justify-between mt-8 xl:overflow-x-hidden overflow-x-scroll"
-		>
-			<div
-				v-for="(day, index) in availableDays"
-				:key="index"
-				class="text-center ap-card px-12 py-2 xl:w-auto w-full"
-				:class="{ 'ap-card-active': selectedDate === day.date }"
-			>
-				<span class="sub-titles-2">{{ day.date }}</span
-				><br />
-				<span class="text-grey-blue mt-2">{{ day.slot }}</span>
-			</div>
-		</div>
+    <div class="xl:flex block items-center justify-center mt-8">
+      <div v-if="selectedDate" class="mr-12">
+        <div
+          class="text-center ap-card px-12 py-2 xl:w-auto w-full"
+          :class="{ 'ap-card-active': selectedDate }"
+          @click="handleDate(selectedDate)"
+        >
+          <span class="sub-titles-2">{{ formatDate(selectedDate) }}</span
+          ><br />
+          <span class="text-grey-blue mt-2"
+            >{{ availableTime.length }}
+            {{ availableTime.length < 2 ? "slot" : "slots" }} available</span
+          >
+        </div>
+      </div>
 
-		<div
-			class="grid xl:grid-cols-6 grid-cols-3 gap-6 items-center justify-between mt-6"
-		>
-			<div
-				v-for="(time, index) in availableTime"
-				:key="index"
-				class="time-card xl:px-8 px-6 py-2"
-				:class="{ 'time-card-active': selectedTime === time }"
-			>
-				<span class="">{{ time }}</span>
-			</div>
-		</div>
+      <div class="">
+        <div
+          class="time-card xl:px-8 px-6 py-2"
+          :class="{ 'time-card-active': selectedTime }"
+        >
+          <span class="">{{ selectedTime }}</span>
+        </div>
+      </div>
+    </div>
 
-		<div v-if="!userData" class="mt-12">
-			<c-button
-				class="w-full"
-				type="button"
-				:secondary="true"
-				small
-				@click="handleSignin"
-			>
-				Sign in to continue
-			</c-button>
-			<div class="mt-7 text-center">
-				<span
-					class="sub-titles-1 text-razzmataz-pry cursor-pointer"
-					@click="handleSignup"
-				>Don’t have an account? Sign up</span
-				>
-			</div>
-		</div>
-		<div v-else class="flex items-center justify-center">
-			<c-button
-				class="w-1/2"
-				type="button"
-				:secondary="true"
-				small
-				@click="handleSignin"
-			>
-				Continue
-			</c-button>
-		</div>
-	</div>
+    <div v-if="!userData" class="mt-12">
+      <c-button
+        class="w-full"
+        type="button"
+        :secondary="true"
+        small
+        @click="handleSignin"
+      >
+        Sign in to continue
+      </c-button>
+      <div class="mt-7 text-center">
+        <span
+          class="sub-titles-1 text-razzmataz-pry cursor-pointer"
+          @click="handleSignup"
+          >Don’t have an account? Sign up</span
+        >
+      </div>
+    </div>
+    <div v-else class="flex items-center justify-center mt-10">
+      <c-button
+        class="w-1/2"
+        type="button"
+        :secondary="true"
+        small
+        @click="
+          $router.push(
+            `/patients/appointment/doctor/${practitioner.id}/confirm-payment`
+          )
+        "
+      >
+        Continue
+      </c-button>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -100,6 +102,7 @@ export default class StepOne extends Vue {
   availableDays: Array<any> = []
   availableTime: Array<any> = []
   practitioner: any = {}
+  availableHour: any = {}
 
   handleSignin() {
     location.href = `http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/login?practitioner=${this.practitionerId}`
@@ -121,41 +124,55 @@ export default class StepOne extends Vue {
     this.bookedPractitionerBefore = val
   }
 
-  getAvailableDays() {
-    return (this.availableDays = [
-      { date: "Wed, 24 Nov", slot: "6 slots available" },
-      { date: "Thur, 25 Nov", slot: "13 slots available" },
-      { date: "Fri, 26 Nov", slot: "3 slots available" },
-    ])
-  }
-
   getAvailableTime() {
-    return (this.availableTime = [
-      "09:00",
-      "10:00",
-      "14:00",
-      "21:00",
-      "22:00",
-      "24:00",
-    ])
+	this.availableTime = []
+    Object.entries(this.availableHour).forEach(([key, value]) => {
+      if (value === "unavailable") {
+        console.log("key", key)
+        const formattedKey = Number(key).toFixed(2)
+        this.availableTime.push(formattedKey)
+      }
+    })
   }
 
   @appointment.Getter
-    getSelectedTime!: ""
+  getSelectedTime!: ""
 
   @appointment.Getter
-    getSelectedDate!: ""
+  getSelectedDate!: ""
 
   @user.Getter
-    userData!: any
+  userData!: any
 
   get practitionerId() {
     return this.practitioner?.id as string
   }
 
+  async fetchAvailability() {
+    if (this.selectedDate) {
+      try {
+        const res: any = await this.$store.dispatch(
+          "practitioners/fetchAvailability",
+          {
+            locationId: this.$route.query.locationId,
+            id: this.$route.params.id,
+            // actor: "practitioner",
+            date: new Date(this.selectedDate).toISOString(),
+          }
+        )
+        if (res.data.success) {
+          this.availableHour = res.data.data
+          this.getAvailableTime()
+        }
+      } catch (error: any) {}
+    }
+  }
+
+  formatDate(date: any) {
+    return new Date(date).toDateString()
+  }
+
   async created() {
-    this.getAvailableDays()
-    this.getAvailableTime()
     this.selectedTime = this.getSelectedTime
     this.selectedDate = this.getSelectedDate
     const res: any = await this.$store.dispatch(
@@ -167,6 +184,7 @@ export default class StepOne extends Vue {
         ...res.data.data,
       }
     }
+    await this.fetchAvailability()
   }
 }
 </script>

@@ -119,7 +119,7 @@
 						class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer"
 						@click="selectCity(location)"
 					>
-						{{ type === "specialty" ? location : location.name }}
+						{{ location.name }}
 					</div>
 					<div v-if="!loading && rLocations.length === 0">
 						<div
@@ -199,9 +199,9 @@ export default {
     locationName() {
       if (this.locationName !== "") {
         this.openLocations = true
-        if (this.type === "specialty") {
-          this.findCity(this.locationName)
-        }
+        // if (this.type === "specialty") {
+        //   this.findCity(this.locationName)
+        // }
       } else this.openLocations = false
     },
 
@@ -217,12 +217,8 @@ export default {
 
   methods: {
     selectCity(location) {
-       if (this.type === "specialty") {
-      this.locationName = location
-       } else {
       this.locationName = location.name
       this.locationId = location.id
-       }
       setTimeout(() => {
         this.openLocations = false
       }, 500)
@@ -233,10 +229,11 @@ export default {
       this.providerData = value
       this.providerName = value.name
       this.type = type
-      if (this.type !== "specialty") {
-        this.rLocations = value.locations
-        this.locationName = value.locations[0].name
-      }
+      this.rLocations = value.locations
+      this.locationName = value.locations?.length
+        ? value.locations[0]?.name
+        : []
+      this.$store.dispatch("misc/updatePractitionerLocations", this.rLocations)
       setTimeout(() => {
         this.practitionersDropdown = false
       }, 500)
@@ -246,7 +243,8 @@ export default {
     closeLocationDropdown() {
       this.openLocations = false
       const em =
-        this.rLocations && this.rLocations.find(el => el === this.locationName)
+        this.rLocations &&
+        this.rLocations.find(el => el === this.locationName)
       if (!em || this.locationName !== "Everywhere") {
         this.locationName = ""
       }

@@ -6,7 +6,8 @@ import { GetterTree, ActionTree, MutationTree } from "vuex"
 export const state = () => ({
   modal: false,
   location: "",
-  specialty: ""
+  specialty: "",
+  practitionerLocations: []
 })
 
 export type RootState = ReturnType<typeof state>
@@ -21,6 +22,9 @@ export const getters: GetterTree<RootState, RootState> = {
   selectedLocation(state) {
     return state.location
   },
+  practitionerLocations(state) {
+    return state.practitionerLocations
+  },
 }
 
 export const mutations: MutationTree<RootState> = {
@@ -33,6 +37,9 @@ export const mutations: MutationTree<RootState> = {
   SET_SPECIALTY(state, data) {
     state.specialty = data
   },
+  SET_PRACTITIONERLOCATIONS(state, data) {
+    state.practitionerLocations = data
+  },
 }
 
 export const actions: ActionTree<RootState, RootState> = {
@@ -44,6 +51,9 @@ export const actions: ActionTree<RootState, RootState> = {
   },
   updateSelectedSpecialty({ commit }, data: any) {
     commit("SET_SPECIALTY", data)
+  },
+  updatePractitionerLocations({ commit }, data: any) {
+    commit("SET_PRACTITIONERLOCATIONS", data)
   },
 
 }

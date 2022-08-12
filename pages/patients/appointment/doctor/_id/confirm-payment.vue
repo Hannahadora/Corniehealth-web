@@ -13,7 +13,12 @@
 				</tr>
 				<tr>
 					<td>Date & Time</td>
-					<td>{{ getSelectedDate }} | {{ getSelectedTime }}</td>
+					<td class="flex justify-between">
+						<span>{{ getSelectedDate }} | {{ getSelectedTime }}</span>
+						<div @click="openModal">
+							<copy-red class="cursor-pointer" />
+						</div>
+					</td>
 				</tr>
 				<tr>
 					<td>Consultation Fee</td>
@@ -86,6 +91,10 @@
 				</c-button>
 			</div>
 		</div>
+
+		<cornie-modal :model-value="show" center class="w-full h-full">
+			<appointment-modal :id="selectedPractitioner.id" @close="show = false" />
+		</cornie-modal>
 	</div>
 </template>
 
@@ -94,15 +103,20 @@ import { Component, Vue } from "nuxt-property-decorator"
 import { namespace } from "vuex-class"
 import CButton from "~/components/CButton.vue"
 import BackBtn from "~/components/BackBtn.vue"
+import CopyRed from "~/components/icons/copy-red.vue"
+import CornieModal from "~/components/CornieModal.vue"
+import AppointmentModal from "~/components/AppointmentModal.vue"
 
 const practitioners = namespace("practitioners")
 const appointment = namespace("appointment")
 const user = namespace("user")
 @Component({
-  components: { CButton, BackBtn },
+  components: { CButton, BackBtn, CopyRed, CornieModal, AppointmentModal },
   layout: "appointment",
 })
 export default class ConfirmPaymentPage extends Vue {
+  show = false
+
   @practitioners.Getter
     selectedPractitioner!: any
 
@@ -117,6 +131,10 @@ export default class ConfirmPaymentPage extends Vue {
 
   @appointment.Getter
     getSelectedDate!: ""
+
+  openModal() {
+    this.show = true
+  }
 
   async created() {
     if (this.$route.query.token) {

@@ -6,6 +6,23 @@
 				Confirm your appointment
 			</h2>
 
+			<div class="my-12 flex">
+				<tooltip-red class="mr-2"/>
+				<p v-if="paymentIsRequired">
+					This practitioner requires payment to confirm your appointment |
+					<span style="color: #667499;"
+					>The payment service is secured by Paystack</span
+					>.
+				</p>
+				<p v-else>
+					You can confirm your booking by choosing to pay now or pay later at the
+					hospital |
+					<span style="color: #667499;"
+					>The payment service is secured by Paystack</span
+					>.
+				</p>
+			</div>
+
 			<table class="border w-full">
 				<tr>
 					<td>Appointment With</td>
@@ -78,7 +95,7 @@
 					small
 					@click="confirmPayment"
 				>
-					Confirm
+					Pay
 				</c-button>
 			</div>
 		</div>
@@ -90,17 +107,20 @@ import { Component, Vue } from "nuxt-property-decorator"
 import { namespace } from "vuex-class"
 import CButton from "~/components/CButton.vue"
 import BackBtn from "~/components/BackBtn.vue"
+import TooltipRed from "~/components/icons/tooltip-red.vue"
 
 const practitioners = namespace("practitioners")
 const appointment = namespace("appointment")
 @Component({
-  components: { CButton, BackBtn },
+  components: { CButton, BackBtn, TooltipRed },
   layout: "appointment",
 })
-export default class BookingConfirmed extends Vue {  
-	@practitioners.Getter
-	  selectedPractitioner!: any
-  
+export default class BookingConfirmed extends Vue {
+  paymentIsRequired = false
+
+  @practitioners.Getter
+    selectedPractitioner!: any
+
   @appointment.Getter
     getSelectedTime!: ""
 
@@ -116,9 +136,17 @@ export default class BookingConfirmed extends Vue {
     }
   }
 
-  confirmPayment() {
-    alert("Booking-confirmed")
-    this.$router.push("/")
+  async confirmPayment() {
+    try {
+      const res = await this.$store.dispatch("practitioners/bookPractitioner", {
+        // locationId: this.locationId,
+        practitioner: { ...this.selectedPractitioner },
+      })
+      if (res.status === true) {
+        alert("Booking confirmed!!")
+        this.$router.push("/")
+      }
+    } catch (error: any) {}
   }
 }
 </script>

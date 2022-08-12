@@ -67,11 +67,11 @@ export default {
 
   computed: {
     photos() {
-      return this.hospital && this.hospital.photos
+      return this.hospital && this.hospital?.photos
     },
     nophoto() {
       return (
-        this.hospital && this.hospital.photos && this.hospital.photos.length < 1
+        this.hospital && this.hospital?.photos && this.hospital?.photos?.length < 1
       )
     },
   },

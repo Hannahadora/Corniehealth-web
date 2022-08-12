@@ -9,14 +9,28 @@
 						:src="practitioner.photo"
 						alt=""
 					/>
-					<div class="xl:flex block items-center">
-						<h3 class="mr-4">
-							{{ practitioner && practitioner.name }}
-						</h3>
-						<img
+					<div class="w-11/12 flex justify-between">
+						<div class="xl:flex block items-center">
+							<h3 class="mr-4">
+								{{ practitioner && practitioner.name }}
+							</h3>
+							<!-- <img
 							:src="`/images/ratings/${practitioner.rating}star.svg`"
 							alt=""
-						/>
+						/> -->
+						</div>
+
+						<div class="flex items-center justify-end">
+							<c-button
+								class=""
+								type="button"
+								:secondary="true"
+								small
+								@click="openAppointmentModal"
+							>
+								Book Appointment
+							</c-button>
+						</div>
 					</div>
 				</div>
 
@@ -32,7 +46,7 @@
 							>Specialization</span
 							>
 							<p class="text-grey-blue mr-2">
-								{{ practitioner && practitioner.specialization }}
+								{{ practitioner && practitioner.specialization && practitioner.specialization.length }}
 							</p>
 						</div>
 					</div>
@@ -90,21 +104,21 @@
 						</div>
 					</div>
 
-					<div class="flex items-start xl:mb-0 mb-6">
+					<!-- <div class="flex items-start xl:mb-0 mb-6">
 						<img
 							class="mr-2"
 							src="/images/book-appointment/icon (3).png"
 							alt=""
 						/>
-						<!-- <div>
+						<div>
 							<span class="sub-titles-2 text-black-xiketic mb-2"
 							>Patient Reviews</span
 							>
 							<p class="text-grey-blue">
 								<span class="ml-4 text-razzmataz-pry">View</span>
 							</p>
-						</div> -->
-					</div>
+						</div>
+					</div> -->
 
 					<div class="flex items-start xl:mb-0 mb-6">
 						<img
@@ -180,6 +194,13 @@
 				</div> -->
 			</div>
 		</div>
+
+		<cornie-modal :model-value="show" center class="w-full h-full">
+			<appointment-modal
+				:id="practitioner.id"
+				@close="show = false"
+			/>
+		</cornie-modal>
 	</div>
 </template>
 
@@ -190,15 +211,27 @@ import BasicInfo from "@/components/BookAppointment/Profile/BasicInfo.vue"
 import Insurance from "@/components/BookAppointment/Profile/Insurance.vue"
 import Reviews from "@/components/BookAppointment/Profile/Reviews.vue"
 import BackBtn from "~/components/BackBtn.vue"
+import CButton from "~/components/CButton.vue"
+import CornieModal from "~/components/CornieModal.vue"
+import AppointmentModal from "~/components/AppointmentModal.vue"
 
 const practitioners = namespace("practitioners")
 @Component({
-  components: { BasicInfo, Reviews, Insurance, BackBtn },
+  components: {
+    BasicInfo,
+    Reviews,
+    Insurance,
+    BackBtn,
+    CButton,
+    CornieModal,
+    AppointmentModal,
+  },
   layout: "book-appointment",
 })
 export default class ProfileDetails extends Vue {
   activeTab: string = "Basic"
-  tabs: Array<any> = ["Basic", "Reviews"]
+  tabs: Array<any> = ["Basic"]
+  show = false;
 
   practitioner = <any>{}
 
@@ -225,6 +258,10 @@ export default class ProfileDetails extends Vue {
       ...this.selectedPractitioner,
       //   ...this.getInitPractitionerData,
     }
+  }
+
+  openAppointmentModal() {
+    this.show = true
   }
 }
 </script>

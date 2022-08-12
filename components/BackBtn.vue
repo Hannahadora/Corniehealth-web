@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="p-4 mb-2">
+		<div class="mb-2">
 			<img class="cursor-pointer" src="@/static/images/back-btn.svg" alt="" @click="$router.go(-1)" />
 		</div>
 	</div>

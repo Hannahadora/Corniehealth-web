@@ -1,86 +1,86 @@
 <template>
-  <div>
-    <div class="text-center">
-      <h4 class="mt-12">Have you booked with this practitioner in the past?</h4>
-      <div class="flex items-center justify-center mt-8">
-        <cornieradio
-          v-model="bookedPractitionerBefore"
-          class="mr-9"
-          name="pastExp"
-          label="Yes"
-          value="yes"
-          @change="handleChecked"
-        />
-        <cornieradio
-          v-model="bookedPractitionerBefore"
-          name="pastExp"
-          label="No"
-          value="no"
-          @change="handleChecked"
-        />
-      </div>
-    </div>
+	<div>
+		<div class="text-center">
+			<h4 class="mt-12">Have you booked with this practitioner in the past?</h4>
+			<div class="flex items-center justify-center mt-8">
+				<cornieradio
+					v-model="bookedPractitionerBefore"
+					class="mr-9"
+					name="pastExp"
+					label="Yes"
+					value="yes"
+					@change="handleChecked"
+				/>
+				<cornieradio
+					v-model="bookedPractitionerBefore"
+					name="pastExp"
+					label="No"
+					value="no"
+					@change="handleChecked"
+				/>
+			</div>
+		</div>
 
-    <div class="xl:flex block items-center justify-center mt-8">
-      <div v-if="selectedDate" class="mr-12">
-        <div
-          class="text-center ap-card px-12 py-2 xl:w-auto w-full"
-          :class="{ 'ap-card-active': selectedDate }"
-          @click="handleDate(selectedDate)"
-        >
-          <span class="sub-titles-2">{{ formatDate(selectedDate) }}</span
-          ><br />
-          <span class="text-grey-blue mt-2"
-            >{{ availableTime.length }}
-            {{ availableTime.length < 2 ? "slot" : "slots" }} available</span
-          >
-        </div>
-      </div>
+		<div class="xl:flex block items-center justify-center mt-8">
+			<div v-if="selectedDate" class="mr-12">
+				<div
+					class="text-center ap-card px-12 py-2 xl:w-auto w-full"
+					:class="{ 'ap-card-active': selectedDate }"
+					@click="handleDate(selectedDate)"
+				>
+					<span class="sub-titles-2">{{ formatDate(selectedDate) }}</span
+					><br />
+					<span class="text-grey-blue mt-2"
+					>{{ availableTime.length }}
+						{{ availableTime.length < 2 ? "slot" : "slots" }} available</span
+					>
+				</div>
+			</div>
 
-      <div class="">
-        <div
-          class="time-card xl:px-8 px-6 py-2"
-          :class="{ 'time-card-active': selectedTime }"
-        >
-          <span class="">{{ selectedTime }}</span>
-        </div>
-      </div>
-    </div>
+			<div class="">
+				<div
+					class="time-card xl:px-8 px-6 py-2"
+					:class="{ 'time-card-active': selectedTime }"
+				>
+					<span class="">{{ selectedTime }}</span>
+				</div>
+			</div>
+		</div>
 
-    <div v-if="!userData" class="mt-12">
-      <c-button
-        class="w-full"
-        type="button"
-        :secondary="true"
-        small
-        @click="handleSignin"
-      >
-        Sign in to continue
-      </c-button>
-      <div class="mt-7 text-center">
-        <span
-          class="sub-titles-1 text-razzmataz-pry cursor-pointer"
-          @click="handleSignup"
-          >Don’t have an account? Sign up</span
-        >
-      </div>
-    </div>
-    <div v-else class="flex items-center justify-center mt-10">
-      <c-button
-        class="w-1/2"
-        type="button"
-        :secondary="true"
-        small
-        @click="
-          $router.push(
-            `/patients/appointment/doctor/${practitioner.id}/confirm-payment`
-          )
-        "
-      >
-        Continue
-      </c-button>
-    </div>
-  </div>
+		<div v-if="!userData" class="mt-12">
+			<c-button
+				class="w-full"
+				type="button"
+				:secondary="true"
+				small
+				@click="handleSignin"
+			>
+				Sign in to continue
+			</c-button>
+			<div class="mt-7 text-center">
+				<span
+					class="sub-titles-1 text-razzmataz-pry cursor-pointer"
+					@click="handleSignup"
+				>Don’t have an account? Sign up</span
+				>
+			</div>
+		</div>
+		<div v-else class="flex items-center justify-center mt-10">
+			<c-button
+				class="w-1/2"
+				type="button"
+				:secondary="true"
+				small
+				@click="
+					$router.push(
+						`/patients/appointment/doctor/${practitioner.id}/confirm-payment`
+					)
+				"
+			>
+				Continue
+			</c-button>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
@@ -125,7 +125,7 @@ export default class StepOne extends Vue {
   }
 
   getAvailableTime() {
-	this.availableTime = []
+    this.availableTime = []
     Object.entries(this.availableHour).forEach(([key, value]) => {
       if (value === "unavailable") {
         console.log("key", key)
@@ -136,13 +136,13 @@ export default class StepOne extends Vue {
   }
 
   @appointment.Getter
-  getSelectedTime!: ""
+    getSelectedTime!: ""
 
   @appointment.Getter
-  getSelectedDate!: ""
+    getSelectedDate!: ""
 
   @user.Getter
-  userData!: any
+    userData!: any
 
   get practitionerId() {
     return this.practitioner?.id as string

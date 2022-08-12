@@ -164,7 +164,7 @@ export const actions: ActionTree<RootState, RootState> = {
   bookPractitioner: async ({ commit }, data ) => {
     try {
       const res = await api.post(
-        `/patient-portal/appointment`, { data }
+        "/patient-portal/appointment", { data }
       )
       return res
     } finally {

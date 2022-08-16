@@ -83,7 +83,7 @@
 					small
 					@click="
 						$router.push({
-							path: `/patients/appointment/doctor/${selectedPractitioner.id}/booking-confirmed`,
+							path: `/patients/appointment/doctor/${selectedPractitioner.id}/booking-confirmed?locationId=${$route.query.locationId}`,
 						})
 					"
 				>

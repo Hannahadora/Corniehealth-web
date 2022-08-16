@@ -7,17 +7,17 @@
 			</h2>
 
 			<div class="my-12 flex">
-				<tooltip-red class="mr-2"/>
+				<tooltip-red class="mr-2" />
 				<p v-if="paymentIsRequired">
 					This practitioner requires payment to confirm your appointment |
-					<span style="color: #667499;"
+					<span style="color: #667499"
 					>The payment service is secured by Paystack</span
 					>.
 				</p>
 				<p v-else>
-					You can confirm your booking by choosing to pay now or pay later at the
-					hospital |
-					<span style="color: #667499;"
+					You can confirm your booking by choosing to pay now or pay later at
+					the hospital |
+					<span style="color: #667499"
 					>The payment service is secured by Paystack</span
 					>.
 				</p>
@@ -111,6 +111,7 @@ import TooltipRed from "~/components/icons/tooltip-red.vue"
 
 const practitioners = namespace("practitioners")
 const appointment = namespace("appointment")
+const user = namespace("user")
 @Component({
   components: { CButton, BackBtn, TooltipRed },
   layout: "appointment",
@@ -120,6 +121,9 @@ export default class BookingConfirmed extends Vue {
 
   @practitioners.Getter
     selectedPractitioner!: any
+
+  @user.Getter
+    userData!: any
 
   @appointment.Getter
     getSelectedTime!: ""
@@ -139,8 +143,13 @@ export default class BookingConfirmed extends Vue {
   async confirmPayment() {
     try {
       const res = await this.$store.dispatch("practitioners/bookPractitioner", {
-        // locationId: this.locationId,
-        practitioner: { ...this.selectedPractitioner },
+        locationId: this.$route.query.locationId,
+        date: this.getSelectedDate,
+        startTime: this.getSelectedTime,
+        endTime: undefined,
+        billingType: "insurance",
+        practitionerId: this.selectedPractitioner.id,
+        patientId: this.userData.user.id,
       })
       if (res.status === true) {
         alert("Booking confirmed!!")

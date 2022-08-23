@@ -87,7 +87,7 @@
 						})
 					"
 				>
-					Confirm
+					Next
 				</c-button>
 			</div>
 		</div>

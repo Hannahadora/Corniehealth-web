@@ -1,95 +1,95 @@
 <template>
-  <!-- <cornie-modal :modelValue="show" center class="w-full h-full"> -->
-  <div class="c-indigo xl:w-full w-11/12 mx-auto p-10 xl:mt-0 mt-8 info-container">
-    <div class="w-full flex xl:flex-row flex-col xl:items-center items-right justify-between">
-      <span class="sub-titles-1 whitespace-nowrap xl:mb-0 mb-6"
-        >Dr. {{ practitioner && practitioner.name }} Availability</span
-      >
+	<!-- <cornie-modal :modelValue="show" center class="w-full h-full"> -->
+	<div class="c-indigo xl:w-full w-11/12 mx-auto p-10 xl:mt-0 mt-8 info-container">
+		<div class="w-full flex xl:flex-row flex-col xl:items-center items-right justify-between">
+			<span class="sub-titles-1 whitespace-nowrap xl:mb-0 mb-6"
+			>Dr. {{ practitioner && practitioner.name }} Availability</span
+			>
 
-      <div class="xl:ml-10">
-        <input v-model="date" class="px-3 py-2 ap-card1" type="date" />
-      </div>
-    </div>
+			<div class="xl:ml-10">
+				<input v-model="date" class="px-3 py-2 ap-card1" type="date" />
+			</div>
+		</div>
 
-    <div class="my-6 w-full">
-      <cornie-select
-        v-model="locationSelected"
-        placeholder="Select a particular location"
-        :readonly="false"
-        :items="practitionerLocations.map((el) => el.name)"
-        required
-        @changed="handleChange"
-      ></cornie-select>
-    </div>
+		<div class="my-6 w-full">
+			<cornie-select
+				v-model="locationSelected"
+				placeholder="Select a particular location"
+				:readonly="false"
+				:items="practitionerLocations.map((el) => el.name)"
+				required
+				@changed="handleChange"
+			></cornie-select>
+		</div>
 
-    <div
-      v-if="date"
-      class="xl:flex block items-center justify-between mt-8 xl:overflow-x-hidden overflow-x-scroll"
-    >
-      <div
-        class="text-center ap-card px-12 py-2 xl:w-auto w-full"
-        :class="{ 'ap-card-active': selectedDate === date }"
-        @click="handleDate(date)"
-      >
-        <span class="sub-titles-2">{{ formatDate(date) }}</span
-        ><br />
-        <span class="text-grey-blue mt-2"
-          >{{ availableTime.length }}
-          {{ availableTime.length < 2 ? "slot" : "slots" }} available</span
-        >
-      </div>
-    </div>
+		<div
+			v-if="date"
+			class="xl:flex block items-center justify-between mt-8 xl:overflow-x-hidden overflow-x-scroll"
+		>
+			<div
+				class="text-center ap-card px-12 py-2 xl:w-auto w-full"
+				:class="{ 'ap-card-active': selectedDate === date }"
+				@click="handleDate(date)"
+			>
+				<span class="sub-titles-2">{{ formatDate(date) }}</span
+				><br />
+				<span class="text-grey-blue mt-2"
+				>{{ availableTime.length }}
+					{{ availableTime.length < 2 ? "slot" : "slots" }} available</span
+				>
+			</div>
+		</div>
 
-    <div v-if="locationSelected">
-      <div
-        class="grid xl:grid-cols-6 grid-cols-3 gap-6 items-center justify-between mt-8"
-      >
-        <div
-          v-for="(time, index) in availableTime"
-          :key="index"
-          class="time-card xl:px-8 px-6 py-2"
-          :class="{
-            'time-card-active': selectedTime === time,
-            'bg-red-500 text-white': checkPastTime(time),
-          }"
-          @click="handleTime(time)"
-        >
-          <span class="">{{ time }}</span>
-        </div>
-      </div>
-      <div v-if="availableTime.length === 0" class="my-8">
-        <p class="text-center">
-          No available Time<br />
-          Please select another day
-        </p>
-      </div>
-    </div>
+		<div v-if="locationSelected">
+			<div
+				class="grid xl:grid-cols-6 grid-cols-3 gap-6 items-center justify-between mt-8"
+			>
+				<div
+					v-for="(time, index) in availableTime"
+					:key="index"
+					class="time-card xl:px-8 px-6 py-2"
+					:class="{
+						'time-card-active': selectedTime === time,
+						'bg-red-500 text-white': checkPastTime(time),
+					}"
+					@click="handleTime(time)"
+				>
+					<span class="">{{ time }}</span>
+				</div>
+			</div>
+			<div v-if="availableTime.length === 0" class="my-8">
+				<p class="text-center">
+					No available Time<br />
+					Please select another day
+				</p>
+			</div>
+		</div>
 
-    <div
-      class="flex xl:flex-row flex-col items-center xl:justify-end justify-center mt-8"
-    >
-      <c-button
-        type="button"
-        class="xl:mr-2 xl:mb-0 mb-6 xl:w-auto w-full"
-        :primary="true"
-        small
-        @click="$emit('close')"
-      >
-        Close
-      </c-button>
-      <c-button
-        class="xl:w-auto w-full"
-        type="button"
-        :secondary="true"
-        small
-        :disabled="!selectedTime.length || !selectedDate.length"
-        @click="proceedToBook"
-      >
-        Book Appointment
-      </c-button>
-    </div>
-  </div>
-  <!-- </cornie-modal> -->
+		<div
+			class="flex xl:flex-row flex-col items-center xl:justify-end justify-center mt-8"
+		>
+			<c-button
+				type="button"
+				class="xl:mr-2 xl:mb-0 mb-6 xl:w-auto w-full"
+				:primary="true"
+				small
+				@click="$emit('close')"
+			>
+				Close
+			</c-button>
+			<c-button
+				class="xl:w-auto w-full"
+				type="button"
+				:secondary="true"
+				small
+				:disabled="!selectedTime.length || !selectedDate.length"
+				@click="proceedToBook"
+			>
+				Book Appointment
+			</c-button>
+		</div>
+	</div>
+	<!-- </cornie-modal> -->
 </template>
 
 <script lang="ts">
@@ -123,25 +123,25 @@ export default class DoctorsPage extends Vue {
   availableHour: any = <any>{}
 
   @practitioners.Getter
-  selectedPractitioner!: []
+    selectedPractitioner!: []
 
   @Prop({ type: String, default: "" })
-  id!: string
+    id!: string
 
   @appointment.Mutation
-  SET_SELECTEDDATE!: (data: any) => void
+    SET_SELECTEDDATE!: (data: any) => void
 
   @misc.Getter
-  practitionerLocations!: []
+    practitionerLocations!: []
 
   @misc.Mutation
-  SET_MODALSTATE!: (data: any) => void
+    SET_MODALSTATE!: (data: any) => void
 
   @appointment.Mutation
-  SET_SELECTEDTIME!: (data: any) => void
+    SET_SELECTEDTIME!: (data: any) => void
 
   @practitioners.Getter
-  getRelatedPractitioners!: []
+    getRelatedPractitioners!: []
 
   @Watch("date")
   onInput() {

@@ -9,7 +9,7 @@
 						:src="practitioner.photo"
 						alt=""
 					/>
-					<div class="w-11/12 flex justify-between">
+					<div class="w-11/12 flex xl:flex-row flex-col xl:items-center items-start justify-between">
 						<div class="xl:flex block items-center">
 							<h3 class="mr-4">
 								{{ practitioner && practitioner.name }}
@@ -20,7 +20,7 @@
 						/> -->
 						</div>
 
-						<div class="flex items-center justify-end">
+						<div class="xl:mt-0 mt-8 flex items-center justify-end">
 							<c-button
 								class=""
 								type="button"

@@ -19,8 +19,8 @@
 
 					<div v-if="genList" class="px-8 pt-6">
 						<div
-							v-for="(item, idx) in category.items"
-							:key="idx"
+							v-for="(item, index) in category.items"
+							:key="index"
 							class="mb-4 flex itesm-center justify-between"
 						>
 							<p>{{ item.name }}</p>

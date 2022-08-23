@@ -1,7 +1,5 @@
 <template>
 	<div class="w-full">
-		<linear-loader v-if="loading" />
-
 		<div class="mb-8">
 			<div class="h-full xl:grid grid-cols-7 flex flex-wrap gap-4">
 				<multiselectsearch
@@ -10,7 +8,7 @@
 					:placeholder="specialtyPlaceholder"
 					:items="specialties"
 					:active="specialtyActive"
-					@query="findProviders"
+					@query="findSpecialtys"
 				/>
 				<multiselectsearch
 					v-model="search.location"
@@ -24,19 +22,21 @@
 					v-model="search.hospital"
 					icon="/images/book-appointment/icon-hospital-grey.png"
 					:placeholder="hospitalPlaceholder"
+					item-label-prop="name"
+					item-value-prop="id"
 					:items="hospitals"
 					:active="hospitalActive"
 					@query="findHospitals"
 				/>
 				<multiselectsearch
-					v-if="!$route.path.includes('hospital')"
+					v-if="tab === 'doctors'"
 					v-model="search.experience"
 					icon="/images/book-appointment/icon-experience-grey.png"
 					placeholder="Experience"
 					:items="experiences"
 				/>
 				<multiselectsearch
-					v-if="!$route.path.includes('hospital')"
+					v-if="tab === 'doctors'"
 					v-model="search.visitType"
 					icon="/images/book-appointment/icon-visit-grey.png"
 					placeholder="Visit Type"
@@ -49,21 +49,21 @@
 						:items="insurances"
 					/> -->
 				<multiselectsearch
-					v-if="!$route.path.includes('doctor')"
+					v-if="tab === 'hospitals'"
 					v-model="search.rating"
 					icon="/images/book-appointment/icon-insurance-grey.png"
 					placeholder="Rating"
 					:items="ratings"
 				/>
 				<multiselectsearch
-					v-if="!$route.path.includes('hospital')"
+					v-if="tab === 'doctors'"
 					v-model="search.language"
 					icon="/images/book-appointment/icon-lang-grey.png"
 					placeholder="Language"
 					:items="languages"
 				/>
 				<multiselectsearch
-					v-if="!$route.path.includes('hospital')"
+					v-if="tab === 'doctors'"
 					id="lcd"
 					v-model="search.gender"
 					icon="/images/book-appointment/icon-gender-grey.png"
@@ -76,10 +76,16 @@
 </template>
 
 <script>
-import LinearLoader from "./LinearLoader.vue"
 export default {
   name: "SelectGroup",
-  components: { LinearLoader },
+  components: {},
+
+  props: {
+    tab: {
+      type: String,
+      default: "",
+    },
+  },
 
   data() {
     return {
@@ -88,8 +94,8 @@ export default {
         specialty: undefined,
         location: undefined,
         hospital: undefined,
-        min: 1,
-        max: 1,
+        min: undefined,
+        max: undefined,
         insurance: undefined,
         language: undefined,
         gender: undefined,
@@ -153,30 +159,21 @@ export default {
 
   watch: {
     search: {
-      handler() {
-        try {
-          this.loading = true
-          const res = this.$store.dispatch(
-            "practitioners/findPractitionersAll",
-            {
-              ...this.search,
-            }
-          )
-          //   if (res.data.success === true) {
-          this.searchResult = res.data
-          this.$router.push(
-            `${this.$route.path}?query=${this.search.specialty.toLowerCase()}`
-          )
-          //   }
-        } catch (err) {
-          console.log(err)
-        } finally {
-          this.loading = false
-        }
+      async handler() {
+        this.$emit("searchQuery", this.search)
+        this.$emit("loadingState", this.loading)
+        this.$router.push(
+          `${
+            this.$route.path
+          }?specialty=${this.search.specialty.toLowerCase()}?location=${this.search.location.toLowerCase()}`
+        )
+        await this.fetchPractitioners()
+        await this.fetchHospitals()
       },
       deep: true,
     },
   },
+
   mounted() {
     this.search.specialty = this.$store.getters["misc/selectedSpecialty"]
     this.search.location = this.$store.getters["misc/selectedLocation"]
@@ -184,16 +181,6 @@ export default {
   },
 
   methods: {
-    async findProviders(query) {
-      this.loading = true
-      const res = await this.$store.dispatch(
-        "practitioners/findPractitionerByName",
-        query || null
-      )
-      this.loading = false
-      this.specialties = res.data.data.specialties
-    },
-
     async findCity(query) {
       this.loading = true
       const res = await this.$store.dispatch(
@@ -201,7 +188,7 @@ export default {
         query || null
       )
       this.loading = false
-      // if (res.success === "true") {
+      // if (res.data.success === true) {
       this.locations = res.data.data || []
       // }
     },
@@ -212,9 +199,22 @@ export default {
         query || null
       )
       this.loading = false
-      // if (res.success === "true") {
+      // if (res.data.success === true) {
       this.hospitals = res.data.data || []
       // }
+    },
+
+    async findSpecialtys(query) {
+      this.loading = true
+      const res = await this.$store.dispatch(
+        "practitioners/searchForPractitioners",
+        query
+      )
+      if (res.data.success === true) {
+        const xspecialties = res.data.data.specialties
+        this.specialties = xspecialties.specialties.map(el => el.name)
+      }
+      this.loading = false
     },
 
     setActiveStates() {
@@ -226,6 +226,32 @@ export default {
       }
       if (this.search.hospital) {
         this.hospitalActive = true
+      }
+    },
+
+    async fetchHospitals() {
+      try {
+        this.loading = true
+        await this.$store.dispatch("practitioners/fetchPractice", {
+          ...this.search,
+        })
+      } catch (err) {
+        alert("There was error fetching Hospitals")
+      } finally {
+        this.loading = false
+      }
+    },
+
+    async fetchPractitioners() {
+      try {
+        this.loading = true
+        await this.$store.dispatch("practitioners/fetchPractitioners", {
+          ...this.search,
+        })
+      } catch (err) {
+        alert("There was error fetching Practitioners")
+      } finally {
+        this.loading = false
       }
     },
   },

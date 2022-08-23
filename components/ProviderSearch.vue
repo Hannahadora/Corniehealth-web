@@ -100,7 +100,7 @@
 				<div class="input-wrapper flex items-center py-3 px-5">
 					<img class="xl:mr-6 mr-4" src="/images/cil_location-pin.png" alt="" />
 					<input
-						v-model="cityName"
+						v-model="locationName"
 						type="text"
 						placeholder="City name or Zip/Postal code"
 						required
@@ -119,7 +119,7 @@
 						class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer"
 						@click="selectCity(location)"
 					>
-						{{ location }}
+						{{ location.name }}
 					</div>
 					<div v-if="!loading && rLocations.length === 0">
 						<div
@@ -163,10 +163,10 @@ export default {
       openLocations: false,
       practitionersDropdown: false,
       type: "",
-      provider: "",
+      providerData: "",
       providerName: "",
-      cityName: "",
-      searchResult: [],
+      locationName: "",
+      locationId: "",
       rLocations: [],
       specialties: [],
       providers: [],
@@ -178,13 +178,13 @@ export default {
   computed: {
     payload() {
       let data
-      if (this.cityName !== "") {
+      if (this.locationName !== "") {
         data = {
           specialty: this.providerName,
-          location: this.cityName,
+          location: this.locationName,
         }
       }
-      if (this.cityName === "Everywhere" || "") {
+      if (this.locationName === "Everywhere" || "") {
         data = {
           specialty: this.providerName,
           location: undefined,
@@ -196,12 +196,12 @@ export default {
   },
 
   watch: {
-    cityName() {
-      if (this.cityName !== "") {
+    locationName() {
+      if (this.locationName !== "") {
         this.openLocations = true
-        if (this.type === "specialty") {
-          this.findCity(this.cityName)
-        }
+        // if (this.type === "specialty") {
+        //   this.findCity(this.locationName)
+        // }
       } else this.openLocations = false
     },
 
@@ -217,21 +217,23 @@ export default {
 
   methods: {
     selectCity(location) {
-      this.cityName = location
+      this.locationName = location.name
+      this.locationId = location.id
       setTimeout(() => {
         this.openLocations = false
       }, 500)
-      this.$store.dispatch("misc/updateSelectedLocation", this.cityName)
+      this.$store.dispatch("misc/updateSelectedLocation", this.locationName)
     },
 
     selectProvider(value, type) {
-      this.provider = value
+      this.providerData = value
       this.providerName = value.name
       this.type = type
-      if (this.type !== "specialty") {
-        this.rLocations = value.locations
-        this.cityName = value.locations[0]
-      }
+      this.rLocations = value.locations
+      this.locationName = value.locations?.length
+        ? value.locations[0]?.name
+        : []
+      this.$store.dispatch("misc/updatePractitionerLocations", this.rLocations)
       setTimeout(() => {
         this.practitionersDropdown = false
       }, 500)
@@ -241,9 +243,10 @@ export default {
     closeLocationDropdown() {
       this.openLocations = false
       const em =
-        this.rLocations && this.rLocations.find(el => el === this.cityName)
-      if (!em || this.cityName !== "Everywhere") {
-        this.cityName = ""
+        this.rLocations &&
+        this.rLocations.find(el => el === this.locationName)
+      if (!em || this.locationName !== "Everywhere") {
+        this.locationName = ""
       }
     },
 
@@ -299,28 +302,28 @@ export default {
         try {
           this.loading = true
           const res = await this.$store.dispatch(
-            "practitioners/fetchPractice",
+            "practitioners/fetchPractitioners",
             { ...this.payload }
           )
-          // if (res.data.success === true) {
-          this.searchResult = res.data.data
-
-          this.$router.push(
-            `/patients/book-appointment/search/doctors?query=${this.providerName.toLowerCase()}`
-          )
-          this.loading = false
-          // }
+          if (res.data.success === true) {
+            this.$router.push(
+              `/patients/appointment/search?specialty=${this.providerName.toLowerCase()}&location=${this.locationName.toLowerCase()}`
+            )
+            this.loading = false
+          }
         } catch (err) {
-          console.log(err)
+          alert(err)
         } finally {
           this.loading = false
         }
       } else if (this.type === "practitioner") {
-        this.$router.push(`/patients/doctor/${this.provider.id}/profile`)
-        // this.SET_INITPRACTITIONERDATA(practitioner)
+        this.$router.push(
+          `/patients/appointment/doctor/${this.providerData.id}/profile`
+        )
       } else if (this.type === "provider") {
-        this.$router.push(`/patients/hospital/${this.provider.id}/info`)
-        // this.SET_INITPRACTITIONERDATA(practitioner)
+        this.$router.push(
+          `/patients/appointment/hospital/${this.providerData.id}/info`
+        )
       }
     },
   },

@@ -1,7 +1,8 @@
-import VuexPersistence from "vuex-persist"
+// import VuexPersistence from "vuex-persist"
+import VuexPersistenceState from "vuex-persist"
  
 export default ({ store }: any): void => {
-  new VuexPersistence({
+  new VuexPersistenceState({
     key: "booking-site",
   }).plugin(store)
 }

@@ -1,6 +1,8 @@
 <template>
 	<div>
-    
+		<div class="mb-2">
+			<img class="cursor-pointer" src="@/static/images/back-btn.svg" alt="" @click="$router.go(-1)" />
+		</div>
 	</div>
 </template>
 
@@ -8,13 +10,10 @@
 import { Component, Vue } from "nuxt-property-decorator"
 @Component({
   components: {},
-  layout: "book-appointment",
 })
-export default class SearchResult extends Vue {}
+export default class BackBtn extends Vue {}
 </script>
 
 <style scoped>
-a.nuxt-link-active {
-  border-bottom: 3px solid #fe4d3c;
-}
+
 </style>

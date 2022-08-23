@@ -69,9 +69,17 @@
 				<!-- <c-button type="button" class="mr-2" :primary="true" @click="goToLogin">
           Sign in
         </c-button> -->
-				<c-button type="button" :secondary="true" @click="goToSignup">
+				<c-button
+					v-if="!user"
+					type="button"
+					:secondary="true"
+					@click="goToSignup"
+				>
 					Sign up for free
 				</c-button>
+				<div v-else class="font-bold cursor-pointer">
+					{{ user.user.firstName }} {{ user.user.lastName }}
+				</div>
 			</div>
 			<div class="xl:hidden block menu-icon">
 				<img
@@ -106,7 +114,6 @@ import MobileNav from "./MobileNav.vue"
 import PatientsDropdown from "./PatientsDropdown.vue"
 import ProvidersDropdown from "./ProvidersDropdown.vue"
 
-
 export default Vue.extend({
   name: "TopNav",
   components: {
@@ -132,6 +139,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       modalIsOpen: ["misc/modalState"],
+      user: ["user/userData"],
     }),
   },
 
@@ -157,7 +165,8 @@ export default Vue.extend({
     // },
 
     goToSignup() {
-      this.$router.push("/signup")
+      location.href =
+        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signin"
     },
   },
 })

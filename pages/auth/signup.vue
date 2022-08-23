@@ -145,7 +145,7 @@
 							Have an account?
 							<span
 								class="text-red-400 cursor-pointer"
-								@click="$router.push('/patients/book-appointment/login')"
+								@click="$router.push('/patients/appointment/login')"
 							>Sign in</span
 							>
 						</div>
@@ -223,7 +223,7 @@ export default {
     },
 
     async submit() {
-      this.$router.push("/book-appointment/book-a-doctor/step2")
+    //   this.$router.push(`/patients/appointment/doctor/${doctor.id}/book/step2`)
       try {
         this.disabled = true
         const response = await this.$axios.post(

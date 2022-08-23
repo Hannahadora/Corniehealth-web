@@ -8,6 +8,7 @@
 import { Component, Vue } from "nuxt-property-decorator"
 @Component({
   components: { },
+  layout: "appointment"
 })
 export default class PatientPage extends Vue {}
 </script>

@@ -21,13 +21,16 @@
 				<li class="mb-4"><NuxtLink to="/">Lab Tests</NuxtLink></li>
 			</ul>
 			<ul class="footer-list lg:mb-0 mb-12 lg:mr-8 mr-0">
-				<li class="lg:mb-8 mb-6 sub-titles-1">Resources</li>
-				<li class="mb-4"><NuxtLink to="/">FAQ</NuxtLink></li>
-				<li class="mb-4"><NuxtLink to="/">Terms of use</NuxtLink></li>
-				<li class="mb-4"><NuxtLink to="/">Privacy policy</NuxtLink></li>
-				<li class="mb-4"><NuxtLink to="/">HIPAA</NuxtLink></li>
-				<li class="mb-4"><NuxtLink to="/">Compliance</NuxtLink></li>
+				<li class="lg:mb-8 mb-6 sub-titles-1">Products</li>
+				<li class="mb-4">Patient Experience</li>
+				<li class="mb-4">Clinical (EMR/EHR)</li>
+				<li class="mb-4">Practice Management</li>
+				<li class="mb-4">Billing & Collections</li>
+				<li class="mb-4">Patient Portal</li>
+				<li class="mb-4">Analytics</li>
+				<li class="mb-4">Marketplace</li>
 			</ul>
+
 			<ul class="footer-list lg:mb-0 mb-12 lg:mr-8 mr-0">
 				<li class="lg:mb-8 mb-6 sub-titles-1">For Providers</li>
 				<li class="mb-4">
@@ -47,11 +50,12 @@
 				<li class="mb-4"><NuxtLink to="/">Employer</NuxtLink></li>
 			</ul>
 			<ul class="footer-list lg:mb-0 mb-12 lg:mr-8 mr-0">
-				<li class="lg:mb-8 mb-6 sub-titles-1">Social Share</li>
-				<li class="mb-4">Twitter</li>
-				<li class="mb-4">Instagram</li>
-				<li class="mb-4">LinkedIn</li>
-				<li class="mb-4">Facebook</li>
+				<li class="lg:mb-8 mb-6 sub-titles-1">Resources</li>
+				<li class="mb-4"><NuxtLink to="/">FAQ</NuxtLink></li>
+				<li class="mb-4"><NuxtLink to="/">Terms of use</NuxtLink></li>
+				<li class="mb-4"><NuxtLink to="/">Privacy policy</NuxtLink></li>
+				<li class="mb-4"><NuxtLink to="/">HIPAA</NuxtLink></li>
+				<li class="mb-4"><NuxtLink to="/">Compliance</NuxtLink></li>
 			</ul>
 		</div>
 
@@ -62,10 +66,20 @@
 				Health platform.
 			</p>
 			<div class="flex items-center justify-center">
-				<img class="mr-4" src="/images/twitter-icon.svg" alt="" />
-				<img class="mr-3" src="/images/instagram-icon.svg" alt="" />
-				<img class="mr-3" src="/images/linkedin-icon.svg" alt="" />
-				<img class="mr-3" src="/images/facebook-icon.svg" alt="" />
+				<a href="https://twitter.com/CornieHealth"
+				><img class="mr-4" src="/images/twitter-icon.svg" alt=""
+				/></a>
+				<a href="https://ng.linkedin.com/company/cornie-health"
+				><img class="mr-3" src="/images/linkedin-icon.svg" alt=""
+				/></a>
+				<a href="https://www.instagram.com/corniehealth/"
+				><img class="mr-3" src="/images/instagram-icon.svg" alt=""
+				/></a>
+				<a
+					href="facebook.com/corniehealth-106249952075422
+"
+				><img class="mr-3" src="/images/facebook-icon.svg" alt=""
+				/></a>
 			</div>
 		</div>
 	</div>

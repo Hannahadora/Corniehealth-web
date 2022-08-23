@@ -24,7 +24,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies 👨🏻‍💻
-        run: npm ci --prefer-offline --no-audit
+        run: npm install
 
       - name: Test and run Lint
         run: npm run lintfix && npm run lint

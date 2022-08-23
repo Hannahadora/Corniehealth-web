@@ -1,15 +1,25 @@
 <template>
 	<div>
 		<div
-			class="about-header bg-cblue-100 xl:px-32 xl:pt-48 pt-24 pb-64 h-80 text-center relative"
+			class="about-header bg-cblue-100 xl:px-32 xl:pt-48 pt-24 pb-20 text-center relative"
 		>
-			<h1 class="c-indigo mb-2">About</h1>
-			<p class="flex items-center justify-center">
-				<img class="mr-2" src="/images/nav/home.svg" alt="" />
-				<span class="mr-2">Home /</span>
-				<img class="mr-2" src="/images/nav/about.svg" alt="" />
-				<span class="mr-2 text-razzmataz-pry">About</span>
-			</p>
+			<div class="lg:w-9/12 md:w-10/12 w-full mx-auto">
+				<h1 class="c-indigo mb-6">We are transforming healthcare for all.</h1>
+				<p class="mb-6 font-bold">
+					Building a working, sustainable, and affordable healthcare system for
+					both patients and providers.
+				</p>
+				<p>
+					Cornie Health connects patients with a global pool of verified
+					practitioners who offer personalized healthcare. We provide medical
+					consultations, prescriptions, test orders, home tests, door
+					deliveries, and more. We aim to deliver accessible, quality, and
+					affordable healthcare, with or without insurance.
+				</p>
+			</div>
+			<div class="flex justify-center">
+				<img src="/images/about/hero.svg" alt="" />
+			</div>
 			<img
 				class="absolute left-10 top-16"
 				src="/images/about/Ellipse 10.svg"
@@ -249,11 +259,8 @@ export default class AboutPage extends Vue {}
 .sect-1 {
   height: 713px;
   background: #fff;
-  margin-left: 54px;
-  margin-right: 53px;
   margin-top: -60px;
   padding: 72px 16px 124px;
-  z-index: 50;
 }
 
 .about-header {

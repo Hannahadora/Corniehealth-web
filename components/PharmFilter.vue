@@ -139,7 +139,7 @@
 					:tertiary="true"
 					@click="goToBookingPage"
 				>
-					Search best prices
+					Find the best prices
 				</button>
 			</div>
 		</div>

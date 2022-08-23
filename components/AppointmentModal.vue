@@ -1,50 +1,67 @@
 <template>
 	<!-- <cornie-modal :modelValue="show" center class="w-full h-full"> -->
 	<div class="c-indigo w-full p-10 xl:mt-0 mt-8 info-container">
-		<div class="flex items-center justify-between">
+		<div class="w-full flex items-center justify-between">
 			<span class="sub-titles-1 whitespace-nowrap"
-			>Dr. {{ practitioner.name }} Availability</span
+			>Dr. {{ practitioner && practitioner.name }} Availability</span
 			>
 
-			<div class="flex items-center ap-card1 px-3 py-2">
-				<img
-					class="xl:mr-5 mr-2"
-					src="/images/book-appointment/icon-date-black.png"
-					alt=""
-				/>
-				<span class="dmSans xl:block hidden mr-5">Nov 24 - Nov 26</span>
-				<span class="dmSans xl:hidden block mr-2">Nov 24</span>
-				<img src="/images/bx_bx-chevron-down.svg" alt="" />
+			<div class="ml-10">
+				<input v-model="date" class="px-3 py-2 ap-card1" type="date" />
 			</div>
 		</div>
 
+		<div class="my-6 w-full">
+			<cornie-select
+				v-model="locationSelected"
+				placeholder="Select a particular location"
+				:readonly="false"
+				:items="practitionerLocations.map((el) => el.name)"
+				required
+				@changed="handleChange"
+			></cornie-select>
+		</div>
+
 		<div
+			v-if="date"
 			class="xl:flex block items-center justify-between mt-8 xl:overflow-x-hidden overflow-x-scroll"
 		>
 			<div
-				v-for="(day, index) in availableDays"
-				:key="index"
 				class="text-center ap-card px-12 py-2 xl:w-auto w-full"
-				:class="{ 'ap-card-active': selectedDate === day.date }"
-				@click="handleDate(day)"
+				:class="{ 'ap-card-active': selectedDate === date }"
+				@click="handleDate(date)"
 			>
-				<span class="sub-titles-2">{{ day.date }}</span
+				<span class="sub-titles-2">{{ formatDate(date) }}</span
 				><br />
-				<span class="text-grey-blue mt-2">{{ day.slot }}</span>
+				<span class="text-grey-blue mt-2"
+				>{{ availableTime.length }}
+					{{ availableTime.length < 2 ? "slot" : "slots" }} available</span
+				>
 			</div>
 		</div>
 
-		<div
-			class="grid xl:grid-cols-6 grid-cols-3 gap-6 items-center justify-between mt-6"
-		>
+		<div v-if="locationSelected">
 			<div
-				v-for="(time, index) in availableTime"
-				:key="index"
-				class="time-card xl:px-8 px-6 py-2"
-				:class="{ 'time-card-active': selectedTime === time }"
-				@click="handleTime(time)"
+				class="grid xl:grid-cols-6 grid-cols-3 gap-6 items-center justify-between mt-8"
 			>
-				<span class="">{{ time }}</span>
+				<div
+					v-for="(time, index) in availableTime"
+					:key="index"
+					class="time-card xl:px-8 px-6 py-2"
+					:class="{
+						'time-card-active': selectedTime === time,
+						'bg-red-500 text-white': checkPastTime(time),
+					}"
+					@click="handleTime(time)"
+				>
+					<span class="">{{ time }}</span>
+				</div>
+			</div>
+			<div v-if="availableTime.length === 0" class="my-8">
+				<p class="text-center">
+					No available Time<br />
+					Please select another day
+				</p>
 			</div>
 		</div>
 
@@ -76,8 +93,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "nuxt-property-decorator"
+import { Component, Vue, Prop, Watch } from "nuxt-property-decorator"
 import { namespace } from "vuex-class"
+import moment from "moment"
+import CButton from "./CButton.vue"
+import CornieSelect from "./CornieSelect.vue"
 import CornieModal from "~/components/CornieModal.vue"
 
 const appointment = namespace("appointment")
@@ -86,16 +106,21 @@ const misc = namespace("misc")
 @Component({
   components: {
     CornieModal,
+    CButton,
+    CornieSelect,
   },
 })
 export default class DoctorsPage extends Vue {
-  selectedDate: string = "Wed, 24 Nov"
+  selectedDate: string = ""
   selectedTime: string = ""
   availableDays: Array<any> = []
   availableTime: Array<any> = []
   availablePractitioners = []
-
-  practitioner = {}
+  practitioner: any = <any>{}
+  locationSelected = ""
+  locationId = ""
+  date = moment().format("YYYY-MM-DD"); 
+  availableHour: any = <any>{}
 
   @practitioners.Getter
     selectedPractitioner!: []
@@ -106,6 +131,9 @@ export default class DoctorsPage extends Vue {
   @appointment.Mutation
     SET_SELECTEDDATE!: (data: any) => void
 
+  @misc.Getter
+    practitionerLocations!: []
+
   @misc.Mutation
     SET_MODALSTATE!: (data: any) => void
 
@@ -115,9 +143,25 @@ export default class DoctorsPage extends Vue {
   @practitioners.Getter
     getRelatedPractitioners!: []
 
-  handleDate(val: any) {
-    this.selectedDate = val.date
-    this.SET_SELECTEDDATE(val.date)
+  @Watch("date")
+  onInput() {
+    this.selectedDate = this.date
+    if (this.locationSelected) {
+      this.findLocationId()
+      this.fetchAvailability()
+    }
+  }
+
+  findLocationId() {
+    const xlocation: any = this.practitionerLocations.find(
+      (el: any) => el.name === this.locationSelected
+    )
+    this.locationId = xlocation.id
+  }
+
+  handleDate(date: any) {
+    this.selectedDate = date
+    this.SET_SELECTEDDATE(date)
   }
 
   handleTime(val: any) {
@@ -125,44 +169,69 @@ export default class DoctorsPage extends Vue {
     this.SET_SELECTEDTIME(val)
   }
 
-  getAvailableDays() {
-    return (this.availableDays = [
-      { date: "Wed, 24 Nov", slot: "6 slots available" },
-      { date: "Thur, 25 Nov", slot: "13 slots available" },
-      { date: "Fri, 26 Nov", slot: "3 slots available" },
-    ])
-  }
-
   getAvailableTime() {
-    return (this.availableTime = [
-      "09:00",
-      "10:00",
-      "14:00",
-      "21:00",
-      "22:00",
-      "24:00",
-    ])
-  }
-
-  dontProceed() {
-    this.SET_MODALSTATE(false)
-  }
-
-  proceedToBook() {
-    this.SET_MODALSTATE(false)
-    this.$nextTick(() => {
-      this.$router.push("/patients/book-appointment/book-a-doctor/step1")
+    this.availableTime = []
+    Object.entries(this.availableHour).forEach(([key, value]) => {
+      if (value === "available") {
+        // if (!this.checkPastTime(key)) {
+        const formattedKey = Number(key).toFixed(2)
+        this.availableTime.push(formattedKey)
+        // }
+      }
     })
   }
 
+  formatDate(date: any) {
+    return new Date(date).toDateString()
+  }
+
+  proceedToBook() {
+    this.$nextTick(() => {
+      this.$router.push(
+        `/patients/appointment/doctor/${this.practitioner.id}/book/step1?locationId=${this.locationId}`
+      )
+    })
+  }
+
+  checkPastTime(time: any) {
+    const today = new Date().toDateString()
+    const thisHour = new Date().getHours()
+    const dateSelected = new Date(this.selectedDate).toDateString()
+    const potential = today === dateSelected
+    const pastTime = thisHour >= time
+    return potential && pastTime
+  }
+
+  async fetchAvailability() {
+    if (this.date) {
+      try {
+        const res: any = await this.$store.dispatch(
+          "practitioners/fetchAvailability",
+          {
+            locationId: this.locationId,
+            id: this.id,
+            // actor: "practitioner",
+            date: new Date(this.date).toISOString(),
+          }
+        )
+        if (res.data.success) {
+          this.availableHour = res.data.data
+          this.getAvailableTime()
+        }
+      } catch (error: any) {}
+    }
+  }
+
+  async handleChange(value: any) {
+    this.locationSelected = value
+    this.findLocationId()
+    await this.fetchAvailability()
+  }
+
   async created() {
-    await this.$store.dispatch(
-      "practitioners/getAPractitionerProfile",
-      this.id
-    )
+    await this.$store.dispatch("practitioners/getAPractitionerProfile", this.id)
     this.practitioner = this.selectedPractitioner
-    this.getAvailableDays()
-    this.getAvailableTime()
+    this.selectedDate = this.date
     this.SET_SELECTEDDATE(this.selectedDate)
   }
 }

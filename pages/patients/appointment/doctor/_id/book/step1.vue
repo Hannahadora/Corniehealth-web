@@ -21,8 +21,8 @@
 			</div>
 		</div>
 
-		<div class="xl:flex block items-center justify-center mt-8">
-			<div v-if="selectedDate" class="mr-12">
+		<div class="flex xl:flex-row flex-col items-center justify-center mt-8">
+			<div v-if="selectedDate" class="xl:mr-12 xl:mb-0 mb-8">
 				<div
 					class="text-center ap-card px-12 py-2 xl:w-auto w-full"
 					:class="{ 'ap-card-active': selectedDate }"
@@ -96,7 +96,7 @@ const user = namespace("user")
   layout: "appointment",
 })
 export default class StepOne extends Vue {
-  bookedPractitionerBefore: string = ""
+  bookedPractitionerBefore: string = "no"
   selectedDate: string = ""
   selectedTime: string = ""
   availableDays: Array<any> = []

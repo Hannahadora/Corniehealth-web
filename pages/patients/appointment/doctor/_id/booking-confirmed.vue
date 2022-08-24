@@ -56,6 +56,20 @@
 				</tr>
 			</table>
 
+			<div class="mt-8">
+				<label class="text-left block text-xs mb-1 font-bold" for=""
+				>Payment Type</label
+				>
+				<cornie-select
+				placeholder="Select a payment account type"
+				:readonly="false"
+				:items="['nnn']"
+				v-model="paymentAccountId"
+				required
+				>
+				</cornie-select>
+			</div>
+
 			<p class="my-8">
 				You may wish to share additional information about your condition and/or
 				the reason for this appointment. Should you have any emergency, kindly
@@ -108,16 +122,18 @@ import { namespace } from "vuex-class"
 import CButton from "~/components/CButton.vue"
 import BackBtn from "~/components/BackBtn.vue"
 import TooltipRed from "~/components/icons/tooltip-red.vue"
+import CornieSelect from "~/components/CornieSelect.vue"
 
 const practitioners = namespace("practitioners")
 const appointment = namespace("appointment")
 const user = namespace("user")
 @Component({
-  components: { CButton, BackBtn, TooltipRed },
+  components: { CButton, BackBtn, TooltipRed, CornieSelect },
   layout: "appointment",
 })
 export default class BookingConfirmed extends Vue {
   paymentIsRequired = false
+  paymentAccountId = ''
 
   @practitioners.Getter
     selectedPractitioner!: any

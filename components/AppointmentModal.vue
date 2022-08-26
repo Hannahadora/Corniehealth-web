@@ -1,12 +1,12 @@
 <template>
 	<!-- <cornie-modal :modelValue="show" center class="w-full h-full"> -->
-	<div class="c-indigo w-full p-10 xl:mt-0 mt-8 info-container">
-		<div class="w-full flex items-center justify-between">
-			<span class="sub-titles-1 whitespace-nowrap"
+	<div class="c-indigo xl:w-full w-11/12 mx-auto p-10 xl:mt-0 mt-8 info-container">
+		<div class="w-full flex xl:flex-row flex-col xl:items-center items-right justify-between">
+			<span class="sub-titles-1 whitespace-nowrap xl:mb-0 mb-6"
 			>Dr. {{ practitioner && practitioner.name }} Availability</span
 			>
 
-			<div class="ml-10">
+			<div class="xl:ml-10">
 				<input v-model="date" class="px-3 py-2 ap-card1" type="date" />
 			</div>
 		</div>
@@ -119,7 +119,7 @@ export default class DoctorsPage extends Vue {
   practitioner: any = <any>{}
   locationSelected = ""
   locationId = ""
-  date = moment().format("YYYY-MM-DD"); 
+  date = moment().format("YYYY-MM-DD")
   availableHour: any = <any>{}
 
   @practitioners.Getter
@@ -173,10 +173,10 @@ export default class DoctorsPage extends Vue {
     this.availableTime = []
     Object.entries(this.availableHour).forEach(([key, value]) => {
       if (value === "available") {
-        // if (!this.checkPastTime(key)) {
-        const formattedKey = Number(key).toFixed(2)
-        this.availableTime.push(formattedKey)
-        // }
+        if (!this.checkPastTime(key)) {
+          const formattedKey = Number(key).toFixed(2)
+          this.availableTime.push(formattedKey)
+        }
       }
     })
   }

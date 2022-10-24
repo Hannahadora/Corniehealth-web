@@ -14,9 +14,9 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020,
     parser: "@typescript-eslint/parser",
-    ecmaFeatures : {
-      jsx : false
-    }
+    ecmaFeatures: {
+      jsx: false,
+    },
   },
   rules: {
     "no-console": "warn",
@@ -79,6 +79,10 @@ module.exports = {
     "object-property-newline": "off",
     "require-atomic-updates": "off",
     "require-await": "off",
+    eqeqeq: "off",
+    "vue/no-v-for-template-key-on-child": "off",
+    "vue/require-v-for-key": "off",
+    "vue/no-v-model-argument": "off",
   },
   overrides: [
     {

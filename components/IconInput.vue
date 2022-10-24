@@ -11,8 +11,9 @@
 				<slot name="prepend" />
 			</div>
 		</span>
-		<field
-			v-slot="{ errorMessage, meta, field }"
+		{{ valueSync }}
+		<ValidationProvider
+			v-slot="{ errorMessage, valid, field }"
 			v-model="valueSync"
 			:name="inputName"
 			:rules="rules"
@@ -20,7 +21,7 @@
 			<input
 				v-model="valueSync"
 				v-bind="{ ...$attrs, ...field }"
-				:type="$attrs.type || 'text'"
+				:type="$attrs.type || 'search'"
 				:autocomplete="$attrs.autocomplete || 'off'"
 				class="py-1 text-sm text-black rounded-md w-full focus:outline-none"
 				:class="{
@@ -29,11 +30,12 @@
 					'pl-2': !prepend,
 					'pr-2': !append,
 					'border-red-500': Boolean(errorMessage),
-					'border-green-400': meta.valid && meta.touched,
+					'border-green-400': valid,
 				}"
 				@blur="$emit('blur')"
 			/>
-		</field>
+		</ValidationProvider>
+
 		<span
 			v-if="append"
 			class="absolute inset-y-0 right-0 flex items-center pr-2"
@@ -46,10 +48,15 @@
 </template>
 <script lang="ts">
 import { Component, Prop, PropSync, Vue } from "nuxt-property-decorator"
+import { ValidationObserver, ValidationProvider } from "vee-validate"
 
 @Component({
   inheritAttrs: false,
   name: "IconInput",
+  components: {
+    ValidationProvider,
+    ValidationObserver,
+  },
 })
 export default class IconInput extends Vue {
   @Prop({ type: String })

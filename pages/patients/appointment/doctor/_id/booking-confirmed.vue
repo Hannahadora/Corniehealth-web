@@ -61,11 +61,11 @@
 				>Payment Type</label
 				>
 				<cornie-select
-				placeholder="Select a payment account type"
-				:readonly="false"
-				:items="['nnn']"
-				v-model="paymentAccountId"
-				required
+					v-model="paymentAccountId"
+					placeholder="Select a payment account type"
+					:readonly="false"
+					:items="['nnn']"
+					required
 				>
 				</cornie-select>
 			</div>
@@ -133,7 +133,7 @@ const user = namespace("user")
 })
 export default class BookingConfirmed extends Vue {
   paymentIsRequired = false
-  paymentAccountId = ''
+  paymentAccountId = ""
 
   @practitioners.Getter
     selectedPractitioner!: any

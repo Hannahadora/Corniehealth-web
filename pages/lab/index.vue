@@ -1,28 +1,28 @@
 <template>
-  <div class="bg-white mb-auto shadow-lg p-3 mt-2 rounded-lg w-full">
-    <shopping-page-component
-      :title="title"
-      :items="items"
-      :detailsUrl="detailsUrl"
-      :cartQuantity="false"
-    >
-      <template v-slot:sidebar>
-        <diagnostic-sidebar v-model="items" />
-      </template>
-      <template v-slot:default="{ itemprops }">
-        <tabs :items="tabLinks" v-model="currentTab">
-          <!-- <preset-test /> -->
-          <popular-test v-bind="itemprops" />
-        </tabs>
-      </template>
-    </shopping-page-component>
-  </div>
+	<div class="bg-white mb-auto shadow-lg p-3 mt-2 rounded-lg w-full">
+		<shopping-page-component
+			:title="title"
+			:items="items"
+			:details-url="detailsUrl"
+			:cart-quantity="false"
+		>
+			<template #sidebar>
+				<diagnostic-sidebar v-model="items" />
+			</template>
+			<template #default="{ itemprops }">
+				<tabs v-model="currentTab" :items="tabLinks">
+					<!-- <preset-test /> -->
+					<popular-test v-bind="itemprops" />
+				</tabs>
+			</template>
+		</shopping-page-component>
+	</div>
 </template>
 
 <script lang="ts">
+import { Component, Vue, Watch } from "nuxt-property-decorator"
 import ShoppingPageComponent from "@/components/labs/index.vue"
 import Tabs from "@/components/tabs.vue"
-import { Component, Vue, Prop, Watch } from "nuxt-property-decorator"
 import DiagnosticSidebar from "@/components/labs/diagnostic-shopping-sidebar.vue"
 import PopularTest from "@/components/labs/popular-test.vue"
 // import PresetTest from "./preset-test.vue"
@@ -48,6 +48,7 @@ export default class ShoppingPage extends Vue {
     // "Preset Tests",
     "Popular Tests",
   ]
+
   currentTab = 0
   items = []
 

@@ -1,32 +1,32 @@
 <template>
-  <div>
-    <shopping-checkout-component
-      v-model="currentTab"
-      :items="items"
-      :cartItem="cart"
-      @checkout="handleCheckOut"
-    >
-      <collection-info v-model="collectionDetails" />
-      <review-info v-model="collectionDetails" />
-      <div class="flex w-full items-center justify-center py-20">
-        <div class="border shadow p-10">
-          <order-summary
-            :summaryUrl="summaryUrl"
-            :payloadItem="payloadItem"
-            @checkout="$emit('checkout')"
-            :hideShoppingButton="true"
-          >
-            <template #default="{ summary }"> order {{ summary }} </template>
-          </order-summary>
-        </div>
-      </div>
-    </shopping-checkout-component>
-  </div>
+	<div>
+		<shopping-checkout-component
+			v-model="currentTab"
+			:items="items"
+			:cart-item="cart"
+			@checkout="handleCheckOut"
+		>
+			<collection-info v-model="collectionDetails" />
+			<review-info v-model="collectionDetails" />
+			<div class="flex w-full items-center justify-center py-20">
+				<div class="border shadow p-10">
+					<order-summary
+						:summary-url="summaryUrl"
+						:payload-item="payloadItem"
+						:hide-shopping-button="true"
+						@checkout="$emit('checkout')"
+					>
+						<template #default="{ summary }"> order {{ summary }} </template>
+					</order-summary>
+				</div>
+			</div>
+		</shopping-checkout-component>
+	</div>
 </template>
 <script lang="ts">
+import { Component, Vue } from "nuxt-property-decorator"
 import ShoppingCheckoutComponent from "@/components/labs/checkout.vue"
 import OrderSummary from "@/components/labs/order-summary.vue"
-import { Component, Vue, Prop, PropSync } from "nuxt-property-decorator"
 import collectionInfo from "@/components/labs/collection-info.vue"
 import reviewInfo from "@/components/labs/review-info.vue"
 
@@ -48,10 +48,11 @@ export default class DiagnosticsCheckout extends Vue {
   }
 
   get cart() {
-    let a = localStorage.getItem("cart")
+    const a = localStorage.getItem("cart")
     if (!a) return []
     return this.parseS(a)
   }
+
   get summaryUrl() {
     return `/api/v1/patient-portal/diagnostics/lab-order/summary`
   }
@@ -65,11 +66,11 @@ export default class DiagnosticsCheckout extends Vue {
   }
 
   cartContactInformation(data: any) {
-    let a = localStorage.getItem("cart")
+    const a = localStorage.getItem("cart")
     if (!a) return {}
-    let cart = this.parseS(a)
+    const cart = this.parseS(a)
     console.log("cart", this.cart)
-    let newCart = cart.map((el: any) => {
+    const newCart = cart.map((el: any) => {
       el.collectionInformation = data
       return el
     })

@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <div class="w-full flex border-b">
-      <filter-by-icon class="mr-2" />
-      <span class="text-sm text-primary px-2 py-3"> Filter By </span>
-    </div>
-    <div>
-      <FilterAccordion class="border-t" title="Location">
-        <div class="my-5">
-          <span class="mb-2 w-full rounded-full">
-            <!-- <icon-input
+	<div>
+		<div class="w-full flex border-b">
+			<filter-by-icon class="mr-2" />
+			<span class="text-sm text-primary px-2 py-3"> Filter By </span>
+		</div>
+		<div>
+			<FilterAccordion class="border-t" title="Location">
+				<div class="my-5">
+					<span class="mb-2 w-full rounded-full">
+						<!-- <icon-input
               autocomplete="off"
               class="border border-gray-600 rounded-full py-3 focus:outline-none"
               type="search"
@@ -19,85 +19,86 @@
                 <search-icon />
               </template>
             </icon-input> -->
-            <input v-model="locationQuery" />
+						<input v-model="locationQuery" />
 
-            <div class="flex flex-col pt-4 space-y-2">
-              <label
-                v-for="(l, i) in displayLocations"
-                :key="i"
-                class="flex items-center"
-              >
-                <input
-                  @change="locationChanged"
-                  v-model="l.value"
-                  type="checkbox"
-                  class="mr-3 cursor-pointer"
-                />
-                {{ l.display }}:
-              </label>
-              <!-- Locations - {{ pickedLocations }} -->
-            </div>
-          </span>
-        </div>
-      </FilterAccordion>
-      <FilterAccordion class="border-t" title="Provider">
-        <div class="my-2">
-          <span class="mb-2 w-full rounded-full">
-            <icon-input
-              autocomplete="off"
-              class="border border-gray-600 rounded-full py-3 focus:outline-none"
-              type="search"
-              placeholder="Search"
-              v-model="providerQuery"
-            >
-              <template v-slot:prepend>
-                <search-icon />
-              </template>
-            </icon-input>
+						<div class="flex flex-col pt-4 space-y-2">
+							<label
+								v-for="(l, i) in displayLocations"
+								:key="i"
+								class="flex items-center"
+							>
+								<input
+									v-model="l.value"
+									type="checkbox"
+									class="mr-3 cursor-pointer"
+									@change="locationChanged"
+								/>
+								{{ l.display }}:
+							</label>
+							<!-- Locations - {{ pickedLocations }} -->
+						</div>
+					</span>
+				</div>
+			</FilterAccordion>
+			<FilterAccordion class="border-t" title="Provider">
+				<div class="my-2">
+					<span class="mb-2 w-full rounded-full">
+						<icon-input
+							v-model="providerQuery"
+							autocomplete="off"
+							class="border border-gray-600 rounded-full py-3 focus:outline-none"
+							type="search"
+							placeholder="Search"
+						>
+							<template #prepend>
+								<search-icon />
+							</template>
+						</icon-input>
 
-            <div class="flex flex-col pt-4 space-y-2">
-              <label
-                v-for="(l, i) in displayProviders"
-                :key="i"
-                class="flex items-center"
-              >
-                <input
-                  @change="providerChanged"
-                  v-model="l.value"
-                  type="checkbox"
-                  class="mr-3 cursor-pointer"
-                />
-                {{ l.display }}:
-              </label>
-            </div>
-          </span>
-        </div>
-        <div class="my-4"></div>
-      </FilterAccordion>
-      <FilterAccordion class="border-t" title="Diagnostics Category">
-        <div class="my-4">
-          <div class="flex flex-col pt-4 space-y-2">
-            <label
-              v-for="(l, i) in displayCategories"
-              :key="i"
-              class="flex items-center text-sm"
-            >
-              <input
-                @change="categoryChanged"
-                v-model="l.value"
-                type="checkbox"
-                class="mr-3 cursor-pointer"
-              />
-              {{ l.display }}:
-            </label>
-          </div>
-        </div>
-      </FilterAccordion>
-    </div>
-  </div>
+						<div class="flex flex-col pt-4 space-y-2">
+							<label
+								v-for="(l, i) in displayProviders"
+								:key="i"
+								class="flex items-center"
+							>
+								<input
+									v-model="l.value"
+									type="checkbox"
+									class="mr-3 cursor-pointer"
+									@change="providerChanged"
+								/>
+								{{ l.display }}:
+							</label>
+						</div>
+					</span>
+				</div>
+				<div class="my-4"></div>
+			</FilterAccordion>
+			<FilterAccordion class="border-t" title="Diagnostics Category">
+				<div class="my-4">
+					<div class="flex flex-col pt-4 space-y-2">
+						<label
+							v-for="(l, i) in displayCategories"
+							:key="i"
+							class="flex items-center text-sm"
+						>
+							<input
+								v-model="l.value"
+								type="checkbox"
+								class="mr-3 cursor-pointer"
+								@change="categoryChanged"
+							/>
+							{{ l.display }}:
+						</label>
+					</div>
+				</div>
+			</FilterAccordion>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
+import { Component, Vue, Watch, PropSync } from "nuxt-property-decorator"
 import CornieBtn from "@/components/CButton.vue"
 import Corniecheckbox from "@/components/CornieCheckbox.vue"
 import IconInput from "@/components/IconInput.vue"
@@ -108,14 +109,10 @@ import ChevronLeftIcon from "@/components/icons/chevronleftorange.vue"
 import ChevronRightIcon from "@/components/icons/chevronrightorange.vue"
 import FilterByIcon from "@/components/icons/FilterByIcon.vue"
 import FiveStar from "@/components/icons/five-star.vue"
-import {
-  default as Search,
-  default as SearchIcon,
-} from "@/components/icons/search.vue"
+import SearchIcon from "@/components/icons/search.vue"
 import FilterAccordion from "@/components/labs/filter-accordion.vue"
 
 // import querystring from "query-string"
-import { Component, Vue, Prop, Watch, PropSync } from "nuxt-property-decorator"
 
 @Component({
   name: "DiagnosticsShoppingSideBar",
@@ -123,7 +120,6 @@ import { Component, Vue, Prop, Watch, PropSync } from "nuxt-property-decorator"
     ChevronRightIcon,
     ChevronLeftIcon,
     CornieBtn,
-    Search,
     FiveStar,
     Cancel,
     Check,
@@ -137,7 +133,7 @@ import { Component, Vue, Prop, Watch, PropSync } from "nuxt-property-decorator"
 })
 export default class DiagnosticsShoppingSideBar extends Vue {
   @PropSync("modelValue", { type: Array, default: () => [] })
-  services!: any
+    services!: any
 
   appointments: any = []
   loading: Boolean = true
@@ -173,7 +169,7 @@ export default class DiagnosticsShoppingSideBar extends Vue {
   pickedPharmacyLists: any = []
 
   get displayLocations() {
-    return this.locations.map((x) => {
+    return this.locations.map(x => {
       return {
         display: x,
         value: false,
@@ -202,15 +198,15 @@ export default class DiagnosticsShoppingSideBar extends Vue {
 
   async locationChanged() {
     this.pickedLocations = this.displayLocations
-      .filter((x) => x.value == true)
-      .map((x) => x.display)
+      .filter(x => x.value == true)
+      .map(x => x.display)
     await this.fetchServices()
   }
 
   async providerChanged() {
     this.pickedProviders = this.displayProviders
-      .filter((x) => x.value == true)
-      .map((x) => x.id)
+      .filter(x => x.value == true)
+      .map(x => x.id)
     await this.fetchServices()
   }
 
@@ -246,7 +242,7 @@ export default class DiagnosticsShoppingSideBar extends Vue {
     //   locations: this.pickedLocations,
     //   providers: this.pickedProviders,
     // })
-    //@ts-ignore
+    // @ts-ignore
     const a = new URLSearchParams({
       subSpecialties: this.pickedPharmacyLists,
       locations: this.pickedLocations,

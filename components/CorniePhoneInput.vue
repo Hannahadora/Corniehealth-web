@@ -57,7 +57,7 @@
 import { Component, Vue, Prop, PropSync } from "nuxt-property-decorator"
 import { string } from "yup"
 import CornieSelect from "./phoneselect.vue"
-import CornieInput from "./cornie-input.vue"
+import CornieInput from "@/components/CornieInput.vue"
 import IconInput from "@/components/IconInput.vue"
 import { countryCodes } from "@/plugins/countrycodes"
 import SearchIcon from "@/components/icons/search.vue"

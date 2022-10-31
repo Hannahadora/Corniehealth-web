@@ -71,7 +71,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "nuxt-property-decorator"
 import CornieBtn from "@/components/CButton.vue"
-import CornieInput from "@/components/CornieInput.vue"
+import CornieInput from "~/components/CornieInput.vue"
 import CheckPurpleBg from "@/components/icons/check-purple-bg.vue"
 import ChevrondownRed from "@/components/icons/chevrondown-red.vue"
 import ChevronLeftIcon from "@/components/icons/chevronleftorange.vue"

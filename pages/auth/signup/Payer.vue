@@ -123,7 +123,7 @@
 import { ValidationObserver, ValidationProvider } from "vee-validate"
 import Auth from "@/components/auth/auth.vue"
 import HeartPulse from "@/components/icons/heartpulse.vue"
-import CornieInput from "@/components/CornieInput.vue"
+import CornieInput from "~/components/CornieInput.vue"
 import CornieCheckbox from "@/components/CornieCheckbox.vue"
 import CornieDialog from "@/components/CornieDialog.vue"
 

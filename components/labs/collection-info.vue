@@ -171,7 +171,7 @@
 import { Component, Vue, PropSync } from "nuxt-property-decorator"
 import { string } from "yup"
 import CornieBtn from "@/components/CButton.vue"
-import CornieInput from "@/components/CornieInput.vue"
+import CornieInput from "~/components/CornieInput.vue"
 import CornieRadio from "@/components/cornieradio.vue"
 import CornieCheckbox from "@/components/CornieCheckbox.vue"
 // import DatePicker from "@/components/datepicker.vue";

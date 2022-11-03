@@ -167,7 +167,7 @@ export default Vue.extend({
 
     goToSignup() {
       location.href =
-        "http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signin"
+        `http://corniehealth-frontend.s3-website.eu-west-2.amazonaws.com/signin?redirect=${this.$route.path}`
     },
   },
 })

@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     { src: "~/plugins/utils.js", mode: "client" },
     { src: "~/plugins/vee-validate.js", mode: "client" },
     { src: "~/plugins/choices.js", mode: "client" },
-    { src: "~/plugins/localStorage.client.ts", mode: "client" },
+    // { src: "~/plugins/localStorage.client.ts", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -61,11 +61,11 @@ export default defineNuxtConfig({
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   // axios: {},
   // env
-  env: {
-    baseUrl: process.env.BASE_URL || "http://localhost:3000"
-  },
-  publicRuntimeConfig: {
-    baseUrl: process.env.BASE_URL
-  },
+  // env: {
+  //   baseUrl: process.env.BASE_URL || "http://localhost:3000"
+  // },
+  // publicRuntimeConfig: {
+  //   baseUrl: process.env.BASE_URL
+  // },
 
 })

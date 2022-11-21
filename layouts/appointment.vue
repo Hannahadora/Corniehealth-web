@@ -7,11 +7,11 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
-import TopNav from "../components/TopNav.vue"
 import { namespace } from "vuex-class"
+import TopNav from "../components/TopNav.vue"
 const user = namespace("user")
 @Component({
-	components: { TopNav },
+  components: { TopNav },
 })
 export default class AppointmnetLayout extends Vue {
 

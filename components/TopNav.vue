@@ -1,7 +1,7 @@
 <template>
 	<div
 		class="header bg-white w-full fixed top-0"
-		:class="{ 'z-0': modalIsOpen, 'z-998': !modalIsOpen }"
+		:class="{ 'z-800': modalIsOpen, 'z-800': !modalIsOpen }"
 	>
 		<div class="w-full flex items-center justify-between">
 			<CornieLogo />

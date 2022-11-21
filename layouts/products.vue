@@ -1,19 +1,19 @@
 <template>
-  <div>
-    <TopNav />
-    <Nuxt />
-    <products-footer-2 />
-    <CFooter />
-  </div>
+	<div>
+		<TopNav />
+		<Nuxt />
+		<products-footer-2 />
+		<CFooter />
+	</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator"
+import { namespace } from "vuex-class"
 import CFooter from "../components/CFooter.vue"
 import ProductsFooter2 from "../components/Providers/ProductsFooter2.vue"
 import TopNav from "../components/TopNav.vue"
 
-import { namespace } from "vuex-class"
 const user = namespace("user")
 
 @Component({
@@ -21,10 +21,10 @@ const user = namespace("user")
 })
 export default class ProductLayout extends Vue {
   @user.Action
-  findUser!: () => void
+    findUser!: () => void
 
   @user.Mutation
-  SET_TOKEN!: (token: any) => void
+    SET_TOKEN!: (token: any) => void
 
   async created() {
     if (this.$route.query.token) {

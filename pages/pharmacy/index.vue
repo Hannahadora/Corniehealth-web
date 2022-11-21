@@ -337,7 +337,7 @@ import PharmSlider2 from "~/components/PharmSlider2.vue"
 })
 export default class PharmacyPage extends Vue {
   goToSignup() {
-    this.$router.push("/signup")
+    this.$router.push(`/signup?redirect=${this.$route.path}`)
   }
 
   async created() {}

@@ -4,7 +4,7 @@
 		<div
 			v-if="show"
 			:class="classes"
-			class="animated fadeIn fixed z-10 pin shadow-inner flex items-center left-0 bottom-0 w-full h-full bg-black bg-opacity-50"
+			class="animated fadeIn fixed z-900 pin shadow-inner flex items-center left-0 bottom-0 w-full h-full bg-black bg-opacity-50"
 		>
 			<div v-bind="$attrs" class="animated fadeInUp fixed">
 				<slot />
@@ -67,5 +67,8 @@ export default class Modal extends Vue {
 .slide-fade-leave-to {
   transform: translateX(20px);
   opacity: 0;
+}
+.z-900 {
+  z-index: 900 !important;
 }
 </style>

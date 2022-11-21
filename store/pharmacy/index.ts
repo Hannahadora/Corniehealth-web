@@ -22,24 +22,24 @@ export const actions: ActionTree<RootState, RootState> = {
 
   fetchProductLocations: async ({ commit }, query) => {
     try {
-      const res = await api.get(`/patient-portal/catalogue-product/get-locations`)
+      const res = await api.get("/patient-portal/catalogue-product/get-locations")
       return res
     } catch(err: any) {
-        console.log(err)
+      console.log(err)
     } 
   },
   searchProduct: async ({ commit }, search) => {
     const queryString = Object.keys(search).map(filter => {
-        if (search[filter] || Number.isInteger(search[filter])) {
-          return `${filter}=${search[filter]}`;
-        }
-        return null;
-      }).filter(item => item).join("&");
+      if (search[filter] || Number.isInteger(search[filter])) {
+        return `${filter}=${search[filter]}`;
+      }
+      return null;
+    }).filter(item => item).join("&");
     try {
       const res = await api.get(`/patient-portal/catalogue-product/search-catalogue?${queryString}`)
       return res
     } catch(err: any) {
-        console.log(err)
+      console.log(err)
     } 
   },
 

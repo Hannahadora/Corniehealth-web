@@ -1,90 +1,82 @@
 <template>
-  <div>
-    <div
-      class="xl:w-full lg:w-2/3 w-full mx-auto xl:grid block grid-cols-5 gap-2"
-    >
-      <div class="relative col-span-2">
-        <div class="input-wrapper flex items-center py-3 px-5 xl:mb-0 mb-4">
-          <img
-            class="xl:mr-6 mr-4"
-            src="/images/akar-icons_search.png"
-            alt=""
-          />
+	<div>
+		<div
+			class="xl:w-full lg:w-2/3 w-full mx-auto xl:grid block grid-cols-5 gap-2"
+		>
+			<div class="relative col-span-2">
+				<div class="input-wrapper flex items-center py-3 px-5 xl:mb-0 mb-4">
+					<img
+						class="xl:mr-6 mr-4"
+						src="/images/akar-icons_search.png"
+						alt=""
+					/>
 
-          <input
-            v-model="productName"
-            type="text"
-            placeholder="Search by generic medication or by brand "
-            required
-            class="w-10/12 focus:outline-none text-sm xl:mr-2 xl:mb-0 xl:block hidden"
-            @input="$emit('input', $event.target.value)"
-          />
-          <input
-            v-model="productName"
-            type="text"
-            placeholder="Medication"
-            required
-            class="w-10/12 focus:outline-none text-sm xl:hidden block"
-            @input="$emit('input', $event.target.value)"
-          />
+					<input
+						v-model="productName"
+						type="text"
+						placeholder="Search by generic medication or by brand "
+						required
+						class="w-10/12 focus:outline-none text-sm xl:mr-2 xl:mb-0 xl:block hidden"
+						@input="$emit('input', $event.target.value)"
+					/>
+					<input
+						v-model="productName"
+						type="text"
+						placeholder="Medication"
+						required
+						class="w-10/12 focus:outline-none text-sm xl:hidden block"
+						@input="$emit('input', $event.target.value)"
+					/>
 
-          <img src="/images/carbon_camera.png" alt="" />
-        </div>
+					<img src="/images/carbon_camera.png" alt="" />
+				</div>
+			</div>
+			<div v-click-outside="closeLocationDropdown" class="col-span-2 relative">
+				<div class="input-wrapper flex items-center py-3 px-5">
+					<img class="xl:mr-6 mr-4" src="/images/cil_location-pin.png" alt="" />
+					<input
+						v-model="cityName"
+						type="text"
+						placeholder="City name or Zip/Postal code"
+						required
+						class="w-10/12 focus:outline-none text-sm"
+						@input="openLocations = true"
+					/>
+				</div>
 
-        <div
-          v-click-outside="closeLocationDropdown"
-          class="col-span-2 relative"
-        >
-          <div class="input-wrapper flex items-center py-3 px-5">
-            <img
-              class="xl:mr-6 mr-4"
-              src="/images/cil_location-pin.png"
-              alt=""
-            />
-            <input
-              v-model="cityName"
-              type="text"
-              placeholder="City name or Zip/Postal code"
-              required
-              class="w-10/12 focus:outline-none text-sm"
-              @input="openLocations = true"
-            />
-          </div>
-
-          <div
-            v-if="openLocations"
-            class="w-full max-h-80 overflow-y-scroll z-20 mt-10 bg-white px-2 py-4 shadow absolute block top-10"
-          >
-            <div class="ddh w-full px-2 py-4">Select State/Region or City</div>
-            <div
-              v-for="(location, index) in rLocations"
-              :key="index"
-              class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer"
-              @click="selectCity(location)"
-            >
-              {{ location }}
-            </div>
-            <div v-if="!loading && rLocations.length === 0">
-              <span class="text-razzmataz-pry">None found</span>
-            </div>
-            <div v-if="loading" class="text-blue-500 text-center text-xs">
-              Loading
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="xl:ml-1 xl:mt-0 mt-4">
-        <button
-          type="button"
-          class="w-full text-white bg-c-indigo py-3 px-5"
-          :tertiary="true"
-          @click="goShopping"
-        >
-          Find the best prices
-        </button>
-      </div>
-    </div>
-  </div>
+				<div
+					v-if="openLocations"
+					class="w-full max-h-80 overflow-y-scroll z-20 mt-10 bg-white px-2 py-4 shadow absolute block top-10"
+				>
+					<div class="ddh w-full px-2 py-4">Select State/Region or City</div>
+					<div
+						v-for="(location, index) in rLocations"
+						:key="index"
+						class="text-left px-2 py-4 hover:bg-gray-100 cursor-pointer"
+						@click="selectCity(location)"
+					>
+						{{ location }}
+					</div>
+					<div v-if="!loading && rLocations.length === 0">
+						<span class="text-razzmataz-pry">None found</span>
+					</div>
+					<div v-if="loading" class="text-blue-500 text-center text-xs">
+						Loading
+					</div>
+				</div>
+			</div>
+			<div class="xl:ml-1 xl:mt-0 mt-4">
+				<button
+					type="button"
+					class="w-full text-white bg-c-indigo py-3 px-5"
+					:tertiary="true"
+					@click="goShopping"
+				>
+					Find the best prices
+				</button>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -129,7 +121,7 @@ export default {
 
     closeLocationDropdown() {
       this.openLocations = false
-      this.rLocations.forEach((el) => {
+      this.rLocations.forEach(el => {
         if (this.cityName !== el || this.rLocations.length === 0) {
           this.cityName = ""
         }
@@ -144,9 +136,9 @@ export default {
     },
 
     async goShopping() {
-      if (this.cityName !== "" && this.productName !== "") {
+      if (this.productName !== "") {
         this.$router.push(
-          `/pharmacy/search?product=${this.productName}?location=${this.cityName}`
+          `/shopping/search?product=${this.productName}&location=${this.cityName}`
         )
       }
     },
